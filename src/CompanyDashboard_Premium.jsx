@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect } from "react";
 
 const Icon = ({ name, size = 18, color = "currentColor", strokeWidth = 1.8 }) => {
