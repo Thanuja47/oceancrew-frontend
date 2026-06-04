@@ -186,13 +186,13 @@ function LoginPage({ isDark, onNavigate }) {
       }
     } catch (err) {
       setLoading(false);
-      setErrors({ email: "Could not connect to server. Please try again later." });
+      setErrors({ email: "Server is restarting. Please wait 30 seconds and try again." });
     }
   };
 
   const rightContent = (
     <div>
-      <div style={{fontSize:56,marginBottom:24}}>&#9875;</div>
+      <div style={{fontSize:56,marginBottom:24}}>ðŸš¢</div>
       <h2 style={{fontSize:30,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
         Welcome back to<br/><span style={{color:"#38BDF8"}}>OceanCrew</span>
       </h2>
@@ -342,7 +342,7 @@ function RegisterPage({ isDark, onNavigate }) {
       }
     } catch (err) {
       setLoading(false);
-      setErrors({ email: "Could not connect to server. Please try again later." });
+      setErrors({ email: "Server is restarting. Please wait 30 seconds and try again." });
     }
   };
 
@@ -352,7 +352,7 @@ function RegisterPage({ isDark, onNavigate }) {
 
   const rightContent = (
     <div>
-      <div style={{fontSize:46,marginBottom:18}}>{type==="company"?"\uD83C\uDFE2":"\u2693"}</div>
+      <div style={{fontSize:46,marginBottom:18}}>{type==="company" ? "ðŸ¢" : "ðŸš¢"}</div>
       <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
         {type==="company"?"Find the Right Crew":"Your Career Starts Here"}
       </h2>
