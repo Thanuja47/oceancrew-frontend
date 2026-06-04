@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
   const icons = {
@@ -156,11 +157,37 @@ function LoginPage({ isDark, onNavigate }) {
     return e;
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSuccess(true); setTimeout(() => onNavigate("dashboard"), 1200); }, 1600);
+    setErrors({});
+    try {
+      const res = await fetch("https://oceancrew-backend-production.up.railway.app/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, password: form.password })
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (res.ok) {
+        setSuccess(true);
+        // Save token or user info if needed
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userRole", data.user?.role || "seafarer");
+        
+        setTimeout(() => {
+          if (data.user?.role === "company") onNavigate("company-dashboard");
+          else if (data.user?.role === "admin") onNavigate("admin-dashboard");
+          else onNavigate("dashboard");
+        }, 1200);
+      } else {
+        setErrors({ email: data.message || "Invalid credentials. Please try again." });
+      }
+    } catch (err) {
+      setLoading(false);
+      setErrors({ email: "Could not connect to server. Please try again later." });
+    }
   };
 
   const rightContent = (
@@ -286,12 +313,37 @@ function RegisterPage({ isDark, onNavigate }) {
     return e;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step === 1) { if (!type) return; setStep(2); return; }
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
     setLoading(true);
-    setTimeout(() => { setLoading(false); setStep(3); }, 1800);
+    setErrors({});
+    try {
+      const res = await fetch("https://oceancrew-backend-production.up.railway.app/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+          role: type,
+          phone: form.phone,
+          rank: form.rank,
+          companyName: form.company
+        })
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (res.ok) {
+        setStep(3);
+      } else {
+        setErrors({ email: data.message || "Registration failed. Please try again." });
+      }
+    } catch (err) {
+      setLoading(false);
+      setErrors({ email: "Could not connect to server. Please try again later." });
+    }
   };
 
   const features = type === "company"
@@ -571,6 +623,14 @@ export default function AuthFlow() {
   const [page, setPage] = useState("login");
   const [theme, setTheme] = useState("dark");
   const isDark = theme === "dark";
+  const navigate = useNavigate();
+
+  const handleNavigate = (dest) => {
+    if (dest === "dashboard") navigate("/seafarer");
+    else if (dest === "company-dashboard") navigate("/company");
+    else if (dest === "admin-dashboard") navigate("/admin");
+    else setPage(dest);
+  };
 
   return (
     <>
@@ -597,9 +657,9 @@ export default function AuthFlow() {
       </button>
 
       <div style={{animation:"fadeIn 0.3s ease both"}} key={page}>
-        {page==="login"    && <LoginPage    isDark={isDark} onNavigate={setPage}/>}
-        {page==="register" && <RegisterPage isDark={isDark} onNavigate={setPage}/>}
-        {page==="forgot"   && <ForgotPage   isDark={isDark} onNavigate={setPage}/>}
+        {page==="login"    && <LoginPage    isDark={isDark} onNavigate={handleNavigate}/>}
+        {page==="register" && <RegisterPage isDark={isDark} onNavigate={handleNavigate}/>}
+        {page==="forgot"   && <ForgotPage   isDark={isDark} onNavigate={handleNavigate}/>}
       </div>
     </>
   );
