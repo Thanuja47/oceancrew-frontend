@@ -192,7 +192,7 @@ function LoginPage({ isDark, onNavigate }) {
 
   const rightContent = (
     <div>
-      <div style={{fontSize:56,marginBottom:24}}>âš“</div>
+      <div style={{fontSize:56,marginBottom:24}}>&#9875;</div>
       <h2 style={{fontSize:30,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
         Welcome back to<br/><span style={{color:"#38BDF8"}}>OceanCrew</span>
       </h2>
@@ -217,7 +217,7 @@ function LoginPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,marginBottom:32}}>
           New to OceanCrew?{" "}
           <button onClick={()=>onNavigate("register")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:14,fontFamily:"'Inter',sans-serif",padding:0}}>
-            Create an account â†’
+            Create an account &rarr;
           </button>
         </p>
 
@@ -250,7 +250,7 @@ function LoginPage({ isDark, onNavigate }) {
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Signing in...</>
           ) : success ? (
             <><Icon name="check" size={18} color="#fff" strokeWidth={2.5}/> Signed in!</>
-          ) : "Sign In â†’"}
+          ) : "Sign In &rarr;"}
         </button>
 
         <div style={{display:"flex",alignItems:"center",gap:12,margin:"4px 0 20px"}}>
@@ -352,7 +352,7 @@ function RegisterPage({ isDark, onNavigate }) {
 
   const rightContent = (
     <div>
-      <div style={{fontSize:46,marginBottom:18}}>{type==="company"?"ðŸ¢":"âš“"}</div>
+      <div style={{fontSize:46,marginBottom:18}}>{type==="company"?"\uD83C\uDFE2":"\u2693"}</div>
       <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
         {type==="company"?"Find the Right Crew":"Your Career Starts Here"}
       </h2>
@@ -413,7 +413,7 @@ function RegisterPage({ isDark, onNavigate }) {
             color:!type?t3:"#fff",fontSize:14,fontWeight:700,cursor:!type?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",marginBottom:16,
             boxShadow:type?(isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"):"none"}}>
-          Continue â†’
+          Continue &rarr;
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Already have an account?{" "}
@@ -490,7 +490,7 @@ function RegisterPage({ isDark, onNavigate }) {
             display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1}}>
           {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Creating account...</>
-          ) : "Create Account â†’"}
+          ) : "Create Account &rarr;"}
         </button>
       </div>
     </AuthLayout>
@@ -523,7 +523,7 @@ function RegisterPage({ isDark, onNavigate }) {
             background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
             color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",
             boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Go to Dashboard â†’
+          Go to Dashboard &rarr;
         </button>
       </div>
     </AuthLayout>
@@ -607,7 +607,7 @@ function ForgotPage({ isDark, onNavigate }) {
             display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
           {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending...</>
-          ) : "Send Reset Link â†’"}
+          ) : "Send Reset Link &rarr;"}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Remember it?{" "}
