@@ -192,7 +192,7 @@ function LoginPage({ isDark, onNavigate }) {
 
   const rightContent = (
     <div>
-      <div style={{fontSize:56,marginBottom:24}}>ðŸš¢</div>
+      <div style={{marginBottom:24}}><Icon name="anchor" size={56} color="#38BDF8" strokeWidth={1.5} /></div>
       <h2 style={{fontSize:30,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
         Welcome back to<br/><span style={{color:"#38BDF8"}}>OceanCrew</span>
       </h2>
@@ -352,7 +352,7 @@ function RegisterPage({ isDark, onNavigate }) {
 
   const rightContent = (
     <div>
-      <div style={{fontSize:46,marginBottom:18}}>{type==="company" ? "ðŸ¢" : "ðŸš¢"}</div>
+      <div style={{marginBottom:18}}><Icon name={type==="company"?"building":"anchor"} size={46} color="#38BDF8" strokeWidth={1.5} /></div>
       <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
         {type==="company"?"Find the Right Crew":"Your Career Starts Here"}
       </h2>
@@ -500,7 +500,7 @@ function RegisterPage({ isDark, onNavigate }) {
   return (
     <AuthLayout isDark={isDark} rightContent={
       <div>
-        <div style={{fontSize:56,marginBottom:20}}>ðŸŽ‰</div>
+        <div style={{marginBottom:20}}><Icon name="check" size={56} color="#34D399" strokeWidth={1.5} /></div>
         <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",marginBottom:12}}>You're all set!</h2>
         <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto"}}>
           {type==="company"?"Our team will verify your company within 24 hours.":"Start browsing jobs right away."}
@@ -550,7 +550,7 @@ function ForgotPage({ isDark, onNavigate }) {
 
   const rightContent = (
     <div>
-      <div style={{fontSize:52,marginBottom:20}}>ðŸ”’</div>
+      <div style={{marginBottom:20}}><Icon name="lock" size={52} color="#38BDF8" strokeWidth={1.5} /></div>
       <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12}}>Secure Recovery</h2>
       <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>Reset links expire after 30 minutes for your security.</p>
       <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 auto"}}>
