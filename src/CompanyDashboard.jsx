@@ -80,6 +80,9 @@ const L = {
 
 function useT(isDark){return isDark?D:L;}
 
+const API = "https://oceancrew-backend-production.up.railway.app";
+const authHeader = () => ({ "Authorization": `Bearer ${localStorage.getItem("token")}`, "Content-Type": "application/json" });
+
 /* â”€â”€ DATA â”€â”€ */
 const COMPANY = {
   name:localStorage.getItem("userName") || "Pacific Star Shipping Co.",
@@ -240,7 +243,7 @@ function Toast({msg,type,onClose}){
   );
 }
 /* â•â• DASHBOARD PAGE â•â• */
-function DashboardPage({setPage,isDark,showToast,jobs,setJobs}){
+function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
   const T=useT(isDark);
   const activeJobs=jobs.filter(j=>j.status==="Active").length;
   const totalApps=jobs.reduce((a,j)=>a+j.apps,0);
@@ -392,7 +395,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs}){
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Notifications</h3>
             <Bdg label="2 new" color={T.red} bg={T.redBg}/>
           </div>
-          {NOTIFICATIONS.slice(0,4).map(n=>(
+          {(notifs||NOTIFICATIONS).slice(0,4).map(n=>(
             <div key={n.id} style={{display:"flex",gap:12,alignItems:"flex-start",padding:"10px 0",
               borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
               <div style={{width:32,height:32,borderRadius:9,flexShrink:0,
@@ -558,9 +561,16 @@ function ApplicantsPage({isDark,showToast,jobs}){
 
   const filtered=selectedJob==="all"?applicants:applicants.filter(a=>a.jobId===parseInt(selectedJob));
 
-  const moveStage=(id,stage)=>{
-    setApplicants(p=>p.map(a=>a.id===id?{...a,status:stage}:a));
-    showToast(`Applicant moved to ${stage}`,"success");
+  const moveStage=async(id,newStage)=>{
+    setApplicants(p=>p.map(a=>a.id===id?{...a,status:newStage}:a));
+    showToast(`Applicant moved to ${newStage}`,"success");
+    try {
+      await fetch(`${API}/api/applications/${id}`, {
+        method: "PUT",
+        headers: authHeader(),
+        body: JSON.stringify({ status: newStage.toLowerCase() })
+      });
+    } catch(e) {}
   };
 
   const notify=(name)=>showToast(`Notification sent to ${name}`,"success");
@@ -649,13 +659,25 @@ function PipelinePage({isDark,showToast}){
   const stages=["Applied","Shortlisted","Interview","Offer","Hired"];
   const sCols={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green};
 
-  const move=(id,dir)=>{
-    setPipeline(p=>p.map(a=>{
-      if(a.id!==id)return a;
-      const idx=stages.indexOf(a.status);
-      const next=stages[idx+dir];
-      return next?{...a,status:next}:a;
-    }));
+  const move=async(id,dir)=>{
+    setPipeline(p=>{
+      return p.map(a=>{
+        if(a.id!==id)return a;
+        const idx=stages.indexOf(a.status);
+        const next=stages[idx+dir];
+        if(next) {
+          try {
+            fetch(`${API}/api/applications/${id}`, {
+              method: "PUT",
+              headers: authHeader(),
+              body: JSON.stringify({ status: next.toLowerCase() })
+            }).catch(()=>{});
+          } catch(e) {}
+          return {...a,status:next};
+        }
+        return a;
+      });
+    });
   };
 
   return(
@@ -991,11 +1013,18 @@ function InvoicesPage({isDark,showToast}){
 }
 
 /* â•â• NOTIFICATIONS PAGE â•â• */
-function NotificationsPage({isDark,showToast}){
+function NotificationsPage({isDark,showToast,notifs,setNotifs}){
   const T=useT(isDark);
-  const [notifs,setNotifs]=useState(NOTIFICATIONS);
-  const markRead=(id)=>setNotifs(p=>p.map(n=>n.id===id?{...n,read:true}:n));
-  const markAll=()=>setNotifs(p=>p.map(n=>({...n,read:true})));
+  const markRead=async(id)=>{
+    setNotifs(p=>p.map(n=>n.id===id?{...n,read:true}:n));
+    if(typeof id === "string") {
+      try { await fetch(`${API}/api/notifications/${id}/read`, {method:"PUT",headers:authHeader()}); }catch{}
+    }
+  };
+  const markAll=async()=>{
+    setNotifs(p=>p.map(n=>({...n,read:true})));
+    try { await fetch(`${API}/api/notifications/read-all`, {method:"PUT",headers:authHeader()}); }catch{}
+  };
   const unread=notifs.filter(n=>!n.read).length;
   const notifColors={application:isDark?"#38BDF8":T.accent,match:T.green,invoice:T.yellow,expiry:T.purple,platform:T.t3};
 
@@ -1159,13 +1188,27 @@ export default function CompanyDashboard(){
   const [theme,setTheme]=useState("dark");
   const [toast,setToast]=useState(null);
   const [jobs,setJobs]=useState(JOBS);
+  const [notifs,setNotifs]=useState(NOTIFICATIONS);
 
   const isDark=theme==="dark";
   const T=useT(isDark);
   const showToast=(msg,type="info")=>setToast({msg,type});
 
+  const loadNotifs=async()=>{
+    try{
+      const r=await fetch(`${API}/api/notifications`,{headers:authHeader()});
+      const d=await r.json();
+      if(Array.isArray(d)){
+        const mapped=d.map(n=>({id:n._id,type:n.type,msg:n.msg,icon:n.icon||"bell",time:new Date(n.createdAt).toLocaleDateString(),read:n.read}));
+        setNotifs([...mapped,...NOTIFICATIONS]);
+      }
+    }catch{}
+  };
+
+  useEffect(()=>{loadNotifs();},[]);
+
   const renderPage=()=>{
-    const p={isDark,showToast,jobs,setJobs};
+    const p={isDark,showToast,jobs,setJobs,notifs,setNotifs};
     switch(page){
       case "dashboard":    return <DashboardPage setPage={setPage} {...p}/>;
       case "jobs":         return <JobsPage {...p}/>;
@@ -1181,7 +1224,7 @@ export default function CompanyDashboard(){
     }
   };
 
-  const unreadNotifs=NOTIFICATIONS.filter(n=>!n.read).length;
+  const unreadNotifs=notifs.filter(n=>!n.read).length;
 
   return(
     <>
