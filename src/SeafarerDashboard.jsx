@@ -75,46 +75,17 @@ const L={
 };
 function useT(isDark){return isDark?D:L;}
 
-/* â”€â”€ DATA â”€â”€ */
-const SEAFARER={
-  name:"Capt. Rajesh Fernando",avatar:"RF",rank:"Master Mariner",
-  nationality:"Sri Lankan",homePort:"Colombo",yearsExp:"18",
-  verified:true,sub:"Pro",availability:"Jul 2025",
-  profileStrength:82,contractEnd:"Jul 2025",
-};
-
-const MY_APPLICATIONS=[
-  {id:1,title:"Master",          company:"Pacific Star Shipping",vessel:"Container Vessel",salary:"$7,500",status:"Interview",  applied:"May 11",logo:"PS"},
-  {id:2,title:"Master",          company:"Emirates Maritime",    vessel:"Oil Tanker",      salary:"$8,200",status:"Shortlisted",applied:"May 10",logo:"EM"},
-  {id:3,title:"Chief Officer",   company:"MSC Global Lines",     vessel:"Container",       salary:"$4,800",status:"Applied",    applied:"May 9", logo:"MS"},
-  {id:4,title:"Master",          company:"Royal Caribbean",      vessel:"Cruise Ship",     salary:"$9,000",status:"Rejected",   applied:"May 5", logo:"RC"},
-  {id:5,title:"Master",          company:"Golden Ocean Manning", vessel:"Bulk Carrier",    salary:"$6,800",status:"Offer",      applied:"May 3", logo:"GO"},
-];
-
-const JOBS=[
-  {id:1,title:"Master",         company:"Neptune Shipping",  vessel:"Container",   salary:"$7,500",duration:"12 mo",country:"Greece",    urgent:true, verified:true, posted:"May 20",match:96},
-  {id:2,title:"Master",         company:"Pacific Star",      vessel:"Bulk Carrier",salary:"$6,800",duration:"9 mo", country:"Singapore", urgent:false,verified:true, posted:"May 19",match:92},
-  {id:3,title:"Chief Officer",  company:"MSC Global",        vessel:"Container",   salary:"$4,800",duration:"10 mo",country:"Switzerland",urgent:false,verified:true, posted:"May 18",match:88},
-  {id:4,title:"Master",         company:"Emirates Maritime", vessel:"Oil Tanker",  salary:"$8,200",duration:"12 mo",country:"UAE",        urgent:true, verified:true, posted:"May 17",match:85},
-  {id:5,title:"Master",         company:"Golden Ocean",      vessel:"Bulk Carrier",salary:"$7,000",duration:"8 mo", country:"Philippines",urgent:false,verified:false,posted:"May 16",match:79},
-  {id:6,title:"Master",         company:"Horizon Maritime",  vessel:"LNG Carrier", salary:"$9,500",duration:"12 mo",country:"UAE",        urgent:false,verified:true, posted:"May 15",match:74},
-];
+/* â”€â”€ API & AUTH â”€â”€ */
+const API = "https://oceancrew-backend-production.up.railway.app";
+const getToken = () => localStorage.getItem("token");
 
 const CERTS=[
-  {id:"cdc",   label:"CDC / Seaman's Book",  uploaded:true, expiry:"Dec 2026",required:true},
-  {id:"stcw",  label:"STCW Basic Safety",    uploaded:true, expiry:"Mar 2027",required:true},
-  {id:"passport",label:"Passport",           uploaded:true, expiry:"Aug 2028",required:true},
-  {id:"coc",   label:"COC Master Mariner",   uploaded:true, expiry:"Jun 2026",required:false},
-  {id:"medical",label:"Medical Certificate", uploaded:false,expiry:null,      required:false},
-  {id:"gmdss", label:"GMDSS",                uploaded:false,expiry:null,      required:false},
-];
-
-const NOTIFICATIONS=[
-  {id:1,icon:"zap",      msg:"Interview scheduled: Pacific Star Shipping â€” Master role",    time:"1h ago",  read:false,type:"pipeline"},
-  {id:2,icon:"star",     msg:"New job match: Master â€” Neptune Shipping ($7,500/mo)",        time:"3h ago",  read:false,type:"match"},
-  {id:3,icon:"checkCircle",msg:"You have been shortlisted: Emirates Maritime â€” Master",     time:"1d ago",  read:true, type:"pipeline"},
-  {id:4,icon:"award",    msg:"Your profile is Verified! Badge now visible to companies",    time:"2d ago",  read:true, type:"badge"},
-  {id:5,icon:"dollarSign",msg:"Golden Ocean Manning sent you an Offer â€” review now",        time:"3d ago",  read:false,type:"offer"},
+  {id:"cdc",   label:"CDC / Seaman's Book",  uploaded:false,expiry:null,required:true},
+  {id:"stcw",  label:"STCW Basic Safety",    uploaded:false,expiry:null,required:true},
+  {id:"passport",label:"Passport",           uploaded:false,expiry:null,required:true},
+  {id:"coc",   label:"COC Master Mariner",   uploaded:false,expiry:null,required:false},
+  {id:"medical",label:"Medical Certificate", uploaded:false,expiry:null,required:false},
+  {id:"gmdss", label:"GMDSS",                uploaded:false,expiry:null,required:false},
 ];
 
 const SEA_SERVICE=[
@@ -136,10 +107,11 @@ const NAV=[
   ]},
   {section:"Account",items:[
     {id:"subscription",icon:"creditCard", label:"Subscription"},
-    {id:"notifications",icon:"bell",     label:"Notifications",badge:3},
+    {id:"notifications",icon:"bell",     label:"Notifications"},
     {id:"settings",    icon:"settings",  label:"Settings"},
   ]},
 ];
+
 
 /* â”€â”€ PRIMITIVES â”€â”€ */
 function Card({children,style={},isDark,onClick}){
@@ -205,12 +177,13 @@ function Toast({msg,type,onClose}){
   );
 }
 /* â•â• DASHBOARD â•â• */
-function DashboardPage({setPage,isDark,showToast}){
+function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications,userName}){
   const T=useT(isDark);
-  const applied=MY_APPLICATIONS.length;
-  const shortlisted=MY_APPLICATIONS.filter(a=>["Shortlisted","Interview","Offer"].includes(a.status)).length;
-  const offers=MY_APPLICATIONS.filter(a=>a.status==="Offer").length;
-  const unread=NOTIFICATIONS.filter(n=>!n.read).length;
+  const applied=(applications||[]).length;
+  const shortlisted=(applications||[]).filter(a=>["Shortlisted","Interview","Offer"].includes(a.status)).length;
+  const offers=(applications||[]).filter(a=>a.status==="Offer").length;
+  const unread=(notifications||[]).filter(n=>!n.read).length;
+  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50};
 
   const stageColor={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green,Rejected:T.red};
 
@@ -296,7 +269,7 @@ function DashboardPage({setPage,isDark,showToast}){
             <Btn onClick={()=>setPage("applications")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
-            {MY_APPLICATIONS.slice(0,4).map(app=>{
+            {(applications||[]).slice(0,4).map(app=>{
               const col=stageColor[app.status]||T.t3;
               return(
                 <div key={app.id} style={{display:"flex",alignItems:"center",gap:12,padding:"11px 14px",
@@ -320,7 +293,7 @@ function DashboardPage({setPage,isDark,showToast}){
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Notifications</h3>
             {unread>0&&<Bdg label={`${unread} new`} color={T.red} bg={T.redBg}/>}
           </div>
-          {NOTIFICATIONS.slice(0,4).map(n=>(
+          {(notifications||[]).slice(0,4).map(n=>(
             <div key={n.id} style={{display:"flex",gap:10,padding:"9px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
               <div style={{width:30,height:30,borderRadius:8,flexShrink:0,
                 background:n.read?(isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)"):(isDark?"rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)"),
@@ -345,7 +318,7 @@ function DashboardPage({setPage,isDark,showToast}){
           <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">Browse All â†’</Btn>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
-          {JOBS.slice(0,3).map(job=>(
+          {(jobs||[]).slice(0,3).map(job=>(
             <div key={job.id} style={{padding:"16px",borderRadius:14,
               background:isDark?"rgba(255,255,255,0.025)":"rgba(100,116,139,0.04)",
               border:job.urgent?`1px solid ${T.red}30`:(isDark?"1px solid rgba(255,255,255,0.04)":"none"),
@@ -368,12 +341,12 @@ function DashboardPage({setPage,isDark,showToast}){
   );
 }
 /* â•â• FIND JOBS â•â• */
-function FindJobsPage({isDark,showToast}){
+function FindJobsPage({isDark,showToast,jobs,searchQuery}){
   const T=useT(isDark);
-  const [search,setSearch]=useState("");
+  const [search,setSearch]=useState(searchQuery||"");
   const [rankFilter,setRankFilter]=useState("All");
   const [applied,setApplied]=useState([]);
-  const filtered=JOBS.filter(j=>(rankFilter==="All"||j.title===rankFilter)&&(j.title.toLowerCase().includes(search.toLowerCase())||j.company.toLowerCase().includes(search.toLowerCase())));
+  const filtered=(jobs||[]).filter(j=>(rankFilter==="All"||j.title===rankFilter)&&(j.title.toLowerCase().includes(search.toLowerCase())||j.company.toLowerCase().includes(search.toLowerCase())));
 
   const apply=(job)=>{
     if(applied.includes(job.id)){showToast("Already applied","warning");return;}
@@ -439,7 +412,7 @@ function FindJobsPage({isDark,showToast}){
 }
 
 /* â•â• MY APPLICATIONS â•â• */
-function ApplicationsPage({isDark,showToast}){
+function ApplicationsPage({isDark,showToast,applications}){
   const T=useT(isDark);
   const stageColor={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green,Rejected:T.red};
   const stages=["Applied","Shortlisted","Interview","Offer","Hired"];
@@ -448,13 +421,13 @@ function ApplicationsPage({isDark,showToast}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>My Applications</h2>
-        <p style={{fontSize:14,color:T.t3}}>{MY_APPLICATIONS.length} applications â€” track your journey</p>
+        <p style={{fontSize:14,color:T.t3}}>{(applications||[]).length} applications â€” track your journey</p>
       </div>
 
       {/* Stage summary */}
       <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:10,marginBottom:20}}>
         {stages.map(stage=>{
-          const count=MY_APPLICATIONS.filter(a=>a.status===stage).length;
+          const count=(applications||[]).filter(a=>a.status===stage).length;
           const col=stageColor[stage]||T.t3;
           return(
             <Card key={stage} isDark={isDark} style={{padding:"16px",textAlign:"center"}}>
@@ -467,7 +440,7 @@ function ApplicationsPage({isDark,showToast}){
 
       {/* Application timeline */}
       <div style={{display:"flex",flexDirection:"column",gap:12}}>
-        {MY_APPLICATIONS.map(app=>{
+        {(applications||[]).map(app=>{
           const col=stageColor[app.status]||T.t3;
           const stageIdx=stages.indexOf(app.status);
           return(
@@ -535,9 +508,9 @@ function ApplicationsPage({isDark,showToast}){
   );
 }
 
-/* â•â• MY PROFILE â•â• */
-function ProfilePage({isDark,showToast}){
+function ProfilePage({isDark,showToast,userName}){
   const T=useT(isDark);
+  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
   const [form,setForm]=useState({
     name:SEAFARER.name,rank:SEAFARER.rank,nationality:SEAFARER.nationality,
     homePort:SEAFARER.homePort,yearsExp:SEAFARER.yearsExp,
@@ -709,12 +682,37 @@ function CVPage({isDark,showToast}){
   const T=useT(isDark);
   const [requested,setRequested]=useState(false);
   const [paid,setPaid]=useState(false);
-  const [preview,setPreview]=useState(false);
+  const [loading,setLoading]=useState(false);
+  const fileInputRef = useRef(null);
+  const [file,setFile] = useState(null);
 
-  const handlePay=()=>{
-    setPaid(true);
-    setRequested(true);
-    showToast("Payment successful! CV generation request sent to OceanCrew team.","success");
+  const handlePay=async ()=>{
+    if(!file){showToast("Please select your base CV PDF first","warning");return;}
+    setLoading(true);
+    try{
+      const token = getToken();
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64 = e.target.result.split(',')[1];
+        const res = await fetch(`${API}/api/cv/upload`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ fileName: file.name, fileData: base64, mimeType: file.type }),
+        });
+        if(res.ok){
+          setPaid(true);
+          setRequested(true);
+          showToast("Payment successful! CV generation request sent.","success");
+        }else{
+          showToast("Upload failed","error");
+        }
+        setLoading(false);
+      };
+      reader.readAsDataURL(file);
+    }catch{
+      showToast("Error processing file","error");
+      setLoading(false);
+    }
   };
 
   return(
@@ -748,7 +746,15 @@ function CVPage({isDark,showToast}){
               </div>
               <Bdg label="One-time only" color={T.green} bg={T.greenBg}/>
             </div>
-            <Btn onClick={handlePay} isDark={isDark} variant="primary" icon="creditCard" fullWidth size="lg">Pay $4.99 â€” Generate My CV</Btn>
+            <div style={{marginBottom:20}}>
+              <input type="file" accept=".pdf,.doc,.docx" onChange={e=>setFile(e.target.files[0])} ref={fileInputRef} style={{display:"none"}}/>
+              <Btn onClick={()=>fileInputRef.current.click()} isDark={isDark} variant="ghost" fullWidth icon="upload">
+                {file?file.name:"1. Select Current CV (PDF)"}
+              </Btn>
+            </div>
+            <Btn onClick={handlePay} disabled={loading} isDark={isDark} variant="primary" icon="creditCard" fullWidth size="lg">
+              {loading ? "Processing..." : "2. Pay $4.99 â€” Generate My CV"}
+            </Btn>
           </Card>
 
           {/* Preview sample */}
@@ -981,13 +987,94 @@ export default function SeafarerDashboard(){
   const isDark=theme==="dark";
   const T=useT(isDark);
   const showToast=(msg,type="info")=>setToast({msg,type});
-  const unreadNotifs=NOTIFICATIONS.filter(n=>!n.read).length;
+
+  /* â”€â”€ Real user name from localStorage â”€â”€ */
+  const userName = localStorage.getItem("userName") || "Seafarer";
+  const userAvatar = userName.slice(0,2).toUpperCase();
+
+  /* â”€â”€ Real API state â”€â”€ */
+  const [jobs,setJobs]=useState([]);
+  const [applications,setApplications]=useState([]);
+  const [notifications,setNotifications]=useState([]);
+  const [searchQuery,setSearchQuery]=useState("");
+  const [loadingJobs,setLoadingJobs]=useState(false);
+
+  /* â”€â”€ Fetch jobs â”€â”€ */
+  const fetchJobs = async (q="") => {
+    setLoadingJobs(true);
+    try {
+      const url = q ? `${API}/api/jobs?search=${encodeURIComponent(q)}` : `${API}/api/jobs`;
+      const res = await fetch(url);
+      const data = await res.json();
+      setJobs(Array.isArray(data) ? data : []);
+    } catch { setJobs([]); }
+    setLoadingJobs(false);
+  };
+
+  /* â”€â”€ Fetch my applications â”€â”€ */
+  const fetchApplications = async () => {
+    const token = getToken();
+    if (!token) return;
+    try {
+      const res = await fetch(`${API}/api/applications/my`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      setApplications(Array.isArray(data) ? data : []);
+    } catch { setApplications([]); }
+  };
+
+  /* â”€â”€ Fetch notifications â”€â”€ */
+  const fetchNotifications = async () => {
+    const token = getToken();
+    if (!token) return;
+    try {
+      const res = await fetch(`${API}/api/notifications`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      setNotifications(Array.isArray(data) ? data : []);
+    } catch { setNotifications([]); }
+  };
+
+  /* â”€â”€ Mark notification read + navigate â”€â”€ */
+  const handleNotifClick = async (notif) => {
+    const token = getToken();
+    if (token && !notif.read) {
+      await fetch(`${API}/api/notifications/${notif._id}/read`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setNotifications(p => p.map(n => n._id===notif._id ? {...n,read:true} : n));
+    }
+    if (notif.link) setPage(notif.link);
+    else setPage("notifications");
+  };
+
+  /* â”€â”€ Search bar handler â”€â”€ */
+  const handleSearch = (e) => {
+    const q = e.target.value;
+    setSearchQuery(q);
+    if (q.length > 1) { fetchJobs(q); setPage("jobs"); }
+    else if (q.length === 0) fetchJobs("");
+  };
+
+  /* â”€â”€ Initial load + poll notifications every 15s â”€â”€ */
+  useEffect(()=>{
+    fetchJobs();
+    fetchApplications();
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 15000);
+    return () => clearInterval(interval);
+  },[]);
+
+  const unreadNotifs = notifications.filter(n=>!n.read).length;
 
   const renderPage=()=>{
-    const p={isDark,showToast};
+    const p={isDark,showToast,jobs,loadingJobs,fetchJobs,applications,fetchApplications,notifications,setNotifications,handleNotifClick,userName};
     switch(page){
-      case "dashboard":    return <DashboardPage setPage={setPage} {...p}/>;
-      case "jobs":         return <FindJobsPage {...p}/>;
+      case "dashboard":    return <DashboardPage setPage={setPage} userName={userName} {...p}/>;
+      case "jobs":         return <FindJobsPage {...p} searchQuery={searchQuery}/>;
       case "applications": return <ApplicationsPage {...p}/>;
       case "profile":      return <ProfilePage {...p}/>;
       case "documents":    return <DocumentsPage {...p}/>;
@@ -995,7 +1082,7 @@ export default function SeafarerDashboard(){
       case "subscription": return <SubscriptionPage {...p}/>;
       case "notifications":return <NotificationsPage {...p}/>;
       case "settings":     return <SettingsPage {...p}/>;
-      default:             return <DashboardPage setPage={setPage} {...p}/>;
+      default:             return <DashboardPage setPage={setPage} userName={userName} {...p}/>;
     }
   };
 
@@ -1040,9 +1127,9 @@ export default function SeafarerDashboard(){
 
           {sidebar&&(
             <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
-              <div style={{width:36,height:36,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:isDark?"#38BDF8":T.t1,fontWeight:700,fontSize:13,fontFamily:"'Sora',sans-serif",flexShrink:0,border:isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)"}}>RF</div>
+              <div style={{width:36,height:36,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:isDark?"#38BDF8":T.t1,fontWeight:700,fontSize:13,fontFamily:"'Sora',sans-serif",flexShrink:0,border:isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)"}}>{userAvatar}</div>
               <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>Capt. Rajesh Fernando</div>
+                <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{userName}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
                   <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>âœ“ VERIFIED</span>
                   <span style={{fontSize:9,color:T.t3}}>Â· Pro Member</span>
@@ -1104,7 +1191,7 @@ export default function SeafarerDashboard(){
             <div style={{display:"flex",alignItems:"center",gap:8}}>
               <div style={{position:"relative"}}>
                 <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={13} color={T.t3} strokeWidth={2}/></span>
-                <input placeholder="Search jobs..." style={{width:160,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
+                <input placeholder="Search jobs..." value={searchQuery} onChange={handleSearch} style={{width:180,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
               </div>
               <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="primary" size="sm" icon="search">Find Jobs</Btn>
               <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2}}>
@@ -1116,8 +1203,8 @@ export default function SeafarerDashboard(){
               </button>
               <div style={{display:"flex",alignItems:"center",gap:7,padding:"5px 12px 5px 6px",background:isDark?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}
                 onClick={()=>setPage("profile")}>
-                <div style={{width:26,height:26,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.15)":"rgba(26,35,50,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>RF</div>
-                <span style={{fontSize:12,fontWeight:600,color:T.t1}}>Rajesh</span>
+                <div style={{width:26,height:26,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.15)":"rgba(26,35,50,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>{userAvatar}</div>
+                <span style={{fontSize:12,fontWeight:600,color:T.t1}}>{userName.split(" ")[0]}</span>
               </div>
             </div>
           </header>
@@ -1128,7 +1215,7 @@ export default function SeafarerDashboard(){
 
           <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark?D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
             <p style={{fontSize:11,color:T.t3}}>
-              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Seafarer Portal Â· <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>SKYbird Systems</strong>
+              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Seafarer Portal
             </p>
           </footer>
         </div>
