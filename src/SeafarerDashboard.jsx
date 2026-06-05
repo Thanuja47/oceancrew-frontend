@@ -888,13 +888,21 @@ function SubscriptionPage({isDark,showToast}){
 }
 
 /* â•â• NOTIFICATIONS â•â• */
-function NotificationsPage({isDark,showToast}){
+function NotificationsPage({isDark,showToast,notifications,setNotifications,handleNotifClick}){
   const T=useT(isDark);
-  const [notifs,setNotifs]=useState(NOTIFICATIONS);
-  const markRead=(id)=>setNotifs(p=>p.map(n=>n.id===id?{...n,read:true}:n));
-  const markAll=()=>setNotifs(p=>p.map(n=>({...n,read:true})));
-  const unread=notifs.filter(n=>!n.read).length;
+  const markRead=async(id)=>{
+    setNotifications(p=>p.map(n=>n._id===id?{...n,read:true}:n));
+    if(typeof id === "string") {
+      try { await fetch(`${API}/api/notifications/${id}/read`, {method:"PUT",headers:{Authorization:`Bearer ${getToken()}`}}); }catch{}
+    }
+  };
+  const markAll=async()=>{
+    setNotifications(p=>p.map(n=>({...n,read:true})));
+    try { await fetch(`${API}/api/notifications/read-all`, {method:"PUT",headers:{Authorization:`Bearer ${getToken()}`}}); }catch{}
+  };
+  const unread=notifications.filter(n=>!n.read).length;
   const typeColor={pipeline:"#38BDF8",match:T.green,badge:T.yellow,offer:T.purple};
+  const notifs = notifications;
   return(
     <div>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
@@ -907,16 +915,17 @@ function NotificationsPage({isDark,showToast}){
       <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
         {notifs.map((n,i)=>{
           const col=typeColor[n.type]||T.t3;
+          const id = n._id || n.id;
           return(
-            <div key={n.id} onClick={()=>markRead(n.id)} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px 22px",borderBottom:i<notifs.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",cursor:"pointer",background:!n.read?(isDark?"rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent",transition:"background 0.15s"}}
+            <div key={id} onClick={()=>markRead(id)} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px 22px",borderBottom:i<notifs.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",cursor:"pointer",background:!n.read?(isDark?"rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent",transition:"background 0.15s"}}
               onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
               onMouseLeave={e=>e.currentTarget.style.background=!n.read?(isDark?"rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent"}>
               <div style={{width:38,height:38,borderRadius:11,background:`${col}18`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,border:`1px solid ${col}25`}}>
-                <Icon name={n.icon} size={16} color={col} strokeWidth={2}/>
+                <Icon name={n.icon||"bell"} size={16} color={col} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
                 <p style={{fontSize:13,color:n.read?T.t2:T.t1,fontWeight:n.read?400:500,lineHeight:1.5,marginBottom:4}}>{n.msg}</p>
-                <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
+                <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time||new Date(n.createdAt).toLocaleDateString()}</span>
               </div>
               {!n.read&&<div style={{width:8,height:8,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:6}}/>}
             </div>
