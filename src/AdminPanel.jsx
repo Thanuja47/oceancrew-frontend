@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+const API = "https://oceancrew-backend-production.up.railway.app";
+const getToken = () => localStorage.getItem("token");
+const authHeader = () => ({ "Content-Type": "application/json", Authorization: `Bearer ${getToken()}` });
+
 const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
   const icons = {
     dashboard:<><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></>,
@@ -726,28 +730,55 @@ function SeafarersPage({isDark,seafarers}){
 }
 function InvoicePage({isDark,showToast}){
   const T=useT(isDark);
-  const [invoices,setInvoices]=useState(INIT_INVOICES);
-  const [showNew,setShowNew]=useState(false);
-  const [form,setForm]=useState({to:"",type:"Company",plan:"Professional",amount:"",email:"",due:""});
+  const [invoices,setInvoices]=useState([]);
+  const [loading,setLoading]=useState(true);
   const [filter,setFilter]=useState("All");
   const statusColor={Paid:T.green,Pending:T.yellow,Overdue:T.red};
   const statusBg={Paid:T.greenBg,Pending:T.yellowBg,Overdue:T.redBg};
 
-  const markStatus=(id,status)=>{
-    setInvoices(p=>p.map(inv=>inv.id===id?{...inv,status}:inv));
-    showToast(`Invoice marked as ${status}`,status==="Paid"?"success":status==="Overdue"?"error":"warning");
+  const loadInvoices=()=>{
+    setLoading(true);
+    fetch(`${API}/api/payments/all`,{headers:authHeader()})
+      .then(r=>r.json())
+      .then(data=>{
+        if(Array.isArray(data)){
+          setInvoices(data.map(p=>({
+            id:`INV-${p._id.slice(-6).toUpperCase()}`,
+            rawId:p._id,
+            to:p.userId?.name||"Unknown",
+            type:p.userId?.role==="company"?"Company":"Seafarer",
+            email:p.userId?.email||"",
+            plan:p.plan,
+            amount:p.amount,
+            status:p.status==="approved"?"Paid":p.status==="pending"?"Pending":"Overdue",
+            due:new Date(p.createdAt).toLocaleDateString("en-US",{month:"short",day:"numeric"})
+          })));
+        }
+      })
+      .catch(()=>showToast("Failed to load payments","error"))
+      .finally(()=>setLoading(false));
   };
 
-  const create=()=>{
-    if(!form.to||!form.amount||!form.email){showToast("Fill all required fields","error");return;}
-    const n={id:`INV-00${invoices.length+1}`,to:form.to,type:form.type,plan:form.plan,
-      amount:parseFloat(form.amount),status:"Pending",
-      date:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"}),
-      due:form.due||"TBD",email:form.email};
-    setInvoices(p=>[n,...p]);
-    setShowNew(false);
-    setForm({to:"",type:"Company",plan:"Professional",amount:"",email:"",due:""});
-    showToast(`Invoice ${n.id} created and sent to ${form.email}`,"success");
+  useEffect(()=>{loadInvoices();},[]);
+
+  const markStatus=async(id,rawId,status)=>{
+    const apiStatus = status === "Paid" ? "approved" : "rejected";
+    try {
+      const r = await fetch(`${API}/api/payments/${rawId}`, {
+        method: "PUT",
+        headers: authHeader(),
+        body: JSON.stringify({ status: apiStatus })
+      });
+      if(r.ok) {
+        setInvoices(p=>p.map(inv=>inv.id===id?{...inv,status}:inv));
+        showToast(`Payment marked as ${status}. Invoice emailed!`,"success");
+      } else {
+        const d = await r.json();
+        showToast(d.message || "Failed to update payment","error");
+      }
+    } catch {
+      showToast("Network error","error");
+    }
   };
 
   const filtered=filter==="All"?invoices:invoices.filter(i=>i.status===filter);
@@ -759,12 +790,9 @@ function InvoicePage({isDark,showToast}){
     <div>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
         <div>
-          <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Invoice Manager</h2>
-          <p style={{fontSize:14,color:T.t3}}>Generate, send and track invoices for companies and seafarers</p>
+          <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Payments & Invoicing</h2>
+          <p style={{fontSize:14,color:T.t3}}>Approve bank transfers and auto-email invoices</p>
         </div>
-        <button onClick={()=>setShowNew(!showNew)} style={{padding:"11px 22px",borderRadius:12,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:8,boxShadow:isDark?"0 4px 16px rgba(56,189,248,0.25)":"0 4px 16px rgba(26,35,50,0.2)"}}>
-          <Icon name="plus" size={15} color="#fff" strokeWidth={2.5}/>New Invoice
-        </button>
       </div>
 
       <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:14,marginBottom:20}}>
@@ -781,48 +809,6 @@ function InvoicePage({isDark,showToast}){
         ))}
       </div>
 
-      {showNew&&(
-        <Card isDark={isDark} style={{marginBottom:20,padding:28}}>
-          <h3 style={{fontSize:17,fontWeight:600,color:T.t1,marginBottom:20,fontFamily:"'Sora',sans-serif"}}>Generate New Invoice</h3>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14,marginBottom:14}}>
-            {[
-              {key:"to",    label:"Bill To *",      placeholder:"Name"},
-              {key:"email", label:"Email *",         placeholder:"email@company.com"},
-              {key:"amount",label:"Amount (USD) *",  placeholder:"e.g. 149"},
-              {key:"due",   label:"Due Date",        placeholder:"e.g. Jun 15"},
-            ].map(f=>(
-              <div key={f.key}>
-                <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:7}}>{f.label}</div>
-                <input value={form[f.key]} onChange={e=>setForm(p=>({...p,[f.key]:e.target.value}))} placeholder={f.placeholder}
-                  style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
-              </div>
-            ))}
-            <div>
-              <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:7}}>Type</div>
-              <select value={form.type} onChange={e=>setForm(p=>({...p,type:e.target.value}))}
-                style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif"}}>
-                <option>Company</option><option>Seafarer</option>
-              </select>
-            </div>
-            <div>
-              <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:7}}>Plan</div>
-              <select value={form.plan} onChange={e=>setForm(p=>({...p,plan:e.target.value}))}
-                style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif"}}>
-                {["Starter","Professional","Enterprise","Pro Access ($4)","Custom"].map(p=><option key={p}>{p}</option>)}
-              </select>
-            </div>
-          </div>
-          <div style={{display:"flex",gap:10}}>
-            <button onClick={create} style={{padding:"11px 24px",borderRadius:11,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:7}}>
-              <Icon name="send" size={14} color="#fff" strokeWidth={2}/>Generate and Send
-            </button>
-            <button onClick={()=>setShowNew(false)} style={{padding:"11px 20px",borderRadius:11,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:"transparent",color:T.t3,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
-              Cancel
-            </button>
-          </div>
-        </Card>
-      )}
-
       <div style={{display:"flex",gap:6,marginBottom:16}}>
         {["All","Paid","Pending","Overdue"].map(f=>(
           <Pill key={f} active={filter===f} isDark={isDark} danger={f==="Overdue"} onClick={()=>setFilter(f)}>{f}</Pill>
@@ -835,7 +821,7 @@ function InvoicePage({isDark,showToast}){
             <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
           ))}
         </div>
-        {filtered.map((inv,i)=>(
+        {loading ? <div style={{padding:40,textAlign:"center",color:T.t3}}>Loading payments...</div> : filtered.length===0 ? <div style={{padding:40,textAlign:"center",color:T.t3}}>No payments found.</div> : filtered.map((inv,i)=>(
           <div key={inv.id} style={{display:"grid",gridTemplateColumns:"0.7fr 1.5fr 0.8fr 1fr 0.7fr 0.7fr 1.2fr",padding:"13px 22px",borderBottom:i<filtered.length-1?(isDark?"1px solid rgba(255,255,255,0.04)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
             onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
@@ -850,8 +836,8 @@ function InvoicePage({isDark,showToast}){
             <span style={{fontSize:11,color:T.t2,fontFamily:"'JetBrains Mono',monospace"}}>{inv.due}</span>
             <div style={{display:"flex",gap:4,flexWrap:"wrap",alignItems:"center"}}>
               <Bdg label={inv.status} color={statusColor[inv.status]} bg={statusBg[inv.status]}/>
-              {inv.status!=="Paid"&&<button onClick={()=>markStatus(inv.id,"Paid")} style={{padding:"2px 7px",borderRadius:6,border:"none",background:T.greenBg,color:T.green,fontSize:9,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Paid</button>}
-              {inv.status==="Pending"&&<button onClick={()=>markStatus(inv.id,"Overdue")} style={{padding:"2px 7px",borderRadius:6,border:"none",background:T.redBg,color:T.red,fontSize:9,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Overdue</button>}
+              {inv.status!=="Paid"&&<button onClick={()=>markStatus(inv.id,inv.rawId,"Paid")} style={{padding:"2px 7px",borderRadius:6,border:"none",background:T.greenBg,color:T.green,fontSize:9,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Approve</button>}
+              {inv.status==="Pending"&&<button onClick={()=>markStatus(inv.id,inv.rawId,"Overdue")} style={{padding:"2px 7px",borderRadius:6,border:"none",background:T.redBg,color:T.red,fontSize:9,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Reject</button>}
             </div>
           </div>
         ))}
@@ -1074,18 +1060,39 @@ function SettingsPage({isDark}){
 /* â•â• CV MANAGER PAGE â•â• */
 function CVManagerPage({isDark,showToast}){
   const T=useT(isDark);
-  const [requests,setRequests]=useState([
-    {id:1,name:"Capt. Rajesh Fernando",rank:"Master",email:"rajesh.f@gmail.com",paid:true,status:"Pending",amount:4.99,date:"May 20",avatar:"RF",
-     cv:{fullName:"Capt. Rajesh Fernando",rank:"Master Mariner",nationality:"Sri Lankan",dob:"1980-03-15",phone:"+94 77 123 4567",email:"rajesh.f@gmail.com",homePort:"Colombo",yearsExp:"18",vessels:[{name:"MV Ocean Star",type:"Container",flag:"Panama",from:"2020-01",to:"2023-06"},{name:"MV Pacific Glory",type:"Bulk Carrier",flag:"Singapore",from:"2017-03",to:"2019-12"}],certs:["CDC / Seaman's Book","STCW Basic Safety","GMDSS","COC Master Mariner"],summary:"Highly experienced Master Mariner with 18 years at sea across container vessels and bulk carriers."}},
-    {id:2,name:"Eng. Priya Nair",rank:"Chief Engineer",email:"priya.nair@gmail.com",paid:true,status:"Sent",amount:4.99,date:"May 18",avatar:"PN",
-     cv:{fullName:"Eng. Priya Nair",rank:"Chief Engineer",nationality:"Indian",dob:"1985-07-22",phone:"+91 98 765 4321",email:"priya.nair@gmail.com",homePort:"Mumbai",yearsExp:"12",vessels:[{name:"MT Gulf Star",type:"Oil Tanker",flag:"Marshall Islands",from:"2019-01",to:"2023-08"}],certs:["CDC","STCW","COC Chief Engineer","Medical Certificate"],summary:"Experienced Chief Engineer specialising in oil tankers and chemical carriers."}},
-    {id:3,name:"Dilshan Wickrama",rank:"ETO",email:"dilshan.w@gmail.com",paid:true,status:"Pending",amount:4.99,date:"May 21",avatar:"DW",
-     cv:{fullName:"Dilshan Wickrama",rank:"Electro-Technical Officer",nationality:"Sri Lankan",dob:"1990-11-05",phone:"+94 71 456 7890",email:"dilshan.w@gmail.com",homePort:"Galle",yearsExp:"7",vessels:[{name:"MV Horizon",type:"Container",flag:"Liberia",from:"2021-01",to:"2023-11"}],certs:["CDC","STCW","ETO Certificate","GMDSS"],summary:"Skilled ETO with expertise in container vessel electrical systems and automation."}},
-  ]);
+  const [requests,setRequests]=useState([]);
+  const [loadingCVs,setLoadingCVs]=useState(true);
   const [selected,setSelected]=useState(null);
   const [editing,setEditing]=useState(false);
   const [editData,setEditData]=useState(null);
   const [preview,setPreview]=useState(false);
+  const [sending,setSending]=useState(false);
+
+  const loadCVs=()=>{
+    setLoadingCVs(true);
+    fetch(`${API}/api/cv/all`,{headers:authHeader()})
+      .then(r=>r.json())
+      .then(data=>{
+        if(Array.isArray(data)){
+          setRequests(data.map(cv=>({
+            id:cv._id,
+            name:cv.seafarerId?.name||"Unknown",
+            rank:cv.seafarerId?.rank||"",
+            email:cv.seafarerId?.email||"",
+            avatar:(cv.seafarerId?.name||"?").slice(0,2).toUpperCase(),
+            status:cv.status==="ready"?"Sent":cv.status==="processing"?"Processing":"Pending",
+            amount:4.99,
+            date:new Date(cv.uploadedAt).toLocaleDateString("en-GB",{day:"numeric",month:"short"}),
+            fileName:cv.fileName,
+            paid:true,
+            cv:{fullName:cv.seafarerId?.name||"",rank:cv.seafarerId?.rank||"",email:cv.seafarerId?.email||"",vessels:[],certs:[],summary:""},
+          })));
+        }
+      })
+      .catch(()=>showToast("Failed to load CV requests","error"))
+      .finally(()=>setLoadingCVs(false));
+  };
+  useEffect(()=>{loadCVs();},[]);
 
   const openCV=(req)=>{
     setSelected(req);
@@ -1098,17 +1105,38 @@ function CVManagerPage({isDark,showToast}){
     setRequests(p=>p.map(r=>r.id===selected.id?{...r,cv:{...editData}}:r));
     setSelected(s=>({...s,cv:{...editData}}));
     setEditing(false);
-    showToast("CV saved successfully","success");
+    showToast("CV notes saved","success");
   };
 
-  const sendCV=(id)=>{
-    setRequests(p=>p.map(r=>r.id===id?{...r,status:"Sent"}:r));
-    if(selected&&selected.id===id) setSelected(s=>({...s,status:"Sent"}));
-    showToast("CV sent to seafarer's email","success");
+  const sendCV=async(id)=>{
+    setSending(true);
+    try{
+      const r=await fetch(`${API}/api/cv/${id}/send-email`,{
+        method:"POST",headers:authHeader(),body:JSON.stringify({}),
+      });
+      if(r.ok){
+        setRequests(p=>p.map(r=>r.id===id?{...r,status:"Sent"}:r));
+        if(selected&&selected.id===id) setSelected(s=>({...s,status:"Sent"}));
+        showToast("CV email sent to seafarer!","success");
+      }else{
+        const d=await r.json();showToast(d.message||"Failed to send","error");
+      }
+    }catch{showToast("Network error","error");}
+    setSending(false);
   };
 
-  const statusColor={Pending:T.yellow,Sent:T.green,Rejected:T.red};
-  const statusBg={Pending:T.yellowBg,Sent:T.greenBg,Rejected:T.redBg};
+  const downloadCV=async(id)=>{
+    try{
+      const r=await fetch(`${API}/api/cv/${id}/download`,{headers:authHeader()});
+      const blob=await r.blob();
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");a.href=url;a.download="cv.pdf";a.click();
+      URL.revokeObjectURL(url);
+    }catch{showToast("Download failed","error");}
+  };
+
+  const statusColor={Pending:T.yellow,Processing:T.purple,Sent:T.green};
+  const statusBg={Pending:T.yellowBg,Processing:T.purpleBg,Sent:T.greenBg};
 
   return(
     <div>
@@ -1132,13 +1160,17 @@ function CVManagerPage({isDark,showToast}){
               </Card>
             ))}
           </div>
-          {requests.map(req=>(
+          {loadingCVs?(
+            <div style={{textAlign:"center",padding:40,color:T.t3}}>Loading CV requests...</div>
+          ):requests.length===0?(
+            <div style={{textAlign:"center",padding:40,color:T.t3}}>No CV requests yet. Seafarers who pay $4.99 will appear here.</div>
+          ):requests.map(req=>(
             <Card key={req.id} isDark={isDark} style={{padding:"16px 18px",cursor:"pointer",border:selected&&selected.id===req.id?(isDark?"1px solid #38BDF8":"1px solid #1a2332"):(isDark?"1px solid rgba(255,255,255,0.07)":"none")}} onClick={()=>openCV(req)}>
               <div style={{display:"flex",alignItems:"center",gap:12}}>
                 <Av initials={req.avatar} size={42} isDark={isDark}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:3}}>{req.name}</div>
-                  <div style={{fontSize:11,color:T.t3,marginBottom:6}}>{req.rank} Â· {req.date}</div>
+                  <div style={{fontSize:11,color:T.t3,marginBottom:6}}>{req.rank} Â· {req.date}{req.fileName?` Â· ${req.fileName}`:""}</div>
                   <div style={{display:"flex",gap:6}}>
                     <Bdg label={`$${req.amount} Paid`} color={T.green} bg={T.greenBg}/>
                     <Bdg label={req.status} color={statusColor[req.status]} bg={statusBg[req.status]}/>
@@ -1172,9 +1204,12 @@ function CVManagerPage({isDark,showToast}){
                       <Icon name="check" size={13} color="#fff" strokeWidth={2.5}/>Save
                     </button>
                   )}
-                  <button onClick={()=>sendCV(selected.id)} style={{padding:"8px 16px",borderRadius:10,border:"none",background:selected.status==="Sent"?T.greenBg:"linear-gradient(135deg,#34D399,#10B981)",color:selected.status==="Sent"?T.green:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                  <button onClick={()=>downloadCV(selected.id)} style={{padding:"8px 16px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.15)",background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                    <Icon name="download" size={13} color="currentColor" strokeWidth={2}/>Download
+                  </button>
+                  <button onClick={()=>sendCV(selected.id)} disabled={sending} style={{padding:"8px 16px",borderRadius:10,border:"none",background:selected.status==="Sent"?T.greenBg:"linear-gradient(135deg,#34D399,#10B981)",color:selected.status==="Sent"?T.green:"#fff",fontSize:12,fontWeight:600,cursor:sending?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5,opacity:sending?0.7:1}}>
                     <Icon name="send" size={13} color="currentColor" strokeWidth={2}/>
-                    {selected.status==="Sent"?"Resend CV":"Send CV"}
+                    {sending?"Sending...":selected.status==="Sent"?"Resend CV":"Send CV"}
                   </button>
                 </div>
               </div>
@@ -1622,7 +1657,7 @@ export default function AdminPanel(){
             {sidebar&&(
               <div>
                 <div style={{fontWeight:700,fontSize:17,color:T.t1,fontFamily:"'Sora',sans-serif",lineHeight:1.1}}>OceanCrew</div>
-                <div style={{fontSize:8,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Admin Â· SKYbird</div>
+                <div style={{fontSize:8,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Admin Center</div>
               </div>
             )}
           </div>
@@ -1716,7 +1751,7 @@ export default function AdminPanel(){
 
           <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark?D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
             <p style={{fontSize:11,color:T.t3}}>
-              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Admin Â· <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>SKYbird Systems</strong>
+              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Admin
             </p>
           </footer>
         </div>
