@@ -82,8 +82,8 @@ function useT(isDark){return isDark?D:L;}
 
 /* â”€â”€ DATA â”€â”€ */
 const COMPANY = {
-  name:"Pacific Star Shipping Co.",
-  logo:"PS",plan:"Professional",country:"Singapore",
+  name:localStorage.getItem("userName") || "Pacific Star Shipping Co.",
+  logo:(localStorage.getItem("userName")||"PS").slice(0,2).toUpperCase(),plan:"Professional",country:"Singapore",
   verified:true,joined:"Jan 2024",email:"hiring@pacificstar.com",
   totalHired:47,activeJobs:8,totalApps:312,responseRate:94,
 };
@@ -854,69 +854,136 @@ function TalentPoolPage({isDark,showToast}){
                 <div style={{display:"flex",gap:8,flexShrink:0,flexDirection:"column"}}>
                   <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"info")} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
                   <Btn onClick={()=>remove(s.id)} isDark={isDark} variant="danger" size="sm">Remove</Btn>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
-
-/* â•â• INVOICES PAGE â•â• */
+      /* â•â• INVOICES PAGE â•â• */
 function InvoicesPage({isDark,showToast}){
   const T=useT(isDark);
-  const statusColor={Paid:T.green,Pending:T.yellow,Overdue:T.red};
-  const statusBg={Paid:T.greenBg,Pending:T.yellowBg,Overdue:T.redBg};
+  const [showModal,setShowModal]=useState(false);
+  const [selectedPlan,setSelectedPlan]=useState(null);
+  const [refNo,setRefNo]=useState("");
+  const [submitting,setSubmitting]=useState(false);
+  const [payments,setPayments]=useState([]);
+
+  const API="https://oceancrew-backend-production.up.railway.app";
+  const token=()=>localStorage.getItem("token");
+
+  useEffect(()=>{
+    fetch(`${API}/api/payments/my`,{headers:{Authorization:`Bearer ${token()}`}})
+      .then(r=>r.json()).then(d=>{if(Array.isArray(d))setPayments(d);})
+      .catch(()=>{});
+  },[]);
+
+  const plans=[
+    {id:"professional",name:"Professional Plan",price:149,features:["Unlimited job posts","Applicant management","Smart matching","Email support"]},
+    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pro","Dedicated account manager","API access","Priority support","Custom branding"]},
+  ];
+
+  const submitTransfer=async()=>{
+    if(!refNo.trim()){showToast("Enter your bank transfer reference number","warning");return;}
+    setSubmitting(true);
+    try{
+      const r=await fetch(`${API}/api/payments/bank-transfer`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json",Authorization:`Bearer ${token()}`},
+        body:JSON.stringify({plan:selectedPlan.name,amount:selectedPlan.price,reference:refNo}),
+      });
+      if(r.ok){
+        showToast("Bank transfer submitted! Admin will verify within 24 hours.","success");
+        setShowModal(false);setRefNo("");
+        // refresh
+        fetch(`${API}/api/payments/my`,{headers:{Authorization:`Bearer ${token()}`}})
+          .then(r=>r.json()).then(d=>{if(Array.isArray(d))setPayments(d);});
+      }else{
+        const d=await r.json();showToast(d.message||"Failed to submit","error");
+      }
+    }catch{showToast("Network error","error");}
+    setSubmitting(false);
+  };
+
+  const statusColor={pending:T.yellow,approved:T.green,rejected:T.red};
+  const statusBg={pending:T.yellowBg,approved:T.greenBg,rejected:T.redBg};
+
   return(
     <div>
-      <div style={{marginBottom:24}}>
-        <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Invoices</h2>
-        <p style={{fontSize:14,color:T.t3}}>Your billing history â€” Professional Plan $149/month</p>
-      </div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:14,marginBottom:20}}>
-        {[
-          {label:"Current Plan",  val:"Professional",   color:isDark?"#38BDF8":T.t1},
-          {label:"Monthly Cost",  val:"$149/month",      color:T.green},
-          {label:"Next Renewal",  val:"Jun 15, 2025",    color:T.yellow},
-        ].map((s,i)=>(
-          <Card key={i} isDark={isDark} style={{padding:"18px 20px"}}>
-            <div style={{fontSize:22,fontWeight:700,color:s.color,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{s.val}</div>
-            <div style={{fontSize:12,color:T.t2}}>{s.label}</div>
-          </Card>
-        ))}
-      </div>
-      <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr 1fr",padding:"12px 22px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark?"1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
-          {["Invoice","Plan","Amount","Date","Status"].map(h=>(
-            <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
-          ))}
-        </div>
-        {INVOICES.map((inv,i)=>(
-          <div key={inv.id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<INVOICES.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
-            onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
-            onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:12,fontWeight:600,color:isDark?"#38BDF8":T.accent}}>{inv.id}</span>
-            <span style={{fontSize:12,color:T.t2}}>{inv.plan}</span>
-            <span style={{fontSize:15,fontWeight:700,color:T.green,fontFamily:"'JetBrains Mono',monospace"}}>${inv.amount}</span>
-            <span style={{fontSize:12,color:T.t2,fontFamily:"'JetBrains Mono',monospace"}}>{inv.date}</span>
-            <div style={{display:"flex",alignItems:"center",gap:8}}>
-              <Bdg label={inv.status} color={statusColor[inv.status]} bg={statusBg[inv.status]}/>
-              <button onClick={()=>showToast(`Downloading ${inv.id}...`,"info")} style={{width:28,height:28,borderRadius:7,border:"none",background:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <Icon name="download" size={13} color="currentColor" strokeWidth={2}/>
+      {/* Bank Transfer Modal */}
+      {showModal&&(
+        <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.7)",zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
+          <div style={{background:isDark?"#10121A":"#fff",borderRadius:20,padding:"32px 36px",maxWidth:480,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,0.4)",border:isDark?"1px solid rgba(255,255,255,0.08)":"none"}}>
+            <div style={{marginBottom:24}}>
+              <div style={{fontSize:11,color:isDark?"#38BDF8":T.accent,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>Bank Transfer</div>
+              <h3 style={{fontSize:22,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:6}}>{selectedPlan?.name}</h3>
+              <div style={{fontSize:32,fontWeight:700,color:T.green,fontFamily:"'Sora',sans-serif"}}>${selectedPlan?.price}<span style={{fontSize:14,color:T.t3,fontWeight:400}}>/month</span></div>
+            </div>
+            <div style={{background:isDark?"rgba(56,189,248,0.06)":"rgba(26,35,50,0.03)",borderRadius:12,padding:"16px 18px",marginBottom:20,border:isDark?"1px solid rgba(56,189,248,0.15)":"1px solid rgba(26,35,50,0.08)"}}>
+              <div style={{fontSize:11,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:10}}>Transfer To</div>
+              {[["Bank","OceanCrew Financial Ltd"],["Account","4521-7890-3456"],["Reference","Your company name"],["Amount",`$${selectedPlan?.price} USD`]].map(([k,v])=>(
+                <div key={k} style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
+                  <span style={{fontSize:12,color:T.t3}}>{k}</span>
+                  <span style={{fontSize:12,fontWeight:600,color:T.t1,fontFamily:k==="Account"||k==="Amount"?"'JetBrains Mono',monospace":"inherit"}}>{v}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{marginBottom:20}}>
+              <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Your Bank Reference Number</div>
+              <input value={refNo} onChange={e=>setRefNo(e.target.value)} placeholder="e.g. TXN2025060312345"
+                style={{width:"100%",padding:"11px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.2)",background:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+            </div>
+            <div style={{display:"flex",gap:10}}>
+              <button onClick={submitTransfer} disabled={submitting} style={{flex:1,padding:"13px",borderRadius:11,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:700,cursor:submitting?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",opacity:submitting?0.7:1}}>
+                {submitting?"Submitting...":"Submit Transfer"}
+              </button>
+              <button onClick={()=>{setShowModal(false);setRefNo("");}} style={{padding:"13px 20px",borderRadius:11,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.2)",background:"transparent",color:T.t2,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+                Cancel
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      <div style={{marginBottom:24}}>
+        <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Plans & Billing</h2>
+        <p style={{fontSize:14,color:T.t3}}>Choose a plan and pay via bank transfer. Admin verifies within 24h and sends your invoice.</p>
+      </div>
+
+      {/* Plans */}
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:24}}>
+        {plans.map(plan=>(
+          <Card key={plan.id} isDark={isDark} style={{border:isDark?"1px solid rgba(255,255,255,0.08)":"none"}}>
+            <div style={{fontSize:18,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{plan.name}</div>
+            <div style={{fontSize:30,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",marginBottom:16}}>${plan.price}<span style={{fontSize:13,color:T.t3,fontWeight:400}}>/mo</span></div>
+            <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:20}}>
+              {plan.features.map(f=>(
+                <div key={f} style={{display:"flex",alignItems:"center",gap:8}}>
+                  <Icon name="check" size={13} color={T.green} strokeWidth={2.5}/>
+                  <span style={{fontSize:12,color:T.t2}}>{f}</span>
+                </div>
+              ))}
+            </div>
+            <button onClick={()=>{setSelectedPlan(plan);setShowModal(true);}} style={{width:"100%",padding:"11px",borderRadius:10,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+              Pay via Bank Transfer
+            </button>
+          </Card>
         ))}
-      </Card>
-      <Card isDark={isDark} style={{marginTop:16,padding:"18px 22px"}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
-          <div>
-            <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Upgrade to Enterprise</h3>
-            <p style={{fontSize:12,color:T.t3}}>Unlimited job posts, dedicated account manager, API access â€” $399/month</p>
+      </div>
+
+      {/* Payment History */}
+      {payments.length>0&&(
+        <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
+          <div style={{padding:"14px 22px",borderBottom:isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.08)"}}>
+            <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Payment History</h3>
           </div>
-          <Btn onClick={()=>showToast("Upgrade request sent to OceanCrew team","success")} isDark={isDark} variant="primary" icon="zap">Upgrade Plan</Btn>
+          {payments.map((p,i)=>(
+            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)":"none"),alignItems:"center"}}>
+              <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{p.plan}</span>
+              <span style={{fontSize:13,color:T.green,fontWeight:700}}>${p.amount}</span>
+              <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{p.reference||"N/A"}</span>
+              <Bdg label={p.status} color={statusColor[p.status]||T.t3} bg={statusBg[p.status]||isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+            </div>
+          ))}
+        </Card>
+      )}
+    </div>
+  );
+}eam","success")} isDark={isDark} variant="primary" icon="zap">Upgrade Plan</Btn>
         </div>
       </Card>
     </div>
@@ -1161,9 +1228,9 @@ export default function CompanyDashboard(){
           {/* Company badge */}
           {sidebar&&(
             <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
-              <div style={{width:34,height:34,borderRadius:10,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,fontWeight:700,fontSize:12,fontFamily:"'Sora',sans-serif",flexShrink:0}}>PS</div>
+              <div style={{width:34,height:34,borderRadius:10,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,fontWeight:700,fontSize:12,fontFamily:"'Sora',sans-serif",flexShrink:0}}>{COMPANY.logo}</div>
               <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>Pacific Star Shipping</div>
+                <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{COMPANY.name}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
                   <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>âœ“ VERIFIED</span>
                   <span style={{fontSize:9,color:T.t3}}>Â· Professional</span>
@@ -1265,8 +1332,8 @@ export default function CompanyDashboard(){
               {/* Company avatar */}
               <div style={{display:"flex",alignItems:"center",gap:8,padding:"5px 12px 5px 6px",background:isDark?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}
                 onClick={()=>setPage("profile")}>
-                <div style={{width:26,height:26,borderRadius:8,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:T.t2,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>PS</div>
-                <span style={{fontSize:12,fontWeight:600,color:T.t1}}>Pacific Star</span>
+                <div style={{width:26,height:26,borderRadius:8,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:T.t2,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>{COMPANY.logo}</div>
+                <span style={{fontSize:12,fontWeight:600,color:T.t1}}>{COMPANY.name.split(" ")[0]}</span>
               </div>
             </div>
           </header>
@@ -1277,7 +1344,7 @@ export default function CompanyDashboard(){
 
           <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark?D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
             <p style={{fontSize:11,color:T.t3}}>
-              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Company Portal Â· <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>SKYbird Systems</strong>
+              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Company Portal
             </p>
           </footer>
         </div>
