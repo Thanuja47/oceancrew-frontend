@@ -95,24 +95,27 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
 /* â”€â”€ LAYOUT â”€â”€ */
 function AuthLayout({ children, isDark, rightContent }) {
   return (
-    <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr"}}>
+    <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr",position:"relative"}}>
+      {/* Logo â€” pinned to absolute top-left of the whole page */}
+      <div style={{position:"fixed",top:20,left:24,zIndex:1000,display:"flex",alignItems:"center",gap:10}}>
+        <div style={{width:40,height:40,borderRadius:11,
+          background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
+          display:"flex",alignItems:"center",justifyContent:"center",
+          boxShadow:isDark?"0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
+          <Icon name="anchor" size={18} color="#fff" strokeWidth={2.5}/>
+        </div>
+        <div>
+          <div style={{fontWeight:800,fontSize:20,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
+          <div style={{fontSize:9,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Maritime Platform</div>
+        </div>
+      </div>
+
       {/* Left */}
       <div style={{
         display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
         padding:"48px 40px",minHeight:"100vh",
         background:isDark?"#08090C":"linear-gradient(145deg,#dce8f5,#e8eef7,#edf2f9)",
       }}>
-        <div style={{display:"flex",alignItems:"flex-start",justifyContent:"flex-start",gap:10,marginBottom:48,width:"100%",maxWidth:420}}>
-          <div style={{width:44,height:44,borderRadius:12,
-            background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
-            display:"flex",alignItems:"center",justifyContent:"center",
-            boxShadow:isDark?"0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
-            <Icon name="anchor" size={20} color="#fff" strokeWidth={2.5}/>
-          </div>
-          <div>
-            <div style={{fontWeight:800,fontSize:22,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
-          </div>
-        </div>
         <div style={{width:"100%",maxWidth:420}}>{children}</div>
       </div>
 
@@ -216,7 +219,7 @@ function LoginPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,marginBottom:32}}>
           New to OceanCrew?{" "}
           <button onClick={()=>onNavigate("register")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:14,fontFamily:"'Inter',sans-serif",padding:0}}>
-            Create an account &rarr;
+            Create an account â†’
           </button>
         </p>
 
@@ -249,7 +252,7 @@ function LoginPage({ isDark, onNavigate }) {
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Signing in...</>
           ) : success ? (
             <><Icon name="check" size={18} color="#fff" strokeWidth={2.5}/> Signed in!</>
-          ) : "Sign In &rarr;"}
+          ) : "Sign In â†’"}
         </button>
 
         <div style={{display:"flex",alignItems:"center",gap:12,margin:"4px 0 20px"}}>
@@ -415,7 +418,7 @@ function RegisterPage({ isDark, onNavigate }) {
             color:!type?t3:"#fff",fontSize:14,fontWeight:700,cursor:!type?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",marginBottom:16,
             boxShadow:type?(isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"):"none"}}>
-          Continue &rarr;
+          Continue â†’
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Already have an account?{" "}
@@ -492,7 +495,7 @@ function RegisterPage({ isDark, onNavigate }) {
             display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1}}>
           {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Creating account...</>
-          ) : "Create Account &rarr;"}
+          ) : "Create Account â†’"}
         </button>
       </div>
     </AuthLayout>
@@ -525,7 +528,7 @@ function RegisterPage({ isDark, onNavigate }) {
             background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
             color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",
             boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Go to Dashboard &rarr;
+          Go to Dashboard â†’
         </button>
       </div>
     </AuthLayout>
@@ -617,7 +620,7 @@ function ForgotPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:32}}>Your password has been updated. You can now sign in with your new password.</p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Sign In Now &rarr;
+          Sign In Now â†’
         </button>
       </div>
     </AuthLayout>
