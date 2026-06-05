@@ -102,17 +102,15 @@ function AuthLayout({ children, isDark, rightContent }) {
         padding:"48px 40px",minHeight:"100vh",
         background:isDark?"#08090C":"linear-gradient(145deg,#dce8f5,#e8eef7,#edf2f9)",
       }}>
-        {/* Logo */}
-        <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:48,alignSelf:"flex-start"}}>
-          <div style={{width:40,height:40,borderRadius:11,
+        <div style={{display:"flex",alignItems:"flex-start",justifyContent:"flex-start",gap:10,marginBottom:48,width:"100%",maxWidth:420}}>
+          <div style={{width:44,height:44,borderRadius:12,
             background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
             display:"flex",alignItems:"center",justifyContent:"center",
             boxShadow:isDark?"0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
-            <Icon name="anchor" size={18} color="#fff" strokeWidth={2}/>
+            <Icon name="anchor" size={20} color="#fff" strokeWidth={2.5}/>
           </div>
           <div>
-            <div style={{fontWeight:700,fontSize:18,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1.1}}>OceanCrew</div>
-            <div style={{fontSize:8,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.14em",textTransform:"uppercase",fontWeight:600}}>by SKYbird Systems</div>
+            <div style={{fontWeight:800,fontSize:22,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
           </div>
         </div>
         <div style={{width:"100%",maxWidth:420}}>{children}</div>
@@ -175,6 +173,7 @@ function LoginPage({ isDark, onNavigate }) {
         // Save token or user info if needed
         localStorage.setItem("token", data.token);
         localStorage.setItem("userRole", data.user?.role || "seafarer");
+        localStorage.setItem("userName", data.user?.name || "");
         
         setTimeout(() => {
           if (data.user?.role === "company") onNavigate("company-dashboard");
@@ -336,6 +335,9 @@ function RegisterPage({ isDark, onNavigate }) {
       const data = await res.json();
       setLoading(false);
       if (res.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userRole", data.user?.role || type);
+        localStorage.setItem("userName", data.user?.name || form.name);
         setStep(3);
       } else {
         setErrors({ email: data.message || "Registration failed. Please try again." });
@@ -531,9 +533,14 @@ function RegisterPage({ isDark, onNavigate }) {
 }
 
 /* â•â• FORGOT PASSWORD â•â• */
+const API = "https://oceancrew-backend-production.up.railway.app";
+
 function ForgotPage({ isDark, onNavigate }) {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1); // 1=email, 2=otp, 3=success
   const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPw, setConfirmPw] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -541,20 +548,55 @@ function ForgotPage({ isDark, onNavigate }) {
   const t1 = isDark ? "#F1F5F9" : "#1a2332";
   const t2 = isDark ? "#94A3B8" : "#4a5568";
   const t3 = isDark ? "#475569" : "#94A3B8";
+  const border = isDark ? "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
 
-  const handleSend = () => {
+  const handleSendOtp = async () => {
     if (!email || !/\S+@\S+\.\S+/.test(email)) { setError("Enter a valid email address"); return; }
     setError(""); setLoading(true);
-    setTimeout(() => { setLoading(false); setStep(2); }, 1500);
+    try {
+      const res = await fetch(`${API}/api/auth/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok) { setStep(2); }
+      else { setError(data.message || "Failed to send OTP"); }
+    } catch {
+      setError("Network error. Please try again.");
+    }
+    setLoading(false);
+  };
+
+  const handleResetPassword = async () => {
+    if (!otp || otp.length < 6) { setError("Enter the 6-digit OTP"); return; }
+    if (!newPassword || newPassword.length < 6) { setError("Password must be at least 6 characters"); return; }
+    if (newPassword !== confirmPw) { setError("Passwords do not match"); return; }
+    setError(""); setLoading(true);
+    try {
+      const res = await fetch(`${API}/api/auth/reset-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp, newPassword }),
+      });
+      const data = await res.json();
+      if (res.ok) { setStep(3); }
+      else { setError(data.message || "Invalid or expired OTP"); }
+    } catch {
+      setError("Network error. Please try again.");
+    }
+    setLoading(false);
   };
 
   const rightContent = (
     <div>
       <div style={{marginBottom:20}}><Icon name="lock" size={52} color="#38BDF8" strokeWidth={1.5} /></div>
       <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12}}>Secure Recovery</h2>
-      <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>Reset links expire after 30 minutes for your security.</p>
+      <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
+        {step === 1 ? "We'll send a one-time code to your registered email." : "Enter the 6-digit code we sent to your email."}
+      </p>
       <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 auto"}}>
-        {["Link sent to your email","Expires in 30 minutes","One-time secure link","Contact support if needed"].map((f,i)=>(
+        {["OTP sent to your email","Expires in 15 minutes","One-time secure code","Contact support if needed"].map((f,i)=>(
           <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderRadius:10,background:"rgba(255,255,255,0.05)"}}>
             <Icon name="shield" size={13} color="#38BDF8" strokeWidth={2}/>
             <span style={{fontSize:12,color:"rgba(255,255,255,0.65)",textAlign:"left"}}>{f}</span>
@@ -564,29 +606,61 @@ function ForgotPage({ isDark, onNavigate }) {
     </div>
   );
 
-  if (step === 2) return (
+  /* Step 3 â€” success */
+  if (step === 3) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div style={{textAlign:"center",padding:"20px 0"}}>
-        <div style={{width:76,height:76,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.1)":"rgba(26,35,50,0.06)",border:`2px solid ${isDark?"rgba(56,189,248,0.3)":"rgba(26,35,50,0.15)"}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px"}}>
-          <Icon name="send" size={30} color={ac} strokeWidth={1.5}/>
+        <div style={{width:80,height:80,borderRadius:"50%",background:isDark?"rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",border:`2px solid ${isDark?"rgba(52,211,153,0.4)":"rgba(22,163,74,0.3)"}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px"}}>
+          <Icon name="check" size={36} color={isDark?"#34D399":"#16A34A"} strokeWidth={2}/>
         </div>
-        <h2 style={{fontSize:26,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>Check your email</h2>
-        <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:6}}>We sent a reset link to</p>
-        <p style={{fontSize:14,fontWeight:600,color:ac,marginBottom:28}}>{email}</p>
-        <div style={{padding:"14px 18px",borderRadius:12,background:isDark?"rgba(56,189,248,0.05)":"rgba(26,35,50,0.03)",border:`1px solid ${isDark?"rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)"}`,marginBottom:28,textAlign:"left"}}>
-          <p style={{fontSize:12,color:t3,lineHeight:1.7,margin:0,fontFamily:"'Inter',sans-serif"}}>
-            Didn't get it? Check spam or{" "}
-            <button onClick={()=>setStep(1)} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:12,fontFamily:"'Inter',sans-serif",padding:0}}>try again</button>.
-          </p>
-        </div>
+        <h2 style={{fontSize:26,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>Password Reset!</h2>
+        <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:32}}>Your password has been updated. You can now sign in with your new password.</p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Back to Sign In
+          Sign In Now &rarr;
         </button>
       </div>
     </AuthLayout>
   );
 
+  /* Step 2 â€” OTP + new password */
+  if (step === 2) return (
+    <AuthLayout isDark={isDark} rightContent={rightContent}>
+      <div>
+        <button onClick={()=>setStep(1)} style={{display:"flex",alignItems:"center",gap:6,color:t3,background:"none",border:"none",cursor:"pointer",fontSize:13,fontFamily:"'Inter',sans-serif",marginBottom:32,padding:0}}>
+          <Icon name="arrowLeft" size={14} color="currentColor" strokeWidth={2}/>Back
+        </button>
+        <h1 style={{fontSize:26,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:6}}>Enter your OTP</h1>
+        <p style={{fontSize:14,color:t2,marginBottom:8}}>We sent a 6-digit code to</p>
+        <p style={{fontSize:14,fontWeight:600,color:ac,marginBottom:24}}>{email}</p>
+        {error && (
+          <div style={{padding:"10px 14px",borderRadius:10,background:isDark?"rgba(248,113,113,0.1)":"rgba(220,38,38,0.06)",border:`1px solid ${isDark?"#F87171":"#DC2626"}30`,marginBottom:16,display:"flex",gap:8,alignItems:"center"}}>
+            <Icon name="alertCircle" size={14} color={isDark?"#F87171":"#DC2626"} strokeWidth={2}/>
+            <span style={{fontSize:13,color:isDark?"#F87171":"#DC2626",fontFamily:"'Inter',sans-serif"}}>{error}</span>
+          </div>
+        )}
+        <div style={{display:"flex",flexDirection:"column",gap:14,marginBottom:20}}>
+          <div>
+            <div style={{fontSize:10,fontWeight:700,color:t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:7,fontFamily:"'Inter',sans-serif"}}>6-DIGIT OTP CODE</div>
+            <input value={otp} onChange={e=>setOtp(e.target.value.replace(/\D/g,"").slice(0,6))} placeholder="000000" maxLength={6}
+              style={{width:"100%",padding:"13px 16px",borderRadius:12,border:`1.5px solid ${border}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)",color:t1,fontSize:24,outline:"none",fontFamily:"'JetBrains Mono',monospace",boxSizing:"border-box",letterSpacing:"0.3em",textAlign:"center"}}/>
+          </div>
+          <Field label="New Password" placeholder="Min 6 characters" type="password" icon="lock" value={newPassword} onChange={e=>setNewPassword(e.target.value)} isDark={isDark}/>
+          <Field label="Confirm Password" placeholder="Repeat new password" type="password" icon="lock" value={confirmPw} onChange={e=>setConfirmPw(e.target.value)} isDark={isDark}/>
+        </div>
+        <button onClick={handleResetPassword} disabled={loading}
+          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:14}}>
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password â†’"}
+        </button>
+        <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
+          Didn't receive code?{" "}
+          <button onClick={handleSendOtp} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:13,fontFamily:"'Inter',sans-serif",padding:0}}>Resend OTP</button>
+        </p>
+      </div>
+    </AuthLayout>
+  );
+
+  /* Step 1 â€” email */
   return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
@@ -594,20 +668,19 @@ function ForgotPage({ isDark, onNavigate }) {
           <Icon name="arrowLeft" size={14} color="currentColor" strokeWidth={2}/>Back to login
         </button>
         <h1 style={{fontSize:28,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:6}}>Forgot password?</h1>
-        <p style={{fontSize:14,color:t2,marginBottom:28,lineHeight:1.6}}>Enter your email and we'll send a reset link.</p>
+        <p style={{fontSize:14,color:t2,marginBottom:28,lineHeight:1.6}}>Enter your email and we'll send you a one-time code.</p>
+        {error && (
+          <div style={{padding:"10px 14px",borderRadius:10,background:isDark?"rgba(248,113,113,0.1)":"rgba(220,38,38,0.06)",border:`1px solid ${isDark?"#F87171":"#DC2626"}30`,marginBottom:16,display:"flex",gap:8,alignItems:"center"}}>
+            <Icon name="alertCircle" size={14} color={isDark?"#F87171":"#DC2626"} strokeWidth={2}/>
+            <span style={{fontSize:13,color:isDark?"#F87171":"#DC2626",fontFamily:"'Inter',sans-serif"}}>{error}</span>
+          </div>
+        )}
         <div style={{marginBottom:24}}>
-          <Field label="Email Address" placeholder="you@example.com" type="email" icon="mail" value={email} onChange={e=>setEmail(e.target.value)} isDark={isDark} error={error}/>
+          <Field label="Email Address" placeholder="you@example.com" type="email" icon="mail" value={email} onChange={e=>setEmail(e.target.value)} isDark={isDark}/>
         </div>
-        <button onClick={handleSend} disabled={loading}
-          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
-            background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
-            color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",
-            fontFamily:"'Inter',sans-serif",
-            boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",
-            display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
-          {loading ? (
-            <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending...</>
-          ) : "Send Reset Link &rarr;"}
+        <button onClick={handleSendOtp} disabled={loading}
+          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP â†’"}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Remember it?{" "}
@@ -617,6 +690,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 }
+
 
 /* â•â• ROOT â•â• */
 export default function AuthFlow() {
