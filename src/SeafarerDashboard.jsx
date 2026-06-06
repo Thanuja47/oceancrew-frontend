@@ -678,8 +678,9 @@ function DocumentsPage({isDark,showToast}){
 }
 
 /* â•â• MY CV â•â• */
-function CVPage({isDark,showToast}){
+function CVPage({isDark,showToast,userName}){
   const T=useT(isDark);
+  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
   const [requested,setRequested]=useState(false);
   const [paid,setPaid]=useState(false);
   const [loading,setLoading]=useState(false);
@@ -816,8 +817,9 @@ function CVPage({isDark,showToast}){
 }
 
 /* â•â• SUBSCRIPTION â•â• */
-function SubscriptionPage({isDark,showToast}){
+function SubscriptionPage({isDark,showToast,userName}){
   const T=useT(isDark);
+  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
   const isPro=SEAFARER.sub==="Pro";
   return(
     <div>

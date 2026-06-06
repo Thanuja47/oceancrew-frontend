@@ -106,7 +106,7 @@ function AuthLayout({ children, isDark, rightContent }) {
         </div>
         <div>
           <div style={{fontWeight:800,fontSize:20,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
-          <div style={{fontSize:9,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Maritime Platform</div>
+          
         </div>
       </div>
 
@@ -219,7 +219,7 @@ function LoginPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,marginBottom:32}}>
           New to OceanCrew?{" "}
           <button onClick={()=>onNavigate("register")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:14,fontFamily:"'Inter',sans-serif",padding:0}}>
-            Create an account â†’
+            Create an account 
           </button>
         </p>
 
@@ -252,7 +252,7 @@ function LoginPage({ isDark, onNavigate }) {
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Signing in...</>
           ) : success ? (
             <><Icon name="check" size={18} color="#fff" strokeWidth={2.5}/> Signed in!</>
-          ) : "Sign In â†’"}
+          ) : "Sign In "}
         </button>
 
         <div style={{display:"flex",alignItems:"center",gap:12,margin:"4px 0 20px"}}>
@@ -418,7 +418,7 @@ function RegisterPage({ isDark, onNavigate }) {
             color:!type?t3:"#fff",fontSize:14,fontWeight:700,cursor:!type?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",marginBottom:16,
             boxShadow:type?(isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"):"none"}}>
-          Continue â†’
+          Continue 
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Already have an account?{" "}
@@ -495,7 +495,7 @@ function RegisterPage({ isDark, onNavigate }) {
             display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1}}>
           {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Creating account...</>
-          ) : "Create Account â†’"}
+          ) : "Create Account "}
         </button>
       </div>
     </AuthLayout>
@@ -528,7 +528,7 @@ function RegisterPage({ isDark, onNavigate }) {
             background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
             color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",
             boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Go to Dashboard â†’
+          Go to Dashboard 
         </button>
       </div>
     </AuthLayout>
@@ -620,7 +620,7 @@ function ForgotPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:32}}>Your password has been updated. You can now sign in with your new password.</p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Sign In Now â†’
+          Sign In Now 
         </button>
       </div>
     </AuthLayout>
@@ -653,7 +653,7 @@ function ForgotPage({ isDark, onNavigate }) {
         </div>
         <button onClick={handleResetPassword} disabled={loading}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:14}}>
-          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password â†’"}
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password "}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Didn't receive code?{" "}
@@ -683,7 +683,7 @@ function ForgotPage({ isDark, onNavigate }) {
         </div>
         <button onClick={handleSendOtp} disabled={loading}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
-          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP â†’"}
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP "}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Remember it?{" "}

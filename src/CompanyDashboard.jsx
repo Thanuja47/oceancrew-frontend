@@ -876,7 +876,17 @@ function TalentPoolPage({isDark,showToast}){
                 <div style={{display:"flex",gap:8,flexShrink:0,flexDirection:"column"}}>
                   <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"info")} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
                   <Btn onClick={()=>remove(s.id)} isDark={isDark} variant="danger" size="sm">Remove</Btn>
-      /* â•â• INVOICES PAGE â•â• */
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* â• â•  INVOICES PAGE â• â•  */
 function InvoicesPage({isDark,showToast}){
   const T=useT(isDark);
   const [showModal,setShowModal]=useState(false);
@@ -994,7 +1004,7 @@ function InvoicesPage({isDark,showToast}){
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Payment History</h3>
           </div>
           {payments.map((p,i)=>(
-            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)":"none"),alignItems:"center"}}>
+            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center"}}>
               <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{p.plan}</span>
               <span style={{fontSize:13,color:T.green,fontWeight:700}}>${p.amount}</span>
               <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{p.reference||"N/A"}</span>
@@ -1003,11 +1013,6 @@ function InvoicesPage({isDark,showToast}){
           ))}
         </Card>
       )}
-    </div>
-  );
-}eam","success")} isDark={isDark} variant="primary" icon="zap">Upgrade Plan</Btn>
-        </div>
-      </Card>
     </div>
   );
 }
