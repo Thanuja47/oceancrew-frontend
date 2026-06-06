@@ -195,7 +195,6 @@ export default function OceanCrewAuth() {
             </div>
             <div>
               <div style={{ fontWeight:700, fontSize:17, color:"var(--t1)", letterSpacing:"-0.03em", fontFamily:"'Sora',sans-serif" }}>OceanCrew</div>
-              <div style={{ fontSize:8, color:"#38BDF8", letterSpacing:"0.14em", textTransform:"uppercase", fontWeight:600 }}>by SKYbird Systems</div>
             </div>
           </div>
           <div style={{ display:"flex", gap:8 }}>
@@ -262,7 +261,7 @@ export default function OceanCrewAuth() {
                       <p style={{ fontSize:14, color:"var(--t2)", marginBottom:22, lineHeight:1.6 }}>Enter your email and we'll send a secure reset link.</p>
                       <Input label="Email Address" type="email" placeholder="your@email.com" value={form.resetEmail||""} onChange={v=>set("resetEmail",v)} icon="mail" />
                       <button onClick={()=>{ setLoading(true); setTimeout(()=>{ setLoading(false); setForgotSent(true); },1500); }} style={{ width:"100%", padding:"13px", borderRadius:11, border:"none", background:form.resetEmail?"linear-gradient(135deg,#0284C7,#0EA5E9)":"var(--card-t)", color:form.resetEmail?"#fff":"var(--t3)", fontWeight:700, fontSize:14, cursor:form.resetEmail?"pointer":"default", fontFamily:"'Inter',sans-serif", boxShadow:form.resetEmail?"0 6px 18px rgba(2,132,199,0.35)":"none", marginTop:4, display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
-                        {loading ? <><span style={{ width:17, height:17, border:"2px solid rgba(255,255,255,0.4)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Sending…</> : "Send Reset Link →"}
+                        {loading ? <><span style={{ width:17, height:17, border:"2px solid rgba(255,255,255,0.4)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Sending…</> : "Send Reset Link"}
                       </button>
                     </div>
                   )}
@@ -361,7 +360,7 @@ export default function OceanCrewAuth() {
                         ? <><span style={{ width:18, height:18, border:"2px solid rgba(255,255,255,0.3)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Please wait…</>
                         : mode==="login"
                           ? `Sign In as ${R.label}`
-                          : step<totalSteps ? "Continue →" : `Create ${R.label} Account`}
+                          : step<totalSteps ? "Continue" : `Create ${R.label} Account`}
                     </button>
                   </div>
 
@@ -369,7 +368,7 @@ export default function OceanCrewAuth() {
                   <p style={{ textAlign:"center", fontSize:13, color:"var(--t2)", marginTop:18 }}>
                     {mode==="login" ? "No account? " : "Have an account? "}
                     <button onClick={()=>switchMode(mode==="login"?"register":"login")} style={{ background:"none", border:"none", cursor:"pointer", color:"#38BDF8", fontWeight:700, fontSize:13 }}>
-                      {mode==="login" ? "Register Free →" : "Sign In →"}
+                      {mode==="login" ? "Register Free" : "Sign In"}
                     </button>
                   </p>
                 </>
