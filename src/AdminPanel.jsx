@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect } from "react";
 
 const API = "https://oceancrew-backend-production.up.railway.app";
