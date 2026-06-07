@@ -80,54 +80,17 @@ const L = {
   sidebar:"#FFFFFF",header:"rgba(255,255,255,0.85)",
 };
 
-const initSeafarers = [
-  {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",status:"Active",  apps:12,verified:true, sub:"Pr✓, avatar:"RF",matchScore:96,contractEnd:"Jul 2025",blacklisted:false},
-  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    status:"Active",  apps:8, verified:true, sub:"Pr✓, avatar:"PN",matchScore:91,contractEnd:"Jun 2025",blacklisted:false},
-  {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",status:"Active",  apps:5, verified:true, sub:"Free",avatar:"SP",matchScore:88,contractEnd:"Aug 2025",blacklisted:false},
-  {id:4,name:"Mohammed Al Farsi",    rank:"2nd Officer",   country:"Oman",     status:"Inactive",apps:2, verified:false,sub:"Free",avatar:"MA",matchScore:74,contractEnd:"May 2025",blacklisted:false},
-  {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",status:"Active",  apps:7, verified:true, sub:"Pr✓, avatar:"DW",matchScore:82,contractEnd:"Sep 2025",blacklisted:false},
-  {id:6,name:"Chen Wei Long",        rank:"Chief Officer", country:"China",    status:"Active",  apps:1, verified:false,sub:"Free",avatar:"CW",matchScore:79,contractEnd:"Oct 2025",blacklisted:false},
-];
+const initSeafarers = [];
 
-const initCompanies = [
-  {id:1,name:"Pacific Star Shipping",country:"Singapore", plan:"Professional",status:"Active",   jobs:8, hired:47, verified:true, logo:"PS",revenue:149,renewal:"Jun 15",blacklisted:false},
-  {id:2,name:"Emirates Maritime Co.",country:"UAE",        plan:"Enterprise",  status:"Active",   jobs:12,hired:89, verified:true, logo:"EM",revenue:399,renewal:"Jun 5", blacklisted:false},
-  {id:3,name:"MSC Global Lines",     country:"Switzerland",plan:"Enterprise",  status:"Active",   jobs:24,hired:132,verified:true, logo:"MS",revenue:399,renewal:"Jun 1", blacklisted:false},
-  {id:4,name:"Royal Caribbean Crew", country:"USA",        plan:"Professional",status:"Active",   jobs:6, hired:28, verified:false,logo:"RC",revenue:149,renewal:"Jun 20",blacklisted:false},
-  {id:5,name:"Evergreen Marine Corp",country:"Taiwan",     plan:"Starter",     status:"Suspended",jobs:0, hired:5,  verified:false,logo:"EV",revenue:49, renewal:"—",    blacklisted:false},
-];
+const initCompanies = [];
 
-const PENDING = [
-  {id:1,name:"Neptune Shipping Ltd.", country:"Greece",      type:"Shipping Co.",  submitted:"May 20",contact:"Andreas P.",docs:3,logo:"NS"},
-  {id:2,name:"Golden Ocean Manning",  country:"Philippines", type:"Manning Agency",submitted:"May 19",contact:"Maria S.",  docs:4,logo:"GO"},
-  {id:3,name:"Horizon Maritime Group",country:"UAE",         type:"Shipping Co.",  submitted:"May 18",contact:"Ahmed A.",  docs:3,logo:"HM"},
-];
+const PENDING = [];
 
-const PIPELINE_INIT = [
-  {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        job:"Master — Pacific Star",     stage:"Shortlisted",score:96,avatar:"RF"},
-  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",job:"Chief Eng — Emirates",      stage:"Interview",  score:91,avatar:"PN"},
-  {id:3,name:"Shanaka Perera",       rank:"Chief Officer", job:"Chief Officer — MSC",       stage:"Shortlisted",score:88,avatar:"SP"},
-  {id:4,name:"Dilshan Wickrama",     rank:"ETO",           job:"ETO — Pacific Star",        stage:"Offer",      score:82,avatar:"DW"},
-  {id:5,name:"Mohammed Al Farsi",    rank:"2nd Officer",   job:"2nd Officer — Royal Carib.",stage:"Review",     score:74,avatar:"MA"},
-];
+const PIPELINE_INIT = [];
 
-const INIT_INVOICES = [
-  {id:"INV-001",to:"Pacific Star Shipping",type:"Company", plan:"Professional",amount:149,status:"Paid",   date:"May 1", due:"May 15",email:"billing@pacificstar.com"},
-  {id:"INV-002",to:"Emirates Maritime Co.",type:"Company", plan:"Enterprise",  amount:399,status:"Paid",   date:"May 1", due:"May 15",email:"accounts@emirates.ae"},
-  {id:"INV-003",to:"Capt. Rajesh Fernand✓,type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Paid",   date:"May 1", due:"May 5", email:"rajesh.f@gmail.com"},
-  {id:"INV-004",to:"Royal Caribbean Crew", type:"Company", plan:"Professional",amount:149,status:"Pending",date:"May 15",due:"Jun 1", email:"billing@royalcaribbean.com"},
-  {id:"INV-005",to:"Evergreen Marine Corp",type:"Company", plan:"Starter",     amount:49, status:"Overdue",date:"Apr 1", due:"Apr 15",email:"accounts@evergreen.tw"},
-  {id:"INV-006",to:"Eng. Priya Nair",      type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Pending",date:"May 15",due:"May 20",email:"priya.nair@gmail.com"},
-];
+const INIT_INVOICES = [];
 
-const ACTIVITY = [
-  {id:1,icon:"checkCircle",msg:"Pacific Star Shipping verified by Admin",           time:"5m ag✓, ok:true},
-  {id:2,icon:"star",       msg:"Capt. Rajesh Fernando — Verification badge granted",time:"12m ag✓,ok:true},
-  {id:3,icon:"send",       msg:"Interview notification sent to Eng. Priya Nair",    time:"1h ag✓, ok:true},
-  {id:4,icon:"dollarSign", msg:"Invoice INV-003 marked as Paid — $4",               time:"2h ag✓, ok:true},
-  {id:5,icon:"ban",        msg:"Evergreen Marine Corp — marked Overdue",             time:"3h ag✓, ok:false},
-  {id:6,icon:"alertCircle",msg:"Contract expiry alert: Mohammed Al Farsi (May 25)", time:"4h ag✓, ok:false},
-];
+const ACTIVITY = [];
 
 const NAV = [
   {section:"Overview",items:[
@@ -489,7 +452,12 @@ function BlacklistPage({isDark,seafarers,setSeafarers,companies,setCompanies,sho
 
 function ApprovalsPage({isDark,showToast}){
   const T=useT(isDark);
-  const [pending,setPending]=useState(PENDING);
+  const [pending,setPending]=useState([]);
+  useEffect(()=>{
+    fetch(`${API}/api/admin/users`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
+      if(Array.isArray(d)) setPending(d.filter(u=>!u.approved).map(u=>({id:u._id, name:u.companyName||u.name, type:u.role==="company"?"Company":"Seafarer", country:"Global", submitted:new Date(u.createdAt).toLocaleDateString(), contact:u.email, docs:1, logo:(u.companyName||u.name).slice(0,2).toUpperCase()})));
+    });
+  }, []);
   const act=(id,action)=>{
     const item=pending.find(p=>p.id===id);
     setPending(p=>p.filter(x=>x.id!==id));

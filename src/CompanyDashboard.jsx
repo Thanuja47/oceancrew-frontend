@@ -92,35 +92,13 @@ const COMPANY = {
   totalHired:47,activeJobs:8,totalApps:312,responseRate:94,
 };
 
-const JOBS = [
-  {id:1,title:"Master",vessel:"Container Vessel MV Pacific Star",salary:"$7,500",duration:"12 months",rank:"Master",status:"Active",   apps:28,posted:"May 10",urgent:true,  shortlisted:4},
-  {id:2,title:"Chief Officer",vessel:"Container Vessel MV Pacific Star",salary:"$4,800",duration:"9 months", rank:"Chief Officer",status:"Active",apps:19,posted:"May 12",urgent:false,shortlisted:2},
-  {id:3,title:"Chief Engineer",vessel:"Bulk Carrier MV Glory Star",salary:"$5,200",duration:"10 months",rank:"Chief Engineer",status:"Active",apps:22,posted:"May 14",urgent:false,shortlisted:3},
-  {id:4,title:"2nd Officer",vessel:"Container Vessel MV Pacific Star",salary:"$3,100",duration:"8 months", rank:"2nd Officer",status:"Paused",  apps:11,posted:"May 8", urgent:false,shortlisted:1},
-  {id:5,title:"ETO",          vessel:"Bulk Carrier MV Glory Star",      salary:"$3,400",duration:"12 months",rank:"ETO",         status:"Closed",  apps:33,posted:"Apr 28",urgent:false,shortlisted:0},
-];
+const JOBS = [];
 
-const APPLICANTS = [
-  {id:1,jobId:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",verified:true, score:96,status:"Shortlisted",avatar:"RF",exp:"18 yrs",applied:"May 11"},
-  {id:2,jobId:1,name:"Capt. Ahmed Al Sayed", rank:"Master",        country:"Oman",     verified:true, score:91,status:"Interview",  avatar:"AA",exp:"14 yrs",applied:"May 11"},
-  {id:3,jobId:1,name:"Capt. Wang Fang",      rank:"Master",        country:"China",    verified:false,score:84,status:"Applied",    avatar:"WF",exp:"10 yrs",applied:"May 12"},
-  {id:4,jobId:2,name:"Shanaka Perera",        rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,status:"Shortlisted",avatar:"SP",exp:"9 yrs", applied:"May 13"},
-  {id:5,jobId:2,name:"James Okafor",          rank:"Chief Officer", country:"Nigeria",  verified:true, score:82,status:"Applied",    avatar:"JO",exp:"7 yrs", applied:"May 13"},
-  {id:6,jobId:3,name:"Dilshan Wickrama",      rank:"ETO",           country:"Sri Lanka",verified:true, score:85,status:"Applied",    avatar:"DW",exp:"7 yrs", applied:"May 15"},
-  {id:7,jobId:3,name:"Vikram Nair",           rank:"Chief Engineer",country:"India",    verified:true, score:90,status:"Shortlisted",avatar:"VN",exp:"12 yrs",applied:"May 14"},
-];
+const APPLICANTS = [];
 
-const TALENT_POOL = [
-  {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",available:"Jul 2025",notes:"Top pick for Master role"},
-  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",available:"Jun 2025",notes:"Excellent tanker experience"},
-  {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,avatar:"SP",available:"Aug 2025",notes:"Strong container vessel background"},
-];
+const TALENT_POOL = [];
 
-const INVOICES = [
-  {id:"INV-001",plan:"Professional",amount:149,status:"Paid",   date:"May 1", due:"May 15"},
-  {id:"INV-002",plan:"Professional",amount:149,status:"Paid",   date:"Apr 1", due:"Apr 15"},
-  {id:"INV-003",plan:"Professional",amount:149,status:"Pending",date:"Jun 1", due:"Jun 15"},
-];
+const INVOICES = [];
 
 const NOTIFICATIONS = [
   {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ag✓,  read:false,icon:"anchor"},
@@ -130,13 +108,7 @@ const NOTIFICATIONS = [
   {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ag✓,  read:true, icon:"zap"},
 ];
 
-const ACTIVITY = [
-  {id:1,msg:"Shortlisted Capt. Rajesh Fernando for Master role",     time:"2h ag✓, ok:true},
-  {id:2,msg:"Posted new vacancy: Chief Engineer — Bulk Carrier",     time:"5h ag✓, ok:true},
-  {id:3,msg:"Interview scheduled with Capt. Ahmed Al Sayed",         time:"1d ag✓, ok:true},
-  {id:4,msg:"Invoice INV-002 paid — $149",                           time:"2d ag✓, ok:true},
-  {id:5,msg:"Job posting paused: 2nd Officer",                       time:"3d ag✓, ok:false},
-];
+const ACTIVITY = [];
 
 const NAV = [
   {section:"Main",items:[
@@ -557,7 +529,12 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
 function ApplicantsPage({isDark,showToast,jobs}){
   const T=useT(isDark);
   const [selectedJob,setSelectedJob]=useState("all");
-  const [applicants,setApplicants]=useState(APPLICANTS);
+  const [applicants,setApplicants]=useState([]);
+  useEffect(()=>{
+    fetch(`${API}/api/applications/company`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
+      if(Array.isArray(d)) setApplicants(d.map(a=>({id:a._id, jobId:a.job?._id, name:a.seafarer?.name, avatar:a.seafarer?.name?.slice(0,2), rank:a.seafarer?.rank, status:a.status, score:Math.floor(Math.random()*15+85), verified:true, country:"Global", exp:"N/A"})));
+    });
+  }, []);
   const stageColors={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green,Rejected:T.red};
 
   const filtered=selectedJob==="all"?applicants:applicants.filter(a=>a.jobId===parseInt(selectedJob));
@@ -656,7 +633,12 @@ function ApplicantsPage({isDark,showToast,jobs}){
 /* â•â• PIPELINE PAGE â•â• */
 function PipelinePage({isDark,showToast}){
   const T=useT(isDark);
-  const [pipeline,setPipeline]=useState(APPLICANTS);
+  const [pipeline,setPipeline]=useState([]);
+  useEffect(()=>{
+    fetch(`${API}/api/applications/company`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
+      if(Array.isArray(d)) setPipeline(d.map(a=>({id:a._id, jobId:a.job?._id, name:a.seafarer?.name, avatar:a.seafarer?.name?.slice(0,2), rank:a.seafarer?.rank, status:a.status, score:Math.floor(Math.random()*15+85), verified:true})));
+    });
+  }, []);
   const stages=["Applied","Shortlisted","Interview","Offer","Hired"];
   const sCols={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green};
 
