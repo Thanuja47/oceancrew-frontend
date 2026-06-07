@@ -101,7 +101,7 @@ const JOBS = [
 ];
 
 const APPLICANTS = [
-  {id:1,jobId:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",verified:true, score:96,status:"Shortlisted",avatar:"RF",exp:"18 yrs",applied:"May 11"},
+  {id:1,jobId:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",verified:true, score:96,status:"Shortlisted",avatar:"RF",exp:"18 yrs",applied:"May 11"},
   {id:2,jobId:1,name:"Capt. Ahmed Al Sayed", rank:"Master",        country:"Oman",     verified:true, score:91,status:"Interview",  avatar:"AA",exp:"14 yrs",applied:"May 11"},
   {id:3,jobId:1,name:"Capt. Wang Fang",      rank:"Master",        country:"China",    verified:false,score:84,status:"Applied",    avatar:"WF",exp:"10 yrs",applied:"May 12"},
   {id:4,jobId:2,name:"Shanaka Perera",        rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,status:"Shortlisted",avatar:"SP",exp:"9 yrs", applied:"May 13"},
@@ -111,7 +111,7 @@ const APPLICANTS = [
 ];
 
 const TALENT_POOL = [
-  {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",available:"Jul 2025",notes:"Top pick for Master role"},
+  {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",available:"Jul 2025",notes:"Top pick for Master role"},
   {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",available:"Jun 2025",notes:"Excellent tanker experience"},
   {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,avatar:"SP",available:"Aug 2025",notes:"Strong container vessel background"},
 ];
@@ -123,19 +123,19 @@ const INVOICES = [
 ];
 
 const NOTIFICATIONS = [
-  {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ago",  read:false,icon:"anchor"},
-  {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ago",  read:false,icon:"target"},
-  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 â€” $149",                          time:"1d ago",  read:true, icon:"creditCard"},
-  {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ago",  read:true, icon:"clock"},
-  {id:5,type:"platform",   msg:"OceanCrew: New feature â€” Hiring Pipeline now available",        time:"3d ago",  read:true, icon:"zap"},
+  {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ag✓,  read:false,icon:"anchor"},
+  {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ag✓,  read:false,icon:"target"},
+  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 — $149",                          time:"1d ag✓,  read:true, icon:"creditCard"},
+  {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ag✓,  read:true, icon:"clock"},
+  {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ag✓,  read:true, icon:"zap"},
 ];
 
 const ACTIVITY = [
-  {id:1,msg:"Shortlisted Capt. Rajesh Fernando for Master role",     time:"2h ago", ok:true},
-  {id:2,msg:"Posted new vacancy: Chief Engineer â€” Bulk Carrier",     time:"5h ago", ok:true},
-  {id:3,msg:"Interview scheduled with Capt. Ahmed Al Sayed",         time:"1d ago", ok:true},
-  {id:4,msg:"Invoice INV-002 paid â€” $149",                           time:"2d ago", ok:true},
-  {id:5,msg:"Job posting paused: 2nd Officer",                       time:"3d ago", ok:false},
+  {id:1,msg:"Shortlisted Capt. Rajesh Fernando for Master role",     time:"2h ag✓, ok:true},
+  {id:2,msg:"Posted new vacancy: Chief Engineer — Bulk Carrier",     time:"5h ag✓, ok:true},
+  {id:3,msg:"Interview scheduled with Capt. Ahmed Al Sayed",         time:"1d ag✓, ok:true},
+  {id:4,msg:"Invoice INV-002 paid — $149",                           time:"2d ag✓, ok:true},
+  {id:5,msg:"Job posting paused: 2nd Officer",                       time:"3d ag✓, ok:false},
 ];
 
 const NAV = [
@@ -239,7 +239,7 @@ function Toast({msg,type,onClose}){
       color:c,fontSize:13,fontWeight:600,backdropFilter:"blur(20px)",
       boxShadow:"0 8px 32px rgba(0,0,0,0.5)",display:"flex",alignItems:"center",gap:8,
       fontFamily:"'Inter',sans-serif",animation:"slideIn 0.3s ease"}}>
-      {type==="success"?"âœ“":type==="error"?"âœ•":"â„¹"} {msg}
+      {type==="success"?"✓":type==="error"?"✕":"ℹ"} {msg}
     </div>
   );
 }
@@ -275,7 +275,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
                 <span style={{width:6,height:6,borderRadius:"50%",background:T.green,
                   display:"inline-block",animation:"pulseDot 2s infinite"}}/>
                 <span style={{fontSize:11,color:T.green,fontWeight:600,letterSpacing:"0.04em",textTransform:"uppercase"}}>
-                  Verified Company Â· Professional Plan
+                  Verified Company · Professional Plan
                 </span>
               </div>
               <h1 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":T.t1,
@@ -321,7 +321,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Active Job Posts</h3>
-            <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
+            <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">View All →</Btn>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
             {jobs.filter(j=>j.status==="Active").map(job=>(
@@ -373,7 +373,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Talent Pool</h3>
-            <Btn onClick={()=>setPage("pool")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
+            <Btn onClick={()=>setPage("pool")} isDark={isDark} variant="ghost" size="sm">View All →</Btn>
           </div>
           {TALENT_POOL.map(s=>(
             <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 0",
@@ -382,9 +382,9 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
                   <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{s.name}</span>
-                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"1px 6px",borderRadius:999}}>âœ“</span>}
+                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"1px 6px",borderRadius:999}}>✓</span>}
                 </div>
-                <div style={{fontSize:11,color:T.t3}}>{s.rank} Â· Available {s.available}</div>
+                <div style={{fontSize:11,color:T.t3}}>{s.rank} · Available {s.available}</div>
               </div>
               <Bdg label={`${s.score}% match`} color={s.score>90?T.green:T.yellow} bg={s.score>90?T.greenBg:T.yellowBg}/>
             </div>
@@ -435,13 +435,13 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
 
   const toggleStatus=(id)=>{
     setJobs(p=>p.map(j=>j.id===id?{...j,status:j.status==="Active"?"Paused":"Active"}:j));
-    showToast("Job status updated","info");
+    showToast("Job status updated","inf✓);
   };
 
   const markUrgent=(id)=>{
     setJobs(p=>p.map(j=>j.id===id?{...j,urgent:!j.urgent}:j));
     const job=jobs.find(j=>j.id===id);
-    showToast(job.urgent?"Urgent badge removed":"Marked as URGENT â€” notify sent to matching seafarers","success");
+    showToast(job.urgent?"Urgent badge removed":"Marked as URGENT — notify sent to matching seafarers","success");
   };
 
   const statusColor={Active:T.green,Paused:T.yellow,Closed:T.t3};
@@ -452,7 +452,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
         <div>
           <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Job Postings</h2>
-          <p style={{fontSize:14,color:T.t3}}>{jobs.filter(j=>j.status==="Active").length} active Â· {jobs.length} total</p>
+          <p style={{fontSize:14,color:T.t3}}>{jobs.filter(j=>j.status==="Active").length} active · {jobs.length} total</p>
         </div>
         <Btn onClick={()=>setShowNew(!showNew)} isDark={isDark} variant="primary" icon="plus">Post New Job</Btn>
       </div>
@@ -488,7 +488,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                   <div style={{position:"absolute",top:3,left:form.urgent?"calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
                 </div>
                 <span style={{fontSize:13,color:form.urgent?T.red:T.t3,fontWeight:form.urgent?600:400}}>
-                  {form.urgent?"URGENT â€” notify seafarers":"Not urgent"}
+                  {form.urgent?"URGENT — notify seafarers":"Not urgent"}
                 </span>
               </label>
             </div>
@@ -519,7 +519,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                   {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
                 </div>
                 <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                  {[job.vessel,job.salary+"/mo",job.duration,`Posted ${job.posted}`].filter(Boolean).map(tag=>(
+                  {[job.vessel,job.salary+"/m✓,job.duration,`Posted ${job.posted}`].filter(Boolean).map(tag=>(
                     <Bdg key={tag} label={tag} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
                   ))}
                 </div>
@@ -541,7 +541,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                 <Btn onClick={()=>toggleStatus(job.id)} isDark={isDark} variant="ghost" size="sm">
                   {job.status==="Active"?"Pause":"Activate"}
                 </Btn>
-                <Btn onClick={()=>showToast("Opening applicants...","info")} isDark={isDark} variant="primary" size="sm" icon="users">
+                <Btn onClick={()=>showToast("Opening applicants...","inf✓)} isDark={isDark} variant="primary" size="sm" icon="users">
                   View Applicants
                 </Btn>
               </div>
@@ -610,7 +610,7 @@ function ApplicantsPage({isDark,showToast,jobs}){
                 <div style={{flex:1,minWidth:180}}>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                     <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{app.name}</span>
-                    {app.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                    {app.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
                   <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                     <Bdg label={app.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
@@ -643,7 +643,7 @@ function ApplicantsPage({isDark,showToast,jobs}){
                     {["Applied","Shortlisted","Interview","Offer","Hired","Rejected"].map(s=><option key={s}>{s}</option>)}
                   </select>
                   <Btn onClick={()=>notify(app.name)} isDark={isDark} variant="ghost" size="sm" icon="send">Notify</Btn>
-                  <Btn onClick={()=>showToast("Opening profile...","info")} isDark={isDark} variant="primary" size="sm" icon="eye">View</Btn>
+                  <Btn onClick={()=>showToast("Opening profile...","inf✓)} isDark={isDark} variant="primary" size="sm" icon="eye">View</Btn>
                 </div>
               </div>
             </Card>
@@ -712,7 +712,7 @@ function PipelinePage({isDark,showToast}){
                         <Icon name="target" size={10} color={col} strokeWidth={2}/>
                         <span style={{fontSize:11,fontWeight:700,color:col}}>{a.score}%</span>
                       </div>
-                      {a.verified&&<span style={{fontSize:8,fontWeight:800,color:"#38BDF8",background:"rgba(56,189,248,0.12)",padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                      {a.verified&&<span style={{fontSize:8,fontWeight:800,color:"#38BDF8",background:"rgba(56,189,248,0.12)",padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                     </div>
                     <div style={{display:"flex",gap:4}}>
                       {stages.indexOf(a.status)>0&&(
@@ -722,7 +722,7 @@ function PipelinePage({isDark,showToast}){
                         <Icon name="send" size={10} color="currentColor" strokeWidth={2}/>Notify
                       </button>
                       {stages.indexOf(a.status)<stages.length-1&&(
-                        <button onClick={()=>move(a.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†’</button>
+                        <button onClick={()=>move(a.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>→</button>
                       )}
                     </div>
                   </Card>
@@ -744,13 +744,13 @@ function SearchPage({isDark,showToast}){
   const [pool,setPool]=useState(TALENT_POOL);
 
   const allSeafarers=[
-    {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",exp:"18 yrs",available:"Jul 2025",sub:"Pro"},
-    {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",exp:"12 yrs",available:"Jun 2025",sub:"Pro"},
+    {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",exp:"18 yrs",available:"Jul 2025",sub:"Pr✓},
+    {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",exp:"12 yrs",available:"Jun 2025",sub:"Pr✓},
     {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,avatar:"SP",exp:"9 yrs", available:"Aug 2025",sub:"Free"},
     {id:4,name:"Mohammed Al Farsi",    rank:"2nd Officer",   country:"Oman",     verified:false,score:74,avatar:"MA",exp:"4 yrs", available:"Now",     sub:"Free"},
-    {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",verified:true, score:82,avatar:"DW",exp:"7 yrs", available:"Sep 2025",sub:"Pro"},
-    {id:6,name:"Vikram Nair",          rank:"Chief Engineer",country:"India",    verified:true, score:90,avatar:"VN",exp:"12 yrs",available:"Jun 2025",sub:"Pro"},
-    {id:7,name:"James Okafor",         rank:"Chief Officer", country:"Nigeria",  verified:true, score:83,avatar:"JO",exp:"8 yrs", available:"Now",     sub:"Pro"},
+    {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",verified:true, score:82,avatar:"DW",exp:"7 yrs", available:"Sep 2025",sub:"Pr✓},
+    {id:6,name:"Vikram Nair",          rank:"Chief Engineer",country:"India",    verified:true, score:90,avatar:"VN",exp:"12 yrs",available:"Jun 2025",sub:"Pr✓},
+    {id:7,name:"James Okafor",         rank:"Chief Officer", country:"Nigeria",  verified:true, score:83,avatar:"JO",exp:"8 yrs", available:"Now",     sub:"Pr✓},
     {id:8,name:"Chen Wei Long",        rank:"Chief Officer", country:"China",    verified:false,score:79,avatar:"CW",exp:"6 yrs", available:"Oct 2025",sub:"Free"},
   ];
 
@@ -796,9 +796,9 @@ function SearchPage({isDark,showToast}){
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}>
                   <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{s.name}</span>
-                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                 </div>
-                <div style={{fontSize:11,color:T.t3}}>{s.rank} Â· {s.country} Â· {s.exp}</div>
+                <div style={{fontSize:11,color:T.t3}}>{s.rank} · {s.country} · {s.exp}</div>
               </div>
               <div style={{textAlign:"right",flexShrink:0}}>
                 <div style={{fontSize:20,fontWeight:700,color:s.score>90?T.green:s.score>80?T.yellow:T.t2,fontFamily:"'Sora',sans-serif"}}>{s.score}%</div>
@@ -808,10 +808,10 @@ function SearchPage({isDark,showToast}){
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:6}}>
                 <Bdg label={`Available ${s.available}`} color={s.available==="Now"?T.green:T.yellow} bg={s.available==="Now"?T.greenBg:T.yellowBg}/>
-                <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
+                <Bdg label={s.sub==="Pr✓?"Pr✓:"Free"} color={s.sub==="Pr✓?T.yellow:T.t3} bg={s.sub==="Pr✓?T.yellowBg:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
               </div>
               <div style={{display:"flex",gap:6}}>
-                <Btn onClick={()=>showToast("Viewing full profile...","info")} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
+                <Btn onClick={()=>showToast("Viewing full profile...","inf✓)} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
                 <Btn onClick={()=>addToPool(s)} isDark={isDark} variant="primary" size="sm" icon="star">Save</Btn>
               </div>
             </div>
@@ -835,14 +835,14 @@ function TalentPoolPage({isDark,showToast}){
 
   const remove=(id)=>{
     setPool(p=>p.filter(s=>s.id!==id));
-    showToast("Removed from talent pool","info");
+    showToast("Removed from talent pool","inf✓);
   };
 
   return(
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Talent Pool</h2>
-        <p style={{fontSize:14,color:T.t3}}>{pool.length} saved seafarers â€” your private shortlist</p>
+        <p style={{fontSize:14,color:T.t3}}>{pool.length} saved seafarers — your private shortlist</p>
       </div>
 
       {pool.length===0?(
@@ -860,7 +860,7 @@ function TalentPoolPage({isDark,showToast}){
                 <div style={{flex:1,minWidth:200}}>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                     <span style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{s.name}</span>
-                    {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                    {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
                   <div style={{display:"flex",gap:7,marginBottom:12,flexWrap:"wrap"}}>
                     <Bdg label={s.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
@@ -875,7 +875,7 @@ function TalentPoolPage({isDark,showToast}){
                   </div>
                 </div>
                 <div style={{display:"flex",gap:8,flexShrink:0,flexDirection:"column"}}>
-                  <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"info")} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
+                  <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"inf✓)} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
                   <Btn onClick={()=>remove(s.id)} isDark={isDark} variant="danger" size="sm">Remove</Btn>
                 </div>
               </div>
@@ -907,7 +907,7 @@ function InvoicesPage({isDark,showToast}){
 
   const plans=[
     {id:"professional",name:"Professional Plan",price:149,features:["Unlimited job posts","Applicant management","Smart matching","Email support"]},
-    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pro","Dedicated account manager","API access","Priority support","Custom branding"]},
+    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pr✓,"Dedicated account manager","API access","Priority support","Custom branding"]},
   ];
 
   const submitTransfer=async()=>{
@@ -1090,7 +1090,7 @@ function ProfilePage({isDark,showToast}){
             <div style={{fontSize:17,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{form.name}</div>
             <div style={{fontSize:12,color:T.t3,marginBottom:10}}>{form.country}</div>
             <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
-              <Bdg label="âœ“ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
+              <Bdg label="✓ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
               <Bdg label={COMPANY.plan} color={T.yellow} bg={T.yellowBg}/>
             </div>
           </div>
@@ -1122,7 +1122,7 @@ function ProfilePage({isDark,showToast}){
               {k:"vessels",l:"Vessel Types Operated"},
               {k:"certs",l:"Certifications"},
             ].map(f=>(
-              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"?"1/-1":"auto"}}>
+              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"?"1/-1":"aut✓}}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
                   style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
@@ -1157,7 +1157,7 @@ function SettingsPage({isDark,showToast}){
           ]},
           {title:"Account",icon:"settings",items:[
             {l:"Hiring Contact Email",v:"hiring@pacificstar.com",type:"text"},
-            {l:"Password",v:"â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",type:"text"},
+            {l:"Password",v:"••••••••",type:"text"},
             {l:"Two-Factor Authentication",v:false,type:"toggle"},
           ]},
         ].map(sec=>(
@@ -1198,7 +1198,7 @@ export default function CompanyDashboard(){
 
   const isDark=theme==="dark";
   const T=useT(isDark);
-  const showToast=(msg,type="info")=>setToast({msg,type});
+  const showToast=(msg,type="inf✓)=>setToast({msg,type});
 
   const loadNotifs=async()=>{
     try{
@@ -1281,15 +1281,15 @@ export default function CompanyDashboard(){
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{COMPANY.name}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
-                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>âœ“ VERIFIED</span>
-                  <span style={{fontSize:9,color:T.t3}}>Â· Professional</span>
+                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>✓ VERIFIED</span>
+                  <span style={{fontSize:9,color:T.t3}}>· Professional</span>
                 </div>
               </div>
             </div>
           )}
 
           {/* Nav */}
-          <nav style={{flex:1,padding:"10px 8px",overflowY:"auto",display:"flex",flexDirection:"column",gap:0}}>
+          <nav style={{flex:1,padding:"10px 8px",overflowY:"aut✓,display:"flex",flexDirection:"column",gap:0}}>
             {NAV.map(section=>(
               <div key={section.section}>
                 {sidebar&&<div style={{fontSize:9,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.12em",padding:"10px 12px 4px",marginTop:6}}>{section.section}</div>}
@@ -1387,7 +1387,7 @@ export default function CompanyDashboard(){
             </div>
           </header>
 
-          <main style={{flex:1,padding:24,overflowY:"auto"}}>
+          <main style={{flex:1,padding:24,overflowY:"aut✓}}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 

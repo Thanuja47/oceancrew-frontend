@@ -96,7 +96,7 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
 function AuthLayout({ children, isDark, rightContent }) {
   return (
     <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr",position:"relative"}}>
-      {/* Logo â€” pinned to absolute top-left of the whole page */}
+      {/* Logo — pinned to absolute top-left of the whole page */}
       <div style={{position:"fixed",top:20,left:24,zIndex:1000,display:"flex",alignItems:"center",gap:10}}>
         <div style={{width:40,height:40,borderRadius:11,
           background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
@@ -201,7 +201,7 @@ function LoginPage({ isDark, onNavigate }) {
       <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,marginBottom:36,maxWidth:300,margin:"0 auto 36px"}}>
         The world's most trusted maritime recruitment platform.
       </p>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14,maxWidth:340,margin:"0 auto"}}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14,maxWidth:340,margin:"0 aut✓}}>
         {[{val:"12,847",label:"Seafarers"},{val:"863",label:"Companies"},{val:"98%",label:"Success"}].map((s,i)=>(
           <div key={i} style={{padding:"16px 10px",borderRadius:14,background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.08)"}}>
             <div style={{fontSize:20,fontWeight:700,color:"#38BDF8",fontFamily:"'Sora',sans-serif",marginBottom:4}}>{s.val}</div>
@@ -364,7 +364,7 @@ function RegisterPage({ isDark, onNavigate }) {
       <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
         {type==="company"?"Access verified seafarers and hire confidently.":"Join thousands of seafarers finding better contracts."}
       </p>
-      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:280,margin:"0 auto"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:280,margin:"0 aut✓}}>
         {features.map((f,i)=>(
           <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",borderRadius:10,background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.07)"}}>
             <div style={{width:20,height:20,borderRadius:"50%",background:"rgba(52,211,153,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
@@ -390,7 +390,7 @@ function RegisterPage({ isDark, onNavigate }) {
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:28}}>
           {[
             {id:"seafarer",icon:"anchor",title:"I'm a Seafarer",desc:"Looking for maritime jobs worldwide.",badge:"Free Forever",bc:"#34D399"},
-            {id:"company",icon:"building",title:"I'm a Company",desc:"Looking for crew and maritime professionals.",badge:"From $49/mo",bc:"#38BDF8"},
+            {id:"company",icon:"building",title:"I'm a Company",desc:"Looking for crew and maritime professionals.",badge:"From $49/m✓,bc:"#38BDF8"},
           ].map(opt=>(
             <div key={opt.id} onClick={()=>setType(opt.id)}
               style={{padding:"22px 18px",borderRadius:14,cursor:"pointer",position:"relative",
@@ -441,7 +441,7 @@ function RegisterPage({ isDark, onNavigate }) {
         <p style={{fontSize:13,color:t2,marginBottom:22}}>Fill your details to get started</p>
 
         <div style={{display:"flex",flexDirection:"column",gap:13,marginBottom:16}}>
-          <Field label="Full Name" placeholder={type==="seafarer"?"e.g. Capt. Rajesh Fernando":"e.g. John Smith"} icon="user" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} isDark={isDark} error={errors.name}/>
+          <Field label="Full Name" placeholder={type==="seafarer"?"e.g. Capt. Rajesh Fernand✓:"e.g. John Smith"} icon="user" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} isDark={isDark} error={errors.name}/>
           <Field label="Email" placeholder="you@example.com" type="email" icon="mail" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} isDark={isDark} error={errors.email}/>
           <Field label="Phone / WhatsApp" placeholder="+94 77 000 0000" icon="phone" value={form.phone} onChange={e=>setForm(p=>({...p,phone:e.target.value}))} isDark={isDark} error={errors.phone}/>
 
@@ -501,13 +501,13 @@ function RegisterPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 3 â€” success */
+  /* Step 3 — success */
   return (
     <AuthLayout isDark={isDark} rightContent={
       <div>
         <div style={{marginBottom:20}}><Icon name="check" size={56} color="#34D399" strokeWidth={1.5} /></div>
         <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",marginBottom:12}}>You're all set!</h2>
-        <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto"}}>
+        <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 aut✓}}>
           {type==="company"?"Our team will verify your company within 24 hours.":"Start browsing jobs right away."}
         </p>
       </div>
@@ -521,7 +521,7 @@ function RegisterPage({ isDark, onNavigate }) {
         <p style={{fontSize:13,color:t3,lineHeight:1.7,marginBottom:32}}>
           {type==="company"
             ?"We'll verify your company and notify you at "+form.email+" within 24 hours."
-            :"Your account is live. Browse all jobs free â€” upgrade to Pro ($4/mo) to apply."}
+            :"Your account is live. Browse all jobs free — upgrade to Pro ($4/mo) to apply."}
         </p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
@@ -598,7 +598,7 @@ function ForgotPage({ isDark, onNavigate }) {
       <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
         {step === 1 ? "We'll send a one-time code to your registered email." : "Enter the 6-digit code we sent to your email."}
       </p>
-      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 auto"}}>
+      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 aut✓}}>
         {["OTP sent to your email","Expires in 15 minutes","One-time secure code","Contact support if needed"].map((f,i)=>(
           <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderRadius:10,background:"rgba(255,255,255,0.05)"}}>
             <Icon name="shield" size={13} color="#38BDF8" strokeWidth={2}/>
@@ -609,7 +609,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </div>
   );
 
-  /* Step 3 â€” success */
+  /* Step 3 — success */
   if (step === 3) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div style={{textAlign:"center",padding:"20px 0"}}>
@@ -626,7 +626,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 2 â€” OTP + new password */
+  /* Step 2 — OTP + new password */
   if (step === 2) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
@@ -663,7 +663,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 1 â€” email */
+  /* Step 1 — email */
   return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
