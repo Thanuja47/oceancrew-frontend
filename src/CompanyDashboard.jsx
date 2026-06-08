@@ -101,11 +101,11 @@ const TALENT_POOL = [];
 const INVOICES = [];
 
 const NOTIFICATIONS = [
-  {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ag✓,  read:false,icon:"anchor"},
-  {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ag✓,  read:false,icon:"target"},
-  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 — $149",                          time:"1d ag✓,  read:true, icon:"creditCard"},
-  {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ag✓,  read:true, icon:"clock"},
-  {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ag✓,  read:true, icon:"zap"},
+  {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ago",  read:false,icon:"anchor"},
+  {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ago",  read:false,icon:"target"},
+  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 — $149",                          time:"1d ago",  read:true, icon:"creditCard"},
+  {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ago",  read:true, icon:"clock"},
+  {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ago",  read:true, icon:"zap"},
 ];
 
 const ACTIVITY = [];
@@ -407,7 +407,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
 
   const toggleStatus=(id)=>{
     setJobs(p=>p.map(j=>j.id===id?{...j,status:j.status==="Active"?"Paused":"Active"}:j));
-    showToast("Job status updated","inf✓);
+    showToast("Job status updated","info");
   };
 
   const markUrgent=(id)=>{
@@ -491,7 +491,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                   {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
                 </div>
                 <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                  {[job.vessel,job.salary+"/m✓,job.duration,`Posted ${job.posted}`].filter(Boolean).map(tag=>(
+                  {[job.vessel,job.salary+"/mo",job.duration,`Posted ${job.posted}`].filter(Boolean).map(tag=>(
                     <Bdg key={tag} label={tag} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
                   ))}
                 </div>
@@ -513,7 +513,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                 <Btn onClick={()=>toggleStatus(job.id)} isDark={isDark} variant="ghost" size="sm">
                   {job.status==="Active"?"Pause":"Activate"}
                 </Btn>
-                <Btn onClick={()=>showToast("Opening applicants...","inf✓)} isDark={isDark} variant="primary" size="sm" icon="users">
+                <Btn onClick={()=>showToast("Opening applicants...","info")} isDark={isDark} variant="primary" size="sm" icon="users">
                   View Applicants
                 </Btn>
               </div>
@@ -620,7 +620,7 @@ function ApplicantsPage({isDark,showToast,jobs}){
                     {["Applied","Shortlisted","Interview","Offer","Hired","Rejected"].map(s=><option key={s}>{s}</option>)}
                   </select>
                   <Btn onClick={()=>notify(app.name)} isDark={isDark} variant="ghost" size="sm" icon="send">Notify</Btn>
-                  <Btn onClick={()=>showToast("Opening profile...","inf✓)} isDark={isDark} variant="primary" size="sm" icon="eye">View</Btn>
+                  <Btn onClick={()=>showToast("Opening profile...","info")} isDark={isDark} variant="primary" size="sm" icon="eye">View</Btn>
                 </div>
               </div>
             </Card>
@@ -726,13 +726,13 @@ function SearchPage({isDark,showToast}){
   const [pool,setPool]=useState(TALENT_POOL);
 
   const allSeafarers=[
-    {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",exp:"18 yrs",available:"Jul 2025",sub:"Pr✓},
-    {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",exp:"12 yrs",available:"Jun 2025",sub:"Pr✓},
+    {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",exp:"18 yrs",available:"Jul 2025",sub:"Pro"},
+    {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",exp:"12 yrs",available:"Jun 2025",sub:"Pro"},
     {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,avatar:"SP",exp:"9 yrs", available:"Aug 2025",sub:"Free"},
     {id:4,name:"Mohammed Al Farsi",    rank:"2nd Officer",   country:"Oman",     verified:false,score:74,avatar:"MA",exp:"4 yrs", available:"Now",     sub:"Free"},
-    {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",verified:true, score:82,avatar:"DW",exp:"7 yrs", available:"Sep 2025",sub:"Pr✓},
-    {id:6,name:"Vikram Nair",          rank:"Chief Engineer",country:"India",    verified:true, score:90,avatar:"VN",exp:"12 yrs",available:"Jun 2025",sub:"Pr✓},
-    {id:7,name:"James Okafor",         rank:"Chief Officer", country:"Nigeria",  verified:true, score:83,avatar:"JO",exp:"8 yrs", available:"Now",     sub:"Pr✓},
+    {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",verified:true, score:82,avatar:"DW",exp:"7 yrs", available:"Sep 2025",sub:"Pro"},
+    {id:6,name:"Vikram Nair",          rank:"Chief Engineer",country:"India",    verified:true, score:90,avatar:"VN",exp:"12 yrs",available:"Jun 2025",sub:"Pro"},
+    {id:7,name:"James Okafor",         rank:"Chief Officer", country:"Nigeria",  verified:true, score:83,avatar:"JO",exp:"8 yrs", available:"Now",     sub:"Pro"},
     {id:8,name:"Chen Wei Long",        rank:"Chief Officer", country:"China",    verified:false,score:79,avatar:"CW",exp:"6 yrs", available:"Oct 2025",sub:"Free"},
   ];
 
@@ -790,10 +790,10 @@ function SearchPage({isDark,showToast}){
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div style={{display:"flex",gap:6}}>
                 <Bdg label={`Available ${s.available}`} color={s.available==="Now"?T.green:T.yellow} bg={s.available==="Now"?T.greenBg:T.yellowBg}/>
-                <Bdg label={s.sub==="Pr✓?"Pr✓:"Free"} color={s.sub==="Pr✓?T.yellow:T.t3} bg={s.sub==="Pr✓?T.yellowBg:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
+                <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
               </div>
               <div style={{display:"flex",gap:6}}>
-                <Btn onClick={()=>showToast("Viewing full profile...","inf✓)} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
+                <Btn onClick={()=>showToast("Viewing full profile...","info")} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
                 <Btn onClick={()=>addToPool(s)} isDark={isDark} variant="primary" size="sm" icon="star">Save</Btn>
               </div>
             </div>
@@ -817,7 +817,7 @@ function TalentPoolPage({isDark,showToast}){
 
   const remove=(id)=>{
     setPool(p=>p.filter(s=>s.id!==id));
-    showToast("Removed from talent pool","inf✓);
+    showToast("Removed from talent pool","info");
   };
 
   return(
@@ -857,7 +857,7 @@ function TalentPoolPage({isDark,showToast}){
                   </div>
                 </div>
                 <div style={{display:"flex",gap:8,flexShrink:0,flexDirection:"column"}}>
-                  <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"inf✓)} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
+                  <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"info")} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
                   <Btn onClick={()=>remove(s.id)} isDark={isDark} variant="danger" size="sm">Remove</Btn>
                 </div>
               </div>
@@ -889,7 +889,7 @@ function InvoicesPage({isDark,showToast}){
 
   const plans=[
     {id:"professional",name:"Professional Plan",price:149,features:["Unlimited job posts","Applicant management","Smart matching","Email support"]},
-    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pr✓,"Dedicated account manager","API access","Priority support","Custom branding"]},
+    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pro","Dedicated account manager","API access","Priority support","Custom branding"]},
   ];
 
   const submitTransfer=async()=>{
@@ -1104,7 +1104,7 @@ function ProfilePage({isDark,showToast}){
               {k:"vessels",l:"Vessel Types Operated"},
               {k:"certs",l:"Certifications"},
             ].map(f=>(
-              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"?"1/-1":"aut✓}}>
+              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"?"1/-1":"auto"}}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
                   style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
@@ -1180,7 +1180,7 @@ export default function CompanyDashboard(){
 
   const isDark=theme==="dark";
   const T=useT(isDark);
-  const showToast=(msg,type="inf✓)=>setToast({msg,type});
+  const showToast=(msg,type="info")=>setToast({msg,type});
 
   const loadNotifs=async()=>{
     try{
@@ -1271,7 +1271,7 @@ export default function CompanyDashboard(){
           )}
 
           {/* Nav */}
-          <nav style={{flex:1,padding:"10px 8px",overflowY:"aut✓,display:"flex",flexDirection:"column",gap:0}}>
+          <nav style={{flex:1,padding:"10px 8px",overflowY:"auto",display:"flex",flexDirection:"column",gap:0}}>
             {NAV.map(section=>(
               <div key={section.section}>
                 {sidebar&&<div style={{fontSize:9,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.12em",padding:"10px 12px 4px",marginTop:6}}>{section.section}</div>}
@@ -1369,7 +1369,7 @@ export default function CompanyDashboard(){
             </div>
           </header>
 
-          <main style={{flex:1,padding:24,overflowY:"aut✓}}>
+          <main style={{flex:1,padding:24,overflowY:"auto"}}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 

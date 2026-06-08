@@ -144,7 +144,7 @@ function Btn({children,onClick,variant="primary",isDark,size="md",icon,fullWidth
   const col=variant==="primary"?"#fff":variant==="success"?"#fff":variant==="danger"?T.red:T.t2;
   const pad=size==="sm"?"6px 12px":size==="lg"?"14px 28px":"9px 18px";
   return(
-    <button onClick={onClick} style={{width:fullWidth?"100%":"aut✓,padding:pad,borderRadius:10,border:"none",cursor:"pointer",fontWeight:600,fontSize:size==="sm"?11:13,fontFamily:"'Inter',sans-serif",transition:"all 0.18s",background:bg,color:col,display:"flex",alignItems:"center",justifyContent:"center",gap:6,boxShadow:variant==="primary"?(isDark?"0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"):"none"}}
+    <button onClick={onClick} style={{width:fullWidth?"100%":"auto",padding:pad,borderRadius:10,border:"none",cursor:"pointer",fontWeight:600,fontSize:size==="sm"?11:13,fontFamily:"'Inter',sans-serif",transition:"all 0.18s",background:bg,color:col,display:"flex",alignItems:"center",justifyContent:"center",gap:6,boxShadow:variant==="primary"?(isDark?"0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"):"none"}}
       onMouseEnter={e=>e.currentTarget.style.opacity="0.88"}
       onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
       {icon&&<Icon name={icon} size={size==="sm"?12:14} color="currentColor" strokeWidth={2}/>}
@@ -215,7 +215,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                 </div>
                 <div style={{fontSize:13,color:isDark?"rgba(255,255,255,0.6)":T.t2,marginBottom:8}}>{SEAFARER.rank} · {SEAFARER.nationality} · {SEAFARER.yearsExp} years exp.</div>
                 <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
-                  <Bdg label={SEAFARER.sub==="Pr✓?"â­ Pro Member":"Free"} color={T.yellow} bg={T.yellowBg}/>
+                  <Bdg label={SEAFARER.sub==="Pro"?"â­ Pro Member":"Free"} color={T.yellow} bg={T.yellowBg}/>
                   <Bdg label={`Available ${SEAFARER.availability}`} color={T.green} bg={T.greenBg}/>
                 </div>
               </div>
@@ -333,7 +333,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
               <div style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:3}}>{job.title}</div>
               <div style={{fontSize:11,color:T.t3,marginBottom:8}}>{job.company} · {job.country}</div>
               <div style={{fontSize:13,fontWeight:700,color:T.green,marginBottom:10}}>{job.salary}/mo</div>
-              <Btn onClick={()=>showToast("Opening job...","inf✓)} isDark={isDark} variant="primary" size="sm" fullWidth>Apply Now</Btn>
+              <Btn onClick={()=>showToast("Opening job...","info")} isDark={isDark} variant="primary" size="sm" fullWidth>Apply Now</Btn>
             </div>
           ))}
         </div>
@@ -399,7 +399,7 @@ function FindJobsPage({isDark,showToast,jobs,searchQuery}){
                 <div style={{fontSize:12,fontWeight:700,color:job.match>90?T.green:job.match>80?T.yellow:T.t2}}>{job.match}% match</div>
               </div>
               <div style={{display:"flex",gap:8,flexShrink:0}}>
-                <Btn onClick={()=>showToast("Viewing job details...","inf✓)} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
+                <Btn onClick={()=>showToast("Viewing job details...","info")} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
                 <Btn onClick={()=>apply(job)} isDark={isDark} variant={applied.includes(job.id)?"ghost":"primary"} size="sm" icon={applied.includes(job.id)?"checkCircle":"send"}>
                   {applied.includes(job.id)?"Applied":"Apply Now"}
                 </Btn>
@@ -452,7 +452,7 @@ function ApplicationsPage({isDark,showToast,applications}){
                   <div style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{app.title} — {app.company}</div>
                   <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                     <Bdg label={app.vessel} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
-                    <Bdg label={app.salary+"/m✓} color={T.green} bg={T.greenBg}/>
+                    <Bdg label={app.salary+"/mo"} color={T.green} bg={T.greenBg}/>
                     <Bdg label={`Applied ${app.applied}`} color={T.t3} bg={isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
                   </div>
                 </div>
@@ -491,14 +491,14 @@ function ApplicationsPage({isDark,showToast,applications}){
                   <span style={{fontSize:13,fontWeight:600,color:T.green}}>🎉 You have an offer! Review and respond.</span>
                   <div style={{display:"flex",gap:8}}>
                     <Btn onClick={()=>showToast("Offer accepted! Company will contact you.","success")} isDark={isDark} variant="success" size="sm" icon="check">Accept</Btn>
-                    <Btn onClick={()=>showToast("Offer declined.","inf✓)} isDark={isDark} variant="danger" size="sm">Decline</Btn>
+                    <Btn onClick={()=>showToast("Offer declined.","info")} isDark={isDark} variant="danger" size="sm">Decline</Btn>
                   </div>
                 </div>
               )}
               {app.status==="Interview"&&(
                 <div style={{marginTop:14,padding:"12px 16px",borderRadius:12,background:T.purpleBg,border:`1px solid ${T.purple}30`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                   <span style={{fontSize:13,fontWeight:600,color:T.purple}}>ðŸ“… Interview scheduled — check your email for details.</span>
-                  <Btn onClick={()=>showToast("Opening interview details...","inf✓)} isDark={isDark} variant="ghost" size="sm">View Details</Btn>
+                  <Btn onClick={()=>showToast("Opening interview details...","info")} isDark={isDark} variant="ghost" size="sm">View Details</Btn>
                 </div>
               )}
             </Card>
@@ -541,7 +541,7 @@ function ProfilePage({isDark,showToast,userName}){
             </div>
             <div style={{fontSize:12,color:T.t3,marginBottom:14}}>{form.rank}</div>
             <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:18,flexWrap:"wrap"}}>
-              <Bdg label={SEAFARER.sub==="Pr✓?"â­ Pr✓:"Free"} color={T.yellow} bg={T.yellowBg}/>
+              <Bdg label={SEAFARER.sub==="Pro"?"â­ Pro":"Free"} color={T.yellow} bg={T.yellowBg}/>
               <Bdg label={`Available ${form.availability}`} color={T.green} bg={T.greenBg}/>
             </div>
             {/* Profile strength */}
@@ -583,7 +583,7 @@ function ProfilePage({isDark,showToast,userName}){
               {k:"yearsExp",l:"Years at Sea"},{k:"availability",l:"Available From"},
               {k:"preferred",l:"Preferred Vessel Types"},
             ].map(f=>(
-              <div key={f.k} style={{gridColumn:f.k==="preferred"?"1/-1":"aut✓}}>
+              <div key={f.k} style={{gridColumn:f.k==="preferred"?"1/-1":"auto"}}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
                   style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
@@ -664,7 +664,7 @@ function DocumentsPage({isDark,showToast}){
               <input ref={el=>refs.current[cert.id]=el} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{display:"none"}} onChange={e=>handleUpload(cert.id,e)}/>
               <div style={{display:"flex",gap:7}}>
                 {cert.uploaded&&(
-                  <Btn onClick={()=>showToast("Downloading...","inf✓)} isDark={isDark} variant="ghost" size="sm" icon="download">Download</Btn>
+                  <Btn onClick={()=>showToast("Downloading...","info")} isDark={isDark} variant="ghost" size="sm" icon="download">Download</Btn>
                 )}
                 <Btn onClick={()=>refs.current[cert.id].click()} isDark={isDark} variant={cert.uploaded?"ghost":"primary"} size="sm" icon="upload">
                   {cert.uploaded?"Replace":"Upload"}
@@ -765,14 +765,14 @@ function CVPage({isDark,showToast,userName}){
               <span style={{fontSize:13,fontWeight:600,color:T.t1}}>CV Preview Sample</span>
               <Bdg label="How it will look" color={T.yellow} bg={T.yellowBg}/>
             </div>
-            <div style={{padding:20,background:isDark?"rgba(255,255,255,0.01)":"#f8f9fa",overflowY:"aut✓,maxHeight:500}}>
+            <div style={{padding:20,background:isDark?"rgba(255,255,255,0.01)":"#f8f9fa",overflowY:"auto",maxHeight:500}}>
               <div style={{background:"#fff",borderRadius:12,overflow:"hidden",boxShadow:"0 4px 24px rgba(0,0,0,0.1)"}}>
                 <div style={{background:"linear-gradient(135deg,#0A1628,#1C2F52)",padding:"22px 26px"}}>
                   <div style={{fontSize:9,color:"#C9A96E",letterSpacing:3,textTransform:"uppercase",fontWeight:600,marginBottom:6,fontFamily:"'Inter',sans-serif"}}>Maritime Professional</div>
                   <div style={{fontSize:20,fontWeight:700,color:"#fff",fontFamily:"Georgia,serif",marginBottom:4}}>{SEAFARER.name}</div>
                   <div style={{fontSize:12,color:"rgba(255,255,255,0.65)",fontFamily:"'Inter',sans-serif",marginBottom:10}}>{SEAFARER.rank}</div>
                   <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
-                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“ Colomb✓,"ðŸŒ Sri Lankan"].map((i,idx)=>(
+                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“  Colombo","ðŸŒ  Sri Lankan"].map((i,idx)=>(
                       <span key={idx} style={{fontSize:9,color:"rgba(255,255,255,0.6)",fontFamily:"'Inter',sans-serif"}}>{i}</span>
                     ))}
                   </div>
@@ -821,7 +821,7 @@ function CVPage({isDark,showToast,userName}){
 function SubscriptionPage({isDark,showToast,userName}){
   const T=useT(isDark);
   const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
-  const isPro=SEAFARER.sub==="Pr✓;
+  const isPro=SEAFARER.sub==="Pro";
   return(
     <div>
       <div style={{marginBottom:24}}>
@@ -868,7 +868,7 @@ function SubscriptionPage({isDark,showToast,userName}){
           </div>
           {isPro
             ?<Bdg label="✓ Active Pro Member" color={isDark?"#38BDF8":T.t1} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>
-            :<Btn onClick={()=>showToast("Redirecting to payment...","inf✓)} isDark={isDark} variant="primary" icon="zap" fullWidth>Upgrade to Pro — $4/mo</Btn>}
+            :<Btn onClick={()=>showToast("Redirecting to payment...","info")} isDark={isDark} variant="primary" icon="zap" fullWidth>Upgrade to Pro — $4/mo</Btn>}
         </Card>
       </div>
 
@@ -880,7 +880,7 @@ function SubscriptionPage({isDark,showToast,userName}){
               <p style={{fontSize:12,color:T.t3}}>Next billing date: June 1, 2025 · $4.00</p>
             </div>
             <div style={{display:"flex",gap:10}}>
-              <Btn onClick={()=>showToast("Downloading receipt...","inf✓)} isDark={isDark} variant="ghost" size="sm" icon="download">Download Receipt</Btn>
+              <Btn onClick={()=>showToast("Downloading receipt...","info")} isDark={isDark} variant="ghost" size="sm" icon="download">Download Receipt</Btn>
               <Btn onClick={()=>showToast("Subscription cancelled. Access until Jun 1.","warning")} isDark={isDark} variant="danger" size="sm">Cancel</Btn>
             </div>
           </div>
@@ -998,7 +998,7 @@ export default function SeafarerDashboard(){
   const [toast,setToast]=useState(null);
   const isDark=theme==="dark";
   const T=useT(isDark);
-  const showToast=(msg,type="inf✓)=>setToast({msg,type});
+  const showToast=(msg,type="info")=>setToast({msg,type});
 
   /* â”€â”€ Real user name from localStorage â”€â”€ */
   const userName = localStorage.getItem("userName") || "Seafarer";
@@ -1150,7 +1150,7 @@ export default function SeafarerDashboard(){
             </div>
           )}
 
-          <nav style={{flex:1,padding:"10px 8px",overflowY:"aut✓,display:"flex",flexDirection:"column",gap:0}}>
+          <nav style={{flex:1,padding:"10px 8px",overflowY:"auto",display:"flex",flexDirection:"column",gap:0}}>
             {NAV.map(section=>(
               <div key={section.section}>
                 {sidebar&&<div style={{fontSize:9,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.12em",padding:"10px 12px 4px",marginTop:6}}>{section.section}</div>}
@@ -1221,7 +1221,7 @@ export default function SeafarerDashboard(){
             </div>
           </header>
 
-          <main style={{flex:1,padding:24,overflowY:"aut✓}}>
+          <main style={{flex:1,padding:24,overflowY:"auto"}}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 

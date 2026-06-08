@@ -200,7 +200,7 @@ function Spark({data,color,height=28}){
 }
 function Dashboard({setPage,isDark,seafarers,companies}){
   const T=useT(isDark);
-  const proSubs=seafarers.filter(s=>s.sub==="Pr✓).length;
+  const proSubs=seafarers.filter(s=>s.sub==="Pro").length;
   const compMRR=companies.filter(c=>c.status==="Active").reduce((a,c)=>a+c.revenue,0);
   const totalMRR=compMRR+proSubs*4;
   const stats=[
@@ -618,7 +618,7 @@ function CompaniesPage({isDark,companies}){
       </Card>
       <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
         <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr",padding:"12px 22px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark?"1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
-          {["Company","Plan","Revenue/m✓,"Status","Verified"].map(h=>(
+          {["Company","Plan","Revenue/mo","Status","Verified"].map(h=>(
             <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
           ))}
         </div>
@@ -650,12 +650,12 @@ function SeafarersPage({isDark,seafarers}){
   const T=useT(isDark);
   const [search,setSearch]=useState("");
   const [sub,setSub]=useState("All");
-  const filtered=seafarers.filter(s=>(sub==="All"||(sub==="Pr✓&&s.sub==="Pr✓)||(sub==="Free"&&s.sub==="Free"))&&(s.name.toLowerCase().includes(search.toLowerCase())||s.rank.toLowerCase().includes(search.toLowerCase())));
+  const filtered=seafarers.filter(s=>(sub==="All"||(sub==="Pro"&&s.sub==="Pro")||(sub==="Free"&&s.sub==="Free"))&&(s.name.toLowerCase().includes(search.toLowerCase())||s.rank.toLowerCase().includes(search.toLowerCase())));
   return(
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>All Seafarers</h2>
-        <p style={{fontSize:14,color:T.t3}}>{seafarers.length} registered · {seafarers.filter(s=>s.sub==="Pr✓).length} Pro · {seafarers.filter(s=>s.verified).length} Verified</p>
+        <p style={{fontSize:14,color:T.t3}}>{seafarers.length} registered · {seafarers.filter(s=>s.sub==="Pro").length} Pro · {seafarers.filter(s=>s.verified).length} Verified</p>
       </div>
       <div style={{display:"flex",gap:10,marginBottom:16,flexWrap:"wrap"}}>
         <Card isDark={isDark} style={{flex:1,padding:12}}>
@@ -666,7 +666,7 @@ function SeafarersPage({isDark,seafarers}){
           </div>
         </Card>
         <div style={{display:"flex",gap:6,alignItems:"center"}}>
-          {["All","Pr✓,"Free"].map(f=><Pill key={f} active={sub===f} isDark={isDark} onClick={()=>setSub(f)}>{f}</Pill>)}
+          {["All","Pro","Free"].map(f=><Pill key={f} active={sub===f} isDark={isDark} onClick={()=>setSub(f)}>{f}</Pill>)}
         </div>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
@@ -682,7 +682,7 @@ function SeafarersPage({isDark,seafarers}){
                 <div style={{fontSize:11,color:T.t3}}>{s.rank} · {s.country}</div>
               </div>
               <div style={{display:"flex",flexDirection:"column",gap:4,alignItems:"flex-end"}}>
-                <Bdg label={s.sub==="Pr✓?"Pr✓:"Free"} color={s.sub==="Pr✓?T.yellow:T.t3} bg={s.sub==="Pr✓?T.yellowBg:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+                <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
                 <Bdg label={s.status} color={s.status==="Active"?T.green:T.red} bg={s.status==="Active"?T.greenBg:T.redBg}/>
               </div>
             </div>
@@ -786,7 +786,7 @@ function InvoicePage({isDark,showToast}){
 
       <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
         <div style={{display:"grid",gridTemplateColumns:"0.7fr 1.5fr 0.8fr 1fr 0.7fr 0.7fr 1.2fr",padding:"12px 22px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark?"1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
-          {["ID","T✓,"Type","Plan","Amount","Due","Status"].map(h=>(
+          {["ID","To","Type","Plan","Amount","Due","Status"].map(h=>(
             <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
           ))}
         </div>
@@ -853,7 +853,7 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>Send To</div>
             {Object.entries(tLabels).map(([key,label])=>(
               <label key={key} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,background:target===key?(isDark?"rgba(56,189,248,0.1)":T.accentBg):"transparent",cursor:"pointer",marginBottom:4}}>
-                <input type="radi✓ checked={target===key} onChange={()=>setTarget(key)} style={{accentColor:isDark?"#38BDF8":T.accent}}/>
+                <input type="radio" checked={target===key} onChange={()=>setTarget(key)} style={{accentColor:isDark?"#38BDF8":T.accent}}/>
                 <span style={{fontSize:13,color:target===key?(isDark?"#38BDF8":T.accent):T.t2,fontWeight:target===key?600:400}}>{label}</span>
               </label>
             ))}
@@ -912,7 +912,7 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
 
 function RevenuePage({isDark,seafarers,companies}){
   const T=useT(isDark);
-  const proSubs=seafarers.filter(s=>s.sub==="Pr✓).length;
+  const proSubs=seafarers.filter(s=>s.sub==="Pro").length;
   const compMRR=companies.filter(c=>c.status==="Active").reduce((a,c)=>a+c.revenue,0);
   const seafMRR=proSubs*4;
   const totalMRR=compMRR+seafMRR;
@@ -981,7 +981,7 @@ function SettingsPage({isDark}){
         {[
           {title:"Platform",icon:"settings",items:[
             {label:"Platform Name",val:"OceanCrew",type:"text"},
-            {label:"Support Email",val:"support@oceancrew.i✓,type:"text"},
+            {label:"Support Email",val:"support@oceancrew.i",type:"text"},
             {label:"Seafarer Pro Price",val:"$4/month",type:"text"},
             {label:"Maintenance Mode",val:false,type:"toggle"},
           ]},
@@ -1187,7 +1187,7 @@ function CVManagerPage({isDark,showToast}){
               {preview?(
                 <div style={{padding:28,background:isDark?"rgba(255,255,255,0.01)":"#f8f9fa"}}>
                   {/* CV Preview Card */}
-                  <div style={{background:"#fff",borderRadius:16,overflow:"hidden",boxShadow:"0 4px 32px rgba(0,0,0,0.12)",maxWidth:600,margin:"0 aut✓}}>
+                  <div style={{background:"#fff",borderRadius:16,overflow:"hidden",boxShadow:"0 4px 32px rgba(0,0,0,0.12)",maxWidth:600,margin:"0 auto"}}>
                     {/* CV Header */}
                     <div style={{background:"linear-gradient(135deg,#0A1628,#1C2F52)",padding:"28px 32px",color:"#fff"}}>
                       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
@@ -1310,7 +1310,7 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
     showToast("Profile updated successfully","success");
   };
 
-  const resetPassword=(name)=>showToast(`Password reset email sent to ${name}`,"inf✓);
+  const resetPassword=(name)=>showToast(`Password reset email sent to ${name}`,"info");
   const forceLogout=(name)=>showToast(`${name} has been logged out`,"warning");
   const changePlan=(id,plan)=>{
     if(tab==="seafarers") setSeafarers(p=>p.map(s=>s.id===id?{...s,sub:plan}:s));
@@ -1395,7 +1395,7 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
                   {tab==="seafarers"?"Subscription":"Plan"} — Force Change
                 </div>
                 <div style={{display:"flex",gap:6}}>
-                  {(tab==="seafarers"?["Free","Pr✓]:["Starter","Professional","Enterprise"]).map(plan=>(
+                  {(tab==="seafarers"?["Free","Pro"]:["Starter","Professional","Enterprise"]).map(plan=>(
                     <button key={plan} onClick={()=>changePlan(editForm.id,plan)} style={{flex:1,padding:"8px 0",borderRadius:9,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",
                       background:(editForm.sub===plan||editForm.plan===plan)?(isDark?"#38BDF8":"#1a2332"):(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
                       color:(editForm.sub===plan||editForm.plan===plan)?"#fff":T.t3}}>
@@ -1434,13 +1434,13 @@ function PlatformControlPage({isDark,showToast}){
   ]);
   const [featured,setFeatured]=useState([
     {id:1,name:"Pacific Star Shipping",type:"Company",until:"Jun 30",logo:"PS"},
-    {id:2,name:"Capt. Rajesh Fernand✓,type:"Seafarer",until:"Jun 15",logo:"RF"},
+    {id:2,name:"Capt. Rajesh Fernando",type:"Seafarer",until:"Jun 15",logo:"RF"},
   ]);
   const [auditLog]=useState([
     {id:1,admin:"Super Admin",action:"Granted verified badge",target:"Pacific Star Shipping",time:"May 22 · 10:42",ip:"192.168.1.1"},
     {id:2,admin:"Super Admin",action:"Generated invoice INV-004",target:"Royal Caribbean Crew",time:"May 21 · 15:30",ip:"192.168.1.1"},
     {id:3,admin:"Super Admin",action:"Blacklisted user",target:"Chen Wei Long",time:"May 20 · 09:15",ip:"192.168.1.1"},
-    {id:4,admin:"Super Admin",action:"Force plan change to Pr✓,target:"Shanaka Perera",time:"May 19 · 14:22",ip:"192.168.1.1"},
+    {id:4,admin:"Super Admin",action:"Force plan change to Pro",target:"Shanaka Perera",time:"May 19 · 14:22",ip:"192.168.1.1"},
     {id:5,admin:"Super Admin",action:"Sent notification blast",target:"All Seafarers (12847)",time:"May 18 · 11:05",ip:"192.168.1.1"},
     {id:6,admin:"Super Admin",action:"Approved company",target:"Neptune Shipping Ltd.",time:"May 17 · 16:48",ip:"192.168.1.1"},
   ]);
@@ -1454,7 +1454,7 @@ function PlatformControlPage({isDark,showToast}){
 
   const toggleAnnouncement=(id)=>{
     setAnnouncements(p=>p.map(a=>a.id===id?{...a,active:!a.active}:a));
-    showToast("Announcement status updated","inf✓);
+    showToast("Announcement status updated","info");
   };
 
   return(
@@ -1501,10 +1501,10 @@ function PlatformControlPage({isDark,showToast}){
                 <div style={{fontSize:11,color:T.t3}}>{f.type} · Featured until {f.until}</div>
               </div>
               <Bdg label="Featured" color={T.yellow} bg={T.yellowBg}/>
-              <button onClick={()=>{setFeatured(p=>p.filter(x=>x.id!==f.id));showToast("Removed from featured","inf✓);}} style={{padding:"5px 10px",borderRadius:7,border:"none",background:T.redBg,color:T.red,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Remove</button>
+              <button onClick={()=>{setFeatured(p=>p.filter(x=>x.id!==f.id));showToast("Removed from featured","info");}} style={{padding:"5px 10px",borderRadius:7,border:"none",background:T.redBg,color:T.red,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Remove</button>
             </div>
           ))}
-          <button onClick={()=>showToast("Feature: select from Companies or Seafarers page","inf✓)} style={{width:"100%",padding:"10px",borderRadius:10,border:`1px dashed ${isDark?"rgba(255,255,255,0.1)":"rgba(100,116,139,0.2)"}`,background:"transparent",color:T.t3,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",marginTop:8,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+          <button onClick={()=>showToast("Feature: select from Companies or Seafarers page","info")} style={{width:"100%",padding:"10px",borderRadius:10,border:`1px dashed ${isDark?"rgba(255,255,255,0.1)":"rgba(100,116,139,0.2)"}`,background:"transparent",color:T.t3,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",marginTop:8,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
             <Icon name="plus" size={14} color="currentColor" strokeWidth={2}/>Add Featured Listing
           </button>
         </Card>
@@ -1570,7 +1570,7 @@ export default function AdminPanel(){
 
   const isDark=theme==="dark";
   const T=useT(isDark);
-  const showToast=(msg,type="inf✓)=>setToast({msg,type});
+  const showToast=(msg,type="info")=>setToast({msg,type});
 
   const renderPage=()=>{
     const p={isDark,showToast,seafarers,setSeafarers,companies,setCompanies};
@@ -1642,7 +1642,7 @@ export default function AdminPanel(){
               </div>
             </div>
           )}
-          <nav style={{flex:1,padding:"10px 8px",overflowY:"aut✓,display:"flex",flexDirection:"column",gap:0}}>
+          <nav style={{flex:1,padding:"10px 8px",overflowY:"auto",display:"flex",flexDirection:"column",gap:0}}>
             {NAV_FULL.map(section=>(
               <div key={section.section}>
                 {sidebar&&<div style={{fontSize:9,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.12em",padding:"10px 12px 4px",marginTop:6}}>{section.section}</div>}
@@ -1714,7 +1714,7 @@ export default function AdminPanel(){
             </div>
           </header>
 
-          <main style={{flex:1,padding:24,overflowY:"aut✓}}>
+          <main style={{flex:1,padding:24,overflowY:"auto"}}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 
