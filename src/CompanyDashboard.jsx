@@ -93,51 +93,23 @@ const COMPANY = {
   totalHired:47,activeJobs:8,totalApps:312,responseRate:94,
 };
 
-const JOBS = [
-  {id:1,title:"Master",vessel:"Container Vessel MV Pacific Star",salary:"$7,500",duration:"12 months",rank:"Master",status:"Active",   apps:28,posted:"May 10",urgent:true,  shortlisted:4},
-  {id:2,title:"Chief Officer",vessel:"Container Vessel MV Pacific Star",salary:"$4,800",duration:"9 months", rank:"Chief Officer",status:"Active",apps:19,posted:"May 12",urgent:false,shortlisted:2},
-  {id:3,title:"Chief Engineer",vessel:"Bulk Carrier MV Glory Star",salary:"$5,200",duration:"10 months",rank:"Chief Engineer",status:"Active",apps:22,posted:"May 14",urgent:false,shortlisted:3},
-  {id:4,title:"2nd Officer",vessel:"Container Vessel MV Pacific Star",salary:"$3,100",duration:"8 months", rank:"2nd Officer",status:"Paused",  apps:11,posted:"May 8", urgent:false,shortlisted:1},
-  {id:5,title:"ETO",          vessel:"Bulk Carrier MV Glory Star",      salary:"$3,400",duration:"12 months",rank:"ETO",         status:"Closed",  apps:33,posted:"Apr 28",urgent:false,shortlisted:0},
-];
+const JOBS = [];
 
-const APPLICANTS = [
-  {id:1,jobId:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",verified:true, score:96,status:"Shortlisted",avatar:"RF",exp:"18 yrs",applied:"May 11"},
-  {id:2,jobId:1,name:"Capt. Ahmed Al Sayed", rank:"Master",        country:"Oman",     verified:true, score:91,status:"Interview",  avatar:"AA",exp:"14 yrs",applied:"May 11"},
-  {id:3,jobId:1,name:"Capt. Wang Fang",      rank:"Master",        country:"China",    verified:false,score:84,status:"Applied",    avatar:"WF",exp:"10 yrs",applied:"May 12"},
-  {id:4,jobId:2,name:"Shanaka Perera",        rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,status:"Shortlisted",avatar:"SP",exp:"9 yrs", applied:"May 13"},
-  {id:5,jobId:2,name:"James Okafor",          rank:"Chief Officer", country:"Nigeria",  verified:true, score:82,status:"Applied",    avatar:"JO",exp:"7 yrs", applied:"May 13"},
-  {id:6,jobId:3,name:"Dilshan Wickrama",      rank:"ETO",           country:"Sri Lanka",verified:true, score:85,status:"Applied",    avatar:"DW",exp:"7 yrs", applied:"May 15"},
-  {id:7,jobId:3,name:"Vikram Nair",           rank:"Chief Engineer",country:"India",    verified:true, score:90,status:"Shortlisted",avatar:"VN",exp:"12 yrs",applied:"May 14"},
-];
+const APPLICANTS = [];
 
-const TALENT_POOL = [
-  {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",verified:true, score:96,avatar:"RF",available:"Jul 2025",notes:"Top pick for Master role"},
-  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    verified:true, score:91,avatar:"PN",available:"Jun 2025",notes:"Excellent tanker experience"},
-  {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",verified:true, score:88,avatar:"SP",available:"Aug 2025",notes:"Strong container vessel background"},
-];
+const TALENT_POOL = [];
 
-const INVOICES = [
-  {id:"INV-001",plan:"Professional",amount:149,status:"Paid",   date:"May 1", due:"May 15"},
-  {id:"INV-002",plan:"Professional",amount:149,status:"Paid",   date:"Apr 1", due:"Apr 15"},
-  {id:"INV-003",plan:"Professional",amount:149,status:"Pending",date:"Jun 1", due:"Jun 15"},
-];
+const INVOICES = [];
 
 const NOTIFICATIONS = [
   {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ago",  read:false,icon:"anchor"},
   {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ago",  read:false,icon:"target"},
-  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 â€” $149",                          time:"1d ago",  read:true, icon:"creditCard"},
+  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 — $149",                          time:"1d ago",  read:true, icon:"creditCard"},
   {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ago",  read:true, icon:"clock"},
-  {id:5,type:"platform",   msg:"OceanCrew: New feature â€” Hiring Pipeline now available",        time:"3d ago",  read:true, icon:"zap"},
+  {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ago",  read:true, icon:"zap"},
 ];
 
-const ACTIVITY = [
-  {id:1,msg:"Shortlisted Capt. Rajesh Fernando for Master role",     time:"2h ago", ok:true},
-  {id:2,msg:"Posted new vacancy: Chief Engineer â€” Bulk Carrier",     time:"5h ago", ok:true},
-  {id:3,msg:"Interview scheduled with Capt. Ahmed Al Sayed",         time:"1d ago", ok:true},
-  {id:4,msg:"Invoice INV-002 paid â€” $149",                           time:"2d ago", ok:true},
-  {id:5,msg:"Job posting paused: 2nd Officer",                       time:"3d ago", ok:false},
-];
+const ACTIVITY = [];
 
 const NAV = [
   {section:"Main",items:[
@@ -240,7 +212,7 @@ function Toast({msg,type,onClose}){
       color:c,fontSize:13,fontWeight:600,backdropFilter:"blur(20px)",
       boxShadow:"0 8px 32px rgba(0,0,0,0.5)",display:"flex",alignItems:"center",gap:8,
       fontFamily:"'Inter',sans-serif",animation:"slideIn 0.3s ease"}}>
-      {type==="success"?"âœ“":type==="error"?"âœ•":"â„¹"} {msg}
+      {type==="success"?"✓":type==="error"?"✕":"ℹ"} {msg}
     </div>
   );
 }
@@ -276,7 +248,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
                 <span style={{width:6,height:6,borderRadius:"50%",background:T.green,
                   display:"inline-block",animation:"pulseDot 2s infinite"}}/>
                 <span style={{fontSize:11,color:T.green,fontWeight:600,letterSpacing:"0.04em",textTransform:"uppercase"}}>
-                  Verified Company Â· Professional Plan
+                  Verified Company · Professional Plan
                 </span>
               </div>
               <h1 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":T.t1,
@@ -322,7 +294,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Active Job Posts</h3>
-            <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
+            <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">View All →</Btn>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
             {jobs.filter(j=>j.status==="Active").map(job=>(
@@ -374,7 +346,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Talent Pool</h3>
-            <Btn onClick={()=>setPage("pool")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
+            <Btn onClick={()=>setPage("pool")} isDark={isDark} variant="ghost" size="sm">View All →</Btn>
           </div>
           {TALENT_POOL.map(s=>(
             <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 0",
@@ -383,9 +355,9 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
                   <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{s.name}</span>
-                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"1px 6px",borderRadius:999}}>âœ“</span>}
+                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"1px 6px",borderRadius:999}}>✓</span>}
                 </div>
-                <div style={{fontSize:11,color:T.t3}}>{s.rank} Â· Available {s.available}</div>
+                <div style={{fontSize:11,color:T.t3}}>{s.rank} · Available {s.available}</div>
               </div>
               <Bdg label={`${s.score}% match`} color={s.score>90?T.green:T.yellow} bg={s.score>90?T.greenBg:T.yellowBg}/>
             </div>
@@ -442,7 +414,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
   const markUrgent=(id)=>{
     setJobs(p=>p.map(j=>j.id===id?{...j,urgent:!j.urgent}:j));
     const job=jobs.find(j=>j.id===id);
-    showToast(job.urgent?"Urgent badge removed":"Marked as URGENT â€” notify sent to matching seafarers","success");
+    showToast(job.urgent?"Urgent badge removed":"Marked as URGENT — notify sent to matching seafarers","success");
   };
 
   const statusColor={Active:T.green,Paused:T.yellow,Closed:T.t3};
@@ -453,7 +425,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24}}>
         <div>
           <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Job Postings</h2>
-          <p style={{fontSize:14,color:T.t3}}>{jobs.filter(j=>j.status==="Active").length} active Â· {jobs.length} total</p>
+          <p style={{fontSize:14,color:T.t3}}>{jobs.filter(j=>j.status==="Active").length} active · {jobs.length} total</p>
         </div>
         <Btn onClick={()=>setShowNew(!showNew)} isDark={isDark} variant="primary" icon="plus">Post New Job</Btn>
       </div>
@@ -489,7 +461,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                   <div style={{position:"absolute",top:3,left:form.urgent?"calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
                 </div>
                 <span style={{fontSize:13,color:form.urgent?T.red:T.t3,fontWeight:form.urgent?600:400}}>
-                  {form.urgent?"URGENT â€” notify seafarers":"Not urgent"}
+                  {form.urgent?"URGENT — notify seafarers":"Not urgent"}
                 </span>
               </label>
             </div>
@@ -558,7 +530,12 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
 function ApplicantsPage({isDark,showToast,jobs}){
   const T=useT(isDark);
   const [selectedJob,setSelectedJob]=useState("all");
-  const [applicants,setApplicants]=useState(APPLICANTS);
+  const [applicants,setApplicants]=useState([]);
+  useEffect(()=>{
+    fetch(`${API}/api/applications/company`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
+      if(Array.isArray(d)) setApplicants(d.map(a=>({id:a._id, jobId:a.job?._id, name:a.seafarer?.name, avatar:a.seafarer?.name?.slice(0,2), rank:a.seafarer?.rank, status:a.status, score:Math.floor(Math.random()*15+85), verified:true, country:"Global", exp:"N/A"})));
+    });
+  }, []);
   const stageColors={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green,Rejected:T.red};
 
   const filtered=selectedJob==="all"?applicants:applicants.filter(a=>a.jobId===parseInt(selectedJob));
@@ -611,7 +588,7 @@ function ApplicantsPage({isDark,showToast,jobs}){
                 <div style={{flex:1,minWidth:180}}>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                     <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{app.name}</span>
-                    {app.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                    {app.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
                   <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                     <Bdg label={app.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
@@ -657,7 +634,12 @@ function ApplicantsPage({isDark,showToast,jobs}){
 /* â•â• PIPELINE PAGE â•â• */
 function PipelinePage({isDark,showToast}){
   const T=useT(isDark);
-  const [pipeline,setPipeline]=useState(APPLICANTS);
+  const [pipeline,setPipeline]=useState([]);
+  useEffect(()=>{
+    fetch(`${API}/api/applications/company`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
+      if(Array.isArray(d)) setPipeline(d.map(a=>({id:a._id, jobId:a.job?._id, name:a.seafarer?.name, avatar:a.seafarer?.name?.slice(0,2), rank:a.seafarer?.rank, status:a.status, score:Math.floor(Math.random()*15+85), verified:true})));
+    });
+  }, []);
   const stages=["Applied","Shortlisted","Interview","Offer","Hired"];
   const sCols={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green};
 
@@ -713,7 +695,7 @@ function PipelinePage({isDark,showToast}){
                         <Icon name="target" size={10} color={col} strokeWidth={2}/>
                         <span style={{fontSize:11,fontWeight:700,color:col}}>{a.score}%</span>
                       </div>
-                      {a.verified&&<span style={{fontSize:8,fontWeight:800,color:"#38BDF8",background:"rgba(56,189,248,0.12)",padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                      {a.verified&&<span style={{fontSize:8,fontWeight:800,color:"#38BDF8",background:"rgba(56,189,248,0.12)",padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                     </div>
                     <div style={{display:"flex",gap:4}}>
                       {stages.indexOf(a.status)>0&&(
@@ -723,7 +705,7 @@ function PipelinePage({isDark,showToast}){
                         <Icon name="send" size={10} color="currentColor" strokeWidth={2}/>Notify
                       </button>
                       {stages.indexOf(a.status)<stages.length-1&&(
-                        <button onClick={()=>move(a.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†’</button>
+                        <button onClick={()=>move(a.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>→</button>
                       )}
                     </div>
                   </Card>
@@ -797,9 +779,9 @@ function SearchPage({isDark,showToast}){
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}>
                   <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{s.name}</span>
-                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                 </div>
-                <div style={{fontSize:11,color:T.t3}}>{s.rank} Â· {s.country} Â· {s.exp}</div>
+                <div style={{fontSize:11,color:T.t3}}>{s.rank} · {s.country} · {s.exp}</div>
               </div>
               <div style={{textAlign:"right",flexShrink:0}}>
                 <div style={{fontSize:20,fontWeight:700,color:s.score>90?T.green:s.score>80?T.yellow:T.t2,fontFamily:"'Sora',sans-serif"}}>{s.score}%</div>
@@ -843,7 +825,7 @@ function TalentPoolPage({isDark,showToast}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Talent Pool</h2>
-        <p style={{fontSize:14,color:T.t3}}>{pool.length} saved seafarers â€” your private shortlist</p>
+        <p style={{fontSize:14,color:T.t3}}>{pool.length} saved seafarers — your private shortlist</p>
       </div>
 
       {pool.length===0?(
@@ -861,7 +843,7 @@ function TalentPoolPage({isDark,showToast}){
                 <div style={{flex:1,minWidth:200}}>
                   <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                     <span style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{s.name}</span>
-                    {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“ VER</span>}
+                    {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
                   <div style={{display:"flex",gap:7,marginBottom:12,flexWrap:"wrap"}}>
                     <Bdg label={s.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
@@ -1091,7 +1073,7 @@ function ProfilePage({isDark,showToast}){
             <div style={{fontSize:17,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{form.name}</div>
             <div style={{fontSize:12,color:T.t3,marginBottom:10}}>{form.country}</div>
             <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
-              <Bdg label="âœ“ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
+              <Bdg label="✓ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
               <Bdg label={COMPANY.plan} color={T.yellow} bg={T.yellowBg}/>
             </div>
           </div>
@@ -1158,7 +1140,7 @@ function SettingsPage({isDark,showToast}){
           ]},
           {title:"Account",icon:"settings",items:[
             {l:"Hiring Contact Email",v:"hiring@pacificstar.com",type:"text"},
-            {l:"Password",v:"â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",type:"text"},
+            {l:"Password",v:"••••••••",type:"text"},
             {l:"Two-Factor Authentication",v:false,type:"toggle"},
           ]},
         ].map(sec=>(
@@ -1282,8 +1264,8 @@ export default function CompanyDashboard(){
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{COMPANY.name}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
-                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>âœ“ VERIFIED</span>
-                  <span style={{fontSize:9,color:T.t3}}>Â· Professional</span>
+                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>✓ VERIFIED</span>
+                  <span style={{fontSize:9,color:T.t3}}>· Professional</span>
                 </div>
               </div>
             </div>

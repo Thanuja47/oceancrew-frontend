@@ -174,7 +174,7 @@ function Toast({msg,type,onClose}){
       backdropFilter:"blur(20px)",boxShadow:"0 8px 32px rgba(0,0,0,0.5)",
       display:"flex",alignItems:"center",gap:8,fontFamily:"'Inter',sans-serif",
       animation:"slideIn 0.3s ease"}}>
-      {type==="success"?"âœ“":type==="error"?"âœ•":"â„¹"} {msg}
+      {type==="success"?"✓":type==="error"?"✕":"ℹ"} {msg}
     </div>
   );
 }
@@ -212,9 +212,9 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
               <div>
                 <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
                   <h1 style={{fontSize:24,fontWeight:700,color:isDark?"#fff":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.02em"}}>{SEAFARER.name}</h1>
-                  {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"3px 8px",borderRadius:999,letterSpacing:0.5}}>âœ“ VERIFIED</span>}
+                  {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"3px 8px",borderRadius:999,letterSpacing:0.5}}>✓ VERIFIED</span>}
                 </div>
-                <div style={{fontSize:13,color:isDark?"rgba(255,255,255,0.6)":T.t2,marginBottom:8}}>{SEAFARER.rank} Â· {SEAFARER.nationality} Â· {SEAFARER.yearsExp} years exp.</div>
+                <div style={{fontSize:13,color:isDark?"rgba(255,255,255,0.6)":T.t2,marginBottom:8}}>{SEAFARER.rank} · {SEAFARER.nationality} · {SEAFARER.yearsExp} years exp.</div>
                 <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                   <Bdg label={SEAFARER.sub==="Pro"?"â­ Pro Member":"Free"} color={T.yellow} bg={T.yellowBg}/>
                   <Bdg label={`Available ${SEAFARER.availability}`} color={T.green} bg={T.greenBg}/>
@@ -237,7 +237,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
               transition:"width 1.2s ease"}}/>
           </div>
           <span style={{fontSize:12,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'JetBrains Mono',monospace"}}>{SEAFARER.profileStrength}%</span>
-          <Btn onClick={()=>setPage("profile")} isDark={isDark} variant="ghost" size="sm">Complete Profile â†’</Btn>
+          <Btn onClick={()=>setPage("profile")} isDark={isDark} variant="ghost" size="sm">Complete Profile →</Btn>
         </div>
       </Card>
 
@@ -268,7 +268,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Application Tracker</h3>
-            <Btn onClick={()=>setPage("applications")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
+            <Btn onClick={()=>setPage("applications")} isDark={isDark} variant="ghost" size="sm">View All →</Btn>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
             {(applications||[]).slice(0,4).map(app=>{
@@ -279,8 +279,8 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                   border:app.status==="Offer"?`1px solid ${T.green}30`:"none"}}>
                   <div style={{width:36,height:36,borderRadius:10,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:11,fontWeight:700,color:T.t2,fontFamily:"'Sora',sans-serif"}}>{app.logo}</div>
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:13,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{app.title} â€” {app.company}</div>
-                    <div style={{fontSize:11,color:T.t3}}>{app.salary}/mo Â· Applied {app.applied}</div>
+                    <div style={{fontSize:13,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{app.title} — {app.company}</div>
+                    <div style={{fontSize:11,color:T.t3}}>{app.salary}/mo · Applied {app.applied}</div>
                   </div>
                   <Bdg label={app.status} color={col} bg={`${col}18`}/>
                 </div>
@@ -317,7 +317,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
       <Card isDark={isDark}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Recommended Jobs For You</h3>
-          <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">Browse All â†’</Btn>
+          <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">Browse All →</Btn>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
           {(jobs||[]).slice(0,3).map(job=>(
@@ -332,7 +332,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                 {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
               </div>
               <div style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:3}}>{job.title}</div>
-              <div style={{fontSize:11,color:T.t3,marginBottom:8}}>{job.company} Â· {job.country}</div>
+              <div style={{fontSize:11,color:T.t3,marginBottom:8}}>{job.company} · {job.country}</div>
               <div style={{fontSize:13,fontWeight:700,color:T.green,marginBottom:10}}>{job.salary}/mo</div>
               <Btn onClick={()=>showToast("Opening job...","info")} isDark={isDark} variant="primary" size="sm" fullWidth>Apply Now</Btn>
             </div>
@@ -360,7 +360,7 @@ function FindJobsPage({isDark,showToast,jobs,searchQuery}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Find Jobs</h2>
-        <p style={{fontSize:14,color:T.t3}}>Jobs matched to your rank and experience. Pro membership â€” unlimited applications.</p>
+        <p style={{fontSize:14,color:T.t3}}>Jobs matched to your rank and experience. Pro membership — unlimited applications.</p>
       </div>
 
       <Card isDark={isDark} style={{marginBottom:16,padding:16,display:"flex",gap:12,flexWrap:"wrap",alignItems:"center"}}>
@@ -387,7 +387,7 @@ function FindJobsPage({isDark,showToast,jobs,searchQuery}){
                 <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                   <span style={{fontSize:16,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{job.title}</span>
                   {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
-                  {job.verified&&<Bdg label="âœ“ Verified Co." color="#38BDF8" bg="rgba(56,189,248,0.1)"/>}
+                  {job.verified&&<Bdg label="✓ Verified Co." color="#38BDF8" bg="rgba(56,189,248,0.1)"/>}
                 </div>
                 <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                   {[job.company,job.vessel,job.country,job.duration,`Posted ${job.posted}`].map(tag=>(
@@ -423,7 +423,7 @@ function ApplicationsPage({isDark,showToast,applications}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>My Applications</h2>
-        <p style={{fontSize:14,color:T.t3}}>{(applications||[]).length} applications â€” track your journey</p>
+        <p style={{fontSize:14,color:T.t3}}>{(applications||[]).length} applications — track your journey</p>
       </div>
 
       {/* Stage summary */}
@@ -450,7 +450,7 @@ function ApplicationsPage({isDark,showToast,applications}){
               <div style={{display:"flex",alignItems:"center",gap:16,flexWrap:"wrap",marginBottom:16}}>
                 <div style={{width:46,height:46,borderRadius:13,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:13,fontWeight:700,color:T.t2,fontFamily:"'Sora',sans-serif"}}>{app.logo}</div>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{app.title} â€” {app.company}</div>
+                  <div style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{app.title} — {app.company}</div>
                   <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                     <Bdg label={app.vessel} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
                     <Bdg label={app.salary+"/mo"} color={T.green} bg={T.greenBg}/>
@@ -489,7 +489,7 @@ function ApplicationsPage({isDark,showToast,applications}){
 
               {app.status==="Offer"&&(
                 <div style={{marginTop:14,padding:"12px 16px",borderRadius:12,background:T.greenBg,border:`1px solid ${T.green}30`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                  <span style={{fontSize:13,fontWeight:600,color:T.green}}>ðŸŽ‰ You have an offer! Review and respond.</span>
+                  <span style={{fontSize:13,fontWeight:600,color:T.green}}>🎉 You have an offer! Review and respond.</span>
                   <div style={{display:"flex",gap:8}}>
                     <Btn onClick={()=>showToast("Offer accepted! Company will contact you.","success")} isDark={isDark} variant="success" size="sm" icon="check">Accept</Btn>
                     <Btn onClick={()=>showToast("Offer declined.","info")} isDark={isDark} variant="danger" size="sm">Decline</Btn>
@@ -498,7 +498,7 @@ function ApplicationsPage({isDark,showToast,applications}){
               )}
               {app.status==="Interview"&&(
                 <div style={{marginTop:14,padding:"12px 16px",borderRadius:12,background:T.purpleBg,border:`1px solid ${T.purple}30`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                  <span style={{fontSize:13,fontWeight:600,color:T.purple}}>ðŸ“… Interview scheduled â€” check your email for details.</span>
+                  <span style={{fontSize:13,fontWeight:600,color:T.purple}}>ðŸ“… Interview scheduled — check your email for details.</span>
                   <Btn onClick={()=>showToast("Opening interview details...","info")} isDark={isDark} variant="ghost" size="sm">View Details</Btn>
                 </div>
               )}
@@ -538,7 +538,7 @@ function ProfilePage({isDark,showToast,userName}){
             </div>
             <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:7,marginBottom:4}}>
               <span style={{fontSize:16,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{form.name}</span>
-              {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 7px",borderRadius:999}}>âœ“ VER</span>}
+              {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 7px",borderRadius:999}}>✓ VER</span>}
             </div>
             <div style={{fontSize:12,color:T.t3,marginBottom:14}}>{form.rank}</div>
             <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:18,flexWrap:"wrap"}}>
@@ -563,10 +563,10 @@ function ProfilePage({isDark,showToast,userName}){
             {SEA_SERVICE.map((s,i)=>(
               <div key={i} style={{padding:"10px 0",borderBottom:i<SEA_SERVICE.length-1?`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,marginBottom:2}}>{s.vessel}</div>
-                <div style={{fontSize:10,color:T.t3,marginBottom:3}}>{s.type} Â· {s.flag}</div>
+                <div style={{fontSize:10,color:T.t3,marginBottom:3}}>{s.type} · {s.flag}</div>
                 <div style={{display:"flex",justifyContent:"space-between"}}>
                   <Bdg label={s.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
-                  <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{s.from}â€“{s.to}</span>
+                  <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{s.from}”“{s.to}</span>
                 </div>
               </div>
             ))}
@@ -659,7 +659,7 @@ function DocumentsPage({isDark,showToast}){
                   {cert.required&&<Bdg label="Required" color={T.yellow} bg={T.yellowBg}/>}
                 </div>
                 {cert.uploaded
-                  ?<div style={{fontSize:11,color:T.green}}>âœ“ Uploaded{cert.expiry?` Â· Expires ${cert.expiry}`:""}{cert.fileName?` Â· ${cert.fileName}`:""}</div>
+                  ?<div style={{fontSize:11,color:T.green}}>✓ Uploaded{cert.expiry?` · Expires ${cert.expiry}`:""}{cert.fileName?` · ${cert.fileName}`:""}</div>
                   :<div style={{fontSize:11,color:T.t3}}>Not uploaded yet</div>}
               </div>
               <input ref={el=>refs.current[cert.id]=el} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{display:"none"}} onChange={e=>handleUpload(cert.id,e)}/>
@@ -730,10 +730,10 @@ function CVPage({isDark,showToast,userName}){
           <Card isDark={isDark}>
             <div style={{marginBottom:20}}>
               <h3 style={{fontSize:18,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:8}}>Professional CV Generation</h3>
-              <p style={{fontSize:13,color:T.t2,lineHeight:1.7}}>Our team manually generates a premium maritime CV from your profile â€” formatted exactly to industry standards that shipping companies and manning agencies expect.</p>
+              <p style={{fontSize:13,color:T.t2,lineHeight:1.7}}>Our team manually generates a premium maritime CV from your profile — formatted exactly to industry standards that shipping companies and manning agencies expect.</p>
             </div>
             <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:24}}>
-              {["Premium maritime CV layout","All sea service history formatted","Certificates listed professionally","Reviewed by our maritime HR team","Delivered to your email within 24h","PDF format â€” ready to send anywhere"].map((f,i)=>(
+              {["Premium maritime CV layout","All sea service history formatted","Certificates listed professionally","Reviewed by our maritime HR team","Delivered to your email within 24h","PDF format — ready to send anywhere"].map((f,i)=>(
                 <div key={i} style={{display:"flex",alignItems:"center",gap:10}}>
                   <div style={{width:20,height:20,borderRadius:"50%",background:T.greenBg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                     <Icon name="check" size={11} color={T.green} strokeWidth={2.5}/>
@@ -756,7 +756,7 @@ function CVPage({isDark,showToast,userName}){
               </Btn>
             </div>
             <Btn onClick={handlePay} disabled={loading} isDark={isDark} variant="primary" icon="creditCard" fullWidth size="lg">
-              {loading ? "Processing..." : "2. Pay $4.99 â€” Generate My CV"}
+              {loading ? "Processing..." : "2. Pay $4.99 — Generate My CV"}
             </Btn>
           </Card>
 
@@ -773,7 +773,7 @@ function CVPage({isDark,showToast,userName}){
                   <div style={{fontSize:20,fontWeight:700,color:"#fff",fontFamily:"Georgia,serif",marginBottom:4}}>{SEAFARER.name}</div>
                   <div style={{fontSize:12,color:"rgba(255,255,255,0.65)",fontFamily:"'Inter',sans-serif",marginBottom:10}}>{SEAFARER.rank}</div>
                   <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
-                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“ Colombo","ðŸŒ Sri Lankan"].map((i,idx)=>(
+                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“  Colombo","ðŸŒ  Sri Lankan"].map((i,idx)=>(
                       <span key={idx} style={{fontSize:9,color:"rgba(255,255,255,0.6)",fontFamily:"'Inter',sans-serif"}}>{i}</span>
                     ))}
                   </div>
@@ -783,13 +783,13 @@ function CVPage({isDark,showToast,userName}){
                   {SEA_SERVICE.map((s,i)=>(
                     <div key={i} style={{padding:"8px 10px",background:"#f8f9fa",borderRadius:6,borderLeft:"3px solid #C9A96E",marginBottom:7}}>
                       <div style={{fontSize:11,fontWeight:600,color:"#1a2332",fontFamily:"'Inter',sans-serif"}}>{s.vessel}</div>
-                      <div style={{fontSize:9,color:"#64748b",fontFamily:"'Inter',sans-serif"}}>{s.type} Â· {s.rank} Â· {s.from}â€“{s.to}</div>
+                      <div style={{fontSize:9,color:"#64748b",fontFamily:"'Inter',sans-serif"}}>{s.type} · {s.rank} · {s.from}”“{s.to}</div>
                     </div>
                   ))}
                   <div style={{fontSize:8,fontWeight:700,color:"#0A1628",letterSpacing:2,textTransform:"uppercase",borderBottom:"2px solid #C9A96E",paddingBottom:3,margin:"12px 0 8px",fontFamily:"'Inter',sans-serif"}}>Certificates</div>
                   <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
                     {CERTS.filter(c=>c.uploaded).map(c=>(
-                      <span key={c.id} style={{padding:"3px 8px",borderRadius:999,background:"rgba(10,22,40,0.07)",color:"#1a2332",fontSize:9,fontFamily:"'Inter',sans-serif"}}>âœ“ {c.label}</span>
+                      <span key={c.id} style={{padding:"3px 8px",borderRadius:999,background:"rgba(10,22,40,0.07)",color:"#1a2332",fontSize:9,fontFamily:"'Inter',sans-serif"}}>✓ {c.label}</span>
                     ))}
                   </div>
                   <div style={{marginTop:12,padding:"8px 12px",background:"rgba(10,22,40,0.04)",borderRadius:6,display:"flex",justifyContent:"space-between"}}>
@@ -810,7 +810,7 @@ function CVPage({isDark,showToast,userName}){
           <p style={{fontSize:14,color:T.t2,lineHeight:1.7,maxWidth:480,margin:"0 auto 28px"}}>Your payment of <strong style={{color:T.green}}>$4.99</strong> was successful. Our team is now generating your professional maritime CV. You'll receive it at <strong style={{color:isDark?"#38BDF8":T.t1}}>rajesh.f@gmail.com</strong> within 24 hours.</p>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:T.yellowBg,borderRadius:999,padding:"8px 18px"}}>
             <span style={{width:7,height:7,borderRadius:"50%",background:T.yellow,display:"inline-block",animation:"pulseDot 2s infinite"}}/>
-            <span style={{fontSize:12,color:T.yellow,fontWeight:600}}>Admin is preparing your CV â€” estimated 24 hours</span>
+            <span style={{fontSize:12,color:T.yellow,fontWeight:600}}>Admin is preparing your CV — estimated 24 hours</span>
           </div>
         </Card>
       )}
@@ -858,7 +858,7 @@ function SubscriptionPage({isDark,showToast,userName}){
           {isPro&&<div style={{position:"absolute",top:-1,left:"50%",transform:"translateX(-50%)",background:`linear-gradient(90deg,${isDark?"#38BDF8":"#1a2332"},${isDark?"#0EA5E9":"#475569"})`,color:"#fff",fontSize:9,fontWeight:800,padding:"4px 14px",borderRadius:"0 0 8px 8px",letterSpacing:1.5}}>CURRENT PLAN</div>}
           <div style={{fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:12}}>Pro Member</div>
           <div style={{fontSize:40,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:8}}>$4<span style={{fontSize:14,color:T.t3,fontWeight:400}}>/mo</span></div>
-          <p style={{fontSize:12,color:T.t3,marginBottom:20}}>Full access â€” apply to unlimited jobs</p>
+          <p style={{fontSize:12,color:T.t3,marginBottom:20}}>Full access — apply to unlimited jobs</p>
           <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:24}}>
             {["Everything in Free","Apply to unlimited jobs","Priority placement in search","Direct message companies","Early access to urgent jobs","Pro badge on your profile"].map((f,i)=>(
               <div key={i} style={{display:"flex",alignItems:"center",gap:8}}>
@@ -868,8 +868,8 @@ function SubscriptionPage({isDark,showToast,userName}){
             ))}
           </div>
           {isPro
-            ?<Bdg label="âœ“ Active Pro Member" color={isDark?"#38BDF8":T.t1} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>
-            :<Btn onClick={()=>showToast("Redirecting to payment...","info")} isDark={isDark} variant="primary" icon="zap" fullWidth>Upgrade to Pro â€” $4/mo</Btn>}
+            ?<Bdg label="✓ Active Pro Member" color={isDark?"#38BDF8":T.t1} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>
+            :<Btn onClick={()=>showToast("Redirecting to payment...","info")} isDark={isDark} variant="primary" icon="zap" fullWidth>Upgrade to Pro — $4/mo</Btn>}
         </Card>
       </div>
 
@@ -878,7 +878,7 @@ function SubscriptionPage({isDark,showToast,userName}){
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:14}}>
             <div>
               <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Pro Membership Active</h3>
-              <p style={{fontSize:12,color:T.t3}}>Next billing date: June 1, 2025 Â· $4.00</p>
+              <p style={{fontSize:12,color:T.t3}}>Next billing date: June 1, 2025 · $4.00</p>
             </div>
             <div style={{display:"flex",gap:10}}>
               <Btn onClick={()=>showToast("Downloading receipt...","info")} isDark={isDark} variant="ghost" size="sm" icon="download">Download Receipt</Btn>
@@ -1144,8 +1144,8 @@ export default function SeafarerDashboard(){
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{userName}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
-                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>âœ“ VERIFIED</span>
-                  <span style={{fontSize:9,color:T.t3}}>Â· Pro Member</span>
+                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>✓ VERIFIED</span>
+                  <span style={{fontSize:9,color:T.t3}}>· Pro Member</span>
                 </div>
               </div>
             </div>

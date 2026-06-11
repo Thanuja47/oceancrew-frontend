@@ -96,7 +96,7 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
 function AuthLayout({ children, isDark, rightContent }) {
   return (
     <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr",position:"relative"}}>
-      {/* Logo â€” pinned to absolute top-left of the whole page */}
+      {/* Logo — pinned to absolute top-left of the whole page */}
       <div style={{position:"fixed",top:20,left:24,zIndex:1000,display:"flex",alignItems:"center",gap:10}}>
         <div style={{width:40,height:40,borderRadius:11,
           background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
@@ -501,7 +501,7 @@ function RegisterPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 3 â€” success */
+  /* Step 3 — success */
   return (
     <AuthLayout isDark={isDark} rightContent={
       <div>
@@ -521,7 +521,7 @@ function RegisterPage({ isDark, onNavigate }) {
         <p style={{fontSize:13,color:t3,lineHeight:1.7,marginBottom:32}}>
           {type==="company"
             ?"We'll verify your company and notify you at "+form.email+" within 24 hours."
-            :"Your account is live. Browse all jobs free â€” upgrade to Pro ($4/mo) to apply."}
+            :"Your account is live. Browse all jobs free — upgrade to Pro ($4/mo) to apply."}
         </p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
@@ -609,7 +609,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </div>
   );
 
-  /* Step 3 â€” success */
+  /* Step 3 — success */
   if (step === 3) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div style={{textAlign:"center",padding:"20px 0"}}>
@@ -626,7 +626,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 2 â€” OTP + new password */
+  /* Step 2 — OTP + new password */
   if (step === 2) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
@@ -663,7 +663,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 1 â€” email */
+  /* Step 1 — email */
   return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
