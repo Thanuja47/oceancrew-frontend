@@ -42,6 +42,7 @@ const Icon = ({ name, size = 18, color = "currentColor", strokeWidth = 1.8 }) =>
     mail:<><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></>,
     dollarSign:<><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></>,
     ban:<><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></>,
+    logOut:<><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></>,
   };
   const p = icons[name];
   if (!p) return null;
@@ -1321,7 +1322,14 @@ export default function CompanyDashboard(){
           </nav>
 
           {/* Collapse */}
-          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`}}>
+          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",flexDirection:"column",gap:6}}>
+            <button onClick={()=>{localStorage.clear();window.location.reload();}} title={!sidebar?"Log Out":""}
+              style={{width:"100%",padding:"8px 12px",borderRadius:9,border:"none",background:isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)",color:"#EF4444",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar?"flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
+              onMouseEnter={e=>{e.currentTarget.style.background="rgba(239,68,68,0.18)";}}
+              onMouseLeave={e=>{e.currentTarget.style.background=isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)";}}>
+              <Icon name="logOut" size={14} color="#EF4444" strokeWidth={2.2}/>
+              {sidebar&&"Log Out"}
+            </button>
             <button onClick={()=>setSidebar(s=>!s)}
               style={{width:"100%",padding:"8px",borderRadius:9,
                 border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,

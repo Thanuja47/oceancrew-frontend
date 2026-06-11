@@ -867,10 +867,26 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
     payment_reminder:"Your OceanCrew subscription invoice is due. Please complete payment to maintain access.",
     custom:custom,
   };
-  const send=()=>{
+  const send = async () => {
     if(msgType==="custom"&&!custom.trim()){showToast("Write a message first","error");return;}
-    setSent(p=>[{id:p.length+1,target:tLabels[target],type:msgType,time:"Just now"},...p]);
-    showToast(`Notification sent to ${tLabels[target]}`,"success");
+    const msg = msgType==="custom" ? custom : templates[msgType];
+    
+    try {
+      const res = await fetch(`${API}/api/notifications/blast`, {
+        method: "POST",
+        headers: authHeader(),
+        body: JSON.stringify({ target, msg, type: msgType })
+      });
+      if(res.ok) {
+        setSent(p=>[{id:p.length+1,target:tLabels[target],type:msgType,time:"Just now"},...p]);
+        showToast(`Notification sent to ${tLabels[target]}`,"success");
+      } else {
+        const d = await res.json();
+        showToast(d.message || "Failed to send notification","error");
+      }
+    } catch(err) {
+      showToast("Network error","error");
+    }
   };
   return(
     <div>
