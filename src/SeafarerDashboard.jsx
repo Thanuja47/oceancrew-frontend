@@ -1181,7 +1181,7 @@ export default function SeafarerDashboard(){
           </nav>
 
           <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",flexDirection:"column",gap:6}}>
-            <button onClick={()=>{localStorage.clear();window.location.reload();}} title={!sidebar?"Log Out":""}
+            <button onClick={()=>{localStorage.clear();window.location.href="/auth";}} title={!sidebar?"Log Out":""}
               style={{width:"100%",padding:"8px 12px",borderRadius:9,border:"none",background:isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)",color:"#EF4444",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar?"flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
               onMouseEnter={e=>{e.currentTarget.style.background="rgba(239,68,68,0.18)";}}
               onMouseLeave={e=>{e.currentTarget.style.background=isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)";}}>
