@@ -877,6 +877,7 @@ function InvoicesPage({isDark,showToast}){
   const [selectedPlan,setSelectedPlan]=useState(null);
   const [refNo,setRefNo]=useState("");
   const [submitting,setSubmitting]=useState(false);
+  const [stripeLoading,setStripeLoading]=useState(false);
   const [payments,setPayments]=useState([]);
 
   const API="https://oceancrew-backend-production.up.railway.app";
@@ -913,6 +914,25 @@ function InvoicesPage({isDark,showToast}){
       }
     }catch{showToast("Network error","error");}
     setSubmitting(false);
+  };
+
+  const handleStripeCheckout=async(plan)=>{
+    setStripeLoading(true);
+    try{
+      const r=await fetch(`${API}/api/payments/stripe/create-checkout`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json",Authorization:`Bearer ${token()}`},
+        body:JSON.stringify({plan:plan.name,amount:plan.price}),
+      });
+      if(r.ok){
+        const {url}=await r.json();
+        window.location.href=url; // redirect to Stripe Checkout
+      }else{
+        const d=await r.json();
+        showToast(d.message||"Could not start Stripe checkout","error");
+      }
+    }catch{showToast("Network error — check your connection","error");}
+    setStripeLoading(false);
   };
 
   const statusColor={pending:T.yellow,approved:T.green,rejected:T.red};
@@ -957,7 +977,7 @@ function InvoicesPage({isDark,showToast}){
 
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Plans & Billing</h2>
-        <p style={{fontSize:14,color:T.t3}}>Choose a plan and pay via bank transfer. Admin verifies within 24h and sends your invoice.</p>
+        <p style={{fontSize:14,color:T.t3}}>Pay instantly by card or submit a bank transfer. Card payments activate immediately.</p>
       </div>
 
       {/* Plans */}
@@ -974,9 +994,23 @@ function InvoicesPage({isDark,showToast}){
                 </div>
               ))}
             </div>
-            <button onClick={()=>{setSelectedPlan(plan);setShowModal(true);}} style={{width:"100%",padding:"11px",borderRadius:10,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
-              Pay via Bank Transfer
-            </button>
+            <div style={{display:"flex",flexDirection:"column",gap:8}}>
+              <button onClick={()=>handleStripeCheckout(plan)} disabled={stripeLoading}
+                style={{width:"100%",padding:"12px",borderRadius:10,border:"none",
+                  background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"linear-gradient(135deg,#1a2332,#334155)",
+                  color:"#fff",fontSize:13,fontWeight:700,cursor:stripeLoading?"not-allowed":"pointer",
+                  fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8,
+                  opacity:stripeLoading?0.7:1,boxShadow:isDark?"0 4px 16px rgba(56,189,248,0.25)":"0 4px 12px rgba(26,35,50,0.2)"}}>
+                {stripeLoading?"Redirecting...":"💳 Pay with Card (Instant)"}
+              </button>
+              <button onClick={()=>{setSelectedPlan(plan);setShowModal(true);}}
+                style={{width:"100%",padding:"11px",borderRadius:10,
+                  border:isDark?"1px solid rgba(255,255,255,0.12)":"1px solid rgba(100,116,139,0.2)",
+                  background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",
+                  fontFamily:"'Inter',sans-serif"}}>
+                🏦 Pay via Bank Transfer
+              </button>
+            </div>
           </Card>
         ))}
       </div>

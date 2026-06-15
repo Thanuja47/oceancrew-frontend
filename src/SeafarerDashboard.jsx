@@ -818,11 +818,45 @@ function CVPage({isDark,showToast,userName}){
   );
 }
 
-/* â•â• SUBSCRIPTION â•â• */
+/* ══ SUBSCRIPTION ══ */
 function SubscriptionPage({isDark,showToast,userName}){
   const T=useT(isDark);
-  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
-  const isPro=SEAFARER.sub==="Pro";
+  const isPro=false; // will be driven by real payment status in future
+  const [stripeLoading,setStripeLoading]=useState(false);
+  const [payments,setPayments]=useState([]);
+
+  useEffect(()=>{
+    const token=localStorage.getItem("token");
+    if(!token)return;
+    fetch(`${API}/api/payments/my`,{headers:{Authorization:`Bearer ${token}`}})
+      .then(r=>r.json()).then(d=>{if(Array.isArray(d))setPayments(d);})
+      .catch(()=>{});
+  },[]);
+
+  const handleStripeCheckout=async()=>{
+    const token=localStorage.getItem("token");
+    if(!token){showToast("Please log in first","warning");return;}
+    setStripeLoading(true);
+    try{
+      const r=await fetch(`${API}/api/payments/stripe/create-checkout`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},
+        body:JSON.stringify({plan:"Seafarer Pro",amount:4}),
+      });
+      if(r.ok){
+        const {url}=await r.json();
+        window.location.href=url;
+      }else{
+        const d=await r.json();
+        showToast(d.message||"Could not start payment","error");
+      }
+    }catch{showToast("Network error","error");}
+    setStripeLoading(false);
+  };
+
+  const statusColor={pending:"#F59E0B",approved:"#10B981",rejected:"#EF4444"};
+  const statusBg={pending:"rgba(245,158,11,0.1)",approved:"rgba(16,185,129,0.1)",rejected:"rgba(239,68,68,0.1)"};
+
   return(
     <div>
       <div style={{marginBottom:24}}>
@@ -854,7 +888,7 @@ function SubscriptionPage({isDark,showToast,userName}){
         </Card>
 
         {/* Pro plan */}
-        <Card isDark={isDark} style={{padding:"28px",background:isDark?"linear-gradient(145deg,rgba(56,189,248,0.08),rgba(56,189,248,0.03))":"linear-gradient(145deg,#EFF6FF,#f8faff)",border:isPro?`2px solid ${isDark?"#38BDF8":"#1a2332"}`:(isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)")}}>
+        <Card isDark={isDark} style={{padding:"28px",position:"relative",background:isDark?"linear-gradient(145deg,rgba(56,189,248,0.08),rgba(56,189,248,0.03))":"linear-gradient(145deg,#EFF6FF,#f8faff)",border:isPro?`2px solid ${isDark?"#38BDF8":"#1a2332"}`:(isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)")}}>
           {isPro&&<div style={{position:"absolute",top:-1,left:"50%",transform:"translateX(-50%)",background:`linear-gradient(90deg,${isDark?"#38BDF8":"#1a2332"},${isDark?"#0EA5E9":"#475569"})`,color:"#fff",fontSize:9,fontWeight:800,padding:"4px 14px",borderRadius:"0 0 8px 8px",letterSpacing:1.5}}>CURRENT PLAN</div>}
           <div style={{fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:12}}>Pro Member</div>
           <div style={{fontSize:40,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:8}}>$4<span style={{fontSize:14,color:T.t3,fontWeight:400}}>/mo</span></div>
@@ -869,22 +903,33 @@ function SubscriptionPage({isDark,showToast,userName}){
           </div>
           {isPro
             ?<Bdg label="✓ Active Pro Member" color={isDark?"#38BDF8":T.t1} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>
-            :<Btn onClick={()=>showToast("Redirecting to payment...","info")} isDark={isDark} variant="primary" icon="zap" fullWidth>Upgrade to Pro — $4/mo</Btn>}
+            :<button onClick={handleStripeCheckout} disabled={stripeLoading}
+                style={{width:"100%",padding:"13px",borderRadius:11,border:"none",
+                  background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"linear-gradient(135deg,#1a2332,#334155)",
+                  color:"#fff",fontSize:14,fontWeight:700,cursor:stripeLoading?"not-allowed":"pointer",
+                  fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8,
+                  opacity:stripeLoading?0.7:1,boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 14px rgba(26,35,50,0.25)"}}>
+                {stripeLoading?"Redirecting to Stripe...":"💳 Upgrade to Pro — $4/mo"}
+              </button>}
         </Card>
       </div>
 
-      {isPro&&(
-        <Card isDark={isDark} style={{padding:"20px 24px"}}>
-          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:14}}>
-            <div>
-              <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Pro Membership Active</h3>
-              <p style={{fontSize:12,color:T.t3}}>Next billing date: June 1, 2025 · $4.00</p>
-            </div>
-            <div style={{display:"flex",gap:10}}>
-              <Btn onClick={()=>showToast("Downloading receipt...","info")} isDark={isDark} variant="ghost" size="sm" icon="download">Download Receipt</Btn>
-              <Btn onClick={()=>showToast("Subscription cancelled. Access until Jun 1.","warning")} isDark={isDark} variant="danger" size="sm">Cancel</Btn>
-            </div>
+      {/* Payment History */}
+      {payments.length>0&&(
+        <Card isDark={isDark} style={{padding:0,overflow:"hidden",marginTop:4}}>
+          <div style={{padding:"14px 22px",borderBottom:isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.08)"}}>
+            <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Payment History</h3>
           </div>
+          {payments.map((p,i)=>(
+            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",
+              borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",
+              alignItems:"center"}}>
+              <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{p.plan}</span>
+              <span style={{fontSize:13,color:"#10B981",fontWeight:700}}>${p.amount}</span>
+              <Bdg label={p.method==="card"?"💳 Card":"🏦 Transfer"} color={T.t2} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+              <Bdg label={p.status} color={statusColor[p.status]||T.t3} bg={statusBg[p.status]||(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
+            </div>
+          ))}
         </Card>
       )}
     </div>
