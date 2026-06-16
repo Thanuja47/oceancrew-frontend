@@ -37,7 +37,9 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
-export default function LandingPage({ isDark = true }) {
+export default function LandingPage() {
+  const [theme, setTheme] = useState("dark");
+  const isDark = theme === "dark";
   const [hovered, setHovered] = useState(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -119,6 +121,14 @@ export default function LandingPage({ isDark = true }) {
             ))}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <button onClick={() => setTheme(t => t === "dark" ? "light" : "dark")}
+              style={{
+                width: 34, height: 34, borderRadius: 9, border: `1px solid ${isDark ? "rgba(255,255,255,0.07)" : "rgba(100,116,139,0.2)"}`,
+                background: isDark ? "rgba(255,255,255,0.04)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                color: T.t2, transition: "all .12s"
+              }}>
+              <Icon name={isDark ? "sun" : "moon"} size={14} strokeWidth={2} />
+            </button>
             <Link to="/auth" style={{ color: T.t1, textDecoration: "none", fontSize: 14, fontWeight: 600 }}>Log In</Link>
             <Link to="/auth" style={{
               background: `linear-gradient(135deg, ${T.primary}, ${T.accent})`, color: "#fff", textDecoration: "none", padding: "10px 20px", borderRadius: 8,

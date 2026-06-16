@@ -447,9 +447,8 @@ html { scroll-behavior: smooth; }
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  aside nav button[style*="border-left: 2px solid"] {
+  aside nav button {
     border-left: none !important;
-    border-bottom: 2px solid currentColor !important;
   }
 }
 
