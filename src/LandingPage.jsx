@@ -113,7 +113,7 @@ export default function LandingPage() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-          <div style={{ display: "flex", gap: 24, display: window.innerWidth < 768 ? "none" : "flex" }}>
+          <div style={{ gap: 24, display: window.innerWidth < 768 ? "none" : "flex" }}>
             {navLinks.map((link) => (
               <a key={link.name} href={link.href} onClick={(e) => handleScrollTo(e, link.href)} style={{ color: T.t2, textDecoration: "none", fontSize: 14, fontWeight: 500, transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = T.primary} onMouseLeave={(e) => e.target.style.color = T.t2}>
                 {link.name}

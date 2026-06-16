@@ -1,27 +1,16 @@
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   OCEANCREW â€” MOBILE RESPONSIVE STYLES
-   Add this CSS file to your project and import
-   it in your main App.jsx or index.js
-   
-   Usage: import './mobile.css'
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  */
+/* ==========================================================================
+   OCEANCREW - MOBILE RESPONSIVE STYLES
+   Import this in App.jsx: import './mobile.css'
+   ========================================================================== */
 
-/* â”€â”€ BASE RESETS â”€â”€ */
+/* BASE RESETS */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* â”€â”€ BREAKPOINTS â”€â”€
-   Mobile:  < 640px
-   Tablet:  640px â€“ 1024px  
-   Desktop: > 1024px
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ==========================================================================
+   SHARED LAYOUT - Hide sidebar on mobile (replaced by floating Command Drawer)
+   ========================================================================== */
 
-/* â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
-   SHARED LAYOUT â€” SIDEBAR + MAIN
-â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  */
-
-/* ── Hide the desktop sidebar entirely on mobile (replaced by floating Command Drawer) ── */
 @media (max-width: 768px) {
 
   aside {
@@ -62,13 +51,12 @@ html { scroll-behavior: smooth; }
   }
 }
 
-
-/* ────────────────────────────────────────────────────────────────────────── 
+/* ==========================================================================
    CARDS & GRIDS
-──────────────────────────────────────────────────────────────────────────  */
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  /* All 3-col grids → 1 col */
+  /* All 3-col grids → 2 col */
   div[style*="grid-template-columns: repeat(3"] {
     grid-template-columns: 1fr 1fr !important;
   }
@@ -104,20 +92,9 @@ html { scroll-behavior: smooth; }
   div[style*="grid-template-columns: 1fr 2fr"] {
     grid-template-columns: 1fr !important;
   }
-
-  /* Tables — horizontal scroll */
-  div[style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
-    min-width: 600px !important;
-  }
-
-  /* Wrap table in scroll container */
-  div[style*="overflow: \"hidden\""] {
-    overflow-x: auto !important;
-  }
 }
 
 @media (max-width: 480px) {
-  /* Single column everything on small phones */
   div[style*="grid-template-columns: repeat(2"] {
     grid-template-columns: 1fr !important;
   }
@@ -126,19 +103,14 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
+/* ==========================================================================
    AUTH PAGES
-──────────────────────────────────────────────────────────────────────────  */
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  /* Auth split layout → single column */
+  /* Auth split layout - single column */
   div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
-  }
-
-  /* Hide right panel on mobile */
-  div[style*="linear-gradient"] {
-    display: none !important;
   }
 
   /* Auth form full width */
@@ -153,29 +125,13 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
+/* ==========================================================================
    LANDING PAGE
-──────────────────────────────────────────────────────────────────────────  */
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  /* Hero grid → single column */
-  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 60"] {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-
-  /* Navbar */
-  nav[style*="position: \"fixed\""] {
-    padding: 0 16px !important;
-  }
-
-  /* Hide desktop nav links */
-  div.desktop-nav { display: none !important; }
-
-  /* Hero headline size */
-  h1[style*="clamp(36px"] {
-    font-size: 32px !important;
-  }
+  /* Section padding */
+  section { padding: 60px 20px !important; }
 
   /* Features grid */
   div[style*="grid-template-columns: repeat(3"] {
@@ -186,44 +142,13 @@ html { scroll-behavior: smooth; }
   div[style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr 1fr !important;
   }
-
-  /* Pricing grid */
-  div[style*="grid-template-columns: repeat(3"] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Footer grid */
-  div[style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* CTA buttons */
-  div[style*="display: \"flex\""][style*="gap: 14"] {
-    flex-direction: column !important;
-  }
-
-  /* Section padding */
-  section { padding: 60px 20px !important; }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
-   DASHBOARD HERO CARDS
-──────────────────────────────────────────────────────────────────────────  */
+/* ==========================================================================
+   DASHBOARD STAT CARDS
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  /* Hero card inner flex → column */
-  div[style*="padding: \"32px 36px\""] > div[style*="display:\"flex\""],
-  div[style*="padding: \"32px 36px\""] > div[style*="display: \"flex\""] {
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
-
-  /* Hero buttons stack */
-  div[style*="padding: \"32px 36px\""] div[style*="gap: 10"] {
-    flex-wrap: wrap !important;
-  }
-
-  /* Stat cards — 2 col on tablet, 1 col on phone */
   div[style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr 1fr !important;
   }
@@ -238,12 +163,11 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
-   PIPELINE KANBAN — HORIZONTAL SCROLL
-──────────────────────────────────────────────────────────────────────────  */
+/* ==========================================================================
+   PIPELINE KANBAN - HORIZONTAL SCROLL
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  /* Pipeline kanban horizontal scroll */
   div[style*="grid-template-columns: repeat(5"] {
     display: flex !important;
     overflow-x: auto !important;
@@ -258,79 +182,19 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
-   APPLICANT / JOB CARDS — FLEX WRAP
-──────────────────────────────────────────────────────────────────────────  */
-
-@media (max-width: 640px) {
-  /* Job/applicant card actions stack */
-  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""] {
-    gap: 8px !important;
-  }
-
-  /* Action buttons smaller */
-  button[style*="padding: \"9px 18px\""] {
-    padding: 8px 12px !important;
-    font-size: 11px !important;
-  }
-
-  /* Match score bar hide on mobile */
-  div[style*="width: 72"] { display: none !important; }
-
-  /* Chips wrap better */
-  div[style*="display: \"flex\""][style*="gap: 7"] {
-    flex-wrap: wrap !important;
-  }
-}
-
-/* ────────────────────────────────────────────────────────────────────────── 
-   INVOICE TABLE — SCROLL
-──────────────────────────────────────────────────────────────────────────  */
+/* ==========================================================================
+   INVOICE TABLE
+   ========================================================================== */
 
 @media (max-width: 768px) {
   div[style*="grid-template-columns: 0.7fr 1.5fr"] {
     display: none !important;
   }
-
-  /* Show simplified mobile invoice list instead */
-  .invoice-table-desktop { display: none !important; }
-  .invoice-table-mobile  { display: block !important; }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
-   CV PAGE — SINGLE COLUMN
-──────────────────────────────────────────────────────────────────────────  */
-
-@media (max-width: 768px) {
-  /* CV preview full width */
-  div[style*="maxWidth: 600"] {
-    max-width: 100% !important;
-  }
-}
-
-/* ────────────────────────────────────────────────────────────────────────── 
-   MODALS & OVERLAYS
-──────────────────────────────────────────────────────────────────────────  */
-
-@media (max-width: 640px) {
-  /* Toast notifications */
-  div[style*="position: \"fixed\""][style*="top: 80"] {
-    top: 16px !important;
-    right: 16px !important;
-    left: 16px !important;
-    font-size: 12px !important;
-  }
-
-  /* Theme toggle button */
-  button[style*="position: \"fixed\""][style*="top: 20"] {
-    top: 12px !important;
-    right: 12px !important;
-  }
-}
-
-/* ────────────────────────────────────────────────────────────────────────── 
+/* ==========================================================================
    TYPOGRAPHY SCALING
-──────────────────────────────────────────────────────────────────────────  */
+   ========================================================================== */
 
 @media (max-width: 640px) {
   h1[style*="font-size: 26"],
@@ -344,7 +208,6 @@ html { scroll-behavior: smooth; }
     font-size: 20px !important;
   }
 
-  /* Large stat numbers */
   div[style*="font-size: 34"],
   div[style*="font-size: 36"],
   div[style*="font-size: 38"] {
@@ -352,10 +215,9 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
-   UTILITY CLASSES — add these to elements
-   where you need mobile-specific behavior
-──────────────────────────────────────────────────────────────────────────  */
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
 
 .hide-mobile  { display: block; }
 .show-mobile  { display: none; }
@@ -373,16 +235,15 @@ html { scroll-behavior: smooth; }
   .mobile-scroll { overflow-x: auto !important; }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
+/* ==========================================================================
    INPUT & FORM FIXES
-──────────────────────────────────────────────────────────────────────────  */
+   ========================================================================== */
 
 @media (max-width: 640px) {
   input, select, textarea {
-    font-size: 16px !important; /* Prevents iOS zoom on focus */
+    font-size: 16px !important;
   }
 
-  /* Grid forms — single column */
   div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 14"] {
     grid-template-columns: 1fr !important;
   }
@@ -391,25 +252,12 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* ────────────────────────────────────────────────────────────────────────── 
-   BOTTOM NAV ACTIVE INDICATOR
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-
-@media (max-width: 768px) {
-  aside nav button {
-    border-left: none !important;
-  }
-}
-
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ==========================================================================
    SAFE AREA (iPhone notch/home bar)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+   ========================================================================== */
 
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
-  aside {
-    padding-bottom: env(safe-area-inset-bottom) !important;
-  }
-  div[style*="padding-bottom: 80"] {
-    padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+  div[style*="padding-bottom: 110"] {
+    padding-bottom: calc(110px + env(safe-area-inset-bottom)) !important;
   }
 }
