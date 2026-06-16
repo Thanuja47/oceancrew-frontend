@@ -200,18 +200,19 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
                 {section.section}
               </div>
               <div style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${Math.min(section.items.length, 4)}, 1fr)`,
+                display: "flex", flexWrap: "wrap",
                 gap: 8,
               }}>
                 {section.items.map((item, i) => {
                   const isActive = page === item.id;
                   const badge = item.id === "notifications" ? unreadCount : (item.badge || 0);
+                  const itemCount = Math.min(section.items.length, 4);
                   return (
                     <button
                       key={item.id}
                       onClick={() => handleNav(item.id)}
                       style={{
+                        flex: `1 1 calc(${100 / itemCount}% - 8px)`, minWidth: 60,
                         display: "flex", flexDirection: "column",
                         alignItems: "center", justifyContent: "center",
                         gap: 4, padding: "10px 6px",

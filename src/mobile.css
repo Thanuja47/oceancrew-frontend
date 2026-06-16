@@ -130,8 +130,8 @@ html { scroll-behavior: smooth; }
    ========================================================================== */
 
 @media (max-width: 768px) {
-  /* Section padding */
-  section { padding: 60px 20px !important; }
+  /* Section padding - avoid breaking hero */
+  section:not([style*="padding: 180px"]) { padding: 60px 20px !important; }
 
   /* Features grid */
   div[style*="grid-template-columns: repeat(3"] {
