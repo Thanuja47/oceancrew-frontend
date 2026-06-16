@@ -86,12 +86,12 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
     <>
       <style>{`
         @keyframes oc-drawer-up {
-          from { transform: translateX(-50%) translateY(100%); opacity: 0; }
-          to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+          from { transform: translateY(100%); opacity: 0; }
+          to   { transform: translateY(0);    opacity: 1; }
         }
         @keyframes oc-drawer-down {
-          from { transform: translateX(-50%) translateY(0);    opacity: 1; }
-          to   { transform: translateX(-50%) translateY(100%); opacity: 0; }
+          from { transform: translateY(0);    opacity: 1; }
+          to   { transform: translateY(100%); opacity: 0; }
         }
         @keyframes oc-backdrop-in  { from{opacity:0} to{opacity:1} }
         @keyframes oc-backdrop-out { from{opacity:1} to{opacity:0} }
@@ -128,9 +128,8 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         <div
           ref={drawerRef}
           style={{
-            position: "fixed", bottom: 70, left: "50%",
-            transform: "translateX(-50%)",
-            width: "calc(100% - 32px)", maxWidth: 480,
+            position: "fixed", bottom: 70, left: 16, right: 16, margin: "0 auto",
+            width: "auto", maxWidth: 480,
             zIndex: 9999,
             background: bgColor,
             borderRadius: 20,
@@ -284,13 +283,14 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
 
       {/* ── Floating Trigger Pill ── */}
       <div style={{
-        position: "fixed", bottom: 16, left: "50%",
-        transform: "translateX(-50%)",
+        position: "fixed", bottom: 16, left: 0, right: 0,
+        display: "flex", justifyContent: "center", pointerEvents: "none",
         zIndex: 9997,
       }}>
         <button
           onClick={() => setOpen(o => !o)}
           style={{
+            pointerEvents: "auto", height: 44,
             WebkitTapHighlightColor: "transparent", outline: "none",
             display: "flex", alignItems: "center", gap: 8,
             padding: "8px 16px 8px 12px",
