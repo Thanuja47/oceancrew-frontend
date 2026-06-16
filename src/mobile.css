@@ -91,8 +91,8 @@ html { scroll-behavior: smooth; }
     font-size: 8px !important;
   }
 
-  /* Main content â€” full width, bottom padding for nav */
-  div[style*="marginLeft"] {
+  /* Main content — full width, bottom padding for nav */
+  div[style*="margin-left"] {
     margin-left: 0 !important;
     padding-bottom: 80px !important;
   }
@@ -114,50 +114,50 @@ html { scroll-behavior: smooth; }
   main { padding: 16px !important; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    CARDS & GRIDS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
-  /* All 3-col grids â†’ 1 col */
-  div[style*="gridTemplateColumns: \"repeat(3"] {
+  /* All 3-col grids → 1 col */
+  div[style*="grid-template-columns: repeat(3"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* All 4-col grids â†’ 2 col */
-  div[style*="gridTemplateColumns: \"repeat(4"] {
+  /* All 4-col grids → 2 col */
+  div[style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* All 5-col grids â†’ scroll */
-  div[style*="gridTemplateColumns: \"repeat(5"] {
+  /* All 5-col grids → scroll */
+  div[style*="grid-template-columns: repeat(5"] {
     grid-template-columns: repeat(5, minmax(150px, 1fr)) !important;
     overflow-x: auto !important;
     padding-bottom: 8px !important;
   }
 
-  /* 2-col grids â†’ 1 col */
-  div[style*="gridTemplateColumns: \"1fr 1fr\""] {
+  /* 2-col grids → 1 col */
+  div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 2fr 1fr â†’ 1 col */
-  div[style*="gridTemplateColumns: \"2fr 1fr\""] {
+  /* 2fr 1fr → 1 col */
+  div[style*="grid-template-columns: 2fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 3fr 2fr â†’ 1 col */
-  div[style*="gridTemplateColumns: \"3fr 2fr\""] {
+  /* 3fr 2fr → 1 col */
+  div[style*="grid-template-columns: 3fr 2fr"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 1fr 2fr â†’ 1 col */
-  div[style*="gridTemplateColumns: \"1fr 2fr\""] {
+  /* 1fr 2fr → 1 col */
+  div[style*="grid-template-columns: 1fr 2fr"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* Tables â€” horizontal scroll */
-  div[style*="gridTemplateColumns: \"2fr 1fr 1fr 1fr"] {
+  /* Tables — horizontal scroll */
+  div[style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
     min-width: 600px !important;
   }
 
@@ -169,48 +169,48 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 480px) {
   /* Single column everything on small phones */
-  div[style*="gridTemplateColumns: \"repeat(2"] {
+  div[style*="grid-template-columns: repeat(2"] {
     grid-template-columns: 1fr !important;
   }
-  div[style*="gridTemplateColumns: \"repeat(3"] {
+  div[style*="grid-template-columns: repeat(3"] {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    AUTH PAGES
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
-  /* Auth split layout â†’ single column */
-  div[style*="gridTemplateColumns: \"1fr 1fr\""] {
+  /* Auth split layout → single column */
+  div[style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
 
   /* Hide right panel on mobile */
-  div[style*="background: \"linear-gradient(160deg,#0C1A2E"] {
+  div[style*="linear-gradient"] {
     display: none !important;
   }
 
   /* Auth form full width */
-  div[style*="maxWidth: 420"] {
+  div[style*="max-width: 420"] {
     max-width: 100% !important;
     padding: 0 !important;
   }
 
   /* Auth layout padding */
-  div[style*="padding: \"48px 40px\""] {
+  div[style*="padding: 48px 40px"] {
     padding: 24px 20px !important;
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    LANDING PAGE
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
-  /* Hero grid â†’ single column */
-  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: 60"] {
+  /* Hero grid → single column */
+  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 60"] {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
@@ -229,22 +229,22 @@ html { scroll-behavior: smooth; }
   }
 
   /* Features grid */
-  div[style*="gridTemplateColumns: \"repeat(3,1fr)\""] {
+  div[style*="grid-template-columns: repeat(3"] {
     grid-template-columns: 1fr !important;
   }
 
   /* Stats grid */
-  div[style*="gridTemplateColumns: \"repeat(4, 1fr)\""] {
+  div[style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
   /* Pricing grid */
-  div[style*="gridTemplateColumns: \"repeat(3, 1fr)\""] {
+  div[style*="grid-template-columns: repeat(3"] {
     grid-template-columns: 1fr !important;
   }
 
   /* Footer grid */
-  div[style*="gridTemplateColumns: \"2fr 1fr 1fr 1fr\""] {
+  div[style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
@@ -257,12 +257,12 @@ html { scroll-behavior: smooth; }
   section { padding: 60px 20px !important; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    DASHBOARD HERO CARDS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
-  /* Hero card inner flex â†’ column */
+  /* Hero card inner flex → column */
   div[style*="padding: \"32px 36px\""] > div[style*="display:\"flex\""],
   div[style*="padding: \"32px 36px\""] > div[style*="display: \"flex\""] {
     flex-direction: column !important;
@@ -274,28 +274,28 @@ html { scroll-behavior: smooth; }
     flex-wrap: wrap !important;
   }
 
-  /* Stat cards â€” 2 col on tablet, 1 col on phone */
-  div[style*="gridTemplateColumns: \"repeat(4,1fr)\""] {
+  /* Stat cards — 2 col on tablet, 1 col on phone */
+  div[style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr 1fr !important;
   }
-  div[style*="gridTemplateColumns: \"repeat(6,1fr)\""] {
+  div[style*="grid-template-columns: repeat(6"] {
     grid-template-columns: 1fr 1fr !important;
   }
 }
 
 @media (max-width: 480px) {
-  div[style*="gridTemplateColumns: \"repeat(4,1fr)\""] {
+  div[style*="grid-template-columns: repeat(4"] {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   PIPELINE KANBAN â€” HORIZONTAL SCROLL
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ────────────────────────────────────────────────────────────────────────── 
+   PIPELINE KANBAN — HORIZONTAL SCROLL
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
   /* Pipeline kanban horizontal scroll */
-  div[style*="gridTemplateColumns: \"repeat(5,1fr)\""] {
+  div[style*="grid-template-columns: repeat(5"] {
     display: flex !important;
     overflow-x: auto !important;
     gap: 12px !important;
@@ -303,15 +303,15 @@ html { scroll-behavior: smooth; }
     scrollbar-width: thin !important;
   }
 
-  div[style*="gridTemplateColumns: \"repeat(5,1fr)\""] > div {
+  div[style*="grid-template-columns: repeat(5"] > div {
     min-width: 200px !important;
     flex-shrink: 0 !important;
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   APPLICANT / JOB CARDS â€” FLEX WRAP
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ────────────────────────────────────────────────────────────────────────── 
+   APPLICANT / JOB CARDS — FLEX WRAP
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 640px) {
   /* Job/applicant card actions stack */
@@ -334,12 +334,12 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   INVOICE TABLE â€” SCROLL
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ────────────────────────────────────────────────────────────────────────── 
+   INVOICE TABLE — SCROLL
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
-  div[style*="gridTemplateColumns: \"0.7fr 1.5fr"] {
+  div[style*="grid-template-columns: 0.7fr 1.5fr"] {
     display: none !important;
   }
 
@@ -348,9 +348,9 @@ html { scroll-behavior: smooth; }
   .invoice-table-mobile  { display: block !important; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   CV PAGE â€” SINGLE COLUMN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ────────────────────────────────────────────────────────────────────────── 
+   CV PAGE — SINGLE COLUMN
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 768px) {
   /* CV preview full width */
@@ -359,9 +359,9 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    MODALS & OVERLAYS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 640px) {
   /* Toast notifications */
@@ -379,34 +379,34 @@ html { scroll-behavior: smooth; }
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    TYPOGRAPHY SCALING
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 640px) {
-  h1[style*="fontSize: 26"],
-  h1[style*="fontSize: 28"],
-  h1[style*="fontSize: 30"] {
+  h1[style*="font-size: 26"],
+  h1[style*="font-size: 28"],
+  h1[style*="font-size: 30"] {
     font-size: 22px !important;
   }
 
-  h2[style*="fontSize: 26"],
-  h2[style*="fontSize: 28"] {
+  h2[style*="font-size: 26"],
+  h2[style*="font-size: 28"] {
     font-size: 20px !important;
   }
 
   /* Large stat numbers */
-  div[style*="fontSize: 34"],
-  div[style*="fontSize: 36"],
-  div[style*="fontSize: 38"] {
+  div[style*="font-size: 34"],
+  div[style*="font-size: 36"],
+  div[style*="font-size: 38"] {
     font-size: 28px !important;
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   UTILITY CLASSES â€” add these to elements
+/* ────────────────────────────────────────────────────────────────────────── 
+   UTILITY CLASSES — add these to elements
    where you need mobile-specific behavior
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 .hide-mobile  { display: block; }
 .show-mobile  { display: none; }
@@ -424,30 +424,30 @@ html { scroll-behavior: smooth; }
   .mobile-scroll { overflow-x: auto !important; }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    INPUT & FORM FIXES
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+──────────────────────────────────────────────────────────────────────────  */
 
 @media (max-width: 640px) {
   input, select, textarea {
     font-size: 16px !important; /* Prevents iOS zoom on focus */
   }
 
-  /* Grid forms â†’ single column */
-  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: 14"] {
+  /* Grid forms — single column */
+  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 14"] {
     grid-template-columns: 1fr !important;
   }
-  div[style*="gridTemplateColumns: \"1fr 1fr 1fr\""][style*="gap: 14"] {
+  div[style*="grid-template-columns: 1fr 1fr 1fr"][style*="gap: 14"] {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* ────────────────────────────────────────────────────────────────────────── 
    BOTTOM NAV ACTIVE INDICATOR
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  aside nav button[style*="borderLeft: \"2px solid"] {
+  aside nav button[style*="border-left: 2px solid"] {
     border-left: none !important;
     border-bottom: 2px solid currentColor !important;
   }
@@ -461,7 +461,7 @@ html { scroll-behavior: smooth; }
   aside {
     padding-bottom: env(safe-area-inset-bottom) !important;
   }
-  div[style*="paddingBottom: 80"] {
+  div[style*="padding-bottom: 80"] {
     padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
   }
 }
