@@ -5,6 +5,7 @@
    
    Usage: import './mobile.css'
 â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  */
 
 /* â”€â”€ BASE RESETS â”€â”€ */
 * { box-sizing: border-box; }
@@ -16,106 +17,24 @@ html { scroll-behavior: smooth; }
    Desktop: > 1024px
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+/* â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• 
    SHARED LAYOUT â€” SIDEBAR + MAIN
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â• â•  */
 
-/* On mobile, sidebar becomes bottom nav */
+/* ── Hide the desktop sidebar entirely on mobile (replaced by floating Command Drawer) ── */
 @media (max-width: 768px) {
 
-  /* ── ASIDE: fixed bottom bar ── */
   aside {
-    width: 100% !important;
-    height: 58px !important;
-    min-height: unset !important;
-    max-height: 58px !important;
-    top: auto !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    flex-direction: row !important;
-    overflow: hidden !important;
-    border-right: none !important;
-    border-top: 1px solid rgba(255,255,255,0.08) !important;
-    z-index: 9999 !important;
-    transition: none !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: stretch !important;
-  }
-
-  /* ── Hide logo/company badge/collapse sections (first, second, last divs) ── */
-  aside > div:first-child,
-  aside > div:nth-child(2),
-  aside > div:last-child {
     display: none !important;
   }
 
-  /* ── Nav: single horizontal row ── */
-  aside nav {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    padding: 0 !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    align-items: stretch !important;
-    justify-content: space-around !important;
-    gap: 0 !important;
-    width: 100% !important;
-    scrollbar-width: none !important;
-    height: 100% !important;
-  }
-
-  aside nav::-webkit-scrollbar { display: none; }
-
-  /* ── Section wrappers inside nav → horizontal, no wrapping ── */
-  aside nav > div {
-    display: contents !important;
-  }
-
-  /* ── Hide section label text ── */
-  aside nav > div > div:first-child {
-    display: none !important;
-  }
-
-  /* ── Nav buttons: icon + tiny label, stacked vertically ── */
-  aside nav button {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 2px !important;
-    padding: 6px 4px !important;
-    border-radius: 0 !important;
-    border-left: none !important;
-    border-bottom: none !important;
-    border-top: 2px solid transparent !important;
-    flex: 1 1 0 !important;
-    min-width: 50px !important;
-    max-width: 80px !important;
-    font-size: 9px !important;
-    white-space: nowrap !important;
-    width: auto !important;
-    height: 100% !important;
-    overflow: hidden !important;
-  }
-
-  /* ── Notification badge positioning ── */
-  aside nav button span[style*="border-radius: 999"] {
-    font-size: 7px !important;
-    min-width: 12px !important;
-    height: 12px !important;
-    padding: 0 3px !important;
-  }
-
-  /* ── Main content: no left margin, bottom padding for nav ── */
+  /* Main content: full width, bottom clearance for floating pill */
   div[style*="margin-left"] {
     margin-left: 0 !important;
-    padding-bottom: 70px !important;
+    padding-bottom: 110px !important;
   }
 
-  /* ── Header: tighter on mobile ── */
+  /* Header: tighter on mobile */
   header {
     padding: 0 12px !important;
     height: 52px !important;
@@ -134,13 +53,13 @@ html { scroll-behavior: smooth; }
     display: none !important;
   }
 
-  /* Hide Post Job text, keep icon */
-  header > div:last-child > button > span:last-child {
-    display: none !important;
-  }
-
   /* Main content padding */
   main { padding: 14px !important; }
+
+  /* Footer hidden on mobile */
+  footer {
+    display: none !important;
+  }
 }
 
 

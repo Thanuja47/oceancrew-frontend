@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect, useRef } from "react";
+import MobileNav from "./MobileNav";
 
 const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
   const icons = {
@@ -1285,6 +1286,15 @@ export default function SeafarerDashboard(){
           </footer>
         </div>
       </div>
+
+      {/* ── MOBILE COMMAND DRAWER ── */}
+      <MobileNav
+        navItems={NAV}
+        page={page}
+        setPage={setPage}
+        isDark={isDark}
+        unreadCount={unreadNotifs}
+      />
     </>
   );
 }
