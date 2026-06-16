@@ -23,11 +23,12 @@ html { scroll-behavior: smooth; }
 /* On mobile, sidebar becomes bottom nav */
 @media (max-width: 768px) {
 
-  /* Hide sidebar completely */
+  /* ── ASIDE: fixed bottom bar ── */
   aside {
     width: 100% !important;
-    height: 64px !important;
+    height: 58px !important;
     min-height: unset !important;
+    max-height: 58px !important;
     top: auto !important;
     bottom: 0 !important;
     left: 0 !important;
@@ -35,84 +36,113 @@ html { scroll-behavior: smooth; }
     flex-direction: row !important;
     overflow: hidden !important;
     border-right: none !important;
-    border-top: 1px solid rgba(255,255,255,0.07) !important;
-    z-index: 1000 !important;
+    border-top: 1px solid rgba(255,255,255,0.08) !important;
+    z-index: 9999 !important;
     transition: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
   }
 
-  /* Hide logo, admin badge, collapse button on mobile */
+  /* ── Hide logo/company badge/collapse sections (first, second, last divs) ── */
   aside > div:first-child,
   aside > div:nth-child(2),
   aside > div:last-child {
     display: none !important;
   }
 
-  /* Nav becomes horizontal scroll */
+  /* ── Nav: single horizontal row ── */
   aside nav {
+    display: flex !important;
     flex-direction: row !important;
-    padding: 0 8px !important;
+    flex-wrap: nowrap !important;
+    padding: 0 !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
-    align-items: center !important;
+    align-items: stretch !important;
+    justify-content: space-around !important;
     gap: 0 !important;
     width: 100% !important;
     scrollbar-width: none !important;
+    height: 100% !important;
   }
 
   aside nav::-webkit-scrollbar { display: none; }
 
-  /* Section labels hidden on mobile */
+  /* ── Section wrappers inside nav → horizontal, no wrapping ── */
+  aside nav > div {
+    display: contents !important;
+  }
+
+  /* ── Hide section label text ── */
   aside nav > div > div:first-child {
     display: none !important;
   }
 
-  /* Nav buttons become icon-only vertical tabs */
+  /* ── Nav buttons: icon + tiny label, stacked vertically ── */
   aside nav button {
+    display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 3px !important;
-    padding: 8px 12px !important;
-    border-radius: 10px !important;
+    gap: 2px !important;
+    padding: 6px 4px !important;
+    border-radius: 0 !important;
     border-left: none !important;
-    border-bottom: 2px solid transparent !important;
-    min-width: 56px !important;
+    border-bottom: none !important;
+    border-top: 2px solid transparent !important;
+    flex: 1 1 0 !important;
+    min-width: 50px !important;
+    max-width: 80px !important;
     font-size: 9px !important;
     white-space: nowrap !important;
+    width: auto !important;
+    height: 100% !important;
+    overflow: hidden !important;
   }
 
-  /* Badge on mobile nav */
+  /* ── Notification badge positioning ── */
   aside nav button span[style*="border-radius: 999"] {
-    position: absolute !important;
-    top: 4px !important;
-    right: 4px !important;
-    min-width: 14px !important;
-    height: 14px !important;
-    font-size: 8px !important;
+    font-size: 7px !important;
+    min-width: 12px !important;
+    height: 12px !important;
+    padding: 0 3px !important;
   }
 
-  /* Main content — full width, bottom padding for nav */
+  /* ── Main content: no left margin, bottom padding for nav ── */
   div[style*="margin-left"] {
     margin-left: 0 !important;
-    padding-bottom: 80px !important;
+    padding-bottom: 70px !important;
   }
 
-  /* Header adjustments */
+  /* ── Header: tighter on mobile ── */
   header {
-    padding: 0 16px !important;
-    height: 56px !important;
+    padding: 0 12px !important;
+    height: 52px !important;
+    gap: 6px !important;
   }
 
-  header h2 { font-size: 14px !important; }
+  header h2 { font-size: 13px !important; }
 
-  /* Hide search in header on mobile */
+  /* Hide date text next to title */
+  header > div:first-child > span {
+    display: none !important;
+  }
+
+  /* Hide search bar */
   header > div:last-child > div:first-child {
     display: none !important;
   }
 
+  /* Hide Post Job text, keep icon */
+  header > div:last-child > button > span:last-child {
+    display: none !important;
+  }
+
   /* Main content padding */
-  main { padding: 16px !important; }
+  main { padding: 14px !important; }
 }
+
 
 /* ────────────────────────────────────────────────────────────────────────── 
    CARDS & GRIDS
