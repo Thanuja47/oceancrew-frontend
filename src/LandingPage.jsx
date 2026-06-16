@@ -182,8 +182,8 @@ export default function LandingPage({ isDark = true }) {
             <div style={{
               height: 400, borderRadius: 10, background: `linear-gradient(to bottom right, ${T.cardBg}, rgba(0,0,0,0.2))`,
               display: "flex", alignItems: "center", justifyContent: "center", color: T.t3,
-              backgroundImage: `url('https://images.unsplash.com/photo-1542124505-797746522cbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`,
-              backgroundSize: "cover", backgroundPosition: "center", opacity: 0.8
+              backgroundImage: `url('/dashboard-preview.png')`,
+              backgroundSize: "cover", backgroundPosition: "top center", opacity: 0.95
             }}>
               <motion.div 
                 animate={{ scale: [1, 1.02, 1] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
