@@ -96,8 +96,8 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         @keyframes oc-backdrop-in  { from{opacity:0} to{opacity:1} }
         @keyframes oc-backdrop-out { from{opacity:1} to{opacity:0} }
         @keyframes oc-pill-pulse {
-          0%,100% { box-shadow: 0 4px 24px rgba(56,189,248,0.35); }
-          50%      { box-shadow: 0 4px 32px rgba(56,189,248,0.6);  }
+          0%,100% { box-shadow: 0 4px 12px rgba(56,189,248,0.25); }
+          50%      { box-shadow: 0 4px 20px rgba(56,189,248,0.4);  }
         }
         @keyframes oc-item-pop {
           from { opacity:0; transform: translateY(10px) scale(0.95); }
@@ -128,14 +128,14 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         <div
           ref={drawerRef}
           style={{
-            position: "fixed", bottom: 80, left: "50%",
+            position: "fixed", bottom: 70, left: "50%",
             transform: "translateX(-50%)",
             width: "calc(100% - 32px)", maxWidth: 480,
             zIndex: 9999,
             background: bgColor,
-            borderRadius: 28,
+            borderRadius: 20,
             border: `1px solid ${borderColor}`,
-            padding: "8px 0 16px",
+            padding: "6px 0 10px",
             backdropFilter: "blur(40px)",
             WebkitBackdropFilter: "blur(40px)",
             boxShadow: isDark
@@ -163,7 +163,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
           {/* Section title */}
           <div style={{
             display: "flex", alignItems: "center", justifyContent: "space-between",
-            padding: "0 20px 14px",
+            padding: "0 16px 10px",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{
@@ -215,8 +215,8 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
                       style={{
                         display: "flex", flexDirection: "column",
                         alignItems: "center", justifyContent: "center",
-                        gap: 6, padding: "14px 8px",
-                        borderRadius: 16, border: "none", cursor: "pointer",
+                        gap: 4, padding: "10px 6px",
+                        borderRadius: 12, border: "none", cursor: "pointer",
                         background: isActive ? activeBg : cardBg,
                         color: isActive ? accentColor : mutedColor,
                         position: "relative",
@@ -263,12 +263,12 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
           ))}
 
           {/* Log out row */}
-          <div style={{ padding: "10px 20px 0", marginTop: 6 }}>
+          <div style={{ padding: "8px 16px 0", marginTop: 2 }}>
             <button
               onClick={() => { localStorage.clear(); window.location.href = "/auth"; }}
               style={{
-                width: "100%", padding: "11px 16px",
-                borderRadius: 14, border: `1px solid rgba(239,68,68,0.2)`,
+                width: "100%", padding: "9px 12px",
+                borderRadius: 10, border: `1px solid rgba(239,68,68,0.2)`,
                 background: "rgba(239,68,68,0.08)", color: "#EF4444",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 gap: 8, fontSize: 13, fontWeight: 600,
@@ -284,7 +284,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
 
       {/* ── Floating Trigger Pill ── */}
       <div style={{
-        position: "fixed", bottom: 20, left: "50%",
+        position: "fixed", bottom: 16, left: "50%",
         transform: "translateX(-50%)",
         zIndex: 9997,
       }}>
@@ -292,8 +292,8 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
           onClick={() => setOpen(o => !o)}
           style={{
             WebkitTapHighlightColor: "transparent", outline: "none",
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "12px 22px 12px 16px",
+            display: "flex", alignItems: "center", gap: 8,
+            padding: "8px 16px 8px 12px",
             borderRadius: 999,
             background: isDark
               ? "linear-gradient(135deg, rgba(14,22,42,0.98), rgba(18,26,50,0.98))"
@@ -310,7 +310,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         >
           {/* Active icon with glow */}
           <div style={{
-            width: 28, height: 28, borderRadius: 8,
+            width: 24, height: 24, borderRadius: 8,
             background: `linear-gradient(135deg, ${accentColor}, #818CF8)`,
             display: "flex", alignItems: "center", justifyContent: "center",
             boxShadow: `0 2px 8px ${accentColor}60`,
