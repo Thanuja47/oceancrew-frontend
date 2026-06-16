@@ -86,12 +86,12 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
     <>
       <style>{`
         @keyframes oc-drawer-up {
-          from { transform: translateY(100%); opacity: 0; }
-          to   { transform: translateY(0);    opacity: 1; }
+          from { transform: translateX(-50%) translateY(100%); opacity: 0; }
+          to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
         }
         @keyframes oc-drawer-down {
-          from { transform: translateY(0);    opacity: 1; }
-          to   { transform: translateY(100%); opacity: 0; }
+          from { transform: translateX(-50%) translateY(0);    opacity: 1; }
+          to   { transform: translateX(-50%) translateY(100%); opacity: 0; }
         }
         @keyframes oc-backdrop-in  { from{opacity:0} to{opacity:1} }
         @keyframes oc-backdrop-out { from{opacity:1} to{opacity:0} }
@@ -291,6 +291,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         <button
           onClick={() => setOpen(o => !o)}
           style={{
+            WebkitTapHighlightColor: "transparent", outline: "none",
             display: "flex", alignItems: "center", gap: 10,
             padding: "12px 22px 12px 16px",
             borderRadius: 999,
