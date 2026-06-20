@@ -1,174 +1,301 @@
-/* ==========================================================================
-   OCEANCREW - MOBILE RESPONSIVE STYLES
-   Import this in App.jsx: import './mobile.css'
-   ========================================================================== */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   OCEANCREW â€” MOBILE RESPONSIVE STYLES
+   Add this CSS file to your project and import
+   it in your main App.jsx or index.js
+   
+   Usage: import './mobile.css'
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* BASE RESETS */
+/* â”€â”€ BASE RESETS â”€â”€ */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* ==========================================================================
-   SHARED LAYOUT - Hide sidebar on mobile (replaced by floating Command Drawer)
-   ========================================================================== */
+/* â”€â”€ BREAKPOINTS â”€â”€
+   Mobile:  < 640px
+   Tablet:  640px â€“ 1024px  
+   Desktop: > 1024px
+â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SHARED LAYOUT â€” SIDEBAR + MAIN
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+/* On mobile, sidebar becomes bottom nav */
 @media (max-width: 768px) {
 
+  /* Hide sidebar completely */
   aside {
+    width: 100% !important;
+    height: 64px !important;
+    min-height: unset !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    flex-direction: row !important;
+    overflow: hidden !important;
+    border-right: none !important;
+    border-top: 1px solid rgba(255,255,255,0.07) !important;
+    z-index: 1000 !important;
+    transition: none !important;
+  }
+
+  /* Hide logo, admin badge, collapse button on mobile */
+  aside > div:first-child,
+  aside > div:nth-child(2),
+  aside > div:last-child {
     display: none !important;
   }
 
-  /* Main content: full width, bottom clearance for floating pill */
-  div[style*="margin-left"] {
+  /* Nav becomes horizontal scroll */
+  aside nav {
+    flex-direction: row !important;
+    padding: 0 8px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    align-items: center !important;
+    gap: 0 !important;
+    width: 100% !important;
+    scrollbar-width: none !important;
+  }
+
+  aside nav::-webkit-scrollbar { display: none; }
+
+  /* Section labels hidden on mobile */
+  aside nav > div > div:first-child {
+    display: none !important;
+  }
+
+  /* Nav buttons become icon-only vertical tabs */
+  aside nav button {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 3px !important;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    border-left: none !important;
+    border-bottom: 2px solid transparent !important;
+    min-width: 56px !important;
+    font-size: 9px !important;
+    white-space: nowrap !important;
+  }
+
+  /* Badge on mobile nav */
+  aside nav button span[style*="border-radius: 999"] {
+    position: absolute !important;
+    top: 4px !important;
+    right: 4px !important;
+    min-width: 14px !important;
+    height: 14px !important;
+    font-size: 8px !important;
+  }
+
+  /* Main content â€” full width, bottom padding for nav */
+  div[style*="marginLeft"] {
     margin-left: 0 !important;
-    padding-bottom: 110px !important;
+    padding-bottom: 80px !important;
   }
 
-  /* Header: tighter on mobile */
+  /* Header adjustments */
   header {
-    padding: 0 12px !important;
-    height: 52px !important;
-    gap: 6px !important;
+    padding: 0 16px !important;
+    height: 56px !important;
   }
 
-  header h2 { font-size: 13px !important; }
+  header h2 { font-size: 14px !important; }
 
-  /* Hide date text next to title */
-  header > div:first-child > span {
-    display: none !important;
-  }
-
-  /* Hide search bar */
+  /* Hide search in header on mobile */
   header > div:last-child > div:first-child {
     display: none !important;
   }
 
   /* Main content padding */
-  main { padding: 14px !important; }
-
-  /* Footer hidden on mobile */
-  footer {
-    display: none !important;
-  }
+  main { padding: 16px !important; }
 }
 
-/* ==========================================================================
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    CARDS & GRIDS
-   ========================================================================== */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  /* All 3-col grids → 2 col */
-  div[style*="grid-template-columns: repeat(3"] {
+  /* All 3-col grids â†’ 1 col */
+  div[style*="gridTemplateColumns: \"repeat(3"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* All 4-col grids → 2 col */
-  div[style*="grid-template-columns: repeat(4"] {
+  /* All 4-col grids â†’ 2 col */
+  div[style*="gridTemplateColumns: \"repeat(4"] {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* All 5-col grids → scroll */
-  div[style*="grid-template-columns: repeat(5"] {
+  /* All 5-col grids â†’ scroll */
+  div[style*="gridTemplateColumns: \"repeat(5"] {
     grid-template-columns: repeat(5, minmax(150px, 1fr)) !important;
     overflow-x: auto !important;
     padding-bottom: 8px !important;
   }
 
-  /* 2-col grids → 1 col */
-  div[style*="grid-template-columns: 1fr 1fr"] {
+  /* 2-col grids â†’ 1 col */
+  div[style*="gridTemplateColumns: \"1fr 1fr\""] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 2fr 1fr → 1 col */
-  div[style*="grid-template-columns: 2fr 1fr"] {
+  /* 2fr 1fr â†’ 1 col */
+  div[style*="gridTemplateColumns: \"2fr 1fr\""] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 3fr 2fr → 1 col */
-  div[style*="grid-template-columns: 3fr 2fr"] {
+  /* 3fr 2fr â†’ 1 col */
+  div[style*="gridTemplateColumns: \"3fr 2fr\""] {
     grid-template-columns: 1fr !important;
   }
 
-  /* 1fr 2fr → 1 col */
-  div[style*="grid-template-columns: 1fr 2fr"] {
+  /* 1fr 2fr â†’ 1 col */
+  div[style*="gridTemplateColumns: \"1fr 2fr\""] {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Tables â€” horizontal scroll */
+  div[style*="gridTemplateColumns: \"2fr 1fr 1fr 1fr"] {
+    min-width: 600px !important;
+  }
+
+  /* Wrap table in scroll container */
+  div[style*="overflow: \"hidden\""] {
+    overflow-x: auto !important;
   }
 }
 
 @media (max-width: 480px) {
-  div[style*="grid-template-columns: repeat(2"] {
+  /* Single column everything on small phones */
+  div[style*="gridTemplateColumns: \"repeat(2"] {
     grid-template-columns: 1fr !important;
   }
-  div[style*="grid-template-columns: repeat(3"] {
+  div[style*="gridTemplateColumns: \"repeat(3"] {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* ==========================================================================
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    AUTH PAGES
-   ========================================================================== */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  /* Auth split layout - single column */
-  div[style*="grid-template-columns: 1fr 1fr"] {
+  /* Auth split layout â†’ single column */
+  div[style*="gridTemplateColumns: \"1fr 1fr\""] {
     grid-template-columns: 1fr !important;
   }
 
+  /* Hide right panel on mobile */
+  div[style*="background: \"linear-gradient(160deg,#0C1A2E"] {
+    display: none !important;
+  }
+
   /* Auth form full width */
-  div[style*="max-width: 420"] {
+  div[style*="maxWidth: 420"] {
     max-width: 100% !important;
     padding: 0 !important;
   }
 
   /* Auth layout padding */
-  div[style*="padding: 48px 40px"] {
+  div[style*="padding: \"48px 40px\""] {
     padding: 24px 20px !important;
   }
 }
 
-/* ==========================================================================
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    LANDING PAGE
-   ========================================================================== */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  /* Section padding - avoid breaking hero */
-  section:not([style*="padding: 180px"]) { padding: 60px 20px !important; }
+  /* Hero grid â†’ single column */
+  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: 60"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* Navbar */
+  nav[style*="position: \"fixed\""] {
+    padding: 0 16px !important;
+  }
+
+  /* Hide desktop nav links */
+  div.desktop-nav { display: none !important; }
+
+  /* Hero headline size */
+  h1[style*="clamp(36px"] {
+    font-size: 32px !important;
+  }
 
   /* Features grid */
-  div[style*="grid-template-columns: repeat(3"] {
+  div[style*="gridTemplateColumns: \"repeat(3,1fr)\""] {
     grid-template-columns: 1fr !important;
   }
 
   /* Stats grid */
-  div[style*="grid-template-columns: repeat(4"] {
+  div[style*="gridTemplateColumns: \"repeat(4, 1fr)\""] {
     grid-template-columns: 1fr 1fr !important;
   }
+
+  /* Pricing grid */
+  div[style*="gridTemplateColumns: \"repeat(3, 1fr)\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer grid */
+  div[style*="gridTemplateColumns: \"2fr 1fr 1fr 1fr\""] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* CTA buttons */
+  div[style*="display: \"flex\""][style*="gap: 14"] {
+    flex-direction: column !important;
+  }
+
+  /* Section padding */
+  section { padding: 60px 20px !important; }
 }
 
-/* ==========================================================================
-   DASHBOARD STAT CARDS
-   ========================================================================== */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   DASHBOARD HERO CARDS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  div[style*="grid-template-columns: repeat(4"] {
+  /* Hero card inner flex â†’ column */
+  div[style*="padding: \"32px 36px\""] > div[style*="display:\"flex\""],
+  div[style*="padding: \"32px 36px\""] > div[style*="display: \"flex\""] {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Hero buttons stack */
+  div[style*="padding: \"32px 36px\""] div[style*="gap: 10"] {
+    flex-wrap: wrap !important;
+  }
+
+  /* Stat cards â€” 2 col on tablet, 1 col on phone */
+  div[style*="gridTemplateColumns: \"repeat(4,1fr)\""] {
     grid-template-columns: 1fr 1fr !important;
   }
-  div[style*="grid-template-columns: repeat(6"] {
+  div[style*="gridTemplateColumns: \"repeat(6,1fr)\""] {
     grid-template-columns: 1fr 1fr !important;
   }
 }
 
 @media (max-width: 480px) {
-  div[style*="grid-template-columns: repeat(4"] {
+  div[style*="gridTemplateColumns: \"repeat(4,1fr)\""] {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* ==========================================================================
-   PIPELINE KANBAN - HORIZONTAL SCROLL
-   ========================================================================== */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   PIPELINE KANBAN â€” HORIZONTAL SCROLL
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 768px) {
-  div[style*="grid-template-columns: repeat(5"] {
+  /* Pipeline kanban horizontal scroll */
+  div[style*="gridTemplateColumns: \"repeat(5,1fr)\""] {
     display: flex !important;
     overflow-x: auto !important;
     gap: 12px !important;
@@ -176,48 +303,110 @@ html { scroll-behavior: smooth; }
     scrollbar-width: thin !important;
   }
 
-  div[style*="grid-template-columns: repeat(5"] > div {
+  div[style*="gridTemplateColumns: \"repeat(5,1fr)\""] > div {
     min-width: 200px !important;
     flex-shrink: 0 !important;
   }
 }
 
-/* ==========================================================================
-   INVOICE TABLE
-   ========================================================================== */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   APPLICANT / JOB CARDS â€” FLEX WRAP
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-@media (max-width: 768px) {
-  div[style*="grid-template-columns: 0.7fr 1.5fr"] {
-    display: none !important;
+@media (max-width: 640px) {
+  /* Job/applicant card actions stack */
+  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""] {
+    gap: 8px !important;
+  }
+
+  /* Action buttons smaller */
+  button[style*="padding: \"9px 18px\""] {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+  }
+
+  /* Match score bar hide on mobile */
+  div[style*="width: 72"] { display: none !important; }
+
+  /* Chips wrap better */
+  div[style*="display: \"flex\""][style*="gap: 7"] {
+    flex-wrap: wrap !important;
   }
 }
 
-/* ==========================================================================
-   TYPOGRAPHY SCALING
-   ========================================================================== */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   INVOICE TABLE â€” SCROLL
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+@media (max-width: 768px) {
+  div[style*="gridTemplateColumns: \"0.7fr 1.5fr"] {
+    display: none !important;
+  }
+
+  /* Show simplified mobile invoice list instead */
+  .invoice-table-desktop { display: none !important; }
+  .invoice-table-mobile  { display: block !important; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CV PAGE â€” SINGLE COLUMN
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+@media (max-width: 768px) {
+  /* CV preview full width */
+  div[style*="maxWidth: 600"] {
+    max-width: 100% !important;
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   MODALS & OVERLAYS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 640px) {
-  h1[style*="font-size: 26"],
-  h1[style*="font-size: 28"],
-  h1[style*="font-size: 30"] {
+  /* Toast notifications */
+  div[style*="position: \"fixed\""][style*="top: 80"] {
+    top: 16px !important;
+    right: 16px !important;
+    left: 16px !important;
+    font-size: 12px !important;
+  }
+
+  /* Theme toggle button */
+  button[style*="position: \"fixed\""][style*="top: 20"] {
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   TYPOGRAPHY SCALING
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+@media (max-width: 640px) {
+  h1[style*="fontSize: 26"],
+  h1[style*="fontSize: 28"],
+  h1[style*="fontSize: 30"] {
     font-size: 22px !important;
   }
 
-  h2[style*="font-size: 26"],
-  h2[style*="font-size: 28"] {
+  h2[style*="fontSize: 26"],
+  h2[style*="fontSize: 28"] {
     font-size: 20px !important;
   }
 
-  div[style*="font-size: 34"],
-  div[style*="font-size: 36"],
-  div[style*="font-size: 38"] {
+  /* Large stat numbers */
+  div[style*="fontSize: 34"],
+  div[style*="fontSize: 36"],
+  div[style*="fontSize: 38"] {
     font-size: 28px !important;
   }
 }
 
-/* ==========================================================================
-   UTILITY CLASSES
-   ========================================================================== */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   UTILITY CLASSES â€” add these to elements
+   where you need mobile-specific behavior
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 .hide-mobile  { display: block; }
 .show-mobile  { display: none; }
@@ -235,29 +424,44 @@ html { scroll-behavior: smooth; }
   .mobile-scroll { overflow-x: auto !important; }
 }
 
-/* ==========================================================================
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    INPUT & FORM FIXES
-   ========================================================================== */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @media (max-width: 640px) {
   input, select, textarea {
-    font-size: 16px !important;
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
   }
 
-  div[style*="grid-template-columns: 1fr 1fr"][style*="gap: 14"] {
+  /* Grid forms â†’ single column */
+  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: 14"] {
     grid-template-columns: 1fr !important;
   }
-  div[style*="grid-template-columns: 1fr 1fr 1fr"][style*="gap: 14"] {
+  div[style*="gridTemplateColumns: \"1fr 1fr 1fr\""][style*="gap: 14"] {
     grid-template-columns: 1fr !important;
   }
 }
 
-/* ==========================================================================
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   BOTTOM NAV ACTIVE INDICATOR
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+@media (max-width: 768px) {
+  aside nav button[style*="borderLeft: \"2px solid"] {
+    border-left: none !important;
+    border-bottom: 2px solid currentColor !important;
+  }
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    SAFE AREA (iPhone notch/home bar)
-   ========================================================================== */
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
-  div[style*="padding-bottom: 110"] {
-    padding-bottom: calc(110px + env(safe-area-inset-bottom)) !important;
+  aside {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+  div[style*="paddingBottom: 80"] {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
   }
 }
