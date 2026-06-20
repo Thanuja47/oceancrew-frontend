@@ -1001,7 +1001,7 @@ function InvoicesPage({isDark,showToast}){
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Payment History</h3>
           </div>
           {payments.map((p,i)=>(
-            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)":"none"),alignItems:"center"}}>
+            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center"}}>
               <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{p.plan}</span>
               <span style={{fontSize:13,color:T.green,fontWeight:700}}>${p.amount}</span>
               <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{p.reference||"N/A"}</span>

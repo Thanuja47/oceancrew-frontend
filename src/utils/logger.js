@@ -21,7 +21,7 @@ export const logger = {
   },
   debug: (message, meta = {}) => {
     // Only show debug in local development
-    if (import.meta.env?.MODE === 'development' || window.location.hostname === 'localhost') {
+    if (process.env.NODE_ENV === 'development' || window.location.hostname === 'localhost') {
       console.log(`[${getTimestamp()}] [DEBUG] ${message}`, Object.keys(meta).length ? meta : '');
     }
   }

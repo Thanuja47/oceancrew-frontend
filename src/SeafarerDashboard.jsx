@@ -95,6 +95,8 @@ const SEA_SERVICE=[
   {vessel:"MT Gulf Star",type:"Oil Tanker",rank:"Chief Officer",flag:"Marshall Islands",from:"2014-06",to:"2017-02"},
 ];
 
+const SEAFARER={name:"Rajesh Fernando",rank:"2nd Officer",nationality:"Sri Lankan",yearsExp:8,sub:"Free"};
+
 const NAV=[
   {section:"Main",items:[
     {id:"dashboard",   icon:"dashboard",  label:"Dashboard"},
