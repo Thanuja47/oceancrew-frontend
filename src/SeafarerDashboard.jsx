@@ -1,6 +1,5 @@
-/* eslint-disable */
 import { useState, useEffect, useRef } from "react";
-import MobileNav from "./MobileNav";
+import logger from "./utils/logger";
 
 const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
   const icons = {
@@ -40,7 +39,6 @@ const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
     messageSquare:<><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></>,
     target:<><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></>,
     building:<><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></>,
-    logOut:<><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></>,
   };
   const p=icons[name];
   if(!p)return null;
@@ -62,7 +60,7 @@ const D={
   yellow:"#FBBF24",yellowBg:"rgba(251,191,36,0.12)",
   purple:"#A78BFA",purpleBg:"rgba(167,139,250,0.12)",
   shadow:"0 2px 16px rgba(0,0,0,0.3)",
-  sidebar:"#08090C",header:"rgba(16,18,26,0.88)",
+  sidebar:"#08090C",header:"rgba(10,18,26,0.88)",
 };
 const L={
   page:"linear-gradient(145deg,#dce8f5 0%,#e8eef7 40%,#edf2f9 100%)",
@@ -175,7 +173,7 @@ function Toast({msg,type,onClose}){
       backdropFilter:"blur(20px)",boxShadow:"0 8px 32px rgba(0,0,0,0.5)",
       display:"flex",alignItems:"center",gap:8,fontFamily:"'Inter',sans-serif",
       animation:"slideIn 0.3s ease"}}>
-      {type==="success"?"✓":type==="error"?"✕":"ℹ"} {msg}
+      {type==="success"?"âœ“":type==="error"?"âœ•":"â„¹"} {msg}
     </div>
   );
 }
@@ -213,9 +211,9 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
               <div>
                 <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:6}}>
                   <h1 style={{fontSize:24,fontWeight:700,color:isDark?"#fff":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.02em"}}>{SEAFARER.name}</h1>
-                  {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"3px 8px",borderRadius:999,letterSpacing:0.5}}>✓ VERIFIED</span>}
+                  {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"3px 8px",borderRadius:999,letterSpacing:0.5}}>âœ“ VERIFIED</span>}
                 </div>
-                <div style={{fontSize:13,color:isDark?"rgba(255,255,255,0.6)":T.t2,marginBottom:8}}>{SEAFARER.rank} · {SEAFARER.nationality} · {SEAFARER.yearsExp} years exp.</div>
+                <div style={{fontSize:13,color:isDark?"rgba(255,255,255,0.6)":T.t2,marginBottom:8}}>{SEAFARER.rank} Â· {SEAFARER.nationality} Â· {SEAFARER.yearsExp} years exp.</div>
                 <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                   <Bdg label={SEAFARER.sub==="Pro"?"â­ Pro Member":"Free"} color={T.yellow} bg={T.yellowBg}/>
                   <Bdg label={`Available ${SEAFARER.availability}`} color={T.green} bg={T.greenBg}/>
@@ -238,7 +236,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
               transition:"width 1.2s ease"}}/>
           </div>
           <span style={{fontSize:12,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'JetBrains Mono',monospace"}}>{SEAFARER.profileStrength}%</span>
-          <Btn onClick={()=>setPage("profile")} isDark={isDark} variant="ghost" size="sm">Complete Profile →</Btn>
+          <Btn onClick={()=>setPage("profile")} isDark={isDark} variant="ghost" size="sm">Complete Profile â†’</Btn>
         </div>
       </Card>
 
@@ -269,7 +267,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Application Tracker</h3>
-            <Btn onClick={()=>setPage("applications")} isDark={isDark} variant="ghost" size="sm">View All →</Btn>
+            <Btn onClick={()=>setPage("applications")} isDark={isDark} variant="ghost" size="sm">View All â†’</Btn>
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
             {(applications||[]).slice(0,4).map(app=>{
@@ -280,8 +278,8 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                   border:app.status==="Offer"?`1px solid ${T.green}30`:"none"}}>
                   <div style={{width:36,height:36,borderRadius:10,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:11,fontWeight:700,color:T.t2,fontFamily:"'Sora',sans-serif"}}>{app.logo}</div>
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:13,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{app.title} — {app.company}</div>
-                    <div style={{fontSize:11,color:T.t3}}>{app.salary}/mo · Applied {app.applied}</div>
+                    <div style={{fontSize:13,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{app.title} â€” {app.company}</div>
+                    <div style={{fontSize:11,color:T.t3}}>{app.salary}/mo Â· Applied {app.applied}</div>
                   </div>
                   <Bdg label={app.status} color={col} bg={`${col}18`}/>
                 </div>
@@ -318,7 +316,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
       <Card isDark={isDark}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Recommended Jobs For You</h3>
-          <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">Browse All →</Btn>
+          <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="ghost" size="sm">Browse All â†’</Btn>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12}}>
           {(jobs||[]).slice(0,3).map(job=>(
@@ -333,7 +331,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                 {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
               </div>
               <div style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:3}}>{job.title}</div>
-              <div style={{fontSize:11,color:T.t3,marginBottom:8}}>{job.company} · {job.country}</div>
+              <div style={{fontSize:11,color:T.t3,marginBottom:8}}>{job.company} Â· {job.country}</div>
               <div style={{fontSize:13,fontWeight:700,color:T.green,marginBottom:10}}>{job.salary}/mo</div>
               <Btn onClick={()=>showToast("Opening job...","info")} isDark={isDark} variant="primary" size="sm" fullWidth>Apply Now</Btn>
             </div>
@@ -361,7 +359,7 @@ function FindJobsPage({isDark,showToast,jobs,searchQuery}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Find Jobs</h2>
-        <p style={{fontSize:14,color:T.t3}}>Jobs matched to your rank and experience. Pro membership — unlimited applications.</p>
+        <p style={{fontSize:14,color:T.t3}}>Jobs matched to your rank and experience. Pro membership â€” unlimited applications.</p>
       </div>
 
       <Card isDark={isDark} style={{marginBottom:16,padding:16,display:"flex",gap:12,flexWrap:"wrap",alignItems:"center"}}>
@@ -388,7 +386,7 @@ function FindJobsPage({isDark,showToast,jobs,searchQuery}){
                 <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                   <span style={{fontSize:16,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{job.title}</span>
                   {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
-                  {job.verified&&<Bdg label="✓ Verified Co." color="#38BDF8" bg="rgba(56,189,248,0.1)"/>}
+                  {job.verified&&<Bdg label="âœ“ Verified Co." color="#38BDF8" bg="rgba(56,189,248,0.1)"/>}
                 </div>
                 <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                   {[job.company,job.vessel,job.country,job.duration,`Posted ${job.posted}`].map(tag=>(
@@ -424,7 +422,7 @@ function ApplicationsPage({isDark,showToast,applications}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>My Applications</h2>
-        <p style={{fontSize:14,color:T.t3}}>{(applications||[]).length} applications — track your journey</p>
+        <p style={{fontSize:14,color:T.t3}}>{(applications||[]).length} applications â€” track your journey</p>
       </div>
 
       {/* Stage summary */}
@@ -451,7 +449,7 @@ function ApplicationsPage({isDark,showToast,applications}){
               <div style={{display:"flex",alignItems:"center",gap:16,flexWrap:"wrap",marginBottom:16}}>
                 <div style={{width:46,height:46,borderRadius:13,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:13,fontWeight:700,color:T.t2,fontFamily:"'Sora',sans-serif"}}>{app.logo}</div>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{app.title} — {app.company}</div>
+                  <div style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{app.title} â€” {app.company}</div>
                   <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
                     <Bdg label={app.vessel} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
                     <Bdg label={app.salary+"/mo"} color={T.green} bg={T.greenBg}/>
@@ -490,7 +488,7 @@ function ApplicationsPage({isDark,showToast,applications}){
 
               {app.status==="Offer"&&(
                 <div style={{marginTop:14,padding:"12px 16px",borderRadius:12,background:T.greenBg,border:`1px solid ${T.green}30`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                  <span style={{fontSize:13,fontWeight:600,color:T.green}}>🎉 You have an offer! Review and respond.</span>
+                  <span style={{fontSize:13,fontWeight:600,color:T.green}}>ðŸŽ‰ You have an offer! Review and respond.</span>
                   <div style={{display:"flex",gap:8}}>
                     <Btn onClick={()=>showToast("Offer accepted! Company will contact you.","success")} isDark={isDark} variant="success" size="sm" icon="check">Accept</Btn>
                     <Btn onClick={()=>showToast("Offer declined.","info")} isDark={isDark} variant="danger" size="sm">Decline</Btn>
@@ -499,7 +497,7 @@ function ApplicationsPage({isDark,showToast,applications}){
               )}
               {app.status==="Interview"&&(
                 <div style={{marginTop:14,padding:"12px 16px",borderRadius:12,background:T.purpleBg,border:`1px solid ${T.purple}30`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                  <span style={{fontSize:13,fontWeight:600,color:T.purple}}>ðŸ“… Interview scheduled — check your email for details.</span>
+                  <span style={{fontSize:13,fontWeight:600,color:T.purple}}>ðŸ“… Interview scheduled â€” check your email for details.</span>
                   <Btn onClick={()=>showToast("Opening interview details...","info")} isDark={isDark} variant="ghost" size="sm">View Details</Btn>
                 </div>
               )}
@@ -513,15 +511,89 @@ function ApplicationsPage({isDark,showToast,applications}){
 
 function ProfilePage({isDark,showToast,userName}){
   const T=useT(isDark);
-  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
-  const [form,setForm]=useState({
-    name:SEAFARER.name,rank:SEAFARER.rank,nationality:SEAFARER.nationality,
-    homePort:SEAFARER.homePort,yearsExp:SEAFARER.yearsExp,
-    email:"rajesh.f@gmail.com",phone:"+94 77 123 4567",
-    availability:SEAFARER.availability,
-    summary:"Highly experienced Master Mariner with 18 years at sea across container vessels and bulk carriers. Strong record of safe navigation and crew management.",
-    preferred:"Container Vessel, Bulk Carrier, Oil Tanker",
-  });
+  const [form,setForm]=useState({name:"",email:"",phone:"",rank:"",nationality:"",dateOfBirth:"",cdcNumber:"",passportNumber:"",passportExpiry:"",experienceMonths:"",lastVesselType:"",availabilityDate:"",profilePhoto:""});
+  const [loading,setLoading]=useState(true);
+  const [saving,setSaving]=useState(false);
+
+  useEffect(()=>{
+    const fetchProfile=async()=>{
+      try{
+        const res=await fetch(`${API}/api/auth/me`,{headers:{Authorization:`Bearer ${getToken()}`}});
+        if(res.ok){
+          const data=await res.json();
+          const u=data.user||data;
+          setForm(p=>({...p,
+            name:u.name||"",email:u.email||"",phone:u.phone||"",rank:u.rank||"",
+            nationality:u.nationality||"",dateOfBirth:u.dateOfBirth?u.dateOfBirth.slice(0,10):"",
+            cdcNumber:u.cdcNumber||"",passportNumber:u.passportNumber||"",
+            passportExpiry:u.passportExpiry?u.passportExpiry.slice(0,10):"",
+            availabilityDate:u.availabilityDate?u.availabilityDate.slice(0,10):"",
+            profilePhoto:u.profilePhoto||"",
+          }));
+        }
+      } catch (err) {
+        logger.error("Failed to load profile", err);
+      }
+      setLoading(false);
+    };
+    fetchProfile();
+  },[]);
+
+  const handleSave=async()=>{
+    setSaving(true);
+    try{
+      const res=await fetch(`${API}/api/auth/profile`,{
+        method:"PUT",
+        headers:{"Content-Type":"application/json",Authorization:`Bearer ${getToken()}`},
+        body:JSON.stringify(form),
+      });
+      if(res.ok){showToast("Profile saved successfully","success");}
+      else{const d=await res.json().catch(()=>({}));showToast(d.message||"Failed to save profile","error");}
+    }catch(err){
+      logger.error("Failed to update profile", err);
+      showToast("Network error â€” please try again","error");
+    }
+    setSaving(false);
+  };
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    if(file.size > 2 * 1024 * 1024) { showToast("File too large (max 2MB)", "warning"); return; }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      setForm(p => ({...p, profilePhoto: ev.target.result}));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const VESSEL_TYPES=["Container","Bulk Carrier","Oil Tanker","Chemical Tanker","LPG/LNG","Ro-Ro","Passenger","Offshore","General Cargo","Other"];
+
+  const fields=[
+    {k:"name",l:"Full Name"},
+    {k:"email",l:"Email",disabled:true},
+    {k:"phone",l:"Phone / WhatsApp"},
+    {k:"rank",l:"Current Rank"},
+    {k:"nationality",l:"Nationality"},
+    {k:"dateOfBirth",l:"Date of Birth",type:"date"},
+    {k:"cdcNumber",l:"CDC Number"},
+    {k:"passportNumber",l:"Passport Number"},
+    {k:"passportExpiry",l:"Passport Expiry",type:"date"},
+    {k:"experienceMonths",l:"Experience in Current Rank (months)",type:"number"},
+    {k:"lastVesselType",l:"Last Vessel Type",select:true},
+    {k:"availabilityDate",l:"Available From",type:"date"},
+  ];
+
+  if(loading){
+    return(
+      <div style={{display:"flex",alignItems:"center",justifyContent:"center",minHeight:300}}>
+        <div style={{textAlign:"center"}}>
+          <div style={{width:36,height:36,border:`3px solid ${isDark?"rgba(255,255,255,0.1)":"rgba(100,116,139,0.15)"}`,borderTopColor:isDark?"#38BDF8":"#1a2332",borderRadius:"50%",animation:"spin 0.8s linear infinite",margin:"0 auto 12px"}}/>
+          <div style={{fontSize:13,color:T.t3}}>Loading profileâ€¦</div>
+        </div>
+      </div>
+    );
+  }
 
   return(
     <div>
@@ -530,76 +602,46 @@ function ProfilePage({isDark,showToast,userName}){
         <p style={{fontSize:14,color:T.t3}}>This is how companies see you. Keep it complete and up to date.</p>
       </div>
 
-      <div style={{display:"grid",gridTemplateColumns:"1fr 2fr",gap:16}}>
-        {/* Profile card */}
-        <div style={{display:"flex",flexDirection:"column",gap:14}}>
-          <Card isDark={isDark} style={{textAlign:"center",padding:"28px 20px"}}>
-            <div style={{width:80,height:80,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 14px",fontSize:28,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",border:isDark?"2px solid rgba(56,189,248,0.3)":"2px solid rgba(26,35,50,0.12)"}}>
-              {SEAFARER.avatar}
+      <Card isDark={isDark}>
+        <h3 style={{fontSize:16,fontWeight:600,color:T.t1,marginBottom:20,fontFamily:"'Sora',sans-serif"}}>Edit Profile</h3>
+        
+        <div style={{display:"flex",alignItems:"center",gap:20,marginBottom:24}}>
+          <div style={{width:80,height:80,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",overflow:"hidden",display:"flex",alignItems:"center",justifyContent:"center",border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(0,0,0,0.1)"}}>
+            {form.profilePhoto ? <img src={form.profilePhoto} alt="Profile" style={{width:"100%",height:"100%",objectFit:"cover"}}/> : <Icon name="user" size={32} color={T.t3} strokeWidth={1.5}/>}
+          </div>
+          <div>
+            <div style={{fontSize:12,fontWeight:600,color:T.t1,marginBottom:8}}>Profile Photo</div>
+            <div style={{display:"flex",gap:10}}>
+              <label style={{padding:"8px 14px",borderRadius:8,background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+                Upload Photo
+                <input type="file" accept="image/*" onChange={handlePhotoUpload} style={{display:"none"}}/>
+              </label>
+              {form.profilePhoto && <button onClick={()=>setForm(p=>({...p,profilePhoto:""}))} style={{padding:"8px 14px",borderRadius:8,background:"transparent",border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(0,0,0,0.1)",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Remove</button>}
             </div>
-            <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:7,marginBottom:4}}>
-              <span style={{fontSize:16,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{form.name}</span>
-              {SEAFARER.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 7px",borderRadius:999}}>✓ VER</span>}
-            </div>
-            <div style={{fontSize:12,color:T.t3,marginBottom:14}}>{form.rank}</div>
-            <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:18,flexWrap:"wrap"}}>
-              <Bdg label={SEAFARER.sub==="Pro"?"â­ Pro":"Free"} color={T.yellow} bg={T.yellowBg}/>
-              <Bdg label={`Available ${form.availability}`} color={T.green} bg={T.greenBg}/>
-            </div>
-            {/* Profile strength */}
-            <div style={{marginBottom:4}}>
-              <div style={{display:"flex",justifyContent:"space-between",marginBottom:5}}>
-                <span style={{fontSize:11,color:T.t3}}>Profile Strength</span>
-                <span style={{fontSize:11,fontWeight:700,color:isDark?"#38BDF8":T.t1}}>{SEAFARER.profileStrength}%</span>
-              </div>
-              <div style={{height:5,borderRadius:3,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
-                <div style={{height:"100%",width:`${SEAFARER.profileStrength}%`,borderRadius:3,background:isDark?"#38BDF8":"#1a2332"}}/>
-              </div>
-            </div>
-          </Card>
-
-          {/* Sea service */}
-          <Card isDark={isDark}>
-            <h3 style={{fontSize:14,fontWeight:600,color:T.t1,marginBottom:14,fontFamily:"'Sora',sans-serif"}}>Sea Service</h3>
-            {SEA_SERVICE.map((s,i)=>(
-              <div key={i} style={{padding:"10px 0",borderBottom:i<SEA_SERVICE.length-1?`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`:0}}>
-                <div style={{fontSize:12,fontWeight:600,color:T.t1,marginBottom:2}}>{s.vessel}</div>
-                <div style={{fontSize:10,color:T.t3,marginBottom:3}}>{s.type} · {s.flag}</div>
-                <div style={{display:"flex",justifyContent:"space-between"}}>
-                  <Bdg label={s.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
-                  <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{s.from}”“{s.to}</span>
-                </div>
-              </div>
-            ))}
-          </Card>
+            <div style={{fontSize:10,color:T.t3,marginTop:6}}>Recommended: Square image, max 2MB</div>
+          </div>
         </div>
 
-        {/* Edit form */}
-        <Card isDark={isDark}>
-          <h3 style={{fontSize:16,fontWeight:600,color:T.t1,marginBottom:20,fontFamily:"'Sora',sans-serif"}}>Edit Profile</h3>
-          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:14}}>
-            {[
-              {k:"name",l:"Full Name"},{k:"rank",l:"Current Rank"},
-              {k:"email",l:"Email"},{k:"phone",l:"Phone / WhatsApp"},
-              {k:"nationality",l:"Nationality"},{k:"homePort",l:"Home Port"},
-              {k:"yearsExp",l:"Years at Sea"},{k:"availability",l:"Available From"},
-              {k:"preferred",l:"Preferred Vessel Types"},
-            ].map(f=>(
-              <div key={f.k} style={{gridColumn:f.k==="preferred"?"1/-1":"auto"}}>
-                <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:20}}>
+          {fields.map(f=>(
+            <div key={f.k}>
+              <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
+              {f.select?(
+                <select value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
+                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}>
+                  <option value="">Selectâ€¦</option>
+                  {VESSEL_TYPES.map(v=><option key={v} value={v}>{v}</option>)}
+                </select>
+              ):(
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
-                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
-              </div>
-            ))}
-          </div>
-          <div style={{marginBottom:16}}>
-            <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Professional Summary</div>
-            <textarea value={form.summary} onChange={e=>setForm(p=>({...p,summary:e.target.value}))} rows={3}
-              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
-          </div>
-          <Btn onClick={()=>showToast("Profile saved successfully","success")} isDark={isDark} variant="primary" icon="check">Save Profile</Btn>
-        </Card>
-      </div>
+                  type={f.type||"text"} disabled={f.disabled}
+                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box",opacity:f.disabled?0.6:1}}/>
+              )}
+            </div>
+          ))}
+        </div>
+        <Btn onClick={handleSave} isDark={isDark} variant="primary" icon="check">{saving?"Savingâ€¦":"Save Profile"}</Btn>
+      </Card>
     </div>
   );
 }
@@ -660,7 +702,7 @@ function DocumentsPage({isDark,showToast}){
                   {cert.required&&<Bdg label="Required" color={T.yellow} bg={T.yellowBg}/>}
                 </div>
                 {cert.uploaded
-                  ?<div style={{fontSize:11,color:T.green}}>✓ Uploaded{cert.expiry?` · Expires ${cert.expiry}`:""}{cert.fileName?` · ${cert.fileName}`:""}</div>
+                  ?<div style={{fontSize:11,color:T.green}}>âœ“ Uploaded{cert.expiry?` Â· Expires ${cert.expiry}`:""}{cert.fileName?` Â· ${cert.fileName}`:""}</div>
                   :<div style={{fontSize:11,color:T.t3}}>Not uploaded yet</div>}
               </div>
               <input ref={el=>refs.current[cert.id]=el} type="file" accept=".pdf,.jpg,.jpeg,.png" style={{display:"none"}} onChange={e=>handleUpload(cert.id,e)}/>
@@ -681,9 +723,8 @@ function DocumentsPage({isDark,showToast}){
 }
 
 /* â•â• MY CV â•â• */
-function CVPage({isDark,showToast,userName}){
+function CVPage({isDark,showToast}){
   const T=useT(isDark);
-  const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
   const [requested,setRequested]=useState(false);
   const [paid,setPaid]=useState(false);
   const [loading,setLoading]=useState(false);
@@ -731,10 +772,10 @@ function CVPage({isDark,showToast,userName}){
           <Card isDark={isDark}>
             <div style={{marginBottom:20}}>
               <h3 style={{fontSize:18,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:8}}>Professional CV Generation</h3>
-              <p style={{fontSize:13,color:T.t2,lineHeight:1.7}}>Our team manually generates a premium maritime CV from your profile — formatted exactly to industry standards that shipping companies and manning agencies expect.</p>
+              <p style={{fontSize:13,color:T.t2,lineHeight:1.7}}>Our team manually generates a premium maritime CV from your profile â€” formatted exactly to industry standards that shipping companies and manning agencies expect.</p>
             </div>
             <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:24}}>
-              {["Premium maritime CV layout","All sea service history formatted","Certificates listed professionally","Reviewed by our maritime HR team","Delivered to your email within 24h","PDF format — ready to send anywhere"].map((f,i)=>(
+              {["Premium maritime CV layout","All sea service history formatted","Certificates listed professionally","Reviewed by our maritime HR team","Delivered to your email within 24h","PDF format â€” ready to send anywhere"].map((f,i)=>(
                 <div key={i} style={{display:"flex",alignItems:"center",gap:10}}>
                   <div style={{width:20,height:20,borderRadius:"50%",background:T.greenBg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                     <Icon name="check" size={11} color={T.green} strokeWidth={2.5}/>
@@ -757,7 +798,7 @@ function CVPage({isDark,showToast,userName}){
               </Btn>
             </div>
             <Btn onClick={handlePay} disabled={loading} isDark={isDark} variant="primary" icon="creditCard" fullWidth size="lg">
-              {loading ? "Processing..." : "2. Pay $4.99 — Generate My CV"}
+              {loading ? "Processing..." : "2. Pay $4.99 â€” Generate My CV"}
             </Btn>
           </Card>
 
@@ -774,7 +815,7 @@ function CVPage({isDark,showToast,userName}){
                   <div style={{fontSize:20,fontWeight:700,color:"#fff",fontFamily:"Georgia,serif",marginBottom:4}}>{SEAFARER.name}</div>
                   <div style={{fontSize:12,color:"rgba(255,255,255,0.65)",fontFamily:"'Inter',sans-serif",marginBottom:10}}>{SEAFARER.rank}</div>
                   <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
-                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“  Colombo","ðŸŒ  Sri Lankan"].map((i,idx)=>(
+                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“ Colombo","ðŸŒ Sri Lankan"].map((i,idx)=>(
                       <span key={idx} style={{fontSize:9,color:"rgba(255,255,255,0.6)",fontFamily:"'Inter',sans-serif"}}>{i}</span>
                     ))}
                   </div>
@@ -784,13 +825,13 @@ function CVPage({isDark,showToast,userName}){
                   {SEA_SERVICE.map((s,i)=>(
                     <div key={i} style={{padding:"8px 10px",background:"#f8f9fa",borderRadius:6,borderLeft:"3px solid #C9A96E",marginBottom:7}}>
                       <div style={{fontSize:11,fontWeight:600,color:"#1a2332",fontFamily:"'Inter',sans-serif"}}>{s.vessel}</div>
-                      <div style={{fontSize:9,color:"#64748b",fontFamily:"'Inter',sans-serif"}}>{s.type} · {s.rank} · {s.from}”“{s.to}</div>
+                      <div style={{fontSize:9,color:"#64748b",fontFamily:"'Inter',sans-serif"}}>{s.type} Â· {s.rank} Â· {s.from}â€“{s.to}</div>
                     </div>
                   ))}
                   <div style={{fontSize:8,fontWeight:700,color:"#0A1628",letterSpacing:2,textTransform:"uppercase",borderBottom:"2px solid #C9A96E",paddingBottom:3,margin:"12px 0 8px",fontFamily:"'Inter',sans-serif"}}>Certificates</div>
                   <div style={{display:"flex",flexWrap:"wrap",gap:5}}>
                     {CERTS.filter(c=>c.uploaded).map(c=>(
-                      <span key={c.id} style={{padding:"3px 8px",borderRadius:999,background:"rgba(10,22,40,0.07)",color:"#1a2332",fontSize:9,fontFamily:"'Inter',sans-serif"}}>✓ {c.label}</span>
+                      <span key={c.id} style={{padding:"3px 8px",borderRadius:999,background:"rgba(10,22,40,0.07)",color:"#1a2332",fontSize:9,fontFamily:"'Inter',sans-serif"}}>âœ“ {c.label}</span>
                     ))}
                   </div>
                   <div style={{marginTop:12,padding:"8px 12px",background:"rgba(10,22,40,0.04)",borderRadius:6,display:"flex",justifyContent:"space-between"}}>
@@ -811,7 +852,7 @@ function CVPage({isDark,showToast,userName}){
           <p style={{fontSize:14,color:T.t2,lineHeight:1.7,maxWidth:480,margin:"0 auto 28px"}}>Your payment of <strong style={{color:T.green}}>$4.99</strong> was successful. Our team is now generating your professional maritime CV. You'll receive it at <strong style={{color:isDark?"#38BDF8":T.t1}}>rajesh.f@gmail.com</strong> within 24 hours.</p>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:T.yellowBg,borderRadius:999,padding:"8px 18px"}}>
             <span style={{width:7,height:7,borderRadius:"50%",background:T.yellow,display:"inline-block",animation:"pulseDot 2s infinite"}}/>
-            <span style={{fontSize:12,color:T.yellow,fontWeight:600}}>Admin is preparing your CV — estimated 24 hours</span>
+            <span style={{fontSize:12,color:T.yellow,fontWeight:600}}>Admin is preparing your CV â€” estimated 24 hours</span>
           </div>
         </Card>
       )}
@@ -819,45 +860,10 @@ function CVPage({isDark,showToast,userName}){
   );
 }
 
-/* ══ SUBSCRIPTION ══ */
-function SubscriptionPage({isDark,showToast,userName}){
+/* â•â• SUBSCRIPTION â•â• */
+function SubscriptionPage({isDark,showToast}){
   const T=useT(isDark);
-  const isPro=false; // will be driven by real payment status in future
-  const [stripeLoading,setStripeLoading]=useState(false);
-  const [payments,setPayments]=useState([]);
-
-  useEffect(()=>{
-    const token=localStorage.getItem("token");
-    if(!token)return;
-    fetch(`${API}/api/payments/my`,{headers:{Authorization:`Bearer ${token}`}})
-      .then(r=>r.json()).then(d=>{if(Array.isArray(d))setPayments(d);})
-      .catch(()=>{});
-  },[]);
-
-  const handleStripeCheckout=async()=>{
-    const token=localStorage.getItem("token");
-    if(!token){showToast("Please log in first","warning");return;}
-    setStripeLoading(true);
-    try{
-      const r=await fetch(`${API}/api/payments/stripe/create-checkout`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},
-        body:JSON.stringify({plan:"Seafarer Pro",amount:4}),
-      });
-      if(r.ok){
-        const {url}=await r.json();
-        window.location.href=url;
-      }else{
-        const d=await r.json();
-        showToast(d.message||"Could not start payment","error");
-      }
-    }catch{showToast("Network error","error");}
-    setStripeLoading(false);
-  };
-
-  const statusColor={pending:"#F59E0B",approved:"#10B981",rejected:"#EF4444"};
-  const statusBg={pending:"rgba(245,158,11,0.1)",approved:"rgba(16,185,129,0.1)",rejected:"rgba(239,68,68,0.1)"};
-
+  const isPro=SEAFARER.sub==="Pro";
   return(
     <div>
       <div style={{marginBottom:24}}>
@@ -889,11 +895,11 @@ function SubscriptionPage({isDark,showToast,userName}){
         </Card>
 
         {/* Pro plan */}
-        <Card isDark={isDark} style={{padding:"28px",position:"relative",background:isDark?"linear-gradient(145deg,rgba(56,189,248,0.08),rgba(56,189,248,0.03))":"linear-gradient(145deg,#EFF6FF,#f8faff)",border:isPro?`2px solid ${isDark?"#38BDF8":"#1a2332"}`:(isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)")}}>
+        <Card isDark={isDark} style={{padding:"28px",background:isDark?"linear-gradient(145deg,rgba(56,189,248,0.08),rgba(56,189,248,0.03))":"linear-gradient(145deg,#EFF6FF,#f8faff)",border:isPro?`2px solid ${isDark?"#38BDF8":"#1a2332"}`:(isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)")}}>
           {isPro&&<div style={{position:"absolute",top:-1,left:"50%",transform:"translateX(-50%)",background:`linear-gradient(90deg,${isDark?"#38BDF8":"#1a2332"},${isDark?"#0EA5E9":"#475569"})`,color:"#fff",fontSize:9,fontWeight:800,padding:"4px 14px",borderRadius:"0 0 8px 8px",letterSpacing:1.5}}>CURRENT PLAN</div>}
           <div style={{fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:12}}>Pro Member</div>
           <div style={{fontSize:40,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:8}}>$4<span style={{fontSize:14,color:T.t3,fontWeight:400}}>/mo</span></div>
-          <p style={{fontSize:12,color:T.t3,marginBottom:20}}>Full access — apply to unlimited jobs</p>
+          <p style={{fontSize:12,color:T.t3,marginBottom:20}}>Full access â€” apply to unlimited jobs</p>
           <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:24}}>
             {["Everything in Free","Apply to unlimited jobs","Priority placement in search","Direct message companies","Early access to urgent jobs","Pro badge on your profile"].map((f,i)=>(
               <div key={i} style={{display:"flex",alignItems:"center",gap:8}}>
@@ -903,34 +909,23 @@ function SubscriptionPage({isDark,showToast,userName}){
             ))}
           </div>
           {isPro
-            ?<Bdg label="✓ Active Pro Member" color={isDark?"#38BDF8":T.t1} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>
-            :<button onClick={handleStripeCheckout} disabled={stripeLoading}
-                style={{width:"100%",padding:"13px",borderRadius:11,border:"none",
-                  background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"linear-gradient(135deg,#1a2332,#334155)",
-                  color:"#fff",fontSize:14,fontWeight:700,cursor:stripeLoading?"not-allowed":"pointer",
-                  fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8,
-                  opacity:stripeLoading?0.7:1,boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 14px rgba(26,35,50,0.25)"}}>
-                {stripeLoading?"Redirecting to Stripe...":"💳 Upgrade to Pro — $4/mo"}
-              </button>}
+            ?<Bdg label="âœ“ Active Pro Member" color={isDark?"#38BDF8":T.t1} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>
+            :<Btn onClick={()=>showToast("Redirecting to payment...","info")} isDark={isDark} variant="primary" icon="zap" fullWidth>Upgrade to Pro â€” $4/mo</Btn>}
         </Card>
       </div>
 
-      {/* Payment History */}
-      {payments.length>0&&(
-        <Card isDark={isDark} style={{padding:0,overflow:"hidden",marginTop:4}}>
-          <div style={{padding:"14px 22px",borderBottom:isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.08)"}}>
-            <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Payment History</h3>
-          </div>
-          {payments.map((p,i)=>(
-            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",
-              borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",
-              alignItems:"center"}}>
-              <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{p.plan}</span>
-              <span style={{fontSize:13,color:"#10B981",fontWeight:700}}>${p.amount}</span>
-              <Bdg label={p.method==="card"?"💳 Card":"🏦 Transfer"} color={T.t2} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
-              <Bdg label={p.status} color={statusColor[p.status]||T.t3} bg={statusBg[p.status]||(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
+      {isPro&&(
+        <Card isDark={isDark} style={{padding:"20px 24px"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:14}}>
+            <div>
+              <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Pro Membership Active</h3>
+              <p style={{fontSize:12,color:T.t3}}>Next billing date: June 1, 2025 Â· $4.00</p>
             </div>
-          ))}
+            <div style={{display:"flex",gap:10}}>
+              <Btn onClick={()=>showToast("Downloading receipt...","info")} isDark={isDark} variant="ghost" size="sm" icon="download">Download Receipt</Btn>
+              <Btn onClick={()=>showToast("Subscription cancelled. Access until Jun 1.","warning")} isDark={isDark} variant="danger" size="sm">Cancel</Btn>
+            </div>
+          </div>
         </Card>
       )}
     </div>
@@ -1190,8 +1185,8 @@ export default function SeafarerDashboard(){
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{userName}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
-                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>✓ VERIFIED</span>
-                  <span style={{fontSize:9,color:T.t3}}>· Pro Member</span>
+                  <span style={{fontSize:9,color:"#38BDF8",fontWeight:700}}>âœ“ VERIFIED</span>
+                  <span style={{fontSize:9,color:T.t3}}>Â· Pro Member</span>
                 </div>
               </div>
             </div>
@@ -1226,14 +1221,7 @@ export default function SeafarerDashboard(){
             ))}
           </nav>
 
-          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",flexDirection:"column",gap:6}}>
-            <button onClick={()=>{localStorage.clear();window.location.href="/auth";}} title={!sidebar?"Log Out":""}
-              style={{width:"100%",padding:"8px 12px",borderRadius:9,border:"none",background:isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)",color:"#EF4444",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar?"flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
-              onMouseEnter={e=>{e.currentTarget.style.background="rgba(239,68,68,0.18)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background=isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)";}}>
-              <Icon name="logOut" size={14} color="#EF4444" strokeWidth={2.2}/>
-              {sidebar&&"Log Out"}
-            </button>
+          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`}}>
             <button onClick={()=>setSidebar(s=>!s)} style={{width:"100%",padding:"8px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,background:"transparent",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6,fontSize:11,fontWeight:500,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
               onMouseEnter={e=>{e.currentTarget.style.background=isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)";e.currentTarget.style.color=T.t1;}}
               onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=T.t3;}}>
@@ -1286,15 +1274,6 @@ export default function SeafarerDashboard(){
           </footer>
         </div>
       </div>
-
-      {/* ── MOBILE COMMAND DRAWER ── */}
-      <MobileNav
-        navItems={NAV}
-        page={page}
-        setPage={setPage}
-        isDark={isDark}
-        unreadCount={unreadNotifs}
-      />
     </>
   );
 }
