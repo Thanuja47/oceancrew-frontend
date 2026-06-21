@@ -517,11 +517,48 @@ function ProfilePage({isDark,showToast,userName}){
   const [form,setForm]=useState({
     name:SEAFARER.name,rank:SEAFARER.rank,nationality:SEAFARER.nationality,
     homePort:SEAFARER.homePort,yearsExp:SEAFARER.yearsExp,
-    email:"rajesh.f@gmail.com",phone:"+94 77 123 4567",
+    email:"",phone:"",
     availability:SEAFARER.availability,
-    summary:"Highly experienced Master Mariner with 18 years at sea across container vessels and bulk carriers. Strong record of safe navigation and crew management.",
-    preferred:"Container Vessel, Bulk Carrier, Oil Tanker",
+    summary:"",
+    preferred:"",
+    profilePicture: "", rankExperienceMonths: "", lastVesselType: "", cdcNumber: "", passportNumber: ""
   });
+
+  useEffect(() => {
+    fetch(`${API}/api/auth/me`, { headers: { "Authorization": `Bearer ${getToken()}` } })
+      .then(r => r.json())
+      .then(d => {
+        if(d && d._id) {
+          setForm(p => ({
+            ...p,
+            name: d.name || p.name, email: d.email || p.email, phone: d.phone || p.phone,
+            rank: d.rank || p.rank, nationality: d.nationality || p.nationality,
+            profilePicture: d.profilePicture || p.profilePicture,
+            rankExperienceMonths: d.rankExperienceMonths || p.rankExperienceMonths,
+            lastVesselType: d.lastVesselType || p.lastVesselType,
+            cdcNumber: d.cdcNumber || p.cdcNumber,
+            passportNumber: d.passportNumber || p.passportNumber
+          }));
+        }
+      }).catch(e => console.error("Error fetching profile:", e));
+  }, []);
+
+  const handleSave = async () => {
+    try {
+      const res = await fetch(`${API}/api/auth/profile`, {
+        method: "PUT",
+        headers: { "Authorization": `Bearer ${getToken()}`, "Content-Type": "application/json" },
+        body: JSON.stringify(form)
+      });
+      if(res.ok) {
+        showToast("Profile saved successfully","success");
+      } else {
+        showToast("Failed to save profile","error");
+      }
+    } catch(err) {
+      showToast("Network error","error");
+    }
+  };
 
   return(
     <div>
@@ -577,13 +614,29 @@ function ProfilePage({isDark,showToast,userName}){
         {/* Edit form */}
         <Card isDark={isDark}>
           <h3 style={{fontSize:16,fontWeight:600,color:T.t1,marginBottom:20,fontFamily:"'Sora',sans-serif"}}>Edit Profile</h3>
+          
+          <div style={{marginBottom:18}}>
+            <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Profile Picture</div>
+            <div style={{display:"flex",alignItems:"center",gap:12}}>
+              <div style={{width:50,height:50,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif"}}>
+                {SEAFARER.avatar}
+              </div>
+              <input type="file" accept="image/*" onChange={(e)=>{
+                // Mocking file upload for now
+                if(e.target.files && e.target.files[0]) showToast("Photo selected (UI mock)","info");
+              }} style={{color:T.t2, fontSize:12}} />
+            </div>
+          </div>
+
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:14}}>
             {[
               {k:"name",l:"Full Name"},{k:"rank",l:"Current Rank"},
               {k:"email",l:"Email"},{k:"phone",l:"Phone / WhatsApp"},
               {k:"nationality",l:"Nationality"},{k:"homePort",l:"Home Port"},
-              {k:"yearsExp",l:"Years at Sea"},{k:"availability",l:"Available From"},
-              {k:"preferred",l:"Preferred Vessel Types"},
+              {k:"yearsExp",l:"Years at Sea"},{k:"rankExperienceMonths",l:"Rank Experience (Months)"},
+              {k:"lastVesselType",l:"Last Vessel Type"},{k:"preferred",l:"Preferred Vessel Types"},
+              {k:"cdcNumber",l:"CDC Number"},{k:"passportNumber",l:"Passport Number"},
+              {k:"availability",l:"Available From"},
             ].map(f=>(
               <div key={f.k} style={{gridColumn:f.k==="preferred"?"1/-1":"auto"}}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
@@ -597,7 +650,7 @@ function ProfilePage({isDark,showToast,userName}){
             <textarea value={form.summary} onChange={e=>setForm(p=>({...p,summary:e.target.value}))} rows={3}
               style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
           </div>
-          <Btn onClick={()=>showToast("Profile saved successfully","success")} isDark={isDark} variant="primary" icon="check">Save Profile</Btn>
+          <Btn onClick={handleSave} isDark={isDark} variant="primary" icon="check">Save Profile</Btn>
         </Card>
       </div>
     </div>

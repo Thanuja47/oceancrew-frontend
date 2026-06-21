@@ -1089,10 +1089,47 @@ function ProfilePage({isDark,showToast}){
   const T=useT(isDark);
   const [form,setForm]=useState({
     name:COMPANY.name,email:COMPANY.email,country:COMPANY.country,
-    website:"www.pacificstarshipping.com",phone:"+65 6123 4567",
-    about:"Pacific Star Shipping Co. is a leading container and bulk carrier operator based in Singapore. We operate a fleet of 12 vessels across Asia-Pacific routes.",
-    vessels:"Container Vessel, Bulk Carrier",certs:"ISM Code, ISO 9001, MLC 2006",
+    website:"",phone:"",
+    about:"",
+    vessels:"",certs:"",
+    city:"", address:"", dgShippingNumber:"", nationality:"", companyDescription:""
   });
+
+  useEffect(() => {
+    fetch(`${API}/api/auth/me`, { headers: authHeader() })
+      .then(r => r.json())
+      .then(d => {
+        if(d && d._id) {
+          setForm(p => ({
+            ...p,
+            name: d.name || p.name, email: d.email || p.email, phone: d.phone || p.phone,
+            country: d.country || p.country, website: d.website || p.website,
+            about: d.about || p.about, vessels: d.vessels || p.vessels, certs: d.certs || p.certs,
+            city: d.city || p.city, address: d.address || p.address,
+            dgShippingNumber: d.dgShippingNumber || p.dgShippingNumber,
+            nationality: d.nationality || p.nationality,
+            companyDescription: d.companyDescription || p.companyDescription
+          }));
+        }
+      }).catch(e => console.error("Error fetching company profile:", e));
+  }, []);
+
+  const handleSave = async () => {
+    try {
+      const res = await fetch(`${API}/api/auth/profile`, {
+        method: "PUT",
+        headers: authHeader(),
+        body: JSON.stringify(form)
+      });
+      if(res.ok) {
+        showToast("Profile saved successfully","success");
+      } else {
+        showToast("Failed to save profile","error");
+      }
+    } catch(err) {
+      showToast("Network error","error");
+    }
+  };
 
   return(
     <div>
@@ -1135,12 +1172,16 @@ function ProfilePage({isDark,showToast}){
               {k:"name",l:"Company Name"},
               {k:"email",l:"Hiring Email"},
               {k:"country",l:"Country / HQ"},
+              {k:"city",l:"City"},
+              {k:"address",l:"Full Address"},
               {k:"phone",l:"Phone Number"},
               {k:"website",l:"Website"},
+              {k:"dgShippingNumber",l:"Licensing / DG Shipping No."},
+              {k:"nationality",l:"Nationality"},
               {k:"vessels",l:"Vessel Types Operated"},
               {k:"certs",l:"Certifications"},
             ].map(f=>(
-              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"?"1/-1":"auto"}}>
+              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"||f.k==="address"?"1/-1":"auto"}}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
                   style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
@@ -1152,7 +1193,12 @@ function ProfilePage({isDark,showToast}){
             <textarea value={form.about} onChange={e=>setForm(p=>({...p,about:e.target.value}))} rows={3}
               style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
           </div>
-          <Btn onClick={()=>showToast("Profile saved successfully","success")} isDark={isDark} variant="primary" icon="check">Save Profile</Btn>
+          <div style={{marginBottom:16}}>
+            <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Company Description / Bio</div>
+            <textarea value={form.companyDescription} onChange={e=>setForm(p=>({...p,companyDescription:e.target.value}))} rows={3}
+              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
+          </div>
+          <Btn onClick={handleSave} isDark={isDark} variant="primary" icon="check">Save Profile</Btn>
         </Card>
       </div>
     </div>
