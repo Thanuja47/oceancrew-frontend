@@ -50,15 +50,15 @@ export default function LandingPage() {
   }, []);
 
   const T = {
-    bg: isDark ┈┈┈┈┈┈┈┈ "#0A0F1A" : "#FFFFFF",
-    bg2: isDark ┈┈┈┈┈┈┈┈ "#121A2F" : "#F8FAFC",
-    t1: isDark ┈┈┈┈┈┈┈┈ "#F8FAFC" : "#0F172A",
-    t2: isDark ┈┈┈┈┈┈┈┈ "#E2E8F0" : "#334155",
-    t3: isDark ┈┈┈┈┈┈┈┈ "#94A3B8" : "#64748B",
-    primary: isDark ┈┈┈┈┈┈┈┈ "#38BDF8" : "#0EA5E9",
-    accent: isDark ┈┈┈┈┈┈┈┈ "#0EA5E9" : "#0284C7",
-    cardBg: isDark ┈┈┈┈┈┈┈┈ "rgba(30, 41, 59, 0.4)" : "#FFFFFF",
-    border: isDark ┈┈┈┈┈┈┈┈ "rgba(255, 255, 255, 0.08)" : "rgba(100, 116, 139, 0.15)",
+    bg: isDark ? "#0A0F1A" : "#FFFFFF",
+    bg2: isDark ? "#121A2F" : "#F8FAFC",
+    t1: isDark ? "#F8FAFC" : "#0F172A",
+    t2: isDark ? "#E2E8F0" : "#334155",
+    t3: isDark ? "#94A3B8" : "#64748B",
+    primary: isDark ? "#38BDF8" : "#0EA5E9",
+    accent: isDark ? "#0EA5E9" : "#0284C7",
+    cardBg: isDark ? "rgba(30, 41, 59, 0.4)" : "#FFFFFF",
+    border: isDark ? "rgba(255, 255, 255, 0.08)" : "rgba(100, 116, 139, 0.15)",
   };
 
   const navLinks = [
@@ -73,7 +73,7 @@ export default function LandingPage() {
     if (element) {
       const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition → window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   };
@@ -100,8 +100,8 @@ export default function LandingPage() {
         initial={{ y: -100 }} animate={{ y: 0 }} transition={{ duration: 0.5, ease: "easeOut" }}
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-          background: isDark ┈┈┈┈┈┈┈┈ (scrolled ┈┈┈┈┈┈┈┈ "rgba(10, 15, 26, 0.9)" : "transparent") : (scrolled ┈┈┈┈┈┈┈┈ "rgba(255, 255, 255, 0.9)" : "transparent"),
-          backdropFilter: scrolled ┈┈┈┈┈┈┈┈ "blur(12px)" : "none", borderBottom: scrolled ┈┈┈┈┈┈┈┈ `1px solid ${T.border}` : "1px solid transparent",
+          background: isDark ? (scrolled ? "rgba(10, 15, 26, 0.9)" : "transparent") : (scrolled ? "rgba(255, 255, 255, 0.9)" : "transparent"),
+          backdropFilter: scrolled ? "blur(12px)" : "none", borderBottom: scrolled ? `1px solid ${T.border}` : "1px solid transparent",
           padding: "16px 5%", display: "flex", justifyContent: "space-between", alignItems: "center",
           transition: "all 0.3s ease"
         }}>
@@ -113,7 +113,7 @@ export default function LandingPage() {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-          <div style={{ gap: 24, display: window.innerWidth < 768 ┈┈┈┈┈┈┈┈ "none" : "flex" }}>
+          <div style={{ gap: 24, display: window.innerWidth < 768 ? "none" : "flex" }}>
             {navLinks.map((link) => (
               <a key={link.name} href={link.href} onClick={(e) => handleScrollTo(e, link.href)} style={{ color: T.t2, textDecoration: "none", fontSize: 14, fontWeight: 500, transition: "color 0.2s" }} onMouseEnter={(e) => e.target.style.color = T.primary} onMouseLeave={(e) => e.target.style.color = T.t2}>
                 {link.name}
@@ -121,13 +121,13 @@ export default function LandingPage() {
             ))}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <button onClick={() => setTheme(t => t === "dark" ┈┈┈┈┈┈┈┈ "light" : "dark")}
+            <button onClick={() => setTheme(t => t === "dark" ? "light" : "dark")}
               style={{
-                width: 34, height: 34, borderRadius: 9, border: `1px solid ${isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.07)" : "rgba(100,116,139,0.2)"}`,
-                background: isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.04)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                width: 34, height: 34, borderRadius: 9, border: `1px solid ${isDark ? "rgba(255,255,255,0.07)" : "rgba(100,116,139,0.2)"}`,
+                background: isDark ? "rgba(255,255,255,0.04)" : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
                 color: T.t2, transition: "all .12s"
               }}>
-              <Icon name={isDark ┈┈┈┈┈┈┈┈ "sun" : "moon"} size={14} strokeWidth={2} />
+              <Icon name={isDark ? "sun" : "moon"} size={14} strokeWidth={2} />
             </button>
             <Link to="/auth" style={{ color: T.t1, textDecoration: "none", fontSize: 14, fontWeight: 600 }}>Log In</Link>
             <Link to="/auth" style={{
@@ -142,7 +142,7 @@ export default function LandingPage() {
       </motion.nav>
 
       {/* Hero Section */}
-      <section style={{ padding: "180px 5% 100px", maxWidth: 1200, margin: "0 aut✓, textAlign: "center", position: "relative", zIndex: 10 }}>
+      <section style={{ padding: "180px 5% 100px", maxWidth: 1200, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 10 }}>
         <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
           <motion.h1 variants={fadeInUp} style={{
             fontSize: "clamp(40px, 6vw, 72px)", fontWeight: 800, fontFamily: "'Sora', sans-serif",
@@ -162,7 +162,7 @@ export default function LandingPage() {
           </motion.p>
 
           <motion.div variants={fadeInUp} style={{ display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
-            <Link to="/auth┈┈┈┈┈┈┈┈role=company" style={{
+            <Link to="/auth?role=company" style={{
               background: `linear-gradient(135deg, ${T.primary}, ${T.accent})`, color: "#fff",
               textDecoration: "none", padding: "16px 32px", borderRadius: 12, fontSize: 16, fontWeight: 600,
               display: "flex", alignItems: "center", gap: 10, transition: "all 0.2s",
@@ -170,7 +170,7 @@ export default function LandingPage() {
             }} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "none"}>
               Hire Crew <Icon name="arrowRight" size={18} />
             </Link>
-            <Link to="/auth┈┈┈┈┈┈┈┈role=seafarer" style={{
+            <Link to="/auth?role=seafarer" style={{
               background: "transparent", color: T.t1, border: `2px solid ${T.border}`,
               textDecoration: "none", padding: "14px 32px", borderRadius: 12, fontSize: 16, fontWeight: 600,
               display: "flex", alignItems: "center", gap: 10, transition: "all 0.2s",
@@ -210,12 +210,12 @@ export default function LandingPage() {
 
       {/* Features Section */}
       <section id="features" style={{ padding: "100px 5%", background: T.bg2, position: "relative" }}>
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: 1200, margin: "0 aut✓ }}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={fadeInUp} style={{ textAlign: "center", marginBottom: 64 }}>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, fontFamily: "'Sora', sans-serif", color: T.t1, marginBottom: 16 }}>
               Why Choose OceanCrew
             </h2>
-            <p style={{ fontSize: 18, color: T.t3, maxWidth: 600, margin: "0 aut✓ }}>
+            <p style={{ fontSize: 18, color: T.t3, maxWidth: 600, margin: "0 auto" }}>
               Built specifically for the maritime industry, replacing outdated methods with modern technology.
             </p>
           </motion.div>
@@ -233,8 +233,8 @@ export default function LandingPage() {
                 background: T.cardBg, border: `1px solid ${T.border}`, borderRadius: 16, padding: 32, cursor: "pointer", position: "relative", overflow: "hidden"
               }} onMouseEnter={() => setHovered(i)} onMouseLeave={() => setHovered(null)}>
                 <div style={{
-                  width: 48, height: 48, borderRadius: 12, background: hovered === i ┈┈┈┈┈┈┈┈ T.primary : "rgba(56, 189, 248, 0.1)",
-                  display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 24, transition: "all 0.3s", color: hovered === i ┈┈┈┈┈┈┈┈ "#fff" : T.primary
+                  width: 48, height: 48, borderRadius: 12, background: hovered === i ? T.primary : "rgba(56, 189, 248, 0.1)",
+                  display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 24, transition: "all 0.3s", color: hovered === i ? "#fff" : T.primary
                 }}>
                   <Icon name={f.icon} size={24} />
                 </div>
@@ -248,17 +248,17 @@ export default function LandingPage() {
 
       {/* How it Works */}
       <section id="how-it-works" style={{ padding: "100px 5%", background: T.bg, position: "relative" }}>
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: 1200, margin: "0 aut✓ }}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={fadeInUp} style={{ textAlign: "center", marginBottom: 64 }}>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, fontFamily: "'Sora', sans-serif", color: T.t1, marginBottom: 16 }}>
               How It Works
             </h2>
-            <p style={{ fontSize: 18, color: T.t3, maxWidth: 600, margin: "0 aut✓ }}>
-              · seamless process from sign up to setting sail.
+            <p style={{ fontSize: 18, color: T.t3, maxWidth: 600, margin: "0 auto" }}>
+              A seamless process from sign up to setting sail.
             </p>
           </motion.div>
 
-          <div style={{ display: "flex", flexDirection: window.innerWidth < 768 ┈┈┈┈┈┈┈┈ "column" : "row", gap: 24, alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", flexDirection: window.innerWidth < 768 ? "column" : "row", gap: 24, alignItems: "center", justifyContent: "space-between" }}>
             {[
               { num: "01", title: "Create Profile", desc: "Upload your sea service records and certificates securely." },
               { num: "02", title: "Get Matched", desc: "Our AI finds the best matching vessels and companies for your rank." },
@@ -279,12 +279,12 @@ export default function LandingPage() {
 
       {/* Testimonials */}
       <section id="testimonials" style={{ padding: "100px 5%", background: T.bg2, position: "relative" }}>
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: 1200, margin: "0 aut✓ }}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} style={{ maxWidth: 1200, margin: "0 auto" }}>
           <motion.div variants={fadeInUp} style={{ textAlign: "center", marginBottom: 64 }}>
             <h2 style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, fontFamily: "'Sora', sans-serif", color: T.t1, marginBottom: 16 }}>
               Trusted by Professionals
             </h2>
-            <p style={{ fontSize: 18, color: T.t3, maxWidth: 600, margin: "0 aut✓ }}>
+            <p style={{ fontSize: 18, color: T.t3, maxWidth: 600, margin: "0 auto" }}>
               See what seafarers and shipping companies have to say about OceanCrew.
             </p>
           </motion.div>
@@ -314,7 +314,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer style={{ borderTop: `1px solid ${T.border}`, padding: "64px 5%", background: T.bg }}>
-        <div style={{ maxWidth: 1200, margin: "0 aut✓, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 40 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
               <div style={{ width: 28, height: 28, borderRadius: 8, background: `linear-gradient(135deg, ${T.primary}, ${T.accent})`, display: "flex", alignItems: "center", justifyContent: "center" }}>

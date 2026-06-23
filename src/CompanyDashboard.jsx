@@ -81,17 +81,17 @@ const L = {
   sidebar:"#FFFFFF",header:"rgba(255,255,255,0.85)",
 };
 
-function useT(isDark){return isDark┈┈┈┈┈┈┈┈D:L;}
+function useT(isDark){return isDark?D:L;}
 
 const API = "https://oceancrew-backend-production.up.railway.app";
 const authHeader = () => ({ "Authorization": `Bearer ${localStorage.getItem("token")}`, "Content-Type": "application/json" });
 
-/* â”€â”€ DAT· â”€â”€ */
+/* â”€â”€ DATA â”€â”€ */
 const COMPANY = {
-  name:localStorage.getItem("userName") || "Your Company",
-  logo:(localStorage.getItem("userName")||"YC").slice(0,2).toUpperCase(),plan:"Free",country:"",
-  verified:false,joined:"",email:"",
-  totalHired:0,activeJobs:0,totalApps:0,responseRate:0,
+  name:localStorage.getItem("userName") || "Pacific Star Shipping Co.",
+  logo:(localStorage.getItem("userName")||"PS").slice(0,2).toUpperCase(),plan:"Professional",country:"Singapore",
+  verified:true,joined:"Jan 2024",email:"hiring@pacificstar.com",
+  totalHired:47,activeJobs:8,totalApps:312,responseRate:94,
 };
 
 const JOBS = [];
@@ -102,7 +102,13 @@ const TALENT_POOL = [];
 
 const INVOICES = [];
 
-const NOTIFICATIONS = [];
+const NOTIFICATIONS = [
+  {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ago",  read:false,icon:"anchor"},
+  {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ago",  read:false,icon:"target"},
+  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 — $149",                          time:"1d ago",  read:true, icon:"creditCard"},
+  {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ago",  read:true, icon:"clock"},
+  {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ago",  read:true, icon:"zap"},
+];
 
 const ACTIVITY = [];
 
@@ -132,9 +138,9 @@ function Card({children,style={},isDark,onClick}){
   return(
     <div onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
       style={{background:T.card,borderRadius:20,padding:24,
-        boxShadow:h&&onClick┈┈┈┈┈┈┈┈(isDark—0 8px 40px rgba(0,0,0,0.5)":"0 8px 32px rgba(150,170,200,0.2)"):T.shadow,
-        border:isDark┈┈┈┈┈┈┈┈`1px solid ${T.border}`:"none",
-        transition:"all 0.22s ease",transform:h&&onClick—translateY(-2px)":"none",...style}}>
+        boxShadow:h&&onClick?(isDark?"0 8px 40px rgba(0,0,0,0.5)":"0 8px 32px rgba(150,170,200,0.2)"):T.shadow,
+        border:isDark?`1px solid ${T.border}`:"none",
+        transition:"all 0.22s ease",transform:h&&onClick?"translateY(-2px)":"none",...style}}>
       {children}
     </div>
   );
@@ -151,17 +157,17 @@ function Bdg({label,color,bg}){
 
 function Btn({children,onClick,variant="primary",isDark,size="md",icon}){
   const T=useT(isDark);
-  const bg=variant==="primary"┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):variant==="success"┈┈┈┈┈┈┈┈(isDark—linear-gradient(135deg,#34D399,#10B981)":"#16A34A"):variant==="danger"┈┈┈┈┈┈┈┈T.redBg:variant==="ghost"┈┈┈┈┈┈┈┈(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"):"transparent";
-  const col=variant==="primary"—#fff":variant==="success"—#fff":variant==="danger"┈┈┈┈┈┈┈┈T.red:T.t2;
-  const pad=size==="sm"—6px 12px":size==="lg"—13px 26px":"9px 18px";
+  const bg=variant==="primary"?(isDark?"#38BDF8":"#1a2332"):variant==="success"?(isDark?"linear-gradient(135deg,#34D399,#10B981)":"#16A34A"):variant==="danger"?T.redBg:variant==="ghost"?(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"):"transparent";
+  const col=variant==="primary"?"#fff":variant==="success"?"#fff":variant==="danger"?T.red:T.t2;
+  const pad=size==="sm"?"6px 12px":size==="lg"?"13px 26px":"9px 18px";
   return(
     <button onClick={onClick} style={{padding:pad,borderRadius:10,border:"none",cursor:"pointer",fontWeight:600,
-      fontSize:size==="sm"┈┈┈┈┈┈┈┈11:13,fontFamily:"'Inter',sans-serif",transition:"all 0.18s",
+      fontSize:size==="sm"?11:13,fontFamily:"'Inter',sans-serif",transition:"all 0.18s",
       background:bg,color:col,display:"flex",alignItems:"center",gap:6,
-      boxShadow:variant==="primary"┈┈┈┈┈┈┈┈(isDark—0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"):"none"}}
+      boxShadow:variant==="primary"?(isDark?"0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"):"none"}}
       onMouseEnter={e=>e.currentTarget.style.opacity="0.88"}
       onMouseLeave={e=>e.currentTarget.style.opacity="1"}>
-      {icon&&<Icon name={icon} size={size==="sm"┈┈┈┈┈┈┈┈12:14} color="currentColor" strokeWidth={2}/>}
+      {icon&&<Icon name={icon} size={size==="sm"?12:14} color="currentColor" strokeWidth={2}/>}
       {children}
     </button>
   );
@@ -172,10 +178,10 @@ function Av({initials,size=40,online,isDark}){
   return(
     <div style={{position:"relative",flexShrink:0}}>
       <div style={{width:size,height:size,borderRadius:"50%",
-        background:isDark—rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",
+        background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",
         display:"flex",alignItems:"center",justifyContent:"center",
         color:T.t2,fontWeight:700,fontSize:size*0.32,fontFamily:"'Sora',sans-serif",
-        border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(0,0,0,0.06)"}}>
+        border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(0,0,0,0.06)"}}>
         {initials}
       </div>
       {online&&<div style={{position:"absolute",bottom:1,right:1,
@@ -192,7 +198,7 @@ function Spark({data,color,height=26}){
       {data.map((v,i)=>(
         <div key={i} style={{flex:1,borderRadius:2,background:color,
           height:`${(v/max)*100}%`,minHeight:2,
-          opacity:0.25→(i/data.length)*0.65}}/>
+          opacity:0.25+(i/data.length)*0.65}}/>
       ))}
     </div>
   );
@@ -207,7 +213,7 @@ function Toast({msg,type,onClose}){
       color:c,fontSize:13,fontWeight:600,backdropFilter:"blur(20px)",
       boxShadow:"0 8px 32px rgba(0,0,0,0.5)",display:"flex",alignItems:"center",gap:8,
       fontFamily:"'Inter',sans-serif",animation:"slideIn 0.3s ease"}}>
-      {type==="success"—✓":type==="error"—✕":"ℹ"} {msg}
+      {type==="success"?"✓":type==="error"?"✕":"ℹ"} {msg}
     </div>
   );
 }
@@ -215,12 +221,12 @@ function Toast({msg,type,onClose}){
 function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
   const T=useT(isDark);
   const activeJobs=jobs.filter(j=>j.status==="Active").length;
-  const totalApps=jobs.reduce((a,j)=>a→j.apps,0);
-  const shortlisted=jobs.reduce((a,j)=>a→j.shortlisted,0);
+  const totalApps=jobs.reduce((a,j)=>a+j.apps,0);
+  const shortlisted=jobs.reduce((a,j)=>a+j.shortlisted,0);
 
   const stats=[
-    {label:"Active Job Posts",  val:activeJobs,  icon:"briefcase", dc:"#38BDF8",sp:[3,4,5,5,6,7,8,activeJobs],change:"→2 this week",ok:true},
-    {label:"Total Applicants",  val:totalApps,   icon:"users",     dc:"#A78BFA",sp:[40,60,80,100,150,200,280,totalApps],change:"→28 today",ok:true},
+    {label:"Active Job Posts",  val:activeJobs,  icon:"briefcase", dc:"#38BDF8",sp:[3,4,5,5,6,7,8,activeJobs],change:"+2 this week",ok:true},
+    {label:"Total Applicants",  val:totalApps,   icon:"users",     dc:"#A78BFA",sp:[40,60,80,100,150,200,280,totalApps],change:"+28 today",ok:true},
     {label:"Shortlisted",       val:shortlisted, icon:"star",      dc:"#FBBF24",sp:[1,2,3,4,5,6,8,shortlisted],change:"Ready for interview",ok:true},
     {label:"Total Hired",       val:COMPANY.totalHired,icon:"checkCircle",dc:"#34D399",sp:[10,18,24,30,36,40,44,47],change:"All time",ok:true},
   ];
@@ -230,15 +236,15 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
       {/* Hero */}
       <Card isDark={isDark} style={{marginBottom:20,padding:0,overflow:"hidden"}}>
         <div style={{padding:"32px 36px",
-          background:isDark—linear-gradient(135deg,#0C1627,#0F2444)":"linear-gradient(135deg,#EFF6FF,#EDE9FE)",
+          background:isDark?"linear-gradient(135deg,#0C1627,#0F2444)":"linear-gradient(135deg,#EFF6FF,#EDE9FE)",
           position:"relative",overflow:"hidden"}}>
           <div style={{position:"absolute",right:"-5%",top:"-30%",width:360,height:360,
-            borderRadius:"50%",background:isDark—rgba(56,189,248,0.05)":"rgba(139,92,246,0.08)",
+            borderRadius:"50%",background:isDark?"rgba(56,189,248,0.05)":"rgba(139,92,246,0.08)",
             filter:"blur(50px)",pointerEvents:"none"}}/>
           <div style={{position:"relative",zIndex:1,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:20}}>
             <div>
               <div style={{display:"inline-flex",alignItems:"center",gap:7,
-                background:isDark—rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",
+                background:isDark?"rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",
                 borderRadius:999,padding:"5px 13px",marginBottom:14}}>
                 <span style={{width:6,height:6,borderRadius:"50%",background:T.green,
                   display:"inline-block",animation:"pulseDot 2s infinite"}}/>
@@ -246,11 +252,11 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
                   Verified Company · Professional Plan
                 </span>
               </div>
-              <h1 style={{fontSize:30,fontWeight:700,color:isDark—#fff":T.t1,
+              <h1 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":T.t1,
                 fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:6}}>
                 Welcome back, {COMPANY.name}
               </h1>
-              <p style={{fontSize:14,color:isDark—rgba(255,255,255,0.55)":T.t2}}>
+              <p style={{fontSize:14,color:isDark?"rgba(255,255,255,0.55)":T.t2}}>
                 {new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})}
               </p>
             </div>
@@ -268,18 +274,18 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
           <Card key={i} isDark={isDark} style={{padding:"20px 22px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
               <div style={{width:38,height:38,borderRadius:11,
-                background:isDark┈┈┈┈┈┈┈┈`${s.dc}18`:T.sub,
+                background:isDark?`${s.dc}18`:T.sub,
                 display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <Icon name={s.icon} size={17} color={isDark┈┈┈┈┈┈┈┈s.dc:T.t2} strokeWidth={1.8}/>
+                <Icon name={s.icon} size={17} color={isDark?s.dc:T.t2} strokeWidth={1.8}/>
               </div>
-              <Bdg label={s.change} color={s.ok┈┈┈┈┈┈┈┈T.green:T.red} bg={s.ok┈┈┈┈┈┈┈┈T.greenBg:T.redBg}/>
+              <Bdg label={s.change} color={s.ok?T.green:T.red} bg={s.ok?T.greenBg:T.redBg}/>
             </div>
-            <div style={{fontSize:34,fontWeight:700,color:isDark┈┈┈┈┈┈┈┈s.dc:T.t1,
+            <div style={{fontSize:34,fontWeight:700,color:isDark?s.dc:T.t1,
               letterSpacing:"-0.04em",lineHeight:1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>
-              {s.val.toLocaleString┈┈┈┈┈┈┈┈s.val.toLocaleString():s.val}
+              {s.val.toLocaleString?s.val.toLocaleString():s.val}
             </div>
             <div style={{fontSize:12,color:T.t2,marginBottom:12}}>{s.label}</div>
-            <Spark data={s.sp} color={isDark┈┈┈┈┈┈┈┈s.dc:"#94A3B8"} height={26}/>
+            <Spark data={s.sp} color={isDark?s.dc:"#94A3B8"} height={26}/>
           </Card>
         ))}
       </div>
@@ -294,12 +300,12 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
           <div style={{display:"flex",flexDirection:"column",gap:8}}>
             {jobs.filter(j=>j.status==="Active").map(job=>(
               <div key={job.id} style={{display:"flex",alignItems:"center",gap:14,padding:"12px 14px",
-                background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:12,
-                border:job.urgent┈┈┈┈┈┈┈┈`1px solid ${T.red}30`:(isDark—1px solid rgba(255,255,255,0.04)":"none")}}>
+                background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:12,
+                border:job.urgent?`1px solid ${T.red}30`:(isDark?"1px solid rgba(255,255,255,0.04)":"none")}}>
                 <div style={{width:40,height:40,borderRadius:11,
-                  background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",
+                  background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",
                   display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                  <Icon name="briefcase" size={17} color={isDark—#38BDF8":T.t2} strokeWidth={1.8}/>
+                  <Icon name="briefcase" size={17} color={isDark?"#38BDF8":T.t2} strokeWidth={1.8}/>
                 </div>
                 <div style={{flex:1,minWidth:0}}>
                   <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}>
@@ -309,7 +315,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
                   <div style={{fontSize:11,color:T.t3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{job.vessel}</div>
                 </div>
                 <div style={{textAlign:"right",flexShrink:0}}>
-                  <div style={{fontSize:14,fontWeight:700,color:isDark—#38BDF8":T.t1,fontFamily:"'JetBrains Mono',monospace"}}>{job.salary}</div>
+                  <div style={{fontSize:14,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'JetBrains Mono',monospace"}}>{job.salary}</div>
                   <div style={{fontSize:11,color:T.t3,marginTop:2}}>{job.apps} applicants</div>
                 </div>
               </div>
@@ -323,9 +329,9 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
           <div style={{display:"flex",flexDirection:"column",gap:7}}>
             {ACTIVITY.map(a=>(
               <div key={a.id} style={{display:"flex",gap:10,alignItems:"flex-start",padding:"9px 0",
-                borderBottom:`1px solid ${isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
+                borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
                 <div style={{width:7,height:7,borderRadius:"50%",marginTop:5,flexShrink:0,
-                  background:a.ok┈┈┈┈┈┈┈┈T.green:T.red}}/>
+                  background:a.ok?T.green:T.red}}/>
                 <div style={{flex:1}}>
                   <p style={{fontSize:12,color:T.t2,lineHeight:1.5}}>{a.msg}</p>
                   <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{a.time}</span>
@@ -336,7 +342,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
         </Card>
       </div>
 
-      {/* Talent pool preview → notifications */}
+      {/* Talent pool preview + notifications */}
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
         <Card isDark={isDark}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:16}}>
@@ -345,7 +351,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
           </div>
           {TALENT_POOL.map(s=>(
             <div key={s.id} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 0",
-              borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
+              borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
               <Av initials={s.avatar} size={38} isDark={isDark}/>
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:2}}>
@@ -354,7 +360,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
                 </div>
                 <div style={{fontSize:11,color:T.t3}}>{s.rank} · Available {s.available}</div>
               </div>
-              <Bdg label={`${s.score}% match`} color={s.score>90┈┈┈┈┈┈┈┈T.green:T.yellow} bg={s.score>90┈┈┈┈┈┈┈┈T.greenBg:T.yellowBg}/>
+              <Bdg label={`${s.score}% match`} color={s.score>90?T.green:T.yellow} bg={s.score>90?T.greenBg:T.yellowBg}/>
             </div>
           ))}
         </Card>
@@ -366,17 +372,17 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
           </div>
           {(notifs||NOTIFICATIONS).slice(0,4).map(n=>(
             <div key={n.id} style={{display:"flex",gap:12,alignItems:"flex-start",padding:"10px 0",
-              borderBottom:`1px solid ${isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
+              borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
               <div style={{width:32,height:32,borderRadius:9,flexShrink:0,
-                background:n.read┈┈┈┈┈┈┈┈(isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)"):(isDark—rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)"),
+                background:n.read?(isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)"):(isDark?"rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)"),
                 display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <Icon name={n.icon} size={14} color={n.read┈┈┈┈┈┈┈┈T.t3:(isDark—#38BDF8":T.accent)} strokeWidth={2}/>
+                <Icon name={n.icon} size={14} color={n.read?T.t3:(isDark?"#38BDF8":T.accent)} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:12,color:n.read┈┈┈┈┈┈┈┈T.t3:T.t1,fontWeight:n.read┈┈┈┈┈┈┈┈400:500,lineHeight:1.4}}>{n.msg}</p>
+                <p style={{fontSize:12,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4}}>{n.msg}</p>
                 <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
               </div>
-              {!n.read&&<div style={{width:7,height:7,borderRadius:"50%",background:isDark—#38BDF8":T.accent,flexShrink:0,marginTop:4}}/>}
+              {!n.read&&<div style={{width:7,height:7,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:4}}/>}
             </div>
           ))}
         </Card>
@@ -393,7 +399,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
 
   const postJob=()=>{
     if(!form.title||!form.salary){showToast("Fill required fields","error");return;}
-    const nj={id:jobs.length→1,...form,status:"Active",apps:0,shortlisted:0,
+    const nj={id:jobs.length+1,...form,status:"Active",apps:0,shortlisted:0,
       posted:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"})};
     setJobs(p=>[nj,...p]);
     setShowNew(false);
@@ -402,18 +408,18 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
   };
 
   const toggleStatus=(id)=>{
-    setJobs(p=>p.map(j=>j.id===id┈┈┈┈┈┈┈┈{...j,status:j.status==="Active"—Paused":"Active"}:j));
-    showToast("Job status updated","inf✓);
+    setJobs(p=>p.map(j=>j.id===id?{...j,status:j.status==="Active"?"Paused":"Active"}:j));
+    showToast("Job status updated","info");
   };
 
   const markUrgent=(id)=>{
-    setJobs(p=>p.map(j=>j.id===id┈┈┈┈┈┈┈┈{...j,urgent:!j.urgent}:j));
+    setJobs(p=>p.map(j=>j.id===id?{...j,urgent:!j.urgent}:j));
     const job=jobs.find(j=>j.id===id);
-    showToast(job.urgent—Urgent badge removed":"Marked as URGENT — notify sent to matching seafarers","success");
+    showToast(job.urgent?"Urgent badge removed":"Marked as URGENT — notify sent to matching seafarers","success");
   };
 
   const statusColor={Active:T.green,Paused:T.yellow,Closed:T.t3};
-  const statusBg={Active:T.greenBg,Paused:T.yellowBg,Closed:isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"};
+  const statusBg={Active:T.greenBg,Paused:T.yellowBg,Closed:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"};
 
   return(
     <div>
@@ -438,13 +444,13 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
               <div key={f.k}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))} placeholder={f.ph}
-                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
               </div>
             ))}
             <div>
               <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Rank Required</div>
               <select value={form.rank} onChange={e=>setForm(p=>({...p,rank:e.target.value}))}
-                style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif"}}>
+                style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif"}}>
                 <option value="">Select rank</option>
                 {ranks.map(r=><option key={r}>{r}</option>)}
               </select>
@@ -452,11 +458,11 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
             <div>
               <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Mark as Urgent</div>
               <label style={{display:"flex",alignItems:"center",gap:10,cursor:"pointer",paddingTop:8}}>
-                <div onClick={()=>setForm(p=>({...p,urgent:!p.urgent}))} style={{width:44,height:24,borderRadius:12,background:form.urgent┈┈┈┈┈┈┈┈(isDark—#F87171":"#DC2626"):"rgba(100,116,139,0.2)",position:"relative",cursor:"pointer",transition:"background 0.2s"}}>
-                  <div style={{position:"absolute",top:3,left:form.urgent—calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
+                <div onClick={()=>setForm(p=>({...p,urgent:!p.urgent}))} style={{width:44,height:24,borderRadius:12,background:form.urgent?(isDark?"#F87171":"#DC2626"):"rgba(100,116,139,0.2)",position:"relative",cursor:"pointer",transition:"background 0.2s"}}>
+                  <div style={{position:"absolute",top:3,left:form.urgent?"calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
                 </div>
-                <span style={{fontSize:13,color:form.urgent┈┈┈┈┈┈┈┈T.red:T.t3,fontWeight:form.urgent┈┈┈┈┈┈┈┈600:400}}>
-                  {form.urgent—URGENT — notify seafarers":"Not urgent"}
+                <span style={{fontSize:13,color:form.urgent?T.red:T.t3,fontWeight:form.urgent?600:400}}>
+                  {form.urgent?"URGENT — notify seafarers":"Not urgent"}
                 </span>
               </label>
             </div>
@@ -464,7 +470,7 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
           <div style={{marginBottom:16}}>
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Job Notes / Requirements</div>
             <textarea value={form.notes} onChange={e=>setForm(p=>({...p,notes:e.target.value}))} placeholder="Certificate requirements, special skills, etc..." rows={2}
-              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
+              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
           </div>
           <div style={{display:"flex",gap:10}}>
             <Btn onClick={postJob} isDark={isDark} variant="primary" icon="send">Post Job</Btn>
@@ -477,8 +483,8 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
         {jobs.map(job=>(
           <Card key={job.id} isDark={isDark} style={{padding:"20px 24px"}}>
             <div style={{display:"flex",alignItems:"center",gap:16,flexWrap:"wrap"}}>
-              <div style={{width:46,height:46,borderRadius:13,background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                <Icon name="briefcase" size={20} color={isDark—#38BDF8":T.t2} strokeWidth={1.8}/>
+              <div style={{width:46,height:46,borderRadius:13,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                <Icon name="briefcase" size={20} color={isDark?"#38BDF8":T.t2} strokeWidth={1.8}/>
               </div>
               <div style={{flex:1,minWidth:200}}>
                 <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
@@ -487,14 +493,14 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                   {job.urgent&&<Bdg label="URGENT" color={T.red} bg={T.redBg}/>}
                 </div>
                 <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-                  {[job.vessel,job.salary→"/m✓,job.duration,`Posted ${job.posted}`].filter(Boolean).map(tag=>(
-                    <Bdg key={tag} label={tag} color={T.t2} bg={isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
+                  {[job.vessel,job.salary+"/mo",job.duration,`Posted ${job.posted}`].filter(Boolean).map(tag=>(
+                    <Bdg key={tag} label={tag} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
                   ))}
                 </div>
               </div>
               <div style={{display:"flex",gap:16,flexShrink:0}}>
                 <div style={{textAlign:"center"}}>
-                  <div style={{fontSize:22,fontWeight:700,color:isDark—#38BDF8":T.t1,fontFamily:"'Sora',sans-serif"}}>{job.apps}</div>
+                  <div style={{fontSize:22,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif"}}>{job.apps}</div>
                   <div style={{fontSize:10,color:T.t3}}>Applicants</div>
                 </div>
                 <div style={{textAlign:"center"}}>
@@ -503,13 +509,13 @@ function JobsPage({isDark,showToast,jobs,setJobs}){
                 </div>
               </div>
               <div style={{display:"flex",gap:8,flexShrink:0,flexWrap:"wrap"}}>
-                <Btn onClick={()=>markUrgent(job.id)} isDark={isDark} variant={job.urgent—danger":"ghost"} size="sm" icon="zap">
-                  {job.urgent—Remove Urgent":"Mark Urgent"}
+                <Btn onClick={()=>markUrgent(job.id)} isDark={isDark} variant={job.urgent?"danger":"ghost"} size="sm" icon="zap">
+                  {job.urgent?"Remove Urgent":"Mark Urgent"}
                 </Btn>
                 <Btn onClick={()=>toggleStatus(job.id)} isDark={isDark} variant="ghost" size="sm">
-                  {job.status==="Active"—Pause":"Activate"}
+                  {job.status==="Active"?"Pause":"Activate"}
                 </Btn>
-                <Btn onClick={()=>showToast("Opening applicants...","inf✓)} isDark={isDark} variant="primary" size="sm" icon="users">
+                <Btn onClick={()=>showToast("Opening applicants...","info")} isDark={isDark} variant="primary" size="sm" icon="users">
                   View Applicants
                 </Btn>
               </div>
@@ -528,15 +534,15 @@ function ApplicantsPage({isDark,showToast,jobs}){
   const [applicants,setApplicants]=useState([]);
   useEffect(()=>{
     fetch(`${API}/api/applications/company`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
-      if(Array.isArray(d)) setApplicants(d.map(a=>({id:a._id, jobId:a.job┈┈┈┈┈┈┈┈._id, name:a.seafarer┈┈┈┈┈┈┈┈.name, avatar:a.seafarer┈┈┈┈┈┈┈┈.name┈┈┈┈┈┈┈┈.slice(0,2), rank:a.seafarer┈┈┈┈┈┈┈┈.rank, status:a.status, score:Math.floor(Math.random()*15→85), verified:true, country:"Global", exp:"N/A"})));
+      if(Array.isArray(d)) setApplicants(d.map(a=>({id:a._id, jobId:a.job?._id, name:a.seafarer?.name, avatar:a.seafarer?.name?.slice(0,2), rank:a.seafarer?.rank, status:a.status, score:Math.floor(Math.random()*15+85), verified:true, country:"Global", exp:"N/A"})));
     });
   }, []);
   const stageColors={Applied:T.t3,Shortlisted:"#38BDF8",Interview:"#A78BFA",Offer:T.yellow,Hired:T.green,Rejected:T.red};
 
-  const filtered=selectedJob==="all"┈┈┈┈┈┈┈┈applicants:applicants.filter(a=>a.jobId===parseInt(selectedJob));
+  const filtered=selectedJob==="all"?applicants:applicants.filter(a=>a.jobId===parseInt(selectedJob));
 
   const moveStage=async(id,newStage)=>{
-    setApplicants(p=>p.map(a=>a.id===id┈┈┈┈┈┈┈┈{...a,status:newStage}:a));
+    setApplicants(p=>p.map(a=>a.id===id?{...a,status:newStage}:a));
     showToast(`Applicant moved to ${newStage}`,"success");
     try {
       await fetch(`${API}/api/applications/${id}`, {
@@ -564,8 +570,8 @@ function ApplicantsPage({isDark,showToast,jobs}){
             <button key={j.id} onClick={()=>setSelectedJob(String(j.id))}
               style={{padding:"6px 14px",borderRadius:10,border:"none",cursor:"pointer",
                 fontWeight:600,fontSize:12,fontFamily:"'Inter',sans-serif",transition:"all 0.15s",
-                background:selectedJob===String(j.id)┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
-                color:selectedJob===String(j.id)—#fff":T.t3}}>
+                background:selectedJob===String(j.id)?(isDark?"#38BDF8":"#1a2332"):(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
+                color:selectedJob===String(j.id)?"#fff":T.t3}}>
               {j.title}
             </button>
           ))}
@@ -586,10 +592,10 @@ function ApplicantsPage({isDark,showToast,jobs}){
                     {app.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
                   <div style={{display:"flex",gap:7,flexWrap:"wrap"}}>
-                    <Bdg label={app.rank} color={T.t2} bg={isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
-                    <Bdg label={app.country} color={T.t3} bg={isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
-                    <Bdg label={app.exp} color={T.t2} bg={isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
-                    {job&&<Bdg label={`For: ${job.title}`} color={isDark—#38BDF8":T.accent} bg={isDark—rgba(56,189,248,0.1)":T.accentBg}/>}
+                    <Bdg label={app.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
+                    <Bdg label={app.country} color={T.t3} bg={isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
+                    <Bdg label={app.exp} color={T.t2} bg={isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
+                    {job&&<Bdg label={`For: ${job.title}`} color={isDark?"#38BDF8":T.accent} bg={isDark?"rgba(56,189,248,0.1)":T.accentBg}/>}
                   </div>
                 </div>
 
@@ -597,11 +603,11 @@ function ApplicantsPage({isDark,showToast,jobs}){
                 <div style={{width:72,flexShrink:0}}>
                   <div style={{display:"flex",justifyContent:"space-between",marginBottom:5}}>
                     <span style={{fontSize:10,color:T.t3}}>Match</span>
-                    <span style={{fontSize:11,fontWeight:700,color:app.score>90┈┈┈┈┈┈┈┈T.green:app.score>80┈┈┈┈┈┈┈┈T.yellow:T.t2}}>{app.score}%</span>
+                    <span style={{fontSize:11,fontWeight:700,color:app.score>90?T.green:app.score>80?T.yellow:T.t2}}>{app.score}%</span>
                   </div>
-                  <div style={{height:4,borderRadius:2,background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
+                  <div style={{height:4,borderRadius:2,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
                     <div style={{height:"100%",width:`${app.score}%`,borderRadius:2,
-                      background:app.score>90┈┈┈┈┈┈┈┈T.green:app.score>80┈┈┈┈┈┈┈┈T.yellow:T.t2}}/>
+                      background:app.score>90?T.green:app.score>80?T.yellow:T.t2}}/>
                   </div>
                 </div>
 
@@ -612,11 +618,11 @@ function ApplicantsPage({isDark,showToast,jobs}){
                 <div style={{display:"flex",gap:6,flexShrink:0,flexWrap:"wrap"}}>
                   <select value={app.status}
                     onChange={e=>moveStage(app.id,e.target.value)}
-                    style={{padding:"7px 10px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark—#0f1e36":"#fff",color:T.t1,fontSize:11,outline:"none",fontFamily:"'Inter',sans-serif",cursor:"pointer"}}>
+                    style={{padding:"7px 10px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"#0f1e36":"#fff",color:T.t1,fontSize:11,outline:"none",fontFamily:"'Inter',sans-serif",cursor:"pointer"}}>
                     {["Applied","Shortlisted","Interview","Offer","Hired","Rejected"].map(s=><option key={s}>{s}</option>)}
                   </select>
                   <Btn onClick={()=>notify(app.name)} isDark={isDark} variant="ghost" size="sm" icon="send">Notify</Btn>
-                  <Btn onClick={()=>showToast("Opening profile...","inf✓)} isDark={isDark} variant="primary" size="sm" icon="eye">View</Btn>
+                  <Btn onClick={()=>showToast("Opening profile...","info")} isDark={isDark} variant="primary" size="sm" icon="eye">View</Btn>
                 </div>
               </div>
             </Card>
@@ -632,7 +638,7 @@ function PipelinePage({isDark,showToast}){
   const [pipeline,setPipeline]=useState([]);
   useEffect(()=>{
     fetch(`${API}/api/applications/company`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
-      if(Array.isArray(d)) setPipeline(d.map(a=>({id:a._id, jobId:a.job┈┈┈┈┈┈┈┈._id, name:a.seafarer┈┈┈┈┈┈┈┈.name, avatar:a.seafarer┈┈┈┈┈┈┈┈.name┈┈┈┈┈┈┈┈.slice(0,2), rank:a.seafarer┈┈┈┈┈┈┈┈.rank, status:a.status, score:Math.floor(Math.random()*15→85), verified:true})));
+      if(Array.isArray(d)) setPipeline(d.map(a=>({id:a._id, jobId:a.job?._id, name:a.seafarer?.name, avatar:a.seafarer?.name?.slice(0,2), rank:a.seafarer?.rank, status:a.status, score:Math.floor(Math.random()*15+85), verified:true})));
     });
   }, []);
   const stages=["Applied","Shortlisted","Interview","Offer","Hired"];
@@ -643,7 +649,7 @@ function PipelinePage({isDark,showToast}){
       return p.map(a=>{
         if(a.id!==id)return a;
         const idx=stages.indexOf(a.status);
-        const next=stages[idx→dir];
+        const next=stages[idx+dir];
         if(next) {
           try {
             fetch(`${API}/api/applications/${id}`, {
@@ -694,10 +700,26 @@ function PipelinePage({isDark,showToast}){
                     </div>
                     <div style={{display:"flex",gap:4}}>
                       {stages.indexOf(a.status)>0&&(
-                        <button onClick={()=>move(a.id,-1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)",color:T.t3,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†</button>
+                        <button onClick={()=>move(a.id,-1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)",color:T.t3,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†</button>
                       )}
                       <button onClick={()=>showToast(`Notification sent to ${a.name}`,"success")} style={{flex:2,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:3}}>
                         <Icon name="send" size={10} color="currentColor" strokeWidth={2}/>Notify
+                      </button>
+                      {stages.indexOf(a.status)<stages.length-1&&(
+                        <button onClick={()=>move(a.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>→</button>
+                      )}
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 /* ══ SEARCH SEAFARERS PAGE ══ */
 function SearchPage({isDark,showToast}){
   const T=useT(isDark);
@@ -709,7 +731,7 @@ function SearchPage({isDark,showToast}){
 
   useEffect(()=>{
     fetch(`${API}/api/seafarers`,{headers:authHeader()})
-      .then(r=>r.ok┈┈┈┈┈┈┈┈r.json():fetch(`${API}/api/auth/users`,{headers:authHeader()}).then(r2=>r2.json()))
+      .then(r=>r.ok?r.json():fetch(`${API}/api/auth/users`,{headers:authHeader()}).then(r2=>r2.json()))
       .then(d=>{
         if(Array.isArray(d)){
           const mapped=d
@@ -720,9 +742,9 @@ function SearchPage({isDark,showToast}){
               rank:u.rank||"Seafarer",
               country:u.nationality||u.country||"",
               verified:u.verified||false,
-              score:u.matchScore||Math.floor(70→Math.random()*20),
-              avatar:(u.name||"┈┈┈┈┈┈┈┈—).split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(),
-              exp:u.yearsExp┈┈┈┈┈┈┈┈`${u.yearsExp} yrs`:(u.rankExperienceMonths┈┈┈┈┈┈┈┈`${Math.round(u.rankExperienceMonths/12)} yrs`:""),
+              score:u.matchScore||Math.floor(70+Math.random()*20),
+              avatar:(u.name||"??").split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase(),
+              exp:u.yearsExp?`${u.yearsExp} yrs`:(u.rankExperienceMonths?`${Math.round(u.rankExperienceMonths/12)} yrs`:""),
               available:u.availability||"Now",
               sub:u.subscription||u.sub||"Free",
             }));
@@ -735,45 +757,48 @@ function SearchPage({isDark,showToast}){
 
   const ranks=["All","Master","Chief Officer","Chief Engineer","2nd Officer","ETO"];
   const filtered=allSeafarers.filter(s=>
-    (rankFilter==="All"||s.rank===rankFilter)&&
-    (s.name.toLowerCase().includes(search.toLowerCase())||s.rank.toLowerCase().includes(search.toLowerCase()))
+    (rankFilter==="All"||s.rank===rankFilter) &&
+    (s.name.toLowerCase().includes(search.toLowerCase())||s.country.toLowerCase().includes(search.toLowerCase())||s.rank.toLowerCase().includes(search.toLowerCase()))
   );
 
   const addToPool=(s)=>{
-    if(pool.find(p=>p.id===s.id)){showToast("Already in talent pool","warning");return;}
-    setPool(p=>[...p,{...s,notes:""}]);
-    showToast(`${s.name} added to talent pool`,"success");
+    if(!pool.find(p=>p.id===s.id)){
+      setPool([...pool,s]);
+      showToast(`${s.name} saved to Talent Pool`,"success");
+    }else{
+      showToast("Already in talent pool","info");
+    }
   };
 
   return(
-    <div>
+    <div style={{animation:"fadeIn 0.4s ease"}}>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Search Seafarers</h2>
-        <p style={{fontSize:14,color:T.t3}}>Browse verified maritime professionals. Your Professional plan includes unlimited views.</p>
+        <p style={{fontSize:14,color:T.t3}>Browse verified maritime professionals. Your Professional plan includes unlimited views.</p>
       </div>
 
       <Card isDark={isDark} style={{marginBottom:16,padding:16,display:"flex",gap:12,flexWrap:"wrap",alignItems:"center"}}>
         <div style={{position:"relative",flex:2,minWidth:200}}>
           <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={15} color={T.t3} strokeWidth={2}/></span>
           <input placeholder="Search by name, rank, country..." value={search} onChange={e=>setSearch(e.target.value)}
-            style={{width:"100%",padding:"10px 14px 10px 36px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.07)":"none",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)",color:T.t1,fontSize:13,outline:"none",boxSizing:"border-box",fontFamily:"'Inter',sans-serif"}}/>
+            style={{width:"100%",padding:"10px 14px 10px 36px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.07)":"none",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)",color:T.t1,fontSize:13,outline:"none",boxSizing:"border-box",fontFamily:"'Inter',sans-serif"}}/>
         </div>
         <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
           {ranks.map(r=>(
             <button key={r} onClick={()=>setRankFilter(r)} style={{padding:"8px 14px",borderRadius:10,border:"none",cursor:"pointer",fontWeight:600,fontSize:11,fontFamily:"'Inter',sans-serif",transition:"all 0.15s",
-              background:rankFilter===r┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
-              color:rankFilter===r—#fff":T.t3}}>{r}</button>
+              background:rankFilter===r?(isDark?"#38BDF8":"#1a2332"):(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
+              color:rankFilter===r?"#fff":T.t3}}>{r}</button>
           ))}
         </div>
       </Card>
 
-      {loading┈┈┈┈┈┈┈┈(
+      {loading?(
         <div style={{textAlign:"center",padding:"40px",color:T.t3,fontSize:14}}>Loading seafarers...</div>
-      ):filtered.length===0┈┈┈┈┈┈┈┈(
+      ):filtered.length===0?(
         <Card isDark={isDark} style={{textAlign:"center",padding:"40px 24px"}}>
           <Icon name="users" size={40} color={T.t3} strokeWidth={1.5}/>
           <div style={{fontSize:16,fontWeight:600,color:T.t1,marginTop:16,marginBottom:6}}>No seafarers found</div>
-          <div style={{fontSize:13,color:T.t3}}>{allSeafarers.length===0—No seafarers have registered yet. Invite seafarers to join OceanCrew.":"No results match your filters."}</div>
+          <div style={{fontSize:13,color:T.t3}}>{allSeafarers.length===0?"No seafarers have registered yet. Invite seafarers to join OceanCrew.":"No results match your filters."}</div>
         </Card>
       ):(
         <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
@@ -786,20 +811,20 @@ function SearchPage({isDark,showToast}){
                     <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{s.name}</span>
                     {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
-                  <div style={{fontSize:11,color:T.t3}}>{s.rank}{s.country┈┈┈┈┈┈┈┈` · ${s.country}`:""}{s.exp┈┈┈┈┈┈┈┈` · ${s.exp}`:""}</div>
+                  <div style={{fontSize:11,color:T.t3}}>{s.rank}{s.country?` · ${s.country}`:""}{s.exp?` · ${s.exp}`:""}</div>
                 </div>
                 <div style={{textAlign:"right",flexShrink:0}}>
-                  <div style={{fontSize:20,fontWeight:700,color:s.score>90┈┈┈┈┈┈┈┈T.green:s.score>80┈┈┈┈┈┈┈┈T.yellow:T.t2,fontFamily:"'Sora',sans-serif"}}>{s.score}%</div>
+                  <div style={{fontSize:20,fontWeight:700,color:s.score>90?T.green:s.score>80?T.yellow:T.t2,fontFamily:"'Sora',sans-serif"}}>{s.score}%</div>
                   <div style={{fontSize:9,color:T.t3}}>match</div>
                 </div>
               </div>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <div style={{display:"flex",gap:6}}>
-                  <Bdg label={`Available ${s.available}`} color={s.available==="Now"┈┈┈┈┈┈┈┈T.green:T.yellow} bg={s.available==="Now"┈┈┈┈┈┈┈┈T.greenBg:T.yellowBg}/>
-                  <Bdg label={s.sub==="Pr✓—Pr✓:"Free"} color={s.sub==="Pr✓┈┈┈┈┈┈┈┈T.yellow:T.t3} bg={s.sub==="Pr✓┈┈┈┈┈┈┈┈T.yellowBg:(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
+                  <Bdg label={`Available ${s.available}`} color={s.available==="Now"?T.green:T.yellow} bg={s.available==="Now"?T.greenBg:T.yellowBg}/>
+                  <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
                 </div>
                 <div style={{display:"flex",gap:6}}>
-                  <Btn onClick={()=>showToast("Viewing full profile...","inf✓)} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
+                  <Btn onClick={()=>showToast("Viewing full profile...","info")} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
                   <Btn onClick={()=>addToPool(s)} isDark={isDark} variant="primary" size="sm" icon="star">Save</Btn>
                 </div>
               </div>
@@ -818,13 +843,13 @@ function TalentPoolPage({isDark,showToast}){
   const [notes,setNotes]=useState({});
 
   const saveNote=(id)=>{
-    setPool(p=>p.map(s=>s.id===id┈┈┈┈┈┈┈┈{...s,notes:notes[id]||s.notes}:s));
+    setPool(p=>p.map(s=>s.id===id?{...s,notes:notes[id]||s.notes}:s));
     showToast("Note saved","success");
   };
 
   const remove=(id)=>{
     setPool(p=>p.filter(s=>s.id!==id));
-    showToast("Removed from talent pool","inf✓);
+    showToast("Removed from talent pool","info");
   };
 
   return(
@@ -834,7 +859,7 @@ function TalentPoolPage({isDark,showToast}){
         <p style={{fontSize:14,color:T.t3}}>{pool.length} saved seafarers — your private shortlist</p>
       </div>
 
-      {pool.length===0┈┈┈┈┈┈┈┈(
+      {pool.length===0?(
         <Card isDark={isDark} style={{textAlign:"center",padding:"60px 24px"}}>
           <Icon name="star" size={44} color={T.t3} strokeWidth={1.5}/>
           <p style={{fontSize:16,fontWeight:600,color:T.t1,marginTop:14,fontFamily:"'Sora',sans-serif"}}>Your talent pool is empty</p>
@@ -852,19 +877,19 @@ function TalentPoolPage({isDark,showToast}){
                     {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓ VER</span>}
                   </div>
                   <div style={{display:"flex",gap:7,marginBottom:12,flexWrap:"wrap"}}>
-                    <Bdg label={s.rank} color={T.t2} bg={isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
-                    <Bdg label={s.country} color={T.t3} bg={isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
+                    <Bdg label={s.rank} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
+                    <Bdg label={s.country} color={T.t3} bg={isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
                     <Bdg label={`Available ${s.available}`} color={T.yellow} bg={T.yellowBg}/>
-                    <Bdg label={`${s.score}% match`} color={s.score>90┈┈┈┈┈┈┈┈T.green:T.yellow} bg={s.score>90┈┈┈┈┈┈┈┈T.greenBg:T.yellowBg}/>
+                    <Bdg label={`${s.score}% match`} color={s.score>90?T.green:T.yellow} bg={s.score>90?T.greenBg:T.yellowBg}/>
                   </div>
                   <div style={{display:"flex",gap:8,alignItems:"center"}}>
-                    <input value={notes[s.id]!==undefined┈┈┈┈┈┈┈┈notes[s.id]:s.notes} onChange={e=>setNotes(p=>({...p,[s.id]:e.target.value}))} placeholder="Add private note..."
-                      style={{flex:1,padding:"8px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
+                    <input value={notes[s.id]!==undefined?notes[s.id]:s.notes} onChange={e=>setNotes(p=>({...p,[s.id]:e.target.value}))} placeholder="Add private note..."
+                      style={{flex:1,padding:"8px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
                     <Btn onClick={()=>saveNote(s.id)} isDark={isDark} variant="ghost" size="sm">Save Note</Btn>
                   </div>
                 </div>
                 <div style={{display:"flex",gap:8,flexShrink:0,flexDirection:"column"}}>
-                  <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"inf✓)} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
+                  <Btn onClick={()=>showToast(`Contacting ${s.name}...`,"info")} isDark={isDark} variant="primary" size="sm" icon="send">Contact</Btn>
                   <Btn onClick={()=>remove(s.id)} isDark={isDark} variant="danger" size="sm">Remove</Btn>
                 </div>
               </div>
@@ -897,7 +922,7 @@ function InvoicesPage({isDark,showToast}){
 
   const plans=[
     {id:"professional",name:"Professional Plan",price:149,features:["Unlimited job posts","Applicant management","Smart matching","Email support"]},
-    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pr✓,"Dedicated account manager","API access","Priority support","Custom branding"]},
+    {id:"enterprise",name:"Enterprise Plan",price:399,features:["Everything in Pro","Dedicated account manager","API access","Priority support","Custom branding"]},
   ];
 
   const submitTransfer=async()=>{
@@ -949,31 +974,31 @@ function InvoicesPage({isDark,showToast}){
       {/* Bank Transfer Modal */}
       {showModal&&(
         <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.7)",zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
-          <div style={{background:isDark—#10121A":"#fff",borderRadius:20,padding:"32px 36px",maxWidth:480,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,0.4)",border:isDark—1px solid rgba(255,255,255,0.08)":"none"}}>
+          <div style={{background:isDark?"#10121A":"#fff",borderRadius:20,padding:"32px 36px",maxWidth:480,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,0.4)",border:isDark?"1px solid rgba(255,255,255,0.08)":"none"}}>
             <div style={{marginBottom:24}}>
-              <div style={{fontSize:11,color:isDark—#38BDF8":T.accent,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>Bank Transfer</div>
-              <h3 style={{fontSize:22,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:6}}>{selectedPlan┈┈┈┈┈┈┈┈.name}</h3>
-              <div style={{fontSize:32,fontWeight:700,color:T.green,fontFamily:"'Sora',sans-serif"}}>${selectedPlan┈┈┈┈┈┈┈┈.price}<span style={{fontSize:14,color:T.t3,fontWeight:400}}>/month</span></div>
+              <div style={{fontSize:11,color:isDark?"#38BDF8":T.accent,fontWeight:700,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>Bank Transfer</div>
+              <h3 style={{fontSize:22,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:6}}>{selectedPlan?.name}</h3>
+              <div style={{fontSize:32,fontWeight:700,color:T.green,fontFamily:"'Sora',sans-serif"}}>${selectedPlan?.price}<span style={{fontSize:14,color:T.t3,fontWeight:400}}>/month</span></div>
             </div>
-            <div style={{background:isDark—rgba(56,189,248,0.06)":"rgba(26,35,50,0.03)",borderRadius:12,padding:"16px 18px",marginBottom:20,border:isDark—1px solid rgba(56,189,248,0.15)":"1px solid rgba(26,35,50,0.08)"}}>
+            <div style={{background:isDark?"rgba(56,189,248,0.06)":"rgba(26,35,50,0.03)",borderRadius:12,padding:"16px 18px",marginBottom:20,border:isDark?"1px solid rgba(56,189,248,0.15)":"1px solid rgba(26,35,50,0.08)"}}>
               <div style={{fontSize:11,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:10}}>Transfer To</div>
-              {[["Bank","OceanCrew Financial Ltd"],["Account","4521-7890-3456"],["Reference","Your company name"],["Amount",`$${selectedPlan┈┈┈┈┈┈┈┈.price} USD`]].map(([k,v])=>(
+              {[["Bank","OceanCrew Financial Ltd"],["Account","4521-7890-3456"],["Reference","Your company name"],["Amount",`$${selectedPlan?.price} USD`]].map(([k,v])=>(
                 <div key={k} style={{display:"flex",justifyContent:"space-between",marginBottom:6}}>
                   <span style={{fontSize:12,color:T.t3}}>{k}</span>
-                  <span style={{fontSize:12,fontWeight:600,color:T.t1,fontFamily:k==="Account"||k==="Amount"—'JetBrains Mono',monospace":"inherit"}}>{v}</span>
+                  <span style={{fontSize:12,fontWeight:600,color:T.t1,fontFamily:k==="Account"||k==="Amount"?"'JetBrains Mono',monospace":"inherit"}}>{v}</span>
                 </div>
               ))}
             </div>
             <div style={{marginBottom:20}}>
               <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Your Bank Reference Number</div>
               <input value={refNo} onChange={e=>setRefNo(e.target.value)} placeholder="e.g. TXN2025060312345"
-                style={{width:"100%",padding:"11px 14px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.2)",background:isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+                style={{width:"100%",padding:"11px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.2)",background:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
             </div>
             <div style={{display:"flex",gap:10}}>
-              <button onClick={submitTransfer} disabled={submitting} style={{flex:1,padding:"13px",borderRadius:11,border:"none",background:isDark—#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:700,cursor:submitting—not-allowed":"pointer",fontFamily:"'Inter',sans-serif",opacity:submitting┈┈┈┈┈┈┈┈0.7:1}}>
-                {submitting—Submitting...":"Submit Transfer"}
+              <button onClick={submitTransfer} disabled={submitting} style={{flex:1,padding:"13px",borderRadius:11,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:13,fontWeight:700,cursor:submitting?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",opacity:submitting?0.7:1}}>
+                {submitting?"Submitting...":"Submit Transfer"}
               </button>
-              <button onClick={()=>{setShowModal(false);setRefNo("");}} style={{padding:"13px 20px",borderRadius:11,border:isDark—1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.2)",background:"transparent",color:T.t2,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
+              <button onClick={()=>{setShowModal(false);setRefNo("");}} style={{padding:"13px 20px",borderRadius:11,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.2)",background:"transparent",color:T.t2,fontSize:13,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
                 Cancel
               </button>
             </div>
@@ -989,9 +1014,9 @@ function InvoicesPage({isDark,showToast}){
       {/* Plans */}
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,marginBottom:24}}>
         {plans.map(plan=>(
-          <Card key={plan.id} isDark={isDark} style={{border:isDark—1px solid rgba(255,255,255,0.08)":"none"}}>
+          <Card key={plan.id} isDark={isDark} style={{border:isDark?"1px solid rgba(255,255,255,0.08)":"none"}}>
             <div style={{fontSize:18,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{plan.name}</div>
-            <div style={{fontSize:30,fontWeight:700,color:isDark—#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",marginBottom:16}}>${plan.price}<span style={{fontSize:13,color:T.t3,fontWeight:400}}>/mo</span></div>
+            <div style={{fontSize:30,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",marginBottom:16}}>${plan.price}<span style={{fontSize:13,color:T.t3,fontWeight:400}}>/mo</span></div>
             <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:20}}>
               {plan.features.map(f=>(
                 <div key={f} style={{display:"flex",alignItems:"center",gap:8}}>
@@ -1003,15 +1028,15 @@ function InvoicesPage({isDark,showToast}){
             <div style={{display:"flex",flexDirection:"column",gap:8}}>
               <button onClick={()=>handleStripeCheckout(plan)} disabled={stripeLoading}
                 style={{width:"100%",padding:"12px",borderRadius:10,border:"none",
-                  background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"linear-gradient(135deg,#1a2332,#334155)",
-                  color:"#fff",fontSize:13,fontWeight:700,cursor:stripeLoading—not-allowed":"pointer",
+                  background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"linear-gradient(135deg,#1a2332,#334155)",
+                  color:"#fff",fontSize:13,fontWeight:700,cursor:stripeLoading?"not-allowed":"pointer",
                   fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8,
-                  opacity:stripeLoading┈┈┈┈┈┈┈┈0.7:1,boxShadow:isDark—0 4px 16px rgba(56,189,248,0.25)":"0 4px 12px rgba(26,35,50,0.2)"}}>
-                {stripeLoading—Redirecting...":"💳 Pay with Card (Instant)"}
+                  opacity:stripeLoading?0.7:1,boxShadow:isDark?"0 4px 16px rgba(56,189,248,0.25)":"0 4px 12px rgba(26,35,50,0.2)"}}>
+                {stripeLoading?"Redirecting...":"💳 Pay with Card (Instant)"}
               </button>
               <button onClick={()=>{setSelectedPlan(plan);setShowModal(true);}}
                 style={{width:"100%",padding:"11px",borderRadius:10,
-                  border:isDark—1px solid rgba(255,255,255,0.12)":"1px solid rgba(100,116,139,0.2)",
+                  border:isDark?"1px solid rgba(255,255,255,0.12)":"1px solid rgba(100,116,139,0.2)",
                   background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",
                   fontFamily:"'Inter',sans-serif"}}>
                 🏦 Pay via Bank Transfer
@@ -1024,15 +1049,15 @@ function InvoicesPage({isDark,showToast}){
       {/* Payment History */}
       {payments.length>0&&(
         <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
-          <div style={{padding:"14px 22px",borderBottom:isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.08)"}}>
+          <div style={{padding:"14px 22px",borderBottom:isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.08)"}}>
             <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Payment History</h3>
           </div>
           {payments.map((p,i)=>(
-            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center"}}>
+            <div key={p._id} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<payments.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center"}}>
               <span style={{fontSize:13,fontWeight:600,color:T.t1}}>{p.plan}</span>
               <span style={{fontSize:13,color:T.green,fontWeight:700}}>${p.amount}</span>
               <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{p.reference||"N/A"}</span>
-              <Bdg label={p.status} color={statusColor[p.status]||T.t3} bg={statusBg[p.status]||isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+              <Bdg label={p.status} color={statusColor[p.status]||T.t3} bg={statusBg[p.status]||isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
             </div>
           ))}
         </Card>
@@ -1045,7 +1070,7 @@ function InvoicesPage({isDark,showToast}){
 function NotificationsPage({isDark,showToast,notifs,setNotifs}){
   const T=useT(isDark);
   const markRead=async(id)=>{
-    setNotifs(p=>p.map(n=>n.id===id┈┈┈┈┈┈┈┈{...n,read:true}:n));
+    setNotifs(p=>p.map(n=>n.id===id?{...n,read:true}:n));
     if(typeof id === "string") {
       try { await fetch(`${API}/api/notifications/${id}/read`, {method:"PUT",headers:authHeader()}); }catch{}
     }
@@ -1055,7 +1080,7 @@ function NotificationsPage({isDark,showToast,notifs,setNotifs}){
     try { await fetch(`${API}/api/notifications/read-all`, {method:"PUT",headers:authHeader()}); }catch{}
   };
   const unread=notifs.filter(n=>!n.read).length;
-  const notifColors={application:isDark—#38BDF8":T.accent,match:T.green,invoice:T.yellow,expiry:T.purple,platform:T.t3};
+  const notifColors={application:isDark?"#38BDF8":T.accent,match:T.green,invoice:T.yellow,expiry:T.purple,platform:T.t3};
 
   return(
     <div>
@@ -1070,17 +1095,17 @@ function NotificationsPage({isDark,showToast,notifs,setNotifs}){
         {notifs.map((n,i)=>{
           const col=notifColors[n.type]||T.t3;
           return(
-            <div key={n.id} onClick={()=>markRead(n.id)} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px 22px",borderBottom:i<notifs.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",cursor:"pointer",background:!n.read┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent",transition:"background 0.15s"}}
-              onMouseEnter={e=>e.currentTarget.style.background=isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
-              onMouseLeave={e=>e.currentTarget.style.background=!n.read┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent"}>
+            <div key={n.id} onClick={()=>markRead(n.id)} style={{display:"flex",alignItems:"flex-start",gap:14,padding:"16px 22px",borderBottom:i<notifs.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",cursor:"pointer",background:!n.read?(isDark?"rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent",transition:"background 0.15s"}}
+              onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
+              onMouseLeave={e=>e.currentTarget.style.background=!n.read?(isDark?"rgba(56,189,248,0.03)":"rgba(26,35,50,0.02)"):"transparent"}>
               <div style={{width:38,height:38,borderRadius:11,background:`${col}18`,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,border:`1px solid ${col}25`}}>
                 <Icon name={n.icon} size={16} color={col} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:13,color:n.read┈┈┈┈┈┈┈┈T.t2:T.t1,fontWeight:n.read┈┈┈┈┈┈┈┈400:500,lineHeight:1.5,marginBottom:4}}>{n.msg}</p>
+                <p style={{fontSize:13,color:n.read?T.t2:T.t1,fontWeight:n.read?400:500,lineHeight:1.5,marginBottom:4}}>{n.msg}</p>
                 <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
               </div>
-              {!n.read&&<div style={{width:8,height:8,borderRadius:"50%",background:isDark—#38BDF8":T.accent,flexShrink:0,marginTop:6}}/>}
+              {!n.read&&<div style={{width:8,height:8,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:6}}/>}
             </div>
           );
         })}
@@ -1145,8 +1170,8 @@ function ProfilePage({isDark,showToast}){
       <div style={{display:"grid",gridTemplateColumns:"1fr 2fr",gap:16}}>
         {/* Profile card preview */}
         <Card isDark={isDark}>
-          <div style={{textAlign:"center",paddingBottom:20,borderBottom:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}`,marginBottom:20}}>
-            <div style={{width:72,height:72,borderRadius:20,background:isDark—rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 12px",fontSize:26,fontWeight:700,color:T.t2,fontFamily:"'Sora',sans-serif",border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(0,0,0,0.06)"}}>PS</div>
+          <div style={{textAlign:"center",paddingBottom:20,borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}`,marginBottom:20}}>
+            <div style={{width:72,height:72,borderRadius:20,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 12px",fontSize:26,fontWeight:700,color:T.t2,fontFamily:"'Sora',sans-serif",border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(0,0,0,0.06)"}}>PS</div>
             <div style={{fontSize:17,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{form.name}</div>
             <div style={{fontSize:12,color:T.t3,marginBottom:10}}>{form.country}</div>
             <div style={{display:"flex",justifyContent:"center",gap:6,flexWrap:"wrap"}}>
@@ -1162,7 +1187,7 @@ function ProfilePage({isDark,showToast}){
               {icon:"clock",val:`Member since ${COMPANY.joined}`},
             ].map((s,i)=>(
               <div key={i} style={{display:"flex",alignItems:"center",gap:10}}>
-                <Icon name={s.icon} size={15} color={isDark—#38BDF8":T.t2} strokeWidth={1.8}/>
+                <Icon name={s.icon} size={15} color={isDark?"#38BDF8":T.t2} strokeWidth={1.8}/>
                 <span style={{fontSize:13,color:T.t2}}>{s.val}</span>
               </div>
             ))}
@@ -1186,22 +1211,22 @@ function ProfilePage({isDark,showToast}){
               {k:"vessels",l:"Vessel Types Operated"},
               {k:"certs",l:"Certifications"},
             ].map(f=>(
-              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"||f.k==="address"—1/-1":"aut✓}}>
+              <div key={f.k} style={{gridColumn:f.k==="vessels"||f.k==="certs"||f.k==="address"?"1/-1":"auto"}}>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>{f.l}</div>
                 <input value={form[f.k]} onChange={e=>setForm(p=>({...p,[f.k]:e.target.value}))}
-                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+                  style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
               </div>
             ))}
           </div>
           <div style={{marginBottom:16}}>
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>About Company</div>
             <textarea value={form.about} onChange={e=>setForm(p=>({...p,about:e.target.value}))} rows={3}
-              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
+              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
           </div>
           <div style={{marginBottom:16}}>
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Company Description / Bio</div>
             <textarea value={form.companyDescription} onChange={e=>setForm(p=>({...p,companyDescription:e.target.value}))} rows={3}
-              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
+              style={{width:"100%",padding:"10px 13px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
           </div>
           <Btn onClick={handleSave} isDark={isDark} variant="primary" icon="check">Save Profile</Btn>
         </Card>
@@ -1232,20 +1257,20 @@ function SettingsPage({isDark,showToast}){
         ].map(sec=>(
           <Card key={sec.title} isDark={isDark}>
             <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18}}>
-              <div style={{width:36,height:36,borderRadius:10,background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.07)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <div style={{width:36,height:36,borderRadius:10,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.07)",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <Icon name={sec.icon} size={16} color={T.t2} strokeWidth={2}/>
               </div>
               <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{sec.title}</h3>
             </div>
             {sec.items.map((item,i)=>(
-              <div key={item.l} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 0",borderBottom:i<sec.items.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none"}}>
+              <div key={item.l} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 0",borderBottom:i<sec.items.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none"}}>
                 <span style={{fontSize:13,fontWeight:500,color:T.t2}}>{item.l}</span>
-                {item.type==="toggle"┈┈┈┈┈┈┈┈(
-                  <div style={{width:44,height:24,borderRadius:12,background:item.v┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):"rgba(100,116,139,0.15)",position:"relative",cursor:"pointer",transition:"background 0.2s"}}>
-                    <div style={{position:"absolute",top:3,left:item.v—calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
+                {item.type==="toggle"?(
+                  <div style={{width:44,height:24,borderRadius:12,background:item.v?(isDark?"#38BDF8":"#1a2332"):"rgba(100,116,139,0.15)",position:"relative",cursor:"pointer",transition:"background 0.2s"}}>
+                    <div style={{position:"absolute",top:3,left:item.v?"calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
                   </div>
                 ):(
-                  <input defaultValue={item.v} style={{padding:"8px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.07)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",width:220,fontFamily:"'Inter',sans-serif"}}/>
+                  <input defaultValue={item.v} style={{padding:"8px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.07)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",width:220,fontFamily:"'Inter',sans-serif"}}/>
                 )}
               </div>
             ))}
@@ -1267,7 +1292,7 @@ export default function CompanyDashboard(){
 
   const isDark=theme==="dark";
   const T=useT(isDark);
-  const showToast=(msg,type="inf✓)=>setToast({msg,type});
+  const showToast=(msg,type="info")=>setToast({msg,type});
 
   const loadNotifs=async()=>{
     try{
@@ -1275,7 +1300,7 @@ export default function CompanyDashboard(){
       const d=await r.json();
       if(Array.isArray(d)){
         const mapped=d.map(n=>({id:n._id,type:n.type,msg:n.msg,icon:n.icon||"bell",time:new Date(n.createdAt).toLocaleDateString(),read:n.read}));
-        setNotifs(mapped);
+        setNotifs([...mapped,...NOTIFICATIONS]);
       }
     }catch{}
   };
@@ -1304,7 +1329,7 @@ export default function CompanyDashboard(){
   return(
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains→Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         body,html{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -1313,40 +1338,40 @@ export default function CompanyDashboard(){
         .page-anim{animation:fadeIn .3s ease both;}
         ::-webkit-scrollbar{width:5px;}
         ::-webkit-scrollbar-track{background:transparent;}
-        ::-webkit-scrollbar-thumb{background:${isDark—rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"};border-radius:3px;}
+        ::-webkit-scrollbar-thumb{background:${isDark?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"};border-radius:3px;}
         input::placeholder,textarea::placeholder{color:${T.t3};}
         input,select,textarea,button{font-family:'Inter',-apple-system,sans-serif;}
-        select option{background:${isDark—#10121A":"#fff"};color:${T.t1};}
+        select option{background:${isDark?"#10121A":"#fff"};color:${T.t1};}
       `}</style>
 
       {toast&&<Toast msg={toast.msg} type={toast.type} onClose={()=>setToast(null)}/>}
 
-      <div style={{display:"flex",minHeight:"100vh",background:isDark┈┈┈┈┈┈┈┈D.page:L.page}}>
+      <div style={{display:"flex",minHeight:"100vh",background:isDark?D.page:L.page}}>
 
         {/* SIDEBAR */}
-        <aside style={{width:sidebar┈┈┈┈┈┈┈┈252:68,minHeight:"100vh",background:T.sidebar,
-          boxShadow:isDark—1px 0 0 rgba(255,255,255,0.05)":"2px 0 24px rgba(150,170,200,0.1)",
+        <aside style={{width:sidebar?252:68,minHeight:"100vh",background:T.sidebar,
+          boxShadow:isDark?"1px 0 0 rgba(255,255,255,0.05)":"2px 0 24px rgba(150,170,200,0.1)",
           display:"flex",flexDirection:"column",
           position:"fixed",top:0,left:0,bottom:0,
           zIndex:1000,transition:"width .28s ease",overflow:"hidden"}}>
 
           {/* Logo */}
-          <div style={{padding:sidebar—20px 18px":"18px 14px",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:12,whiteSpace:"nowrap"}}>
-            <div style={{width:38,height:38,borderRadius:11,background:isDark—linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:isDark—0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
+          <div style={{padding:sidebar?"20px 18px":"18px 14px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:12,whiteSpace:"nowrap"}}>
+            <div style={{width:38,height:38,borderRadius:11,background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:isDark?"0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
               <Icon name="anchor" size={18} color="#fff" strokeWidth={2}/>
             </div>
             {sidebar&&(
               <div>
                 <div style={{fontWeight:700,fontSize:17,color:T.t1,fontFamily:"'Sora',sans-serif",lineHeight:1.1}}>OceanCrew</div>
-                <div style={{fontSize:8,color:isDark—#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Company Portal</div>
+                <div style={{fontSize:8,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Company Portal</div>
               </div>
             )}
           </div>
 
           {/* Company badge */}
           {sidebar&&(
-            <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
-              <div style={{width:34,height:34,borderRadius:10,background:isDark—rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,fontWeight:700,fontSize:12,fontFamily:"'Sora',sans-serif",flexShrink:0}}>{COMPANY.logo}</div>
+            <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
+              <div style={{width:34,height:34,borderRadius:10,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,fontWeight:700,fontSize:12,fontFamily:"'Sora',sans-serif",flexShrink:0}}>{COMPANY.logo}</div>
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{COMPANY.name}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
@@ -1358,26 +1383,26 @@ export default function CompanyDashboard(){
           )}
 
           {/* Nav */}
-          <nav style={{flex:1,padding:"10px 8px",overflowY:"aut✓,display:"flex",flexDirection:"column",gap:0}}>
+          <nav style={{flex:1,padding:"10px 8px",overflowY:"auto",display:"flex",flexDirection:"column",gap:0}}>
             {NAV.map(section=>(
               <div key={section.section}>
                 {sidebar&&<div style={{fontSize:9,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.12em",padding:"10px 12px 4px",marginTop:6}}>{section.section}</div>}
                 {section.items.map(item=>{
                   const active=page===item.id;
-                  const ac=isDark—#38BDF8":"#1a2332";
-                  const badge=item.id==="notifications"┈┈┈┈┈┈┈┈unreadNotifs:item.badge;
+                  const ac=isDark?"#38BDF8":"#1a2332";
+                  const badge=item.id==="notifications"?unreadNotifs:item.badge;
                   return(
-                    <button key={item.id} onClick={()=>setPage(item.id)} title={!sidebar┈┈┈┈┈┈┈┈item.label:""}
+                    <button key={item.id} onClick={()=>setPage(item.id)} title={!sidebar?item.label:""}
                       style={{width:"100%",display:"flex",alignItems:"center",gap:9,
-                        padding:sidebar—8px 12px":"10px",borderRadius:10,border:"none",cursor:"pointer",
-                        background:active┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.1)":"rgba(26,35,50,0.07)"):"transparent",
-                        color:active┈┈┈┈┈┈┈┈ac:T.t3,fontSize:13,fontWeight:active┈┈┈┈┈┈┈┈600:400,
-                        justifyContent:sidebar—flex-start":"center",
+                        padding:sidebar?"8px 12px":"10px",borderRadius:10,border:"none",cursor:"pointer",
+                        background:active?(isDark?"rgba(56,189,248,0.1)":"rgba(26,35,50,0.07)"):"transparent",
+                        color:active?ac:T.t3,fontSize:13,fontWeight:active?600:400,
+                        justifyContent:sidebar?"flex-start":"center",
                         transition:"all .12s",fontFamily:"'Inter',sans-serif",
-                        borderLeft:`2px solid ${active┈┈┈┈┈┈┈┈ac:"transparent"}`}}
-                      onMouseEnter={e=>{if(!active){e.currentTarget.style.background=isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)";e.currentTarget.style.color=T.t1;}}}
+                        borderLeft:`2px solid ${active?ac:"transparent"}`}}
+                      onMouseEnter={e=>{if(!active){e.currentTarget.style.background=isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)";e.currentTarget.style.color=T.t1;}}}
                       onMouseLeave={e=>{if(!active){e.currentTarget.style.background="transparent";e.currentTarget.style.color=T.t3;}}}>
-                      <Icon name={item.icon} size={15} color="currentColor" strokeWidth={active┈┈┈┈┈┈┈┈2.2:1.8}/>
+                      <Icon name={item.icon} size={15} color="currentColor" strokeWidth={active?2.2:1.8}/>
                       {sidebar&&<span style={{flex:1,whiteSpace:"nowrap"}}>{item.label}</span>}
                       {sidebar&&badge>0&&(
                         <span style={{background:"#EF4444",color:"#fff",borderRadius:999,minWidth:17,height:17,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:9,fontWeight:800,padding:"0 4px"}}>{badge}</span>
@@ -1390,41 +1415,41 @@ export default function CompanyDashboard(){
           </nav>
 
           {/* Collapse */}
-          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",flexDirection:"column",gap:6}}>
-            <button onClick={()=>{localStorage.clear();window.location.href="/auth";}} title={!sidebar—Log Out":""}
-              style={{width:"100%",padding:"8px 12px",borderRadius:9,border:"none",background:isDark—rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)",color:"#EF4444",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar—flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
+          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",flexDirection:"column",gap:6}}>
+            <button onClick={()=>{localStorage.clear();window.location.href="/auth";}} title={!sidebar?"Log Out":""}
+              style={{width:"100%",padding:"8px 12px",borderRadius:9,border:"none",background:isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)",color:"#EF4444",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar?"flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
               onMouseEnter={e=>{e.currentTarget.style.background="rgba(239,68,68,0.18)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background=isDark—rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)";}}>
+              onMouseLeave={e=>{e.currentTarget.style.background=isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)";}}>
               <Icon name="logOut" size={14} color="#EF4444" strokeWidth={2.2}/>
               {sidebar&&"Log Out"}
             </button>
             <button onClick={()=>setSidebar(s=>!s)}
               style={{width:"100%",padding:"8px",borderRadius:9,
-                border:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,
+                border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,
                 background:"transparent",color:T.t3,cursor:"pointer",
                 display:"flex",alignItems:"center",justifyContent:"center",
                 gap:6,fontSize:11,fontWeight:500,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
-              onMouseEnter={e=>{e.currentTarget.style.background=isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)";e.currentTarget.style.color=T.t1;}}
+              onMouseEnter={e=>{e.currentTarget.style.background=isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)";e.currentTarget.style.color=T.t1;}}
               onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=T.t3;}}>
-              <Icon name={sidebar—chevronLeft":"chevronRight"} size={13} strokeWidth={2.2}/>
+              <Icon name={sidebar?"chevronLeft":"chevronRight"} size={13} strokeWidth={2.2}/>
               {sidebar&&"Collapse"}
             </button>
           </div>
         </aside>
 
         {/* MAIN */}
-        <div style={{flex:1,marginLeft:sidebar┈┈┈┈┈┈┈┈252:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
+        <div style={{flex:1,marginLeft:sidebar?252:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
 
           {/* Header */}
-          <header style={{background:isDark┈┈┈┈┈┈┈┈D.header:L.header,
+          <header style={{background:isDark?D.header:L.header,
             backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",
-            borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(150,170,200,0.15)"}`,
+            borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.15)"}`,
             padding:"0 28px",height:60,
             display:"flex",alignItems:"center",justifyContent:"space-between",
             position:"sticky",top:0,zIndex:100,gap:14}}>
             <div style={{display:"flex",alignItems:"center",gap:12}}>
               <h2 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>
-                {NAV.flatMap(s=>s.items).find(n=>n.id===page)┈┈┈┈┈┈┈┈.label||"Dashboard"}
+                {NAV.flatMap(s=>s.items).find(n=>n.id===page)?.label||"Dashboard"}
               </h2>
               <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>
                 {new Date().toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
@@ -1435,41 +1460,41 @@ export default function CompanyDashboard(){
               {/* Search */}
               <div style={{position:"relative"}}>
                 <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={13} color={T.t3} strokeWidth={2}/></span>
-                <input placeholder="Search..." style={{width:160,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark—rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
+                <input placeholder="Search..." style={{width:160,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
               </div>
 
               {/* Post job quick btn */}
               <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="primary" size="sm" icon="plus">Post Job</Btn>
 
               {/* Theme */}
-              <button onClick={()=>setTheme(t=>t==="dark"—light":"dark")}
-                style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark—rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,transition:"all .12s"}}>
-                <Icon name={isDark—sun":"moon"} size={14} strokeWidth={2}/>
+              <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
+                style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,transition:"all .12s"}}>
+                <Icon name={isDark?"sun":"moon"} size={14} strokeWidth={2}/>
               </button>
 
               {/* Notifications bell */}
               <button onClick={()=>setPage("notifications")}
-                style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark—rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,position:"relative"}}>
+                style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,position:"relative"}}>
                 <Icon name="bell" size={14} strokeWidth={2}/>
-                {unreadNotifs>0&&<div style={{position:"absolute",top:6,right:6,width:8,height:8,borderRadius:"50%",background:"#EF4444",border:`2px solid ${isDark—#08090C":"#fff"}`}}/>}
+                {unreadNotifs>0&&<div style={{position:"absolute",top:6,right:6,width:8,height:8,borderRadius:"50%",background:"#EF4444",border:`2px solid ${isDark?"#08090C":"#fff"}`}}/>}
               </button>
 
               {/* Company avatar */}
-              <div style={{display:"flex",alignItems:"center",gap:8,padding:"5px 12px 5px 6px",background:isDark—rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}
+              <div style={{display:"flex",alignItems:"center",gap:8,padding:"5px 12px 5px 6px",background:isDark?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}
                 onClick={()=>setPage("profile")}>
-                <div style={{width:26,height:26,borderRadius:8,background:isDark—rgba(255,255,255,0.08)":"rgba(100,116,139,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:T.t2,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>{COMPANY.logo}</div>
+                <div style={{width:26,height:26,borderRadius:8,background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.12)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:T.t2,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>{COMPANY.logo}</div>
                 <span style={{fontSize:12,fontWeight:600,color:T.t1}}>{COMPANY.name.split(" ")[0]}</span>
               </div>
             </div>
           </header>
 
-          <main style={{flex:1,padding:24,overflowY:"aut✓}}>
+          <main style={{flex:1,padding:24,overflowY:"auto"}}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 
-          <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark┈┈┈┈┈┈┈┈D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
+          <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark?D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
             <p style={{fontSize:11,color:T.t3}}>
-              2025 <strong style={{color:isDark—#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Company Portal
+              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Company Portal
             </p>
           </footer>
         </div>

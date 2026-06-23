@@ -57,11 +57,11 @@ const Icon = ({ name, size = 18, color = "currentColor", strokeWidth = 1.8 }) =>
   );
 };
 
-const COMPANY = { name:"Pacific Star Shipping Co.", type:"Manning Agency", country:"Singapore", verified:true, memberSince:"March 2024", logo:"PS", plan:"Professional", contactPerson:"Mr. David Chen", email:"hr@pacificstar.com", phone:"→65 6123 4567", activeJobs:8, totalHired:47 };
+const COMPANY = { name:"Pacific Star Shipping Co.", type:"Manning Agency", country:"Singapore", verified:true, memberSince:"March 2024", logo:"PS", plan:"Professional", contactPerson:"Mr. David Chen", email:"hr@pacificstar.com", phone:"+65 6123 4567", activeJobs:8, totalHired:47 };
 
 const STATS = [
-  { label:"Active Job Posts", value:8,   icon:"briefcase",  color:"#38BDF8", bg:"rgba(2,132,199,0.12)",   change:"→2 this week", changeColor:"#10B981", changeBg:"rgba(16,185,129,0.12)", sparkline:[60,80,40,90,70,100,50], trend:"up" },
-  { label:"Total Applicants", value:134, icon:"users",       color:"#A78BFA", bg:"rgba(139,92,246,0.12)",  change:"→18 today",    changeColor:"#10B981", changeBg:"rgba(16,185,129,0.12)", sparkline:[30,50,70,60,90,100,80], trend:"up" },
+  { label:"Active Job Posts", value:8,   icon:"briefcase",  color:"#38BDF8", bg:"rgba(2,132,199,0.12)",   change:"+2 this week", changeColor:"#10B981", changeBg:"rgba(16,185,129,0.12)", sparkline:[60,80,40,90,70,100,50], trend:"up" },
+  { label:"Total Applicants", value:134, icon:"users",       color:"#A78BFA", bg:"rgba(139,92,246,0.12)",  change:"+18 today",    changeColor:"#10B981", changeBg:"rgba(16,185,129,0.12)", sparkline:[30,50,70,60,90,100,80], trend:"up" },
   { label:"Shortlisted",      value:23,  icon:"star",        color:"#FBBF24", bg:"rgba(245,158,11,0.12)",  change:"5 pending",    changeColor:"#FBBF24", changeBg:"rgba(245,158,11,0.12)", sparkline:[40,60,50,80,70,100,90], trend:"stable" },
   { label:"Total Hired",      value:47,  icon:"checkCircle", color:"#34D399", bg:"rgba(16,185,129,0.12)",  change:"All time",     changeColor:"#34D399", changeBg:"rgba(16,185,129,0.12)", sparkline:[20,40,60,50,80,100,90], trend:"up" },
 ];
@@ -76,7 +76,7 @@ const JOBS = [
 ];
 
 const APPLICANTS = [
-  { id:1, name:"Capt. Rajesh Fernand✓, rank:"Master",         exp:"18 yrs", nationality:"Sri Lankan", status:"Shortlisted",  score:95, cdc:true,  stcw:true,  avatar:"RF", color:"#0EA5E9" },
+  { id:1, name:"Capt. Rajesh Fernando", rank:"Master",         exp:"18 yrs", nationality:"Sri Lankan", status:"Shortlisted",  score:95, cdc:true,  stcw:true,  avatar:"RF", color:"#0EA5E9" },
   { id:2, name:"Eng. Priya Nair",       rank:"Chief Engineer", exp:"14 yrs", nationality:"Indian",     status:"Under Review", score:88, cdc:true,  stcw:true,  avatar:"PN", color:"#A78BFA" },
   { id:3, name:"Shanaka Perera",        rank:"Chief Officer",  exp:"11 yrs", nationality:"Sri Lankan", status:"Shortlisted",  score:91, cdc:true,  stcw:true,  avatar:"SP", color:"#34D399" },
   { id:4, name:"Mohammed Al Farsi",     rank:"Second Officer", exp:"7 yrs",  nationality:"Omani",      status:"Applied",      score:76, cdc:true,  stcw:false, avatar:"MA", color:"#FBBF24" },
@@ -87,11 +87,11 @@ const APPLICANTS = [
 ];
 
 const NOTIFICATIONS = [
-  { id:1, icon:"users",       title:"New Application",       msg:"Capt. Rajesh Fernando applied for Master.",                time:"30m ag✓, read:false, color:"#38BDF8" },
-  { id:2, icon:"checkCircle", title:"Job Post Approved",     msg:"Your posting for Chief Engineer has been approved.",       time:"2h ag✓,  read:false, color:"#34D399" },
-  { id:3, icon:"sparkles",    title:"7 New Shortlist Matches",msg:"AI found 3 new candidates for Chief Officer.",           time:"5h ag✓,  read:true,  color:"#A78BFA" },
-  { id:4, icon:"creditCard",  title:"Subscription Renewal",  msg:"Your Professional plan renews in 7 days.",                time:"1d ag✓,  read:true,  color:"#FBBF24" },
-  { id:5, icon:"award",       title:"Candidate Selected",    msg:"Ravi Krishnamurthy accepted your offer.",                 time:"2d ag✓,  read:true,  color:"#34D399" },
+  { id:1, icon:"users",       title:"New Application",       msg:"Capt. Rajesh Fernando applied for Master.",                time:"30m ago", read:false, color:"#38BDF8" },
+  { id:2, icon:"checkCircle", title:"Job Post Approved",     msg:"Your posting for Chief Engineer has been approved.",       time:"2h ago",  read:false, color:"#34D399" },
+  { id:3, icon:"sparkles",    title:"7 New Shortlist Matches",msg:"AI found 3 new candidates for Chief Officer.",           time:"5h ago",  read:true,  color:"#A78BFA" },
+  { id:4, icon:"creditCard",  title:"Subscription Renewal",  msg:"Your Professional plan renews in 7 days.",                time:"1d ago",  read:true,  color:"#FBBF24" },
+  { id:5, icon:"award",       title:"Candidate Selected",    msg:"Ravi Krishnamurthy accepted your offer.",                 time:"2d ago",  read:true,  color:"#34D399" },
 ];
 
 const PIPELINE = [
@@ -169,7 +169,7 @@ function StatCard({ stat, delay=0 }) {
   const [visible, setVisible] = useState(false);
   useEffect(()=>{ const t=setTimeout(()=>setVisible(true),delay); return()=>clearTimeout(t); },[delay]);
   return (
-    <div style={{ background:"var(--bg-card)", border:"1px solid var(--border-card)", borderRadius:16, padding:26, transition:"all 0.3s cubic-bezier(0.4,0,0.2,1)", position:"relative", overflow:"hidden", boxShadow:"0 4px 24px rgba(0,0,0,0.25)", opacity:visible┈┈┈┈┈┈┈┈1:0, transform:visible—translateY(0)":"translateY(20px)" }}
+    <div style={{ background:"var(--bg-card)", border:"1px solid var(--border-card)", borderRadius:16, padding:26, transition:"all 0.3s cubic-bezier(0.4,0,0.2,1)", position:"relative", overflow:"hidden", boxShadow:"0 4px 24px rgba(0,0,0,0.25)", opacity:visible?1:0, transform:visible?"translateY(0)":"translateY(20px)" }}
       onMouseEnter={e=>{ e.currentTarget.style.transform="translateY(-4px)"; e.currentTarget.style.borderColor="rgba(56,189,248,0.3)"; e.currentTarget.style.boxShadow="0 16px 48px rgba(0,0,0,0.4)"; }}
       onMouseLeave={e=>{ e.currentTarget.style.transform="translateY(0)"; e.currentTarget.style.borderColor="var(--border-card)"; e.currentTarget.style.boxShadow="0 4px 24px rgba(0,0,0,0.25)"; }}
     >
@@ -178,7 +178,7 @@ function StatCard({ stat, delay=0 }) {
           <Icon name={stat.icon} size={24} color={stat.color} strokeWidth={2} />
         </div>
         <span style={{ fontSize:12, fontWeight:500, padding:"4px 10px", borderRadius:999, background:stat.changeBg, color:stat.changeColor, display:"inline-flex", alignItems:"center", gap:4, letterSpacing:"-0.01em" }}>
-          <Icon name={stat.trend==="up"—trendUp":"activity"} size={12} color={stat.changeColor} strokeWidth={2.5} />
+          <Icon name={stat.trend==="up"?"trendUp":"activity"} size={12} color={stat.changeColor} strokeWidth={2.5} />
           {stat.change}
         </span>
       </div>
@@ -186,7 +186,7 @@ function StatCard({ stat, delay=0 }) {
       <div style={{ fontSize:14, color:"var(--text-secondary)", marginTop:10, fontWeight:500, letterSpacing:"-0.01em" }}>{stat.label}</div>
       <div style={{ marginTop:18, height:36, display:"flex", alignItems:"flex-end", gap:4 }}>
         {stat.sparkline.map((h,i)=>(
-          <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:2, background:stat.color, opacity:0.4→(i/stat.sparkline.length)*0.6 }} />
+          <div key={i} style={{ flex:1, height:`${h}%`, borderRadius:2, background:stat.color, opacity:0.4+(i/stat.sparkline.length)*0.6 }} />
         ))}
       </div>
     </div>
@@ -202,7 +202,7 @@ function BarChart({ data }) {
       {data.map((d,i)=>(
         <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:10, maxWidth:48 }}>
           <span style={{ fontSize:12, fontWeight:600, color:"var(--text-secondary)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.04em" }}>{d.value}</span>
-          <div style={{ width:"100%", borderRadius:"6px 6px 0 0", background:`linear-gradient(180deg,${d.color},${d.color}99)`, height:animated┈┈┈┈┈┈┈┈`${(d.value/max)*90}px`:"6px", transition:`height 0.8s cubic-bezier(0.4,0,0.2,1) ${i*60}ms`, minHeight:6 }} />
+          <div style={{ width:"100%", borderRadius:"6px 6px 0 0", background:`linear-gradient(180deg,${d.color},${d.color}99)`, height:animated?`${(d.value/max)*90}px`:"6px", transition:`height 0.8s cubic-bezier(0.4,0,0.2,1) ${i*60}ms`, minHeight:6 }} />
           <span style={{ fontSize:11, fontWeight:500, color:"var(--text-tertiary)", letterSpacing:"0.03em", textTransform:"uppercase" }}>{d.label}</span>
         </div>
       ))}
@@ -240,16 +240,16 @@ function PostJobModal({ onClose }) {
         <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:28 }}>
           <div>
             <h3 style={{ fontSize:24, fontWeight:600, color:"var(--text-primary)", letterSpacing:"-0.025em" }}>Post New Vacancy</h3>
-            <p style={{ fontSize:14, color:"var(--text-secondary)", marginTop:6 }}>Step {step} of 2 — {step===1—Job Details":"Requirements"}</p>
+            <p style={{ fontSize:14, color:"var(--text-secondary)", marginTop:6 }}>Step {step} of 2 — {step===1?"Job Details":"Requirements"}</p>
           </div>
           <button onClick={onClose} style={{ background:"var(--bg-tertiary)", border:"1px solid var(--border-card)", cursor:"pointer", width:36, height:36, borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-secondary)" }}>
             <Icon name="x" size={18} strokeWidth={2.2} />
           </button>
         </div>
         <div style={{ display:"flex", gap:6, marginBottom:30 }}>
-          {[1,2].map(s=><div key={s} style={{ flex:1, height:4, borderRadius:4, background:s<=step—linear-gradient(90deg,#0284C7,#38BDF8)":"var(--bg-tertiary)", transition:"all 0.4s" }} />)}
+          {[1,2].map(s=><div key={s} style={{ flex:1, height:4, borderRadius:4, background:s<=step?"linear-gradient(90deg,#0284C7,#38BDF8)":"var(--bg-tertiary)", transition:"all 0.4s" }} />)}
         </div>
-        {step===1┈┈┈┈┈┈┈┈(
+        {step===1?(
           <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 16px" }}>
             {[
               { k:"title",    label:"Job Title / Rank",     placeholder:"e.g. Master",      full:false },
@@ -258,7 +258,7 @@ function PostJobModal({ onClose }) {
               { k:"duration", label:"Contract Duration",    placeholder:"e.g. 9 Months",    full:false },
               { k:"location", label:"Port of Departure",    placeholder:"e.g. Singapore",   full:true  },
             ].map(f=>(
-              <div key={f.k} style={{ gridColumn:f.full—1/-1":"aut✓, marginBottom:18 }}>
+              <div key={f.k} style={{ gridColumn:f.full?"1/-1":"auto", marginBottom:18 }}>
                 <label style={labelStyle}>{f.label}</label>
                 <input value={form[f.k]} onChange={e=>set(f.k,e.target.value)} placeholder={f.placeholder} style={inputStyle} />
               </div>
@@ -285,7 +285,7 @@ function PostJobModal({ onClose }) {
         <div style={{ display:"flex", gap:10, marginTop:28 }}>
           {step>1&&<button onClick={()=>setStep(1)} style={{ flex:1, padding:"13px", borderRadius:10, border:"1px solid var(--border-card)", background:"transparent", color:"var(--text-secondary)", fontWeight:500, fontSize:14, cursor:"pointer", fontFamily:"'Inter',sans-serif" }}>Back</button>}
           <button onClick={()=>{ if(step===1)setStep(2); else onClose(); }} style={{ flex:2, padding:"13px", borderRadius:10, border:"none", background:"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:600, fontSize:14, cursor:"pointer", boxShadow:"0 6px 20px rgba(2,132,199,0.35)", fontFamily:"'Inter',sans-serif" }}>
-            {step===1—Continue":"Submit for Approval"}
+            {step===1?"Continue":"Submit for Approval"}
           </button>
         </div>
       </div>
@@ -297,7 +297,7 @@ function DashboardHome({ setPage, setShowModal }) {
   const weeklyApps=[{label:"Mon",value:12,color:"#38BDF8"},{label:"Tue",value:19,color:"#38BDF8"},{label:"Wed",value:8,color:"#38BDF8"},{label:"Thu",value:24,color:"#0EA5E9"},{label:"Fri",value:31,color:"#0284C7"},{label:"Sat",value:14,color:"#38BDF8"},{label:"Sun",value:6,color:"#7DD3FC"}];
   return (
     <div>
-      <div style={{ background:"linear-gradient(135deg,#0F172· 0%,#1E293B 30%,#0284C7 100%)", borderRadius:20, padding:"40px 44px", marginBottom:28, position:"relative", overflow:"hidden", boxShadow:"0 20px 60px rgba(2,132,199,0.25)" }}>
+      <div style={{ background:"linear-gradient(135deg,#0F172A 0%,#1E293B 30%,#0284C7 100%)", borderRadius:20, padding:"40px 44px", marginBottom:28, position:"relative", overflow:"hidden", boxShadow:"0 20px 60px rgba(2,132,199,0.25)" }}>
         <div style={{ position:"absolute", right:-120, top:-120, width:400, height:400, borderRadius:"50%", background:"rgba(56,189,248,0.08)", pointerEvents:"none" }} />
         <div style={{ position:"relative", zIndex:1, display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:24 }}>
           <div>
@@ -325,7 +325,7 @@ function DashboardHome({ setPage, setShowModal }) {
           </div>
           <h3 style={{ fontSize:20, fontWeight:600, color:"var(--text-primary)", marginBottom:22, letterSpacing:"-0.025em" }}>Smart Recruitment Analysis</h3>
           {AI_INSIGHTS.map((insight,i)=>(
-            <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:14, padding:"14px 0", borderBottom:i<AI_INSIGHTS.length-1—1px solid rgba(139,92,246,0.1)":"none" }}>
+            <div key={i} style={{ display:"flex", alignItems:"flex-start", gap:14, padding:"14px 0", borderBottom:i<AI_INSIGHTS.length-1?"1px solid rgba(139,92,246,0.1)":"none" }}>
               <div style={{ width:36, height:36, borderRadius:10, background:insight.bgColor, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
                 <Icon name={insight.icon} size={18} color={insight.iconColor} strokeWidth={2} />
               </div>
@@ -376,7 +376,7 @@ function DashboardHome({ setPage, setShowModal }) {
 function ManageJobs({ setShowModal }) {
   const [filter,setFilter]=useState("All");
   const filters=["All","Active","Paused","Closed"];
-  const filtered=filter==="All"┈┈┈┈┈┈┈┈JOBS:JOBS.filter(j=>j.status===filter);
+  const filtered=filter==="All"?JOBS:JOBS.filter(j=>j.status===filter);
   return (
     <div>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:28 }}>
@@ -390,7 +390,7 @@ function ManageJobs({ setShowModal }) {
       </div>
       <div style={{ display:"flex", gap:8, marginBottom:24 }}>
         {filters.map(f=>(
-          <button key={f} onClick={()=>setFilter(f)} style={{ padding:"9px 20px", borderRadius:999, border:filter===f—none":"1px solid var(--border-card)", cursor:"pointer", fontWeight:500, fontSize:13, background:filter===f—linear-gradient(135deg,#0284C7,#0EA5E9)":"transparent", color:filter===f—#fff":"var(--text-secondary)", fontFamily:"'Inter',sans-serif", letterSpacing:"-0.01em" }}>
+          <button key={f} onClick={()=>setFilter(f)} style={{ padding:"9px 20px", borderRadius:999, border:filter===f?"none":"1px solid var(--border-card)", cursor:"pointer", fontWeight:500, fontSize:13, background:filter===f?"linear-gradient(135deg,#0284C7,#0EA5E9)":"transparent", color:filter===f?"#fff":"var(--text-secondary)", fontFamily:"'Inter',sans-serif", letterSpacing:"-0.01em" }}>
             {f}
           </button>
         ))}
@@ -420,8 +420,8 @@ function ManageJobs({ setShowModal }) {
                   </div>
                 ))}
               </div>
-              <span style={{ padding:"6px 14px", borderRadius:999, fontSize:12, fontWeight:600, background:job.status==="Active"—rgba(16,185,129,0.12)":job.status==="Paused"—rgba(245,158,11,0.12)":"rgba(255,255,255,0.05)", color:job.status==="Active"—#34D399":job.status==="Paused"—#FBBF24":"var(--text-tertiary)", border:`1px solid ${job.status==="Active"—rgba(16,185,129,0.25)":job.status==="Paused"—rgba(245,158,11,0.25)":"rgba(255,255,255,0.08)"}`, display:"inline-flex", alignItems:"center", gap:6, letterSpacing:"-0.01em" }}>
-                <Icon name={job.status==="Active"—play":job.status==="Paused"—pause":"x"} size={11} strokeWidth={2.5} />
+              <span style={{ padding:"6px 14px", borderRadius:999, fontSize:12, fontWeight:600, background:job.status==="Active"?"rgba(16,185,129,0.12)":job.status==="Paused"?"rgba(245,158,11,0.12)":"rgba(255,255,255,0.05)", color:job.status==="Active"?"#34D399":job.status==="Paused"?"#FBBF24":"var(--text-tertiary)", border:`1px solid ${job.status==="Active"?"rgba(16,185,129,0.25)":job.status==="Paused"?"rgba(245,158,11,0.25)":"rgba(255,255,255,0.08)"}`, display:"inline-flex", alignItems:"center", gap:6, letterSpacing:"-0.01em" }}>
+                <Icon name={job.status==="Active"?"play":job.status==="Paused"?"pause":"x"} size={11} strokeWidth={2.5} />
                 {job.status}
               </span>
               <div style={{ display:"flex", gap:8 }}>
@@ -463,10 +463,10 @@ function Candidates() {
           {statuses.map(s=><option key={s}>{s}</option>)}
         </select>
       </GlassCard>
-      <div style={{ display:"grid", gridTemplateColumns:selected—1fr 1fr":"1fr", gap:20 }}>
-        <div style={{ display:"grid", gridTemplateColumns:selected—1fr":"repeat(2,1fr)", gap:14 }}>
+      <div style={{ display:"grid", gridTemplateColumns:selected?"1fr 1fr":"1fr", gap:20 }}>
+        <div style={{ display:"grid", gridTemplateColumns:selected?"1fr":"repeat(2,1fr)", gap:14 }}>
           {filtered.map(a=>(
-            <GlassCard key={a.id} style={{ padding:22, cursor:"pointer", border:selected┈┈┈┈┈┈┈┈.id===a.id┈┈┈┈┈┈┈┈`1.5px solid ${a.color}60`:"1px solid var(--border-card)" }} onClick={()=>setSelected(selected┈┈┈┈┈┈┈┈.id===a.id┈┈┈┈┈┈┈┈null:a)}>
+            <GlassCard key={a.id} style={{ padding:22, cursor:"pointer", border:selected?.id===a.id?`1.5px solid ${a.color}60`:"1px solid var(--border-card)" }} onClick={()=>setSelected(selected?.id===a.id?null:a)}>
               <div style={{ display:"flex", alignItems:"flex-start", gap:14, marginBottom:14 }}>
                 <Avatar initials={a.avatar} size={48} gradient={`linear-gradient(135deg,${a.color},${a.color}aa)`} />
                 <div style={{ flex:1, minWidth:0 }}>
@@ -482,8 +482,8 @@ function Candidates() {
               <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:8 }}>
                 <div style={{ display:"flex", gap:6 }}>
                   {[{label:"CDC",val:a.cdc},{label:"STCW",val:a.stcw}].map(c=>(
-                    <span key={c.label} style={{ background:c.val—rgba(16,185,129,0.12)":"rgba(239,68,68,0.12)", color:c.val—#34D399":"#F87171", padding:"3px 9px", borderRadius:6, fontSize:11, fontWeight:600, border:`1px solid ${c.val—rgba(16,185,129,0.25)":"rgba(239,68,68,0.25)"}`, display:"inline-flex", alignItems:"center", gap:4, letterSpacing:"-0.01em" }}>
-                      <Icon name={c.val—check":"x"} size={10} strokeWidth={2.5} color={c.val—#34D399":"#F87171"} />{c.label}
+                    <span key={c.label} style={{ background:c.val?"rgba(16,185,129,0.12)":"rgba(239,68,68,0.12)", color:c.val?"#34D399":"#F87171", padding:"3px 9px", borderRadius:6, fontSize:11, fontWeight:600, border:`1px solid ${c.val?"rgba(16,185,129,0.25)":"rgba(239,68,68,0.25)"}`, display:"inline-flex", alignItems:"center", gap:4, letterSpacing:"-0.01em" }}>
+                      <Icon name={c.val?"check":"x"} size={10} strokeWidth={2.5} color={c.val?"#34D399":"#F87171"} />{c.label}
                     </span>
                   ))}
                 </div>
@@ -512,7 +512,7 @@ function Candidates() {
               </div>
             </div>
             <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"14px 24px", marginBottom:24, padding:18, background:"var(--bg-tertiary)", borderRadius:12 }}>
-              {[{label:"Experience",val:selected.exp},{label:"Nationality",val:selected.nationality},{label:"CDC",val:selected.cdc—Valid":"Missing",icon:selected.cdc—check":"x",iconColor:selected.cdc—#34D399":"#F87171"},{label:"STCW",val:selected.stcw—Valid":"Missing",icon:selected.stcw—check":"x",iconColor:selected.stcw—#34D399":"#F87171"}].map(f=>(
+              {[{label:"Experience",val:selected.exp},{label:"Nationality",val:selected.nationality},{label:"CDC",val:selected.cdc?"Valid":"Missing",icon:selected.cdc?"check":"x",iconColor:selected.cdc?"#34D399":"#F87171"},{label:"STCW",val:selected.stcw?"Valid":"Missing",icon:selected.stcw?"check":"x",iconColor:selected.stcw?"#34D399":"#F87171"}].map(f=>(
                 <div key={f.label}>
                   <div style={{ fontSize:11, color:"var(--text-tertiary)", fontWeight:600, textTransform:"uppercase", letterSpacing:"0.06em", marginBottom:4 }}>{f.label}</div>
                   <div style={{ fontSize:14, color:"var(--text-primary)", fontWeight:500, display:"flex", alignItems:"center", gap:6, letterSpacing:"-0.01em" }}>
@@ -554,7 +554,7 @@ function Notifications() {
       </div>
       <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
         {notifs.map(n=>(
-          <GlassCard key={n.id} style={{ padding:22, border:n.read—1px solid var(--border-card)":`1.5px solid ${n.color}40`, cursor:"pointer" }} onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id┈┈┈┈┈┈┈┈{...x,read:true}:x))}>
+          <GlassCard key={n.id} style={{ padding:22, border:n.read?"1px solid var(--border-card)":`1.5px solid ${n.color}40`, cursor:"pointer" }} onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id?{...x,read:true}:x))}>
             <div style={{ display:"flex", gap:16 }}>
               <div style={{ width:44, height:44, borderRadius:11, background:`${n.color}18`, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
                 <Icon name={n.icon} size={20} color={n.color} strokeWidth={2} />
@@ -577,9 +577,9 @@ function Notifications() {
 
 function Subscription() {
   const plans=[
-    {name:"Starter",price:"$49",period:"/m✓,features:["5 Job Posts","100 Candidate Views","Basic Filters","Email Support"],current:false},
-    {name:"Professional",price:"$149",period:"/m✓,features:["25 Job Posts","Unlimited Views","Advanced Filters","Priority Support","Analytics","Featured Badges","Direct Messaging"],current:true},
-    {name:"Enterprise",price:"$399",period:"/m✓,features:["Unlimited Posts","Unlimited Everything","Dedicated Manager","API Access","Custom Integrations","Analytics"],current:false},
+    {name:"Starter",price:"$49",period:"/mo",features:["5 Job Posts","100 Candidate Views","Basic Filters","Email Support"],current:false},
+    {name:"Professional",price:"$149",period:"/mo",features:["25 Job Posts","Unlimited Views","Advanced Filters","Priority Support","Analytics","Featured Badges","Direct Messaging"],current:true},
+    {name:"Enterprise",price:"$399",period:"/mo",features:["Unlimited Posts","Unlimited Everything","Dedicated Manager","API Access","Custom Integrations","Analytics"],current:false},
   ];
   return (
     <div>
@@ -587,20 +587,20 @@ function Subscription() {
       <p style={{ fontSize:15, color:"var(--text-secondary)", marginBottom:32, letterSpacing:"-0.01em" }}>Current plan: <strong style={{color:"#38BDF8"}}>Professional</strong> · Renews June 15, 2025</p>
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:20, marginBottom:32 }}>
         {plans.map(plan=>(
-          <div key={plan.name} style={{ background:plan.current—linear-gradient(145deg,#0284C7,#0EA5E9)":"var(--bg-card)", border:plan.current—none":"1px solid var(--border-card)", borderRadius:16, padding:30, boxShadow:plan.current—0 20px 50px rgba(2,132,199,0.4)":"0 4px 20px rgba(0,0,0,0.25)", transform:plan.current—scale(1.04)":"none", position:"relative" }}>
+          <div key={plan.name} style={{ background:plan.current?"linear-gradient(145deg,#0284C7,#0EA5E9)":"var(--bg-card)", border:plan.current?"none":"1px solid var(--border-card)", borderRadius:16, padding:30, boxShadow:plan.current?"0 20px 50px rgba(2,132,199,0.4)":"0 4px 20px rgba(0,0,0,0.25)", transform:plan.current?"scale(1.04)":"none", position:"relative" }}>
             {plan.current&&<div style={{ position:"absolute", top:-12, left:"50%", transform:"translateX(-50%)", background:"linear-gradient(135deg,#FB923C,#FBBF24)", color:"#fff", borderRadius:999, padding:"5px 14px", fontSize:11, fontWeight:600, letterSpacing:"0.04em", textTransform:"uppercase" }}>Current Plan</div>}
-            <div style={{ fontSize:12, fontWeight:600, color:plan.current—rgba(255,255,255,0.75)":"var(--text-tertiary)", marginBottom:8, textTransform:"uppercase", letterSpacing:"0.06em" }}>{plan.name}</div>
-            <div style={{ fontSize:44, fontWeight:700, color:plan.current—#fff":"var(--text-primary)", letterSpacing:"-0.04em", lineHeight:1 }}>{plan.price}<span style={{ fontSize:16, fontWeight:400, color:plan.current—rgba(255,255,255,0.6)":"var(--text-tertiary)" }}>{plan.period}</span></div>
+            <div style={{ fontSize:12, fontWeight:600, color:plan.current?"rgba(255,255,255,0.75)":"var(--text-tertiary)", marginBottom:8, textTransform:"uppercase", letterSpacing:"0.06em" }}>{plan.name}</div>
+            <div style={{ fontSize:44, fontWeight:700, color:plan.current?"#fff":"var(--text-primary)", letterSpacing:"-0.04em", lineHeight:1 }}>{plan.price}<span style={{ fontSize:16, fontWeight:400, color:plan.current?"rgba(255,255,255,0.6)":"var(--text-tertiary)" }}>{plan.period}</span></div>
             <div style={{ margin:"22px 0", display:"flex", flexDirection:"column", gap:10 }}>
               {plan.features.map(f=>(
                 <div key={f} style={{ display:"flex", alignItems:"center", gap:10 }}>
-                  <Icon name="check" size={15} color={plan.current—#6EE7B7":"#38BDF8"} strokeWidth={2.5} />
-                  <span style={{ fontSize:14, color:plan.current—rgba(255,255,255,0.85)":"var(--text-secondary)", letterSpacing:"-0.01em" }}>{f}</span>
+                  <Icon name="check" size={15} color={plan.current?"#6EE7B7":"#38BDF8"} strokeWidth={2.5} />
+                  <span style={{ fontSize:14, color:plan.current?"rgba(255,255,255,0.85)":"var(--text-secondary)", letterSpacing:"-0.01em" }}>{f}</span>
                 </div>
               ))}
             </div>
-            <button style={{ width:"100%", padding:"13px", borderRadius:10, border:plan.current—1px solid rgba(255,255,255,0.3)":"none", background:plan.current—rgba(255,255,255,0.15)":"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:600, fontSize:14, cursor:"pointer", fontFamily:"'Inter',sans-serif", letterSpacing:"-0.01em" }}>
-              {plan.current—Active Plan":"Upgrade"}
+            <button style={{ width:"100%", padding:"13px", borderRadius:10, border:plan.current?"1px solid rgba(255,255,255,0.3)":"none", background:plan.current?"rgba(255,255,255,0.15)":"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:600, fontSize:14, cursor:"pointer", fontFamily:"'Inter',sans-serif", letterSpacing:"-0.01em" }}>
+              {plan.current?"Active Plan":"Upgrade"}
             </button>
           </div>
         ))}
@@ -652,16 +652,16 @@ export default function CompanyDashboard() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains→Mono:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         :root{
-          --bg-primary:${isDark—#09090B":"#FAFAFA"};
-          --bg-card:${isDark—#131316":"#FFFFFF"};
-          --bg-tertiary:${isDark—#1C1C20":"#F4F4F5"};
-          --border-card:${isDark—rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"};
-          --text-primary:${isDark—#FAFAFA":"#09090B"};
-          --text-secondary:${isDark—#A1A1AA":"#52525B"};
-          --text-tertiary:${isDark—#71717A":"#A1A1AA"};
+          --bg-primary:${isDark?"#09090B":"#FAFAFA"};
+          --bg-card:${isDark?"#131316":"#FFFFFF"};
+          --bg-tertiary:${isDark?"#1C1C20":"#F4F4F5"};
+          --border-card:${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"};
+          --text-primary:${isDark?"#FAFAFA":"#09090B"};
+          --text-secondary:${isDark?"#A1A1AA":"#52525B"};
+          --text-tertiary:${isDark?"#71717A":"#A1A1AA"};
         }
         body,html{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;background:var(--bg-primary);color:var(--text-primary);}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -678,8 +678,8 @@ export default function CompanyDashboard() {
       <div style={{ display:"flex", minHeight:"100vh", background:"var(--bg-primary)", color:"var(--text-primary)" }}>
         {showModal&&<PostJobModal onClose={()=>setShowModal(false)} />}
 
-        <aside style={{ width:sidebarOpen┈┈┈┈┈┈┈┈260:76, minHeight:"100vh", background:isDark—#09090B":"#fff", borderRight:"1px solid var(--border-card)", display:"flex", flexDirection:"column", position:"fixed", top:0, left:0, bottom:0, zIndex:1000, transition:"width 0.3s cubic-bezier(0.4,0,0.2,1)", overflow:"hidden" }}>
-          <div style={{ padding:sidebarOpen—22px 20px":"20px 18px", borderBottom:"1px solid var(--border-card)", display:"flex", alignItems:"center", gap:12, whiteSpace:"nowrap", overflow:"hidden" }}>
+        <aside style={{ width:sidebarOpen?260:76, minHeight:"100vh", background:isDark?"#09090B":"#fff", borderRight:"1px solid var(--border-card)", display:"flex", flexDirection:"column", position:"fixed", top:0, left:0, bottom:0, zIndex:1000, transition:"width 0.3s cubic-bezier(0.4,0,0.2,1)", overflow:"hidden" }}>
+          <div style={{ padding:sidebarOpen?"22px 20px":"20px 18px", borderBottom:"1px solid var(--border-card)", display:"flex", alignItems:"center", gap:12, whiteSpace:"nowrap", overflow:"hidden" }}>
             <div style={{ width:40, height:40, background:"linear-gradient(135deg,#0284C7,#38BDF8)", borderRadius:11, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 6px 20px rgba(2,132,199,0.4)" }}>
               <Icon name="waves" size={20} color="#fff" strokeWidth={2.2} />
             </div>
@@ -703,23 +703,23 @@ export default function CompanyDashboard() {
             </div>
           )}
 
-          <nav style={{ flex:1, padding:"18px 12px", display:"flex", flexDirection:"column", gap:2, overflowY:"aut✓ }}>
+          <nav style={{ flex:1, padding:"18px 12px", display:"flex", flexDirection:"column", gap:2, overflowY:"auto" }}>
             {["main","ai","manage"].map(section=>{
               const items=NAV_ITEMS.filter(n=>n.section===section);
               return (
                 <div key={section}>
-                  {sidebarOpen&&<div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:"0.1em", color:"var(--text-tertiary)", fontWeight:600, padding:"10px 14px 6px", marginTop:section!=="main"┈┈┈┈┈┈┈┈8:0 }}>{section==="main"—Main":section==="ai"—AI Tools":"Settings"}</div>}
+                  {sidebarOpen&&<div style={{ fontSize:10, textTransform:"uppercase", letterSpacing:"0.1em", color:"var(--text-tertiary)", fontWeight:600, padding:"10px 14px 6px", marginTop:section!=="main"?8:0 }}>{section==="main"?"Main":section==="ai"?"AI Tools":"Settings"}</div>}
                   {items.map(item=>{
                     const active=page===item.id;
                     return (
-                      <button key={item.id} onClick={()=>setPage(item.id)} title={!sidebarOpen┈┈┈┈┈┈┈┈item.label:""} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:sidebarOpen—10px 14px":"12px", borderRadius:10, border:"none", cursor:"pointer", marginBottom:2, background:active—rgba(56,189,248,0.12)":"transparent", color:active—#38BDF8":"var(--text-secondary)", transition:"all 0.15s ease", justifyContent:sidebarOpen—flex-start":"center", fontSize:14, fontWeight:active┈┈┈┈┈┈┈┈600:500, letterSpacing:"-0.01em", overflow:"hidden", fontFamily:"'Inter',sans-serif", borderLeft:active—2px solid #38BDF8":"2px solid transparent" }}
+                      <button key={item.id} onClick={()=>setPage(item.id)} title={!sidebarOpen?item.label:""} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:sidebarOpen?"10px 14px":"12px", borderRadius:10, border:"none", cursor:"pointer", marginBottom:2, background:active?"rgba(56,189,248,0.12)":"transparent", color:active?"#38BDF8":"var(--text-secondary)", transition:"all 0.15s ease", justifyContent:sidebarOpen?"flex-start":"center", fontSize:14, fontWeight:active?600:500, letterSpacing:"-0.01em", overflow:"hidden", fontFamily:"'Inter',sans-serif", borderLeft:active?"2px solid #38BDF8":"2px solid transparent" }}
                         onMouseEnter={e=>{ if(!active){ e.currentTarget.style.background="var(--bg-tertiary)"; e.currentTarget.style.color="var(--text-primary)"; }}}
                         onMouseLeave={e=>{ if(!active){ e.currentTarget.style.background="transparent"; e.currentTarget.style.color="var(--text-secondary)"; }}}
                       >
-                        <Icon name={item.icon} size={18} color={active—#38BDF8":"currentColor"} strokeWidth={active┈┈┈┈┈┈┈┈2.4:2} />
+                        <Icon name={item.icon} size={18} color={active?"#38BDF8":"currentColor"} strokeWidth={active?2.4:2} />
                         {sidebarOpen&&<span style={{ whiteSpace:"nowrap" }}>{item.label}</span>}
                         {sidebarOpen&&item.badge&&(
-                          <span style={{ marginLeft:"aut✓, background:item.badgeColor||"#EF4444", color:"#fff", borderRadius:typeof item.badge==="string"┈┈┈┈┈┈┈┈6:999, minWidth:22, height:20, display:"flex", alignItems:"center", justifyContent:"center", fontSize:typeof item.badge==="string"┈┈┈┈┈┈┈┈9:11, fontWeight:600, padding:typeof item.badge==="string"—0 8px":"0 6px", letterSpacing:typeof item.badge==="string"—0.05em":"-0.01em" }}>{item.badge}</span>
+                          <span style={{ marginLeft:"auto", background:item.badgeColor||"#EF4444", color:"#fff", borderRadius:typeof item.badge==="string"?6:999, minWidth:22, height:20, display:"flex", alignItems:"center", justifyContent:"center", fontSize:typeof item.badge==="string"?9:11, fontWeight:600, padding:typeof item.badge==="string"?"0 8px":"0 6px", letterSpacing:typeof item.badge==="string"?"0.05em":"-0.01em" }}>{item.badge}</span>
                         )}
                       </button>
                     );
@@ -731,17 +731,17 @@ export default function CompanyDashboard() {
 
           <div style={{ padding:"14px 12px", borderTop:"1px solid var(--border-card)" }}>
             <button onClick={()=>setSidebar(s=>!s)} style={{ width:"100%", padding:"9px", borderRadius:9, border:"1px solid var(--border-card)", background:"var(--bg-tertiary)", color:"var(--text-secondary)", cursor:"pointer", fontSize:13, display:"flex", alignItems:"center", justifyContent:"center", gap:8, letterSpacing:"-0.01em", fontWeight:500, fontFamily:"'Inter',sans-serif" }}>
-              <Icon name={sidebarOpen—chevronLeft":"chevronRight"} size={15} strokeWidth={2.2} />
+              <Icon name={sidebarOpen?"chevronLeft":"chevronRight"} size={15} strokeWidth={2.2} />
               {sidebarOpen&&"Collapse"}
             </button>
           </div>
         </aside>
 
-        <div style={{ flex:1, marginLeft:sidebarOpen┈┈┈┈┈┈┈┈260:76, transition:"margin-left 0.3s cubic-bezier(0.4,0,0.2,1)", minWidth:0, display:"flex", flexDirection:"column" }}>
-          <header style={{ background:isDark—rgba(19,19,22,0.7)":"rgba(255,255,255,0.7)", backdropFilter:"blur(20px)", borderBottom:"1px solid var(--border-card)", padding:"0 32px", height:68, display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:100, gap:16 }}>
+        <div style={{ flex:1, marginLeft:sidebarOpen?260:76, transition:"margin-left 0.3s cubic-bezier(0.4,0,0.2,1)", minWidth:0, display:"flex", flexDirection:"column" }}>
+          <header style={{ background:isDark?"rgba(19,19,22,0.7)":"rgba(255,255,255,0.7)", backdropFilter:"blur(20px)", borderBottom:"1px solid var(--border-card)", padding:"0 32px", height:68, display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:100, gap:16 }}>
             <div style={{ display:"flex", alignItems:"center", gap:18 }}>
               <h2 style={{ fontSize:18, fontWeight:600, color:"var(--text-primary)", letterSpacing:"-0.025em" }}>
-                {page==="dashboard"—Good morning, David":NAV_ITEMS.find(n=>n.id===page)┈┈┈┈┈┈┈┈.label||"Dashboard"}
+                {page==="dashboard"?"Good morning, David":NAV_ITEMS.find(n=>n.id===page)?.label||"Dashboard"}
               </h2>
               <span style={{ fontSize:13, color:"var(--text-tertiary)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.02em" }}>
                 {new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"})}
@@ -755,8 +755,8 @@ export default function CompanyDashboard() {
                 <Icon name="bell" size={18} strokeWidth={2} />
                 {unread>0&&<span style={{ position:"absolute", top:8, right:8, width:8, height:8, borderRadius:"50%", background:"#EF4444", border:"2px solid var(--bg-card)", animation:"pulseDot 2s infinite" }} />}
               </button>
-              <button onClick={()=>setTheme(t=>t==="dark"—light":"dark")} style={{ width:40, height:40, borderRadius:10, border:"1px solid var(--border-card)", background:"var(--bg-card)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-secondary)" }}>
-                <Icon name={isDark—moon":"sun"} size={18} strokeWidth={2} />
+              <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:40, height:40, borderRadius:10, border:"1px solid var(--border-card)", background:"var(--bg-card)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-secondary)" }}>
+                <Icon name={isDark?"moon":"sun"} size={18} strokeWidth={2} />
               </button>
               <div style={{ display:"flex", alignItems:"center", gap:10, padding:"6px 12px 6px 6px", background:"var(--bg-card)", border:"1px solid var(--border-card)", borderRadius:10, cursor:"pointer" }}>
                 <div style={{ width:30, height:30, borderRadius:"50%", background:"linear-gradient(135deg,#0284C7,#38BDF8)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:600, fontSize:11, letterSpacing:"-0.02em" }}>DC</div>
@@ -765,11 +765,11 @@ export default function CompanyDashboard() {
             </div>
           </header>
 
-          <main style={{ flex:1, padding:32, overflowY:"aut✓ }}>
+          <main style={{ flex:1, padding:32, overflowY:"auto" }}>
             <div className="page-content">{renderPage()}</div>
           </main>
 
-          <footer style={{ padding:"16px 32px", borderTop:"1px solid var(--border-card)", background:isDark—rgba(19,19,22,0.5)":"rgba(255,255,255,0.5)", textAlign:"center", backdropFilter:"blur(20px)" }}>
+          <footer style={{ padding:"16px 32px", borderTop:"1px solid var(--border-card)", background:isDark?"rgba(19,19,22,0.5)":"rgba(255,255,255,0.5)", textAlign:"center", backdropFilter:"blur(20px)" }}>
             <p style={{ fontSize:12, color:"var(--text-tertiary)", letterSpacing:"-0.01em" }}>
               © 2025 <strong style={{ color:"#38BDF8", fontWeight:600 }}>OceanCrew</strong> · Powered by <strong style={{ color:"#38BDF8", fontWeight:600 }}>SKYbird Systems</strong>
             </p>

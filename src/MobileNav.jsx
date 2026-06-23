@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 /**
  * OceanCrew — "Command Drawer" Mobile Navigation
- * · completely unique floating pill trigger that slides up a glassmorphism
+ * A completely unique floating pill trigger that slides up a glassmorphism
  * navigation drawer. Never seen anywhere else.
  */
 
@@ -65,13 +65,13 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
 
   if (!isMobile) return null;
 
-  const accentColor = isDark ┈┈┈┈┈┈┈┈ "#38BDF8" : "#0284C7";
-  const bgColor = isDark ┈┈┈┈┈┈┈┈ "rgba(8,9,18,0.96)" : "rgba(248,250,252,0.97)";
-  const cardBg = isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)";
-  const activeBg = isDark ┈┈┈┈┈┈┈┈ "rgba(56,189,248,0.15)" : "rgba(2,132,199,0.1)";
-  const textColor = isDark ┈┈┈┈┈┈┈┈ "#F1F5F9" : "#1a2332";
-  const mutedColor = isDark ┈┈┈┈┈┈┈┈ "#475569" : "#94A3B8";
-  const borderColor = isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
+  const accentColor = isDark ? "#38BDF8" : "#0284C7";
+  const bgColor = isDark ? "rgba(8,9,18,0.96)" : "rgba(248,250,252,0.97)";
+  const cardBg = isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)";
+  const activeBg = isDark ? "rgba(56,189,248,0.15)" : "rgba(2,132,199,0.1)";
+  const textColor = isDark ? "#F1F5F9" : "#1a2332";
+  const mutedColor = isDark ? "#475569" : "#94A3B8";
+  const borderColor = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)";
 
   // current page label
   const allItems = navItems.flatMap(s => s.items);
@@ -118,7 +118,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
             background: "rgba(0,0,0,0.55)",
             backdropFilter: "blur(6px)",
             WebkitBackdropFilter: "blur(6px)",
-            animation: `${open ┈┈┈┈┈┈┈┈ "oc-backdrop-in" : "oc-backdrop-out"} 0.3s ease both`,
+            animation: `${open ? "oc-backdrop-in" : "oc-backdrop-out"} 0.3s ease both`,
           }}
         />
       )}
@@ -128,8 +128,8 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         <div
           ref={drawerRef}
           style={{
-            position: "fixed", bottom: 70, left: 16, right: 16, margin: "0 aut✓,
-            width: "aut✓, maxWidth: 480,
+            position: "fixed", bottom: 70, left: 16, right: 16, margin: "0 auto",
+            width: "auto", maxWidth: 480,
             zIndex: 9999,
             background: bgColor,
             borderRadius: 20,
@@ -138,9 +138,9 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
             backdropFilter: "blur(40px)",
             WebkitBackdropFilter: "blur(40px)",
             boxShadow: isDark
-              ┈┈┈┈┈┈┈┈ "0 -8px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(56,189,248,0.08)"
+              ? "0 -8px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(56,189,248,0.08)"
               : "0 -8px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)",
-            animation: `${open ┈┈┈┈┈┈┈┈ "oc-drawer-up" : "oc-drawer-down"} 0.38s cubic-bezier(0.34,1.56,0.64,1) both`,
+            animation: `${open ? "oc-drawer-up" : "oc-drawer-down"} 0.38s cubic-bezier(0.34,1.56,0.64,1) both`,
             overflow: "hidden",
           }}
         >
@@ -155,7 +155,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
           {/* Drag handle */}
           <div style={{
             width: 40, height: 4, borderRadius: 2,
-            background: isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)",
+            background: isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.15)",
             margin: "10px auto 16px",
           }} />
 
@@ -205,7 +205,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
               }}>
                 {section.items.map((item, i) => {
                   const isActive = page === item.id;
-                  const badge = item.id === "notifications" ┈┈┈┈┈┈┈┈ unreadCount : (item.badge || 0);
+                  const badge = item.id === "notifications" ? unreadCount : (item.badge || 0);
                   const itemCount = Math.min(section.items.length, 4);
                   return (
                     <button
@@ -217,12 +217,12 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
                         alignItems: "center", justifyContent: "center",
                         gap: 4, padding: "10px 6px",
                         borderRadius: 12, border: "none", cursor: "pointer",
-                        background: isActive ┈┈┈┈┈┈┈┈ activeBg : cardBg,
-                        color: isActive ┈┈┈┈┈┈┈┈ accentColor : mutedColor,
+                        background: isActive ? activeBg : cardBg,
+                        color: isActive ? accentColor : mutedColor,
                         position: "relative",
-                        outline: isActive ┈┈┈┈┈┈┈┈ `1.5px solid ${accentColor}40` : "none",
+                        outline: isActive ? `1.5px solid ${accentColor}40` : "none",
                         transition: "all 0.15s ease",
-                        animation: `oc-item-pop 0.35s ease ${si * 0.05 → i * 0.04}s both`,
+                        animation: `oc-item-pop 0.35s ease ${si * 0.05 + i * 0.04}s both`,
                         fontFamily: "'Inter',sans-serif",
                       }}
                     >
@@ -237,10 +237,10 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
                           pointerEvents: "none",
                         }} />
                       )}
-                      <Icon name={item.icon} size={20} color={isActive ┈┈┈┈┈┈┈┈ accentColor : mutedColor} strokeWidth={isActive ┈┈┈┈┈┈┈┈ 2.2 : 1.8} />
+                      <Icon name={item.icon} size={20} color={isActive ? accentColor : mutedColor} strokeWidth={isActive ? 2.2 : 1.8} />
                       <span style={{
-                        fontSize: 10, fontWeight: isActive ┈┈┈┈┈┈┈┈ 700 : 500,
-                        color: isActive ┈┈┈┈┈┈┈┈ accentColor : mutedColor,
+                        fontSize: 10, fontWeight: isActive ? 700 : 500,
+                        color: isActive ? accentColor : mutedColor,
                         lineHeight: 1.2, textAlign: "center",
                         maxWidth: 64, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
                       }}>
@@ -291,20 +291,20 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
         <button
           onClick={() => setOpen(o => !o)}
           style={{
-            pointerEvents: "aut✓, height: 44,
+            pointerEvents: "auto", height: 44,
             WebkitTapHighlightColor: "transparent", outline: "none",
             display: "flex", alignItems: "center", gap: 8,
             padding: "8px 16px 8px 12px",
             borderRadius: 999,
             background: isDark
-              ┈┈┈┈┈┈┈┈ "linear-gradient(135deg, rgba(14,22,42,0.98), rgba(18,26,50,0.98))"
+              ? "linear-gradient(135deg, rgba(14,22,42,0.98), rgba(18,26,50,0.98))"
               : "linear-gradient(135deg, rgba(255,255,255,0.98), rgba(241,245,249,0.98))",
-            border: `1px solid ${isDark ┈┈┈┈┈┈┈┈ "rgba(56,189,248,0.3)" : "rgba(2,132,199,0.25)"}`,
+            border: `1px solid ${isDark ? "rgba(56,189,248,0.3)" : "rgba(2,132,199,0.25)"}`,
             boxShadow: isDark
-              ┈┈┈┈┈┈┈┈ "0 4px 24px rgba(56,189,248,0.35), 0 2px 8px rgba(0,0,0,0.5)"
+              ? "0 4px 24px rgba(56,189,248,0.35), 0 2px 8px rgba(0,0,0,0.5)"
               : "0 4px 24px rgba(2,132,199,0.2), 0 2px 8px rgba(0,0,0,0.1)",
             cursor: "pointer",
-            animation: open ┈┈┈┈┈┈┈┈ "none" : "oc-pill-pulse 2.5s ease-in-out infinite",
+            animation: open ? "none" : "oc-pill-pulse 2.5s ease-in-out infinite",
             transition: "all 0.2s ease",
             fontFamily: "'Inter',sans-serif",
           }}
@@ -317,7 +317,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
             boxShadow: `0 2px 8px ${accentColor}60`,
             flexShrink: 0,
           }}>
-            <Icon name={currentItem┈┈┈┈┈┈┈┈.icon || "grid"} size={14} color="#fff" strokeWidth={2.2} />
+            <Icon name={currentItem?.icon || "grid"} size={14} color="#fff" strokeWidth={2.2} />
           </div>
 
           {/* Current page name */}
@@ -325,7 +325,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
             fontSize: 13, fontWeight: 700, color: textColor,
             maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
           }}>
-            {currentItem┈┈┈┈┈┈┈┈.label || "Menu"}
+            {currentItem?.label || "Menu"}
           </span>
 
           {/* Unread badge */}
@@ -342,7 +342,7 @@ export default function MobileNav({ navItems, page, setPage, isDark, unreadCount
           <div style={{
             marginLeft: 2, color: accentColor,
             transition: "transform 0.3s ease",
-            transform: open ┈┈┈┈┈┈┈┈ "rotate(180deg)" : "rotate(0deg)",
+            transform: open ? "rotate(180deg)" : "rotate(0deg)",
           }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth={2.5} strokeLinecap="round">

@@ -80,11 +80,11 @@ const L = {
 };
 
 const initSeafarers = [
-  {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        country:"Sri Lanka",status:"Active",  apps:12,verified:true, sub:"Pr✓, avatar:"RF",matchScore:96,contractEnd:"Jul 2025",blacklisted:false},
-  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    status:"Active",  apps:8, verified:true, sub:"Pr✓, avatar:"PN",matchScore:91,contractEnd:"Jun 2025",blacklisted:false},
+  {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",status:"Active",  apps:12,verified:true, sub:"Pro", avatar:"RF",matchScore:96,contractEnd:"Jul 2025",blacklisted:false},
+  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    status:"Active",  apps:8, verified:true, sub:"Pro", avatar:"PN",matchScore:91,contractEnd:"Jun 2025",blacklisted:false},
   {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",status:"Active",  apps:5, verified:true, sub:"Free",avatar:"SP",matchScore:88,contractEnd:"Aug 2025",blacklisted:false},
   {id:4,name:"Mohammed Al Farsi",    rank:"2nd Officer",   country:"Oman",     status:"Inactive",apps:2, verified:false,sub:"Free",avatar:"MA",matchScore:74,contractEnd:"May 2025",blacklisted:false},
-  {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",status:"Active",  apps:7, verified:true, sub:"Pr✓, avatar:"DW",matchScore:82,contractEnd:"Sep 2025",blacklisted:false},
+  {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",status:"Active",  apps:7, verified:true, sub:"Pro", avatar:"DW",matchScore:82,contractEnd:"Sep 2025",blacklisted:false},
   {id:6,name:"Chen Wei Long",        rank:"Chief Officer", country:"China",    status:"Active",  apps:1, verified:false,sub:"Free",avatar:"CW",matchScore:79,contractEnd:"Oct 2025",blacklisted:false},
 ];
 
@@ -103,7 +103,7 @@ const PENDING = [
 ];
 
 const PIPELINE_INIT = [
-  {id:1,name:"Capt. Rajesh Fernand✓,rank:"Master",        job:"Master — Pacific Star",     stage:"Shortlisted",score:96,avatar:"RF"},
+  {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        job:"Master — Pacific Star",     stage:"Shortlisted",score:96,avatar:"RF"},
   {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",job:"Chief Eng — Emirates",      stage:"Interview",  score:91,avatar:"PN"},
   {id:3,name:"Shanaka Perera",       rank:"Chief Officer", job:"Chief Officer — MSC",       stage:"Shortlisted",score:88,avatar:"SP"},
   {id:4,name:"Dilshan Wickrama",     rank:"ETO",           job:"ETO — Pacific Star",        stage:"Offer",      score:82,avatar:"DW"},
@@ -113,19 +113,19 @@ const PIPELINE_INIT = [
 const INIT_INVOICES = [
   {id:"INV-001",to:"Pacific Star Shipping",type:"Company", plan:"Professional",amount:149,status:"Paid",   date:"May 1", due:"May 15",email:"billing@pacificstar.com"},
   {id:"INV-002",to:"Emirates Maritime Co.",type:"Company", plan:"Enterprise",  amount:399,status:"Paid",   date:"May 1", due:"May 15",email:"accounts@emirates.ae"},
-  {id:"INV-003",to:"Capt. Rajesh Fernand✓,type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Paid",   date:"May 1", due:"May 5", email:"rajesh.f@gmail.com"},
+  {id:"INV-003",to:"Capt. Rajesh Fernando",type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Paid",   date:"May 1", due:"May 5", email:"rajesh.f@gmail.com"},
   {id:"INV-004",to:"Royal Caribbean Crew", type:"Company", plan:"Professional",amount:149,status:"Pending",date:"May 15",due:"Jun 1", email:"billing@royalcaribbean.com"},
   {id:"INV-005",to:"Evergreen Marine Corp",type:"Company", plan:"Starter",     amount:49, status:"Overdue",date:"Apr 1", due:"Apr 15",email:"accounts@evergreen.tw"},
   {id:"INV-006",to:"Eng. Priya Nair",      type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Pending",date:"May 15",due:"May 20",email:"priya.nair@gmail.com"},
 ];
 
 const ACTIVITY = [
-  {id:1,icon:"checkCircle",msg:"Pacific Star Shipping verified by Admin",           time:"5m ag✓, ok:true},
-  {id:2,icon:"star",       msg:"Capt. Rajesh Fernando — Verification badge granted",time:"12m ag✓,ok:true},
-  {id:3,icon:"send",       msg:"Interview notification sent to Eng. Priya Nair",    time:"1h ag✓, ok:true},
-  {id:4,icon:"dollarSign", msg:"Invoice INV-003 marked as Paid — $4",               time:"2h ag✓, ok:true},
-  {id:5,icon:"ban",        msg:"Evergreen Marine Corp — marked Overdue",             time:"3h ag✓, ok:false},
-  {id:6,icon:"alertCircle",msg:"Contract expiry alert: Mohammed Al Farsi (May 25)", time:"4h ag✓, ok:false},
+  {id:1,icon:"checkCircle",msg:"Pacific Star Shipping verified by Admin",           time:"5m ago", ok:true},
+  {id:2,icon:"star",       msg:"Capt. Rajesh Fernando — Verification badge granted",time:"12m ago",ok:true},
+  {id:3,icon:"send",       msg:"Interview notification sent to Eng. Priya Nair",    time:"1h ago", ok:true},
+  {id:4,icon:"dollarSign", msg:"Invoice INV-003 marked as Paid — $4",               time:"2h ago", ok:true},
+  {id:5,icon:"ban",        msg:"Evergreen Marine Corp — marked Overdue",             time:"3h ago", ok:false},
+  {id:6,icon:"alertCircle",msg:"Contract expiry alert: Mohammed Al Farsi (May 25)", time:"4h ago", ok:false},
 ];
 
 const NAV = [
@@ -153,7 +153,7 @@ const NAV = [
   ]},
 ];
 
-function useT(isDark){return isDark┈┈┈┈┈┈┈┈D:L;}
+function useT(isDark){return isDark?D:L;}
 
 function Card({children,style={},isDark,onClick}){
   const T=useT(isDark);
@@ -161,9 +161,9 @@ function Card({children,style={},isDark,onClick}){
   return(
     <div onClick={onClick} onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
       style={{background:T.card,borderRadius:20,padding:24,
-        boxShadow:h&&onClick┈┈┈┈┈┈┈┈(isDark—0 8px 40px rgba(0,0,0,0.5)":"0 8px 32px rgba(150,170,200,0.2)"):T.shadow,
-        border:isDark┈┈┈┈┈┈┈┈`1px solid ${T.border}`:"none",
-        transition:"all 0.22s ease",transform:h&&onClick—translateY(-2px)":"none",...style}}>
+        boxShadow:h&&onClick?(isDark?"0 8px 40px rgba(0,0,0,0.5)":"0 8px 32px rgba(150,170,200,0.2)"):T.shadow,
+        border:isDark?`1px solid ${T.border}`:"none",
+        transition:"all 0.22s ease",transform:h&&onClick?"translateY(-2px)":"none",...style}}>
       {children}
     </div>
   );
@@ -180,13 +180,13 @@ function Bdg({label,color,bg}){
 
 function Pill({children,active,isDark,onClick,danger}){
   const T=useT(isDark);
-  const ac=danger┈┈┈┈┈┈┈┈(isDark—#F87171":"#DC2626"):(isDark—#38BDF8":"#1a2332");
+  const ac=danger?(isDark?"#F87171":"#DC2626"):(isDark?"#38BDF8":"#1a2332");
   return(
     <button onClick={onClick} style={{padding:"8px 18px",borderRadius:12,border:"none",cursor:"pointer",
       fontWeight:600,fontSize:12,fontFamily:"'Inter',sans-serif",transition:"all 0.18s",
-      background:active┈┈┈┈┈┈┈┈ac:(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
-      color:active—#fff":T.t3,
-      boxShadow:active┈┈┈┈┈┈┈┈(isDark—0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"):"none"}}>
+      background:active?ac:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
+      color:active?"#fff":T.t3,
+      boxShadow:active?(isDark?"0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"):"none"}}>
       {children}
     </button>
   );
@@ -197,10 +197,10 @@ function Av({initials,size=40,online,isDark}){
   return(
     <div style={{position:"relative",flexShrink:0}}>
       <div style={{width:size,height:size,borderRadius:"50%",
-        background:isDark—rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",
+        background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",
         display:"flex",alignItems:"center",justifyContent:"center",
         color:T.t2,fontWeight:700,fontSize:size*0.32,fontFamily:"'Sora',sans-serif",
-        border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(0,0,0,0.06)"}}>
+        border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(0,0,0,0.06)"}}>
         {initials}
       </div>
       {online&&<div style={{position:"absolute",bottom:1,right:1,width:size*0.22,height:size*0.22,
@@ -218,7 +218,7 @@ function Toast({msg,type,onClose}){
       backdropFilter:"blur(20px)",boxShadow:"0 8px 32px rgba(0,0,0,0.5)",
       display:"flex",alignItems:"center",gap:8,fontFamily:"'Inter',sans-serif",
       animation:"slideIn 0.3s ease"}}>
-      {type==="success"—✓":type==="error"—âœ•":"â„¹"} {msg}
+      {type==="success"?"✓":type==="error"?"âœ•":"â„¹"} {msg}
     </div>
   );
 }
@@ -229,42 +229,42 @@ function Spark({data,color,height=28}){
     <div style={{display:"flex",alignItems:"flex-end",gap:2,height}}>
       {data.map((v,i)=>(
         <div key={i} style={{flex:1,borderRadius:2,background:color,
-          height:`${(v/max)*100}%`,minHeight:2,opacity:0.25→(i/data.length)*0.65}}/>
+          height:`${(v/max)*100}%`,minHeight:2,opacity:0.25+(i/data.length)*0.65}}/>
       ))}
     </div>
   );
 }
 function Dashboard({setPage,isDark,seafarers,companies}){
   const T=useT(isDark);
-  const proSubs=seafarers.filter(s=>s.sub==="Pr✓).length;
-  const compMRR=companies.filter(c=>c.status==="Active").reduce((a,c)=>a→c.revenue,0);
-  const totalMRR=compMRR→proSubs*4;
+  const proSubs=seafarers.filter(s=>s.sub==="Pro").length;
+  const compMRR=companies.filter(c=>c.status==="Active").reduce((a,c)=>a+c.revenue,0);
+  const totalMRR=compMRR+proSubs*4;
   const stats=[
-    {label:"Total Seafarers",   val:seafarers.length,          icon:"anchor",     dc:"#38BDF8",sp:[40,55,45,70,60,85,80,95],change:"→12 today",  ok:true},
+    {label:"Total Seafarers",   val:seafarers.length,          icon:"anchor",     dc:"#38BDF8",sp:[40,55,45,70,60,85,80,95],change:"+12 today",  ok:true},
     {label:"Companies",         val:companies.length,           icon:"building",   dc:"#A78BFA",sp:[30,40,55,50,65,70,80,85],change:"registered",  ok:true},
     {label:"Verified Seafarers",val:seafarers.filter(s=>s.verified).length,icon:"shield",dc:"#34D399",sp:[20,30,38,50,60,70,75,80],change:"verified",ok:true},
     {label:"Pending Approvals", val:PENDING.length,             icon:"alertCircle",dc:"#F87171",sp:[8,6,10,8,12,10,14,3],   change:"action needed",ok:false},
-    {label:"Monthly Revenue",   val:`$${totalMRR.toLocaleString()}`,icon:"dollarSign",dc:"#FBBF24",sp:[60,65,70,75,80,82,88,90],change:"→8% MoM",ok:true},
+    {label:"Monthly Revenue",   val:`$${totalMRR.toLocaleString()}`,icon:"dollarSign",dc:"#FBBF24",sp:[60,65,70,75,80,82,88,90],change:"+8% MoM",ok:true},
     {label:"Pro Seafarers",     val:proSubs,                    icon:"star",       dc:"#38BDF8",sp:[2,3,3,4,4,5,5,proSubs],change:"$4/mo each",   ok:true},
   ];
   return(
     <div>
       <Card isDark={isDark} style={{marginBottom:20,padding:0,overflow:"hidden"}}>
         <div style={{padding:"32px 36px",
-          background:isDark—linear-gradient(135deg,#0C1627,#0F2444)":"linear-gradient(135deg,#EFF6FF,#EDE9FE)",
+          background:isDark?"linear-gradient(135deg,#0C1627,#0F2444)":"linear-gradient(135deg,#EFF6FF,#EDE9FE)",
           position:"relative",overflow:"hidden"}}>
           <div style={{position:"absolute",right:"-5%",top:"-30%",width:380,height:380,borderRadius:"50%",
-            background:isDark—rgba(56,189,248,0.05)":"rgba(139,92,246,0.08)",filter:"blur(50px)",pointerEvents:"none"}}/>
+            background:isDark?"rgba(56,189,248,0.05)":"rgba(139,92,246,0.08)",filter:"blur(50px)",pointerEvents:"none"}}/>
           <div style={{position:"relative",zIndex:1,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:20}}>
             <div>
               <div style={{display:"inline-flex",alignItems:"center",gap:7,
-                background:isDark—rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",
+                background:isDark?"rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",
                 borderRadius:999,padding:"5px 13px",marginBottom:14}}>
                 <span style={{width:6,height:6,borderRadius:"50%",background:T.green,display:"inline-block",animation:"pulseDot 2s infinite"}}/>
                 <span style={{fontSize:11,color:T.green,fontWeight:600,letterSpacing:"0.04em",textTransform:"uppercase"}}>Live — All Systems Operational</span>
               </div>
-              <h1 style={{fontSize:30,fontWeight:700,color:isDark—#fff":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:8}}>OceanCrew Admin Center</h1>
-              <p style={{fontSize:14,color:isDark—rgba(255,255,255,0.55)":T.t2}}>{new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})}</p>
+              <h1 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:8}}>OceanCrew Admin Center</h1>
+              <p style={{fontSize:14,color:isDark?"rgba(255,255,255,0.55)":T.t2}}>{new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})}</p>
             </div>
             <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
               <button onClick={()=>setPage("approvals")} style={{padding:"10px 18px",borderRadius:12,cursor:"pointer",fontWeight:600,fontSize:13,background:T.redBg,color:T.red,border:"none",display:"flex",alignItems:"center",gap:7,fontFamily:"'Inter',sans-serif"}}>
@@ -273,7 +273,7 @@ function Dashboard({setPage,isDark,seafarers,companies}){
               <button onClick={()=>setPage("invoices")} style={{padding:"10px 18px",borderRadius:12,cursor:"pointer",fontWeight:600,fontSize:13,background:T.yellowBg,color:T.yellow,border:"none",display:"flex",alignItems:"center",gap:7,fontFamily:"'Inter',sans-serif"}}>
                 <Icon name="fileText" size={14} color="currentColor" strokeWidth={2}/>2 Overdue
               </button>
-              <button onClick={()=>setPage("pipeline")} style={{padding:"10px 18px",borderRadius:12,cursor:"pointer",fontWeight:600,fontSize:13,background:isDark—rgba(255,255,255,0.1)":"#1a2332",color:"#fff",border:"none",display:"flex",alignItems:"center",gap:7,fontFamily:"'Inter',sans-serif"}}>
+              <button onClick={()=>setPage("pipeline")} style={{padding:"10px 18px",borderRadius:12,cursor:"pointer",fontWeight:600,fontSize:13,background:isDark?"rgba(255,255,255,0.1)":"#1a2332",color:"#fff",border:"none",display:"flex",alignItems:"center",gap:7,fontFamily:"'Inter',sans-serif"}}>
                 <Icon name="filter" size={14} color="#fff" strokeWidth={2}/>Pipeline
               </button>
             </div>
@@ -285,16 +285,16 @@ function Dashboard({setPage,isDark,seafarers,companies}){
         {stats.map((s,i)=>(
           <Card key={i} isDark={isDark} style={{padding:"20px 22px"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
-              <div style={{width:38,height:38,borderRadius:11,background:isDark┈┈┈┈┈┈┈┈`${s.dc}18`:T.sub,display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <Icon name={s.icon} size={17} color={isDark┈┈┈┈┈┈┈┈s.dc:T.t2} strokeWidth={1.8}/>
+              <div style={{width:38,height:38,borderRadius:11,background:isDark?`${s.dc}18`:T.sub,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                <Icon name={s.icon} size={17} color={isDark?s.dc:T.t2} strokeWidth={1.8}/>
               </div>
-              <Bdg label={s.change} color={s.ok┈┈┈┈┈┈┈┈T.green:T.red} bg={s.ok┈┈┈┈┈┈┈┈T.greenBg:T.redBg}/>
+              <Bdg label={s.change} color={s.ok?T.green:T.red} bg={s.ok?T.greenBg:T.redBg}/>
             </div>
-            <div style={{fontSize:34,fontWeight:700,color:isDark┈┈┈┈┈┈┈┈s.dc:T.t1,letterSpacing:"-0.04em",lineHeight:1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>
-              {s.val.toLocaleString┈┈┈┈┈┈┈┈s.val.toLocaleString():s.val}
+            <div style={{fontSize:34,fontWeight:700,color:isDark?s.dc:T.t1,letterSpacing:"-0.04em",lineHeight:1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>
+              {s.val.toLocaleString?s.val.toLocaleString():s.val}
             </div>
             <div style={{fontSize:12,color:T.t2,marginBottom:12}}>{s.label}</div>
-            <Spark data={s.sp} color={isDark┈┈┈┈┈┈┈┈s.dc:"#94A3B8"} height={26}/>
+            <Spark data={s.sp} color={isDark?s.dc:"#94A3B8"} height={26}/>
           </Card>
         ))}
       </div>
@@ -306,7 +306,7 @@ function Dashboard({setPage,isDark,seafarers,companies}){
             <Bdg label="This month" color={T.yellow} bg={T.yellowBg}/>
           </div>
           {seafarers.map(s=>(
-            <div key={s.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"9px 0",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
+            <div key={s.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"9px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
               <div>
                 <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{s.name.split(" ").slice(0,2).join(" ")}</div>
                 <div style={{fontSize:11,color:T.t3}}>{s.rank}</div>
@@ -329,9 +329,9 @@ function Dashboard({setPage,isDark,seafarers,companies}){
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:7}}>
             {ACTIVITY.map(log=>(
-              <div key={log.id} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 12px",background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:11}}>
-                <div style={{width:32,height:32,borderRadius:9,background:log.ok┈┈┈┈┈┈┈┈T.greenBg:T.redBg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                  <Icon name={log.icon} size={14} color={log.ok┈┈┈┈┈┈┈┈T.green:T.red} strokeWidth={2}/>
+              <div key={log.id} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 12px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:11}}>
+                <div style={{width:32,height:32,borderRadius:9,background:log.ok?T.greenBg:T.redBg,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  <Icon name={log.icon} size={14} color={log.ok?T.green:T.red} strokeWidth={2}/>
                 </div>
                 <p style={{flex:1,fontSize:12,color:T.t2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{log.msg}</p>
                 <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace",flexShrink:0}}>{log.time}</span>
@@ -345,15 +345,15 @@ function Dashboard({setPage,isDark,seafarers,companies}){
         <h3 style={{fontSize:15,fontWeight:600,color:T.t1,marginBottom:16,fontFamily:"'Sora',sans-serif"}}>Quick Actions</h3>
         <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12}}>
           {[
-            {label:"New Invoice",      icon:"fileText",   page:"invoices",      color:isDark—#38BDF8":"#1a2332"},
+            {label:"New Invoice",      icon:"fileText",   page:"invoices",      color:isDark?"#38BDF8":"#1a2332"},
             {label:"Send Notification",icon:"send",       page:"notifications", color:T.purple},
             {label:"Grant Badge",      icon:"shield",     page:"verify",        color:T.green},
             {label:"View Pipeline",    icon:"filter",     page:"pipeline",      color:T.yellow},
             {label:"Blacklist User",   icon:"ban",        page:"blacklist",     color:T.red},
           ].map(a=>(
-            <button key={a.label} onClick={()=>setPage(a.page)} style={{padding:"16px 12px",borderRadius:14,border:"none",background:isDark—rgba(255,255,255,0.03)":"rgba(100,116,139,0.05)",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:8,transition:"all 0.18s",fontFamily:"'Inter',sans-serif"}}
-              onMouseEnter={e=>e.currentTarget.style.background=isDark—rgba(255,255,255,0.07)":"rgba(100,116,139,0.1)"}
-              onMouseLeave={e=>e.currentTarget.style.background=isDark—rgba(255,255,255,0.03)":"rgba(100,116,139,0.05)"}>
+            <button key={a.label} onClick={()=>setPage(a.page)} style={{padding:"16px 12px",borderRadius:14,border:"none",background:isDark?"rgba(255,255,255,0.03)":"rgba(100,116,139,0.05)",cursor:"pointer",display:"flex",flexDirection:"column",alignItems:"center",gap:8,transition:"all 0.18s",fontFamily:"'Inter',sans-serif"}}
+              onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.07)":"rgba(100,116,139,0.1)"}
+              onMouseLeave={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.03)":"rgba(100,116,139,0.05)"}>
               <div style={{width:40,height:40,borderRadius:12,background:`${a.color}18`,display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <Icon name={a.icon} size={18} color={a.color} strokeWidth={1.8}/>
               </div>
@@ -371,15 +371,15 @@ function VerifyPage({isDark,seafarers,setSeafarers,companies,setCompanies,showTo
   const toggle=(type,id)=>{
     if(type==="seafarer"){
       const s=seafarers.find(x=>x.id===id);
-      setSeafarers(p=>p.map(x=>x.id===id┈┈┈┈┈┈┈┈{...x,verified:!x.verified}:x));
-      showToast(s.verified—Badge revoked":"Verified badge granted!",s.verified—error":"success");
+      setSeafarers(p=>p.map(x=>x.id===id?{...x,verified:!x.verified}:x));
+      showToast(s.verified?"Badge revoked":"Verified badge granted!",s.verified?"error":"success");
     } else {
       const c=companies.find(x=>x.id===id);
-      setCompanies(p=>p.map(x=>x.id===id┈┈┈┈┈┈┈┈{...x,verified:!x.verified}:x));
-      showToast(c.verified—Badge revoked":"Verified badge granted!",c.verified—error":"success");
+      setCompanies(p=>p.map(x=>x.id===id?{...x,verified:!x.verified}:x));
+      showToast(c.verified?"Badge revoked":"Verified badge granted!",c.verified?"error":"success");
     }
   };
-  const list=tab==="seafarers"┈┈┈┈┈┈┈┈seafarers:companies;
+  const list=tab==="seafarers"?seafarers:companies;
   return(
     <div>
       <div style={{marginBottom:24}}>
@@ -401,17 +401,17 @@ function VerifyPage({isDark,seafarers,setSeafarers,companies,setCompanies,showTo
                   {item.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 8px",borderRadius:999}}>✓ VERIFIED</span>}
                 </div>
                 <div style={{display:"flex",gap:7}}>
-                  <Bdg label={item.rank||item.plan} color={T.t2} bg={isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
-                  <Bdg label={item.country} color={T.t3} bg={isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
-                  <Bdg label={item.status} color={item.status==="Active"┈┈┈┈┈┈┈┈T.green:T.red} bg={item.status==="Active"┈┈┈┈┈┈┈┈T.greenBg:T.redBg}/>
+                  <Bdg label={item.rank||item.plan} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
+                  <Bdg label={item.country} color={T.t3} bg={isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)"}/>
+                  <Bdg label={item.status} color={item.status==="Active"?T.green:T.red} bg={item.status==="Active"?T.greenBg:T.redBg}/>
                 </div>
               </div>
-              {item.verified┈┈┈┈┈┈┈┈(
-                <button onClick={()=>toggle(tab==="seafarers"—seafarer":"company",item.id)} style={{padding:"9px 18px",borderRadius:10,border:"none",background:T.redBg,color:T.red,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6}}>
+              {item.verified?(
+                <button onClick={()=>toggle(tab==="seafarers"?"seafarer":"company",item.id)} style={{padding:"9px 18px",borderRadius:10,border:"none",background:T.redBg,color:T.red,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6}}>
                   <Icon name="xCircle" size={14} color="currentColor" strokeWidth={2}/>Revoke Badge
                 </button>
               ):(
-                <button onClick={()=>toggle(tab==="seafarers"—seafarer":"company",item.id)} style={{padding:"9px 18px",borderRadius:10,border:"none",background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6,boxShadow:"0 4px 14px rgba(56,189,248,0.3)"}}>
+                <button onClick={()=>toggle(tab==="seafarers"?"seafarer":"company",item.id)} style={{padding:"9px 18px",borderRadius:10,border:"none",background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6,boxShadow:"0 4px 14px rgba(56,189,248,0.3)"}}>
                   <Icon name="shield" size={14} color="#fff" strokeWidth={2}/>Grant Verified Badge
                 </button>
               )}
@@ -432,17 +432,17 @@ function BlacklistPage({isDark,seafarers,setSeafarers,companies,setCompanies,sho
     if(type==="seafarer"){
       const s=seafarers.find(x=>x.id===id);
       if(!s.blacklisted&&!r.trim()){showToast("Enter a reason first","error");return;}
-      setSeafarers(p=>p.map(x=>x.id===id┈┈┈┈┈┈┈┈{...x,blacklisted:!x.blacklisted}:x));
-      showToast(s.blacklisted—Removed from blacklist":"User blacklisted",s.blacklisted—success":"error");
+      setSeafarers(p=>p.map(x=>x.id===id?{...x,blacklisted:!x.blacklisted}:x));
+      showToast(s.blacklisted?"Removed from blacklist":"User blacklisted",s.blacklisted?"success":"error");
     } else {
       const c=companies.find(x=>x.id===id);
       if(!c.blacklisted&&!r.trim()){showToast("Enter a reason first","error");return;}
-      setCompanies(p=>p.map(x=>x.id===id┈┈┈┈┈┈┈┈{...x,blacklisted:!x.blacklisted}:x));
-      showToast(c.blacklisted—Removed from blacklist":"Company blacklisted",c.blacklisted—success":"error");
+      setCompanies(p=>p.map(x=>x.id===id?{...x,blacklisted:!x.blacklisted}:x));
+      showToast(c.blacklisted?"Removed from blacklist":"Company blacklisted",c.blacklisted?"success":"error");
     }
   };
-  const list=tab==="seafarers"┈┈┈┈┈┈┈┈seafarers:companies;
-  const bCount=seafarers.filter(s=>s.blacklisted).length→companies.filter(c=>c.blacklisted).length;
+  const list=tab==="seafarers"?seafarers:companies;
+  const bCount=seafarers.filter(s=>s.blacklisted).length+companies.filter(c=>c.blacklisted).length;
   return(
     <div>
       <div style={{marginBottom:24}}>
@@ -459,7 +459,7 @@ function BlacklistPage({isDark,seafarers,setSeafarers,companies,setCompanies,sho
       </div>
       <div style={{display:"flex",flexDirection:"column",gap:10}}>
         {list.map(item=>(
-          <Card key={item.id} isDark={isDark} style={{padding:"16px 20px",border:item.blacklisted┈┈┈┈┈┈┈┈`1px solid ${T.red}40`:(isDark—1px solid rgba(255,255,255,0.07)":"none")}}>
+          <Card key={item.id} isDark={isDark} style={{padding:"16px 20px",border:item.blacklisted?`1px solid ${T.red}40`:(isDark?"1px solid rgba(255,255,255,0.07)":"none")}}>
             <div style={{display:"flex",alignItems:"center",gap:14,flexWrap:"wrap"}}>
               <Av initials={item.logo||item.avatar} size={42} isDark={isDark}/>
               <div style={{flex:1}}>
@@ -472,11 +472,11 @@ function BlacklistPage({isDark,seafarers,setSeafarers,companies,setCompanies,sho
               {!item.blacklisted&&(
                 <input value={reason[item.id]||""} onChange={e=>setReason(p=>({...p,[item.id]:e.target.value}))}
                   placeholder="Reason for blacklisting..."
-                  style={{width:220,padding:"8px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
+                  style={{width:220,padding:"8px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
               )}
-              <button onClick={()=>toggle(tab==="seafarers"—seafarer":"company",item.id)} style={{padding:"8px 16px",borderRadius:10,border:"none",background:item.blacklisted┈┈┈┈┈┈┈┈T.greenBg:T.redBg,color:item.blacklisted┈┈┈┈┈┈┈┈T.green:T.red,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6}}>
-                <Icon name={item.blacklisted—checkCircle":"ban"} size={13} color="currentColor" strokeWidth={2}/>
-                {item.blacklisted—Remove":"Blacklist"}
+              <button onClick={()=>toggle(tab==="seafarers"?"seafarer":"company",item.id)} style={{padding:"8px 16px",borderRadius:10,border:"none",background:item.blacklisted?T.greenBg:T.redBg,color:item.blacklisted?T.green:T.red,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:6}}>
+                <Icon name={item.blacklisted?"checkCircle":"ban"} size={13} color="currentColor" strokeWidth={2}/>
+                {item.blacklisted?"Remove":"Blacklist"}
               </button>
             </div>
           </Card>
@@ -492,7 +492,7 @@ function ApprovalsPage({isDark,showToast}){
   const act=(id,action)=>{
     const item=pending.find(p=>p.id===id);
     setPending(p=>p.filter(x=>x.id!==id));
-    showToast(action==="approve"┈┈┈┈┈┈┈┈`${item.name} approved`:`${item.name} rejected`,action==="approve"—success":"error");
+    showToast(action==="approve"?`${item.name} approved`:`${item.name} rejected`,action==="approve"?"success":"error");
   };
   return(
     <div>
@@ -500,7 +500,7 @@ function ApprovalsPage({isDark,showToast}){
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Company Approvals</h2>
         <p style={{fontSize:14,color:T.t3}}>{pending.length} companies awaiting review</p>
       </div>
-      {pending.length===0┈┈┈┈┈┈┈┈(
+      {pending.length===0?(
         <Card isDark={isDark} style={{textAlign:"center",padding:"60px 24px"}}>
           <Icon name="checkCircle" size={48} color={T.green} strokeWidth={1.5}/>
           <p style={{fontSize:17,fontWeight:600,color:T.t1,marginTop:14,fontFamily:"'Sora',sans-serif"}}>All companies reviewed!</p>
@@ -513,7 +513,7 @@ function ApprovalsPage({isDark,showToast}){
               <div style={{fontSize:15,fontWeight:600,color:T.t1,marginBottom:7,fontFamily:"'Sora',sans-serif"}}>{co.name}</div>
               <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
                 {[co.type,co.country,`Submitted ${co.submitted}`,`${co.docs} docs`].map(tag=>(
-                  <Bdg key={tag} label={tag} color={T.t2} bg={isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
+                  <Bdg key={tag} label={tag} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
                 ))}
               </div>
             </div>
@@ -522,7 +522,7 @@ function ApprovalsPage({isDark,showToast}){
               <button onClick={()=>act(co.id,"reject")} style={{padding:"9px 18px",borderRadius:10,border:"none",background:T.redBg,color:T.red,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
                 <Icon name="x" size={13} color="currentColor" strokeWidth={2.5}/>Reject
               </button>
-              <button onClick={()=>act(co.id,"approve")} style={{padding:"9px 18px",borderRadius:10,border:"none",background:isDark—#34D399":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+              <button onClick={()=>act(co.id,"approve")} style={{padding:"9px 18px",borderRadius:10,border:"none",background:isDark?"#34D399":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
                 <Icon name="check" size={13} color="#fff" strokeWidth={2.5}/>Approve
               </button>
             </div>
@@ -541,7 +541,7 @@ function PipelinePage({isDark,showToast}){
     setPipeline(prev=>prev.map(p=>{
       if(p.id!==id)return p;
       const idx=stages.indexOf(p.stage);
-      const next=stages[idx→dir];
+      const next=stages[idx+dir];
       if(!next)return p;
       return {...p,stage:next};
     }));
@@ -579,7 +579,7 @@ function PipelinePage({isDark,showToast}){
                     </div>
                     <div style={{display:"flex",gap:4}}>
                       {stages.indexOf(item.stage)>0&&(
-                        <button onClick={()=>move(item.id,-1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)",color:T.t3,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†</button>
+                        <button onClick={()=>move(item.id,-1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)",color:T.t3,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†</button>
                       )}
                       <button onClick={()=>showToast(`Notification sent to ${item.name}`,"success")} style={{flex:2,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:3}}>
                         <Icon name="send" size={10} color="currentColor" strokeWidth={2}/>Notify
@@ -602,7 +602,7 @@ function PipelinePage({isDark,showToast}){
           {[...pipeline].sort((a,b)=>b.score-a.score).map(item=>{
             const col=sCols[item.stage]||T.t2;
             return(
-              <div key={item.id} style={{display:"flex",alignItems:"center",gap:14,padding:"12px 16px",background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:12}}>
+              <div key={item.id} style={{display:"flex",alignItems:"center",gap:14,padding:"12px 16px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:12}}>
                 <Av initials={item.avatar} size={36} isDark={isDark}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{item.name} <span style={{color:T.t3,fontWeight:400}}>Â· {item.rank}</span></div>
@@ -611,14 +611,14 @@ function PipelinePage({isDark,showToast}){
                 <div style={{width:80}}>
                   <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
                     <span style={{fontSize:10,color:T.t3}}>Match</span>
-                    <span style={{fontSize:11,fontWeight:700,color:item.score>90┈┈┈┈┈┈┈┈T.green:item.score>80┈┈┈┈┈┈┈┈T.yellow:T.t2}}>{item.score}%</span>
+                    <span style={{fontSize:11,fontWeight:700,color:item.score>90?T.green:item.score>80?T.yellow:T.t2}}>{item.score}%</span>
                   </div>
-                  <div style={{height:4,borderRadius:2,background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
-                    <div style={{height:"100%",width:`${item.score}%`,background:item.score>90┈┈┈┈┈┈┈┈T.green:item.score>80┈┈┈┈┈┈┈┈T.yellow:T.t2,borderRadius:2}}/>
+                  <div style={{height:4,borderRadius:2,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
+                    <div style={{height:"100%",width:`${item.score}%`,background:item.score>90?T.green:item.score>80?T.yellow:T.t2,borderRadius:2}}/>
                   </div>
                 </div>
                 <Bdg label={item.stage} color={col} bg={`${col}18`}/>
-                <button onClick={()=>showToast(`Notification sent to ${item.name}`,"success")} style={{padding:"7px 14px",borderRadius:9,border:"none",background:isDark—rgba(56,189,248,0.12)":T.accentBg,color:isDark—#38BDF8":T.accent,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                <button onClick={()=>showToast(`Notification sent to ${item.name}`,"success")} style={{padding:"7px 14px",borderRadius:9,border:"none",background:isDark?"rgba(56,189,248,0.12)":T.accentBg,color:isDark?"#38BDF8":T.accent,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
                   <Icon name="send" size={12} color="currentColor" strokeWidth={2}/>Notify
                 </button>
               </div>
@@ -644,18 +644,18 @@ function CompaniesPage({isDark,companies}){
         <div style={{position:"relative"}}>
           <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={15} color={T.t3} strokeWidth={2}/></span>
           <input placeholder="Search companies..." value={search} onChange={e=>setSearch(e.target.value)}
-            style={{width:"100%",padding:"10px 14px 10px 36px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.07)":"none",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)",color:T.t1,fontSize:13,outline:"none",boxSizing:"border-box",fontFamily:"'Inter',sans-serif"}}/>
+            style={{width:"100%",padding:"10px 14px 10px 36px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.07)":"none",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)",color:T.t1,fontSize:13,outline:"none",boxSizing:"border-box",fontFamily:"'Inter',sans-serif"}}/>
         </div>
       </Card>
       <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
-        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr",padding:"12px 22px",background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark—1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
-          {["Company","Plan","Revenue/m✓,"Status","Verified"].map(h=>(
+        <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr",padding:"12px 22px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark?"1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
+          {["Company","Plan","Revenue/mo","Status","Verified"].map(h=>(
             <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
           ))}
         </div>
         {filtered.map((co,i)=>(
-          <div key={co.id} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<filtered.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
-            onMouseEnter={e=>e.currentTarget.style.background=isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
+          <div key={co.id} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr",padding:"14px 22px",borderBottom:i<filtered.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
+            onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
             <div style={{display:"flex",alignItems:"center",gap:12}}>
               <Av initials={co.logo} size={36} isDark={isDark}/>
@@ -664,12 +664,12 @@ function CompaniesPage({isDark,companies}){
                 <div style={{fontSize:11,color:T.t3}}>{co.country}</div>
               </div>
             </div>
-            <Bdg label={co.plan} color={isDark—#38BDF8":"#334155"} bg={isDark—rgba(56,189,248,0.1)":"rgba(100,116,139,0.08)"}/>
+            <Bdg label={co.plan} color={isDark?"#38BDF8":"#334155"} bg={isDark?"rgba(56,189,248,0.1)":"rgba(100,116,139,0.08)"}/>
             <span style={{fontSize:14,fontWeight:700,color:T.green,fontFamily:"'JetBrains Mono',monospace"}}>${co.revenue}</span>
-            <Bdg label={co.status} color={co.status==="Active"┈┈┈┈┈┈┈┈T.green:T.red} bg={co.status==="Active"┈┈┈┈┈┈┈┈T.greenBg:T.redBg}/>
+            <Bdg label={co.status} color={co.status==="Active"?T.green:T.red} bg={co.status==="Active"?T.greenBg:T.redBg}/>
             {co.verified
-              ┈┈┈┈┈┈┈┈<Bdg label="✓ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
-              :<Bdg label="Unverified" color={T.t3} bg={isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}/>}
+              ?<Bdg label="✓ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
+              :<Bdg label="Unverified" color={T.t3} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}/>}
           </div>
         ))}
       </Card>
@@ -681,23 +681,23 @@ function SeafarersPage({isDark,seafarers}){
   const T=useT(isDark);
   const [search,setSearch]=useState("");
   const [sub,setSub]=useState("All");
-  const filtered=seafarers.filter(s=>(sub==="All"||(sub==="Pr✓&&s.sub==="Pr✓)||(sub==="Free"&&s.sub==="Free"))&&(s.name.toLowerCase().includes(search.toLowerCase())||s.rank.toLowerCase().includes(search.toLowerCase())));
+  const filtered=seafarers.filter(s=>(sub==="All"||(sub==="Pro"&&s.sub==="Pro")||(sub==="Free"&&s.sub==="Free"))&&(s.name.toLowerCase().includes(search.toLowerCase())||s.rank.toLowerCase().includes(search.toLowerCase())));
   return(
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>All Seafarers</h2>
-        <p style={{fontSize:14,color:T.t3}}>{seafarers.length} registered Â· {seafarers.filter(s=>s.sub==="Pr✓).length} Pro Â· {seafarers.filter(s=>s.verified).length} Verified</p>
+        <p style={{fontSize:14,color:T.t3}}>{seafarers.length} registered Â· {seafarers.filter(s=>s.sub==="Pro").length} Pro Â· {seafarers.filter(s=>s.verified).length} Verified</p>
       </div>
       <div style={{display:"flex",gap:10,marginBottom:16,flexWrap:"wrap"}}>
         <Card isDark={isDark} style={{flex:1,padding:12}}>
           <div style={{position:"relative"}}>
             <span style={{position:"absolute",left:12,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={15} color={T.t3} strokeWidth={2}/></span>
             <input placeholder="Search by name or rank..." value={search} onChange={e=>setSearch(e.target.value)}
-              style={{width:"100%",padding:"9px 14px 9px 36px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.07)":"none",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)",color:T.t1,fontSize:13,outline:"none",boxSizing:"border-box",fontFamily:"'Inter',sans-serif"}}/>
+              style={{width:"100%",padding:"9px 14px 9px 36px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.07)":"none",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)",color:T.t1,fontSize:13,outline:"none",boxSizing:"border-box",fontFamily:"'Inter',sans-serif"}}/>
           </div>
         </Card>
         <div style={{display:"flex",gap:6,alignItems:"center"}}>
-          {["All","Pr✓,"Free"].map(f=><Pill key={f} active={sub===f} isDark={isDark} onClick={()=>setSub(f)}>{f}</Pill>)}
+          {["All","Pro","Free"].map(f=><Pill key={f} active={sub===f} isDark={isDark} onClick={()=>setSub(f)}>{f}</Pill>)}
         </div>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:14}}>
@@ -713,13 +713,13 @@ function SeafarersPage({isDark,seafarers}){
                 <div style={{fontSize:11,color:T.t3}}>{s.rank} Â· {s.country}</div>
               </div>
               <div style={{display:"flex",flexDirection:"column",gap:4,alignItems:"flex-end"}}>
-                <Bdg label={s.sub==="Pr✓—Pr✓:"Free"} color={s.sub==="Pr✓┈┈┈┈┈┈┈┈T.yellow:T.t3} bg={s.sub==="Pr✓┈┈┈┈┈┈┈┈T.yellowBg:isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
-                <Bdg label={s.status} color={s.status==="Active"┈┈┈┈┈┈┈┈T.green:T.red} bg={s.status==="Active"┈┈┈┈┈┈┈┈T.greenBg:T.redBg}/>
+                <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+                <Bdg label={s.status} color={s.status==="Active"?T.green:T.red} bg={s.status==="Active"?T.greenBg:T.redBg}/>
               </div>
             </div>
             <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-              <Bdg label={`${s.apps} apps`} color={T.t3} bg={isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
-              <Bdg label={`Match: ${s.matchScore}%`} color={s.matchScore>90┈┈┈┈┈┈┈┈T.green:s.matchScore>80┈┈┈┈┈┈┈┈T.yellow:T.t2} bg={s.matchScore>90┈┈┈┈┈┈┈┈T.greenBg:s.matchScore>80┈┈┈┈┈┈┈┈T.yellowBg:isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+              <Bdg label={`${s.apps} apps`} color={T.t3} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
+              <Bdg label={`Match: ${s.matchScore}%`} color={s.matchScore>90?T.green:s.matchScore>80?T.yellow:T.t2} bg={s.matchScore>90?T.greenBg:s.matchScore>80?T.yellowBg:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
               <Bdg label={`Ends ${s.contractEnd}`} color={T.yellow} bg={T.yellowBg}/>
             </div>
           </Card>
@@ -745,12 +745,12 @@ function InvoicePage({isDark,showToast}){
           setInvoices(data.map(p=>({
             id:`INV-${p._id.slice(-6).toUpperCase()}`,
             rawId:p._id,
-            to:p.userId┈┈┈┈┈┈┈┈.name||"Unknown",
-            type:p.userId┈┈┈┈┈┈┈┈.role==="company"—Company":"Seafarer",
-            email:p.userId┈┈┈┈┈┈┈┈.email||"",
+            to:p.userId?.name||"Unknown",
+            type:p.userId?.role==="company"?"Company":"Seafarer",
+            email:p.userId?.email||"",
             plan:p.plan,
             amount:p.amount,
-            status:p.status==="approved"—Paid":p.status==="pending"—Pending":"Overdue",
+            status:p.status==="approved"?"Paid":p.status==="pending"?"Pending":"Overdue",
             due:new Date(p.createdAt).toLocaleDateString("en-US",{month:"short",day:"numeric"})
           })));
         }
@@ -762,7 +762,7 @@ function InvoicePage({isDark,showToast}){
   useEffect(()=>{loadInvoices();},[]);
 
   const markStatus=async(id,rawId,status)=>{
-    const apiStatus = status === "Paid" ┈┈┈┈┈┈┈┈ "approved" : "rejected";
+    const apiStatus = status === "Paid" ? "approved" : "rejected";
     try {
       const r = await fetch(`${API}/api/payments/${rawId}`, {
         method: "PUT",
@@ -770,7 +770,7 @@ function InvoicePage({isDark,showToast}){
         body: JSON.stringify({ status: apiStatus })
       });
       if(r.ok) {
-        setInvoices(p=>p.map(inv=>inv.id===id┈┈┈┈┈┈┈┈{...inv,status}:inv));
+        setInvoices(p=>p.map(inv=>inv.id===id?{...inv,status}:inv));
         showToast(`Payment marked as ${status}. Invoice emailed!`,"success");
       } else {
         const d = await r.json();
@@ -781,10 +781,10 @@ function InvoicePage({isDark,showToast}){
     }
   };
 
-  const filtered=filter==="All"┈┈┈┈┈┈┈┈invoices:invoices.filter(i=>i.status===filter);
-  const collected=invoices.filter(i=>i.status==="Paid").reduce((a,i)=>a→i.amount,0);
-  const pending=invoices.filter(i=>i.status==="Pending").reduce((a,i)=>a→i.amount,0);
-  const overdue=invoices.filter(i=>i.status==="Overdue").reduce((a,i)=>a→i.amount,0);
+  const filtered=filter==="All"?invoices:invoices.filter(i=>i.status===filter);
+  const collected=invoices.filter(i=>i.status==="Paid").reduce((a,i)=>a+i.amount,0);
+  const pending=invoices.filter(i=>i.status==="Pending").reduce((a,i)=>a+i.amount,0);
+  const overdue=invoices.filter(i=>i.status==="Overdue").reduce((a,i)=>a+i.amount,0);
 
   return(
     <div>
@@ -800,7 +800,7 @@ function InvoicePage({isDark,showToast}){
           {label:"Collected",val:`$${collected}`,color:T.green,bg:T.greenBg},
           {label:"Pending",  val:`$${pending}`, color:T.yellow,bg:T.yellowBg},
           {label:"Overdue",  val:`$${overdue}`, color:T.red,   bg:T.redBg},
-          {label:"Total",    val:invoices.length,color:isDark—#38BDF8":T.t1,bg:isDark—rgba(56,189,248,0.1)":T.sub},
+          {label:"Total",    val:invoices.length,color:isDark?"#38BDF8":T.t1,bg:isDark?"rgba(56,189,248,0.1)":T.sub},
         ].map((s,i)=>(
           <Card key={i} isDark={isDark} style={{padding:"18px 20px"}}>
             <div style={{fontSize:28,fontWeight:700,color:s.color,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:4}}>{s.val}</div>
@@ -816,21 +816,21 @@ function InvoicePage({isDark,showToast}){
       </div>
 
       <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
-        <div style={{display:"grid",gridTemplateColumns:"0.7fr 1.5fr 0.8fr 1fr 0.7fr 0.7fr 1.2fr",padding:"12px 22px",background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark—1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
-          {["ID","T✓,"Type","Plan","Amount","Due","Status"].map(h=>(
+        <div style={{display:"grid",gridTemplateColumns:"0.7fr 1.5fr 0.8fr 1fr 0.7fr 0.7fr 1.2fr",padding:"12px 22px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark?"1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
+          {["ID","To","Type","Plan","Amount","Due","Status"].map(h=>(
             <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
           ))}
         </div>
-        {loading ┈┈┈┈┈┈┈┈ <div style={{padding:40,textAlign:"center",color:T.t3}}>Loading payments...</div> : filtered.length===0 ┈┈┈┈┈┈┈┈ <div style={{padding:40,textAlign:"center",color:T.t3}}>No payments found.</div> : filtered.map((inv,i)=>(
-          <div key={inv.id} style={{display:"grid",gridTemplateColumns:"0.7fr 1.5fr 0.8fr 1fr 0.7fr 0.7fr 1.2fr",padding:"13px 22px",borderBottom:i<filtered.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.04)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
-            onMouseEnter={e=>e.currentTarget.style.background=isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
+        {loading ? <div style={{padding:40,textAlign:"center",color:T.t3}}>Loading payments...</div> : filtered.length===0 ? <div style={{padding:40,textAlign:"center",color:T.t3}}>No payments found.</div> : filtered.map((inv,i)=>(
+          <div key={inv.id} style={{display:"grid",gridTemplateColumns:"0.7fr 1.5fr 0.8fr 1fr 0.7fr 0.7fr 1.2fr",padding:"13px 22px",borderBottom:i<filtered.length-1?(isDark?"1px solid rgba(255,255,255,0.04)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
+            onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:11,fontWeight:600,color:isDark—#38BDF8":T.accent}}>{inv.id}</span>
+            <span style={{fontFamily:"'JetBrains Mono',monospace",fontSize:11,fontWeight:600,color:isDark?"#38BDF8":T.accent}}>{inv.id}</span>
             <div>
               <div style={{fontSize:12,fontWeight:600,color:T.t1}}>{inv.to}</div>
               <div style={{fontSize:10,color:T.t3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{inv.email}</div>
             </div>
-            <Bdg label={inv.type} color={inv.type==="Company"┈┈┈┈┈┈┈┈T.purple:T.yellow} bg={inv.type==="Company"┈┈┈┈┈┈┈┈T.purpleBg:T.yellowBg}/>
+            <Bdg label={inv.type} color={inv.type==="Company"?T.purple:T.yellow} bg={inv.type==="Company"?T.purpleBg:T.yellowBg}/>
             <span style={{fontSize:11,color:T.t2}}>{inv.plan}</span>
             <span style={{fontSize:15,fontWeight:700,color:T.green,fontFamily:"'JetBrains Mono',monospace"}}>${inv.amount}</span>
             <span style={{fontSize:11,color:T.t2,fontFamily:"'JetBrains Mono',monospace"}}>{inv.due}</span>
@@ -868,7 +868,7 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
   };
   const send=()=>{
     if(msgType==="custom"&&!custom.trim()){showToast("Write a message first","error");return;}
-    setSent(p=>[{id:p.length→1,target:tLabels[target],type:msgType,time:"Just now"},...p]);
+    setSent(p=>[{id:p.length+1,target:tLabels[target],type:msgType,time:"Just now"},...p]);
     showToast(`Notification sent to ${tLabels[target]}`,"success");
   };
   return(
@@ -883,16 +883,16 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
           <div style={{marginBottom:16}}>
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>Send To</div>
             {Object.entries(tLabels).map(([key,label])=>(
-              <label key={key} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,background:target===key┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.1)":T.accentBg):"transparent",cursor:"pointer",marginBottom:4}}>
-                <input type="radi✓ checked={target===key} onChange={()=>setTarget(key)} style={{accentColor:isDark—#38BDF8":T.accent}}/>
-                <span style={{fontSize:13,color:target===key┈┈┈┈┈┈┈┈(isDark—#38BDF8":T.accent):T.t2,fontWeight:target===key┈┈┈┈┈┈┈┈600:400}}>{label}</span>
+              <label key={key} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 12px",borderRadius:10,background:target===key?(isDark?"rgba(56,189,248,0.1)":T.accentBg):"transparent",cursor:"pointer",marginBottom:4}}>
+                <input type="radio" checked={target===key} onChange={()=>setTarget(key)} style={{accentColor:isDark?"#38BDF8":T.accent}}/>
+                <span style={{fontSize:13,color:target===key?(isDark?"#38BDF8":T.accent):T.t2,fontWeight:target===key?600:400}}>{label}</span>
               </label>
             ))}
           </div>
           <div style={{marginBottom:16}}>
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.1em",textTransform:"uppercase",marginBottom:8}}>Template</div>
             <select value={msgType} onChange={e=>setMsgType(e.target.value)}
-              style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",marginBottom:10}}>
+              style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",marginBottom:10}}>
               <option value="contract_expiry">Contract Expiry Alert</option>
               <option value="new_jobs">New Jobs Available</option>
               <option value="verify_prompt">Get Verified Badge</option>
@@ -900,23 +900,23 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
               <option value="payment_reminder">Payment Reminder</option>
               <option value="custom">Custom Message</option>
             </select>
-            {msgType==="custom"┈┈┈┈┈┈┈┈(
+            {msgType==="custom"?(
               <textarea value={custom} onChange={e=>setCustom(e.target.value)} placeholder="Write custom message..." rows={3}
-                style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
+                style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box"}}/>
             ):(
-              <div style={{padding:"12px 14px",borderRadius:10,background:isDark—rgba(255,255,255,0.03)":"rgba(100,116,139,0.05)",fontSize:13,color:T.t2,lineHeight:1.6}}>{templates[msgType]}</div>
+              <div style={{padding:"12px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.03)":"rgba(100,116,139,0.05)",fontSize:13,color:T.t2,lineHeight:1.6}}>{templates[msgType]}</div>
             )}
           </div>
-          <button onClick={send} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
+          <button onClick={send} style={{width:"100%",padding:"13px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:8}}>
             <Icon name="send" size={15} color="#fff" strokeWidth={2}/>Send Notification Blast
           </button>
         </Card>
         <Card isDark={isDark}>
           <h3 style={{fontSize:16,fontWeight:600,color:T.t1,marginBottom:20,fontFamily:"'Sora',sans-serif"}}>Sent History</h3>
-          {sent.length===0┈┈┈┈┈┈┈┈(
+          {sent.length===0?(
             <div style={{textAlign:"center",padding:"40px 0",color:T.t3,fontSize:13}}>No notifications sent yet</div>
           ):sent.map(s=>(
-            <div key={s.id} style={{padding:"11px 0",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
+            <div key={s.id} style={{padding:"11px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
               <div style={{fontSize:13,fontWeight:600,color:T.t1,marginBottom:3}}>{s.target}</div>
               <div style={{fontSize:11,color:T.t3}}>{s.type.replace(/_/g," ")} Â· {s.time}</div>
             </div>
@@ -924,12 +924,12 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
           <div style={{marginTop:20}}>
             <div style={{fontSize:12,fontWeight:700,color:T.t2,marginBottom:12}}>Individual Send</div>
             {seafarers.slice(0,4).map(s=>(
-              <div key={s.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
+              <div key={s.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.07)"}`}}>
                 <div>
                   <div style={{fontSize:12,fontWeight:600,color:T.t1}}>{s.name}</div>
                   <div style={{fontSize:10,color:T.t3}}>{s.rank}</div>
                 </div>
-                <button onClick={()=>showToast(`Sent to ${s.name}`,"success")} style={{padding:"5px 12px",borderRadius:8,border:"none",background:T.accentBg,color:isDark—#38BDF8":T.accent,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:4}}>
+                <button onClick={()=>showToast(`Sent to ${s.name}`,"success")} style={{padding:"5px 12px",borderRadius:8,border:"none",background:T.accentBg,color:isDark?"#38BDF8":T.accent,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:4}}>
                   <Icon name="send" size={11} color="currentColor" strokeWidth={2}/>Send
                 </button>
               </div>
@@ -943,17 +943,17 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
 
 function RevenuePage({isDark,seafarers,companies}){
   const T=useT(isDark);
-  const proSubs=seafarers.filter(s=>s.sub==="Pr✓).length;
-  const compMRR=companies.filter(c=>c.status==="Active").reduce((a,c)=>a→c.revenue,0);
+  const proSubs=seafarers.filter(s=>s.sub==="Pro").length;
+  const compMRR=companies.filter(c=>c.status==="Active").reduce((a,c)=>a+c.revenue,0);
   const seafMRR=proSubs*4;
-  const totalMRR=compMRR→seafMRR;
+  const totalMRR=compMRR+seafMRR;
   return(
     <div>
       <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:24}}>Revenue Dashboard</h2>
       <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:14,marginBottom:20}}>
         {[
           {label:"Total MRR",        val:`$${totalMRR.toLocaleString()}`, color:T.green},
-          {label:"Company Revenue",  val:`$${compMRR.toLocaleString()}`,  color:isDark—#38BDF8":T.t1},
+          {label:"Company Revenue",  val:`$${compMRR.toLocaleString()}`,  color:isDark?"#38BDF8":T.t1},
           {label:"Seafarer Revenue", val:`$${seafMRR}`,                   color:T.yellow},
           {label:"ARR (Projected)",  val:`$${(totalMRR*12).toLocaleString()}`,color:T.purple},
         ].map((s,i)=>(
@@ -968,7 +968,7 @@ function RevenuePage({isDark,seafarers,companies}){
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,marginBottom:16,fontFamily:"'Sora',sans-serif"}}>Revenue by Plan</h3>
           {[
             {plan:"Enterprise ($399)",  count:companies.filter(c=>c.plan==="Enterprise").length,   rev:companies.filter(c=>c.plan==="Enterprise").length*399,   color:T.purple},
-            {plan:"Professional ($149)",count:companies.filter(c=>c.plan==="Professional").length, rev:companies.filter(c=>c.plan==="Professional").length*149, color:isDark—#38BDF8":T.t1},
+            {plan:"Professional ($149)",count:companies.filter(c=>c.plan==="Professional").length, rev:companies.filter(c=>c.plan==="Professional").length*149, color:isDark?"#38BDF8":T.t1},
             {plan:"Starter ($49)",      count:companies.filter(c=>c.plan==="Starter").length,      rev:companies.filter(c=>c.plan==="Starter").length*49,       color:T.green},
             {plan:"Seafarer Pro ($4)",  count:proSubs,                                             rev:proSubs*4,                                               color:T.yellow},
           ].map(p=>(
@@ -977,8 +977,8 @@ function RevenuePage({isDark,seafarers,companies}){
                 <span style={{fontSize:13,fontWeight:500,color:T.t1}}>{p.plan} <span style={{color:T.t3,fontSize:11}}>x{p.count}</span></span>
                 <span style={{fontSize:13,fontWeight:700,color:p.color,fontFamily:"'JetBrains Mono',monospace"}}>${p.rev}/mo</span>
               </div>
-              <div style={{height:6,borderRadius:3,background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
-                <div style={{height:"100%",width:totalMRR>0┈┈┈┈┈┈┈┈`${Math.min((p.rev/totalMRR)*100,100)}%`:"0%",background:p.color,borderRadius:3,transition:"width 1.2s ease",opacity:isDark┈┈┈┈┈┈┈┈1:0.75}}/>
+              <div style={{height:6,borderRadius:3,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}}>
+                <div style={{height:"100%",width:totalMRR>0?`${Math.min((p.rev/totalMRR)*100,100)}%`:"0%",background:p.color,borderRadius:3,transition:"width 1.2s ease",opacity:isDark?1:0.75}}/>
               </div>
             </div>
           ))}
@@ -986,7 +986,7 @@ function RevenuePage({isDark,seafarers,companies}){
         <Card isDark={isDark}>
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,marginBottom:16,fontFamily:"'Sora',sans-serif"}}>Upcoming Renewals</h3>
           {companies.filter(c=>c.status==="Active").map(c=>(
-            <div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
+            <div key={c.id} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"10px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
               <div>
                 <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{c.name}</div>
                 <div style={{fontSize:11,color:T.t3}}>{c.plan}</div>
@@ -1012,7 +1012,7 @@ function SettingsPage({isDark}){
         {[
           {title:"Platform",icon:"settings",items:[
             {label:"Platform Name",val:"OceanCrew",type:"text"},
-            {label:"Support Email",val:"support@oceancrew.i✓,type:"text"},
+            {label:"Support Email",val:"support@oceancrew.io",type:"text"},
             {label:"Seafarer Pro Price",val:"$4/month",type:"text"},
             {label:"Maintenance Mode",val:false,type:"toggle"},
           ]},
@@ -1023,33 +1023,33 @@ function SettingsPage({isDark}){
             {label:"Auto Renewal Emails",val:true,type:"toggle"},
           ]},
           {title:"Security",icon:"shield",items:[
-            {label:"Require 2F· for Admin",val:true,type:"toggle"},
+            {label:"Require 2FA for Admin",val:true,type:"toggle"},
             {label:"IP Rate Limiting",val:true,type:"toggle"},
             {label:"Max Login Attempts",val:"5",type:"text"},
           ]},
         ].map(sec=>(
           <Card key={sec.title} isDark={isDark}>
             <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:18}}>
-              <div style={{width:36,height:36,borderRadius:10,background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.07)",display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <div style={{width:36,height:36,borderRadius:10,background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.07)",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <Icon name={sec.icon} size={16} color={T.t2} strokeWidth={2}/>
               </div>
               <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{sec.title}</h3>
             </div>
             {sec.items.map((item,i)=>(
-              <div key={item.label} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 0",borderBottom:i<sec.items.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none"}}>
+              <div key={item.label} style={{display:"flex",alignItems:"center",justifyContent:"space-between",padding:"12px 0",borderBottom:i<sec.items.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none"}}>
                 <span style={{fontSize:13,fontWeight:500,color:T.t2}}>{item.label}</span>
-                {item.type==="toggle"┈┈┈┈┈┈┈┈(
-                  <div style={{width:44,height:24,borderRadius:12,background:item.val┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):"rgba(100,116,139,0.15)",position:"relative",cursor:"pointer",transition:"background 0.2s"}}>
-                    <div style={{position:"absolute",top:3,left:item.val—calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
+                {item.type==="toggle"?(
+                  <div style={{width:44,height:24,borderRadius:12,background:item.val?(isDark?"#38BDF8":"#1a2332"):"rgba(100,116,139,0.15)",position:"relative",cursor:"pointer",transition:"background 0.2s"}}>
+                    <div style={{position:"absolute",top:3,left:item.val?"calc(100% - 21px)":3,width:16,height:16,borderRadius:"50%",background:"#fff",boxShadow:"0 1px 4px rgba(0,0,0,0.2)",transition:"left 0.2s"}}/>
                   </div>
                 ):(
-                  <input defaultValue={item.val} style={{padding:"8px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.07)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",width:200,fontFamily:"'Inter',sans-serif"}}/>
+                  <input defaultValue={item.val} style={{padding:"8px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.07)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",width:200,fontFamily:"'Inter',sans-serif"}}/>
                 )}
               </div>
             ))}
           </Card>
         ))}
-        <button style={{padding:"12px 24px",borderRadius:12,border:"none",background:isDark—#38BDF8":"#1a2332",color:"#fff",fontWeight:600,fontSize:13,cursor:"pointer",alignSelf:"flex-start",display:"flex",alignItems:"center",gap:7,fontFamily:"'Inter',sans-serif",boxShadow:isDark—0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"}}>
+        <button style={{padding:"12px 24px",borderRadius:12,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontWeight:600,fontSize:13,cursor:"pointer",alignSelf:"flex-start",display:"flex",alignItems:"center",gap:7,fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 14px rgba(56,189,248,0.25)":"0 4px 14px rgba(26,35,50,0.2)"}}>
           <Icon name="check" size={15} color="#fff" strokeWidth={2.5}/>Save Changes
         </button>
       </div>
@@ -1076,16 +1076,16 @@ function CVManagerPage({isDark,showToast}){
         if(Array.isArray(data)){
           setRequests(data.map(cv=>({
             id:cv._id,
-            name:cv.seafarerId┈┈┈┈┈┈┈┈.name||"Unknown",
-            rank:cv.seafarerId┈┈┈┈┈┈┈┈.rank||"",
-            email:cv.seafarerId┈┈┈┈┈┈┈┈.email||"",
-            avatar:(cv.seafarerId┈┈┈┈┈┈┈┈.name||"—).slice(0,2).toUpperCase(),
-            status:cv.status==="ready"—Sent":cv.status==="processing"—Processing":"Pending",
+            name:cv.seafarerId?.name||"Unknown",
+            rank:cv.seafarerId?.rank||"",
+            email:cv.seafarerId?.email||"",
+            avatar:(cv.seafarerId?.name||"?").slice(0,2).toUpperCase(),
+            status:cv.status==="ready"?"Sent":cv.status==="processing"?"Processing":"Pending",
             amount:4.99,
             date:new Date(cv.uploadedAt).toLocaleDateString("en-GB",{day:"numeric",month:"short"}),
             fileName:cv.fileName,
             paid:true,
-            cv:{fullName:cv.seafarerId┈┈┈┈┈┈┈┈.name||"",rank:cv.seafarerId┈┈┈┈┈┈┈┈.rank||"",email:cv.seafarerId┈┈┈┈┈┈┈┈.email||"",vessels:[],certs:[],summary:""},
+            cv:{fullName:cv.seafarerId?.name||"",rank:cv.seafarerId?.rank||"",email:cv.seafarerId?.email||"",vessels:[],certs:[],summary:""},
           })));
         }
       })
@@ -1102,7 +1102,7 @@ function CVManagerPage({isDark,showToast}){
   };
 
   const saveCV=()=>{
-    setRequests(p=>p.map(r=>r.id===selected.id┈┈┈┈┈┈┈┈{...r,cv:{...editData}}:r));
+    setRequests(p=>p.map(r=>r.id===selected.id?{...r,cv:{...editData}}:r));
     setSelected(s=>({...s,cv:{...editData}}));
     setEditing(false);
     showToast("CV notes saved","success");
@@ -1115,7 +1115,7 @@ function CVManagerPage({isDark,showToast}){
         method:"POST",headers:authHeader(),body:JSON.stringify({}),
       });
       if(r.ok){
-        setRequests(p=>p.map(r=>r.id===id┈┈┈┈┈┈┈┈{...r,status:"Sent"}:r));
+        setRequests(p=>p.map(r=>r.id===id?{...r,status:"Sent"}:r));
         if(selected&&selected.id===id) setSelected(s=>({...s,status:"Sent"}));
         showToast("CV email sent to seafarer!","success");
       }else{
@@ -1145,12 +1145,12 @@ function CVManagerPage({isDark,showToast}){
         <p style={{fontSize:14,color:T.t3}}>Seafarers who paid $4.99 for CV generation. Edit, preview and send.</p>
       </div>
 
-      <div style={{display:"grid",gridTemplateColumns:selected—1fr 1.6fr":"1fr",gap:16}}>
+      <div style={{display:"grid",gridTemplateColumns:selected?"1fr 1.6fr":"1fr",gap:16}}>
         {/* Request list */}
         <div style={{display:"flex",flexDirection:"column",gap:10}}>
           <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10,marginBottom:6}}>
             {[
-              {label:"Total Requests",val:requests.length,color:isDark—#38BDF8":T.t1},
+              {label:"Total Requests",val:requests.length,color:isDark?"#38BDF8":T.t1},
               {label:"Pending",val:requests.filter(r=>r.status==="Pending").length,color:T.yellow},
               {label:"Sent",val:requests.filter(r=>r.status==="Sent").length,color:T.green},
             ].map((s,i)=>(
@@ -1160,17 +1160,17 @@ function CVManagerPage({isDark,showToast}){
               </Card>
             ))}
           </div>
-          {loadingCVs┈┈┈┈┈┈┈┈(
+          {loadingCVs?(
             <div style={{textAlign:"center",padding:40,color:T.t3}}>Loading CV requests...</div>
-          ):requests.length===0┈┈┈┈┈┈┈┈(
+          ):requests.length===0?(
             <div style={{textAlign:"center",padding:40,color:T.t3}}>No CV requests yet. Seafarers who pay $4.99 will appear here.</div>
           ):requests.map(req=>(
-            <Card key={req.id} isDark={isDark} style={{padding:"16px 18px",cursor:"pointer",border:selected&&selected.id===req.id┈┈┈┈┈┈┈┈(isDark—1px solid #38BDF8":"1px solid #1a2332"):(isDark—1px solid rgba(255,255,255,0.07)":"none")}} onClick={()=>openCV(req)}>
+            <Card key={req.id} isDark={isDark} style={{padding:"16px 18px",cursor:"pointer",border:selected&&selected.id===req.id?(isDark?"1px solid #38BDF8":"1px solid #1a2332"):(isDark?"1px solid rgba(255,255,255,0.07)":"none")}} onClick={()=>openCV(req)}>
               <div style={{display:"flex",alignItems:"center",gap:12}}>
                 <Av initials={req.avatar} size={42} isDark={isDark}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:3}}>{req.name}</div>
-                  <div style={{fontSize:11,color:T.t3,marginBottom:6}}>{req.rank} Â· {req.date}{req.fileName┈┈┈┈┈┈┈┈` Â· ${req.fileName}`:""}</div>
+                  <div style={{fontSize:11,color:T.t3,marginBottom:6}}>{req.rank} Â· {req.date}{req.fileName?` Â· ${req.fileName}`:""}</div>
                   <div style={{display:"flex",gap:6}}>
                     <Bdg label={`$${req.amount} Paid`} color={T.green} bg={T.greenBg}/>
                     <Bdg label={req.status} color={statusColor[req.status]} bg={statusBg[req.status]}/>
@@ -1189,36 +1189,36 @@ function CVManagerPage({isDark,showToast}){
           <div>
             <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
               {/* Toolbar */}
-              <div style={{padding:"14px 20px",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}`,display:"flex",justifyContent:"space-between",alignItems:"center",gap:10,flexWrap:"wrap"}}>
+              <div style={{padding:"14px 20px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}`,display:"flex",justifyContent:"space-between",alignItems:"center",gap:10,flexWrap:"wrap"}}>
                 <div style={{display:"flex",gap:8}}>
                   <Pill active={!preview} isDark={isDark} onClick={()=>setPreview(false)}>Edit CV</Pill>
                   <Pill active={preview} isDark={isDark} onClick={()=>setPreview(true)}>Preview</Pill>
                 </div>
                 <div style={{display:"flex",gap:8}}>
-                  {!editing┈┈┈┈┈┈┈┈(
-                    <button onClick={()=>setEditing(true)} style={{padding:"8px 16px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.15)",background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                  {!editing?(
+                    <button onClick={()=>setEditing(true)} style={{padding:"8px 16px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.15)",background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
                       âœï¸ Edit
                     </button>
                   ):(
-                    <button onClick={saveCV} style={{padding:"8px 16px",borderRadius:10,border:"none",background:isDark—#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                    <button onClick={saveCV} style={{padding:"8px 16px",borderRadius:10,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
                       <Icon name="check" size={13} color="#fff" strokeWidth={2.5}/>Save
                     </button>
                   )}
-                  <button onClick={()=>downloadCV(selected.id)} style={{padding:"8px 16px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.15)",background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+                  <button onClick={()=>downloadCV(selected.id)} style={{padding:"8px 16px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.1)":"1px solid rgba(100,116,139,0.15)",background:"transparent",color:T.t2,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
                     <Icon name="download" size={13} color="currentColor" strokeWidth={2}/>Download
                   </button>
-                  <button onClick={()=>sendCV(selected.id)} disabled={sending} style={{padding:"8px 16px",borderRadius:10,border:"none",background:selected.status==="Sent"┈┈┈┈┈┈┈┈T.greenBg:"linear-gradient(135deg,#34D399,#10B981)",color:selected.status==="Sent"┈┈┈┈┈┈┈┈T.green:"#fff",fontSize:12,fontWeight:600,cursor:sending—not-allowed":"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5,opacity:sending┈┈┈┈┈┈┈┈0.7:1}}>
+                  <button onClick={()=>sendCV(selected.id)} disabled={sending} style={{padding:"8px 16px",borderRadius:10,border:"none",background:selected.status==="Sent"?T.greenBg:"linear-gradient(135deg,#34D399,#10B981)",color:selected.status==="Sent"?T.green:"#fff",fontSize:12,fontWeight:600,cursor:sending?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5,opacity:sending?0.7:1}}>
                     <Icon name="send" size={13} color="currentColor" strokeWidth={2}/>
-                    {sending—Sending...":selected.status==="Sent"—Resend CV":"Send CV"}
+                    {sending?"Sending...":selected.status==="Sent"?"Resend CV":"Send CV"}
                   </button>
                 </div>
               </div>
 
               {/* Preview mode */}
-              {preview┈┈┈┈┈┈┈┈(
-                <div style={{padding:28,background:isDark—rgba(255,255,255,0.01)":"#f8f9fa"}}>
+              {preview?(
+                <div style={{padding:28,background:isDark?"rgba(255,255,255,0.01)":"#f8f9fa"}}>
                   {/* CV Preview Card */}
-                  <div style={{background:"#fff",borderRadius:16,overflow:"hidden",boxShadow:"0 4px 32px rgba(0,0,0,0.12)",maxWidth:600,margin:"0 aut✓}}>
+                  <div style={{background:"#fff",borderRadius:16,overflow:"hidden",boxShadow:"0 4px 32px rgba(0,0,0,0.12)",maxWidth:600,margin:"0 auto"}}>
                     {/* CV Header */}
                     <div style={{background:"linear-gradient(135deg,#0A1628,#1C2F52)",padding:"28px 32px",color:"#fff"}}>
                       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
@@ -1288,32 +1288,32 @@ function CVManagerPage({isDark,showToast}){
                       <div key={f.key}>
                         <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:5}}>{f.label}</div>
                         <input value={editData[f.key]||""} onChange={e=>setEditData(p=>({...p,[f.key]:e.target.value}))} disabled={!editing}
-                          style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:editing┈┈┈┈┈┈┈┈(isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)"):(isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.02)"),color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box",opacity:editing┈┈┈┈┈┈┈┈1:0.75}}/>
+                          style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:editing?(isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)"):(isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.02)"),color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box",opacity:editing?1:0.75}}/>
                       </div>
                     ))}
                   </div>
                   <div>
                     <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:5}}>Professional Summary</div>
                     <textarea value={editData.summary||""} onChange={e=>setEditData(p=>({...p,summary:e.target.value}))} disabled={!editing} rows={3}
-                      style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:editing┈┈┈┈┈┈┈┈(isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)"):(isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.02)"),color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box",opacity:editing┈┈┈┈┈┈┈┈1:0.75}}/>
+                      style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:editing?(isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)"):(isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.02)"),color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"vertical",boxSizing:"border-box",opacity:editing?1:0.75}}/>
                   </div>
                   <div>
                     <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:8}}>Sea Service</div>
                     {editData.vessels.map((v,i)=>(
-                      <div key={i} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:8,marginBottom:8,padding:"10px 12px",background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:10}}>
+                      <div key={i} style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr 1fr",gap:8,marginBottom:8,padding:"10px 12px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:10}}>
                         {[{k:"name",pl:"Vessel Name"},{k:"type",pl:"Type"},{k:"flag",pl:"Flag State"},{k:"from",pl:"From (YYYY-MM)"}].map(f=>(
                           <input key={f.k} value={v[f.k]||""} placeholder={f.pl} disabled={!editing}
                             onChange={e=>{const nv=[...editData.vessels];nv[i]={...nv[i],[f.k]:e.target.value};setEditData(p=>({...p,vessels:nv}));}}
-                            style={{padding:"7px 10px",borderRadius:7,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark—rgba(255,255,255,0.04)":"#fff",color:T.t1,fontSize:11,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+                            style={{padding:"7px 10px",borderRadius:7,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.12)",background:isDark?"rgba(255,255,255,0.04)":"#fff",color:T.t1,fontSize:11,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
                         ))}
                       </div>
                     ))}
                   </div>
                   <div>
                     <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:8}}>Certificates (comma separated)</div>
-                    <input value={editData.certs┈┈┈┈┈┈┈┈.join(", ")||""} disabled={!editing}
+                    <input value={editData.certs?.join(", ")||""} disabled={!editing}
                       onChange={e=>setEditData(p=>({...p,certs:e.target.value.split(",").map(c=>c.trim())}))}
-                      style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:editing┈┈┈┈┈┈┈┈(isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)"):(isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.02)"),color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+                      style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:editing?(isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)"):(isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.02)"),color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
                   </div>
                 </div>
               )}
@@ -1335,21 +1335,21 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
   const openEdit=(item)=>{setSelected(item);setEditForm({...item});};
 
   const saveEdit=()=>{
-    if(tab==="seafarers") setSeafarers(p=>p.map(s=>s.id===selected.id┈┈┈┈┈┈┈┈{...editForm}:s));
-    else setCompanies(p=>p.map(c=>c.id===selected.id┈┈┈┈┈┈┈┈{...editForm}:c));
+    if(tab==="seafarers") setSeafarers(p=>p.map(s=>s.id===selected.id?{...editForm}:s));
+    else setCompanies(p=>p.map(c=>c.id===selected.id?{...editForm}:c));
     setSelected({...editForm});
     showToast("Profile updated successfully","success");
   };
 
-  const resetPassword=(name)=>showToast(`Password reset email sent to ${name}`,"inf✓);
+  const resetPassword=(name)=>showToast(`Password reset email sent to ${name}`,"info");
   const forceLogout=(name)=>showToast(`${name} has been logged out`,"warning");
   const changePlan=(id,plan)=>{
-    if(tab==="seafarers") setSeafarers(p=>p.map(s=>s.id===id┈┈┈┈┈┈┈┈{...s,sub:plan}:s));
-    else setCompanies(p=>p.map(c=>c.id===id┈┈┈┈┈┈┈┈{...c,plan}:c));
+    if(tab==="seafarers") setSeafarers(p=>p.map(s=>s.id===id?{...s,sub:plan}:s));
+    else setCompanies(p=>p.map(c=>c.id===id?{...c,plan}:c));
     showToast(`Plan changed to ${plan}`,"success");
   };
 
-  const list=tab==="seafarers"┈┈┈┈┈┈┈┈seafarers:companies;
+  const list=tab==="seafarers"?seafarers:companies;
 
   return(
     <div>
@@ -1362,16 +1362,16 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
         <Pill active={tab==="companies"} isDark={isDark} onClick={()=>{setTab("companies");setSelected(null);}}>Companies ({companies.length})</Pill>
       </div>
 
-      <div style={{display:"grid",gridTemplateColumns:selected—1fr 1fr":"1fr",gap:16}}>
+      <div style={{display:"grid",gridTemplateColumns:selected?"1fr 1fr":"1fr",gap:16}}>
         <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
-          <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"12px 20px",background:isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark—1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
+          <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"12px 20px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderBottom:isDark?"1px solid rgba(255,255,255,0.06)":"1px solid rgba(100,116,139,0.08)"}}>
             {["User","Plan/Sub","Status","Actions"].map(h=>(
               <span key={h} style={{fontSize:10,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.08em"}}>{h}</span>
             ))}
           </div>
           {list.map((item,i)=>(
-            <div key={item.id} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"13px 20px",borderBottom:i<list.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",background:selected&&selected.id===item.id┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.05)":"rgba(26,35,50,0.04)"):"transparent",transition:"background 0.15s"}}
-              onMouseEnter={e=>{if(!selected||selected.id!==item.id)e.currentTarget.style.background=isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)";}}
+            <div key={item.id} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"13px 20px",borderBottom:i<list.length-1?(isDark?"1px solid rgba(255,255,255,0.05)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",background:selected&&selected.id===item.id?(isDark?"rgba(56,189,248,0.05)":"rgba(26,35,50,0.04)"):"transparent",transition:"background 0.15s"}}
+              onMouseEnter={e=>{if(!selected||selected.id!==item.id)e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)";}}
               onMouseLeave={e=>{if(!selected||selected.id!==item.id)e.currentTarget.style.background="transparent";}}>
               <div style={{display:"flex",alignItems:"center",gap:10}}>
                 <Av initials={item.logo||item.avatar} size={34} isDark={isDark}/>
@@ -1380,11 +1380,11 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
                   <div style={{fontSize:10,color:T.t3}}>{item.rank||item.country}</div>
                 </div>
               </div>
-              <Bdg label={item.sub||item.plan} color={isDark—#38BDF8":"#334155"} bg={isDark—rgba(56,189,248,0.1)":"rgba(100,116,139,0.08)"}/>
-              <Bdg label={item.status} color={item.status==="Active"┈┈┈┈┈┈┈┈T.green:T.red} bg={item.status==="Active"┈┈┈┈┈┈┈┈T.greenBg:T.redBg}/>
+              <Bdg label={item.sub||item.plan} color={isDark?"#38BDF8":"#334155"} bg={isDark?"rgba(56,189,248,0.1)":"rgba(100,116,139,0.08)"}/>
+              <Bdg label={item.status} color={item.status==="Active"?T.green:T.red} bg={item.status==="Active"?T.greenBg:T.redBg}/>
               <div style={{display:"flex",gap:5}}>
-                <button onClick={()=>openEdit(item)} style={{padding:"5px 10px",borderRadius:7,border:"none",background:isDark—rgba(56,189,248,0.12)":T.accentBg,color:isDark—#38BDF8":T.accent,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Edit</button>
-                <button onClick={()=>resetPassword(item.name)} style={{padding:"5px 10px",borderRadius:7,border:"none",background:isDark—rgba(251,191,36,0.12)":T.yellowBg,color:T.yellow,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Reset PW</button>
+                <button onClick={()=>openEdit(item)} style={{padding:"5px 10px",borderRadius:7,border:"none",background:isDark?"rgba(56,189,248,0.12)":T.accentBg,color:isDark?"#38BDF8":T.accent,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Edit</button>
+                <button onClick={()=>resetPassword(item.name)} style={{padding:"5px 10px",borderRadius:7,border:"none",background:isDark?"rgba(251,191,36,0.12)":T.yellowBg,color:T.yellow,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Reset PW</button>
               </div>
             </div>
           ))}
@@ -1394,7 +1394,7 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
           <Card isDark={isDark} style={{padding:22}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18}}>
               <h3 style={{fontSize:16,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Edit Profile</h3>
-              <button onClick={()=>setSelected(null)} style={{width:28,height:28,borderRadius:"50%",border:"none",background:isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+              <button onClick={()=>setSelected(null)} style={{width:28,height:28,borderRadius:"50%",border:"none",background:isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 <Icon name="x" size={13} color="currentColor" strokeWidth={2.5}/>
               </button>
             </div>
@@ -1403,33 +1403,33 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
               {[
                 {key:"name",label:"Full Name"},
                 {key:"email",label:"Email",placeholder:"email@example.com"},
-                {key:"rank",label:tab==="seafarers"—Rank":"Country"},
+                {key:"rank",label:tab==="seafarers"?"Rank":"Country"},
                 {key:"country",label:"Country"},
               ].filter(f=>editForm[f.key]!==undefined).map(f=>(
                 <div key={f.key}>
                   <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:5}}>{f.label}</div>
                   <input value={editForm[f.key]||""} onChange={e=>setEditForm(p=>({...p,[f.key]:e.target.value}))} placeholder={f.placeholder||""}
-                    style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
+                    style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",boxSizing:"border-box"}}/>
                 </div>
               ))}
 
               <div>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:5}}>Status</div>
                 <select value={editForm.status} onChange={e=>setEditForm(p=>({...p,status:e.target.value}))}
-                  style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif"}}>
+                  style={{width:"100%",padding:"9px 12px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"#0f1e36":"#fff",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif"}}>
                   <option>Active</option><option>Inactive</option><option>Suspended</option>
                 </select>
               </div>
 
               <div>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:5}}>
-                  {tab==="seafarers"—Subscription":"Plan"} — Force Change
+                  {tab==="seafarers"?"Subscription":"Plan"} — Force Change
                 </div>
                 <div style={{display:"flex",gap:6}}>
-                  {(tab==="seafarers"┈┈┈┈┈┈┈┈["Free","Pr✓]:["Starter","Professional","Enterprise"]).map(plan=>(
+                  {(tab==="seafarers"?["Free","Pro"]:["Starter","Professional","Enterprise"]).map(plan=>(
                     <button key={plan} onClick={()=>changePlan(editForm.id,plan)} style={{flex:1,padding:"8px 0",borderRadius:9,border:"none",fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",
-                      background:(editForm.sub===plan||editForm.plan===plan)┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
-                      color:(editForm.sub===plan||editForm.plan===plan)—#fff":T.t3}}>
+                      background:(editForm.sub===plan||editForm.plan===plan)?(isDark?"#38BDF8":"#1a2332"):(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"),
+                      color:(editForm.sub===plan||editForm.plan===plan)?"#fff":T.t3}}>
                       {plan}
                     </button>
                   ))}
@@ -1437,8 +1437,8 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
               </div>
             </div>
 
-            <div style={{display:"flex",gap:8,paddingTop:14,borderTop:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}`}}>
-              <button onClick={saveEdit} style={{flex:2,padding:"10px",borderRadius:10,border:"none",background:isDark—#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
+            <div style={{display:"flex",gap:8,paddingTop:14,borderTop:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.1)"}`}}>
+              <button onClick={saveEdit} style={{flex:2,padding:"10px",borderRadius:10,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",justifyContent:"center",gap:6}}>
                 <Icon name="check" size={13} color="#fff" strokeWidth={2.5}/>Save Changes
               </button>
               <button onClick={()=>resetPassword(selected.name)} style={{flex:1,padding:"10px",borderRadius:10,border:"none",background:T.yellowBg,color:T.yellow,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
@@ -1465,27 +1465,27 @@ function PlatformControlPage({isDark,showToast}){
   ]);
   const [featured,setFeatured]=useState([
     {id:1,name:"Pacific Star Shipping",type:"Company",until:"Jun 30",logo:"PS"},
-    {id:2,name:"Capt. Rajesh Fernand✓,type:"Seafarer",until:"Jun 15",logo:"RF"},
+    {id:2,name:"Capt. Rajesh Fernando",type:"Seafarer",until:"Jun 15",logo:"RF"},
   ]);
   const [auditLog]=useState([
     {id:1,admin:"Super Admin",action:"Granted verified badge",target:"Pacific Star Shipping",time:"May 22 Â· 10:42",ip:"192.168.1.1"},
     {id:2,admin:"Super Admin",action:"Generated invoice INV-004",target:"Royal Caribbean Crew",time:"May 21 Â· 15:30",ip:"192.168.1.1"},
     {id:3,admin:"Super Admin",action:"Blacklisted user",target:"Chen Wei Long",time:"May 20 Â· 09:15",ip:"192.168.1.1"},
-    {id:4,admin:"Super Admin",action:"Force plan change to Pr✓,target:"Shanaka Perera",time:"May 19 Â· 14:22",ip:"192.168.1.1"},
+    {id:4,admin:"Super Admin",action:"Force plan change to Pro",target:"Shanaka Perera",time:"May 19 Â· 14:22",ip:"192.168.1.1"},
     {id:5,admin:"Super Admin",action:"Sent notification blast",target:"All Seafarers (12847)",time:"May 18 Â· 11:05",ip:"192.168.1.1"},
     {id:6,admin:"Super Admin",action:"Approved company",target:"Neptune Shipping Ltd.",time:"May 17 Â· 16:48",ip:"192.168.1.1"},
   ]);
 
   const postAnnouncement=()=>{
     if(!announcement.trim()){showToast("Write an announcement first","error");return;}
-    setAnnouncements(p=>[{id:p.length→1,msg:announcement,date:"Today",active:true},...p]);
+    setAnnouncements(p=>[{id:p.length+1,msg:announcement,date:"Today",active:true},...p]);
     setAnnouncement("");
     showToast("Announcement posted to all users","success");
   };
 
   const toggleAnnouncement=(id)=>{
-    setAnnouncements(p=>p.map(a=>a.id===id┈┈┈┈┈┈┈┈{...a,active:!a.active}:a));
-    showToast("Announcement status updated","inf✓);
+    setAnnouncements(p=>p.map(a=>a.id===id?{...a,active:!a.active}:a));
+    showToast("Announcement status updated","info");
   };
 
   return(
@@ -1500,21 +1500,21 @@ function PlatformControlPage({isDark,showToast}){
         <Card isDark={isDark}>
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,marginBottom:16,fontFamily:"'Sora',sans-serif"}}>Platform Announcements</h3>
           <textarea value={announcement} onChange={e=>setAnnouncement(e.target.value)} placeholder="Write a platform-wide announcement..." rows={3}
-            style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"none",boxSizing:"border-box",marginBottom:10}}/>
-          <button onClick={postAnnouncement} style={{width:"100%",padding:"10px",borderRadius:10,border:"none",background:isDark—#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",marginBottom:16,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+            style={{width:"100%",padding:"10px 14px",borderRadius:10,border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(100,116,139,0.15)",background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.04)",color:T.t1,fontSize:13,outline:"none",fontFamily:"'Inter',sans-serif",resize:"none",boxSizing:"border-box",marginBottom:10}}/>
+          <button onClick={postAnnouncement} style={{width:"100%",padding:"10px",borderRadius:10,border:"none",background:isDark?"#38BDF8":"#1a2332",color:"#fff",fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",marginBottom:16,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
             <Icon name="send" size={14} color="#fff" strokeWidth={2}/>Post Announcement
           </button>
           {announcements.map(a=>(
-            <div key={a.id} style={{padding:"12px 14px",borderRadius:11,border:`1px solid ${a.active┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.2)":"rgba(26,35,50,0.15)"):(isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)")}`,marginBottom:8,background:a.active┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.05)":"rgba(26,35,50,0.03)"):"transparent"}}>
+            <div key={a.id} style={{padding:"12px 14px",borderRadius:11,border:`1px solid ${a.active?(isDark?"rgba(56,189,248,0.2)":"rgba(26,35,50,0.15)"):(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)")}`,marginBottom:8,background:a.active?(isDark?"rgba(56,189,248,0.05)":"rgba(26,35,50,0.03)"):"transparent"}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10}}>
-                <p style={{fontSize:12,color:a.active┈┈┈┈┈┈┈┈T.t1:T.t3,lineHeight:1.5,flex:1}}>{a.msg}</p>
-                <button onClick={()=>toggleAnnouncement(a.id)} style={{padding:"4px 10px",borderRadius:7,border:"none",background:a.active┈┈┈┈┈┈┈┈T.redBg:T.greenBg,color:a.active┈┈┈┈┈┈┈┈T.red:T.green,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",flexShrink:0}}>
-                  {a.active—Deactivate":"Activate"}
+                <p style={{fontSize:12,color:a.active?T.t1:T.t3,lineHeight:1.5,flex:1}}>{a.msg}</p>
+                <button onClick={()=>toggleAnnouncement(a.id)} style={{padding:"4px 10px",borderRadius:7,border:"none",background:a.active?T.redBg:T.greenBg,color:a.active?T.red:T.green,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",flexShrink:0}}>
+                  {a.active?"Deactivate":"Activate"}
                 </button>
               </div>
               <div style={{fontSize:10,color:T.t3,marginTop:6,display:"flex",alignItems:"center",gap:6}}>
-                <span style={{width:6,height:6,borderRadius:"50%",background:a.active┈┈┈┈┈┈┈┈T.green:T.t3,display:"inline-block"}}/>
-                {a.active—Active":"Inactive"} Â· {a.date}
+                <span style={{width:6,height:6,borderRadius:"50%",background:a.active?T.green:T.t3,display:"inline-block"}}/>
+                {a.active?"Active":"Inactive"} Â· {a.date}
               </div>
             </div>
           ))}
@@ -1525,17 +1525,17 @@ function PlatformControlPage({isDark,showToast}){
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,marginBottom:16,fontFamily:"'Sora',sans-serif"}}>Featured Listings</h3>
           <p style={{fontSize:12,color:T.t3,marginBottom:14}}>Pin companies or seafarers to the top of search results</p>
           {featured.map(f=>(
-            <div key={f.id} style={{display:"flex",alignItems:"center",gap:12,padding:"11px 14px",borderRadius:11,background:isDark—rgba(251,191,36,0.05)":"rgba(217,119,6,0.04)",border:`1px solid ${T.yellow}30`,marginBottom:8}}>
+            <div key={f.id} style={{display:"flex",alignItems:"center",gap:12,padding:"11px 14px",borderRadius:11,background:isDark?"rgba(251,191,36,0.05)":"rgba(217,119,6,0.04)",border:`1px solid ${T.yellow}30`,marginBottom:8}}>
               <Av initials={f.logo} size={36} isDark={isDark}/>
               <div style={{flex:1}}>
                 <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{f.name}</div>
                 <div style={{fontSize:11,color:T.t3}}>{f.type} Â· Featured until {f.until}</div>
               </div>
               <Bdg label="Featured" color={T.yellow} bg={T.yellowBg}/>
-              <button onClick={()=>{setFeatured(p=>p.filter(x=>x.id!==f.id));showToast("Removed from featured","inf✓);}} style={{padding:"5px 10px",borderRadius:7,border:"none",background:T.redBg,color:T.red,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Remove</button>
+              <button onClick={()=>{setFeatured(p=>p.filter(x=>x.id!==f.id));showToast("Removed from featured","info");}} style={{padding:"5px 10px",borderRadius:7,border:"none",background:T.redBg,color:T.red,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Remove</button>
             </div>
           ))}
-          <button onClick={()=>showToast("Feature: select from Companies or Seafarers page","inf✓)} style={{width:"100%",padding:"10px",borderRadius:10,border:`1px dashed ${isDark—rgba(255,255,255,0.1)":"rgba(100,116,139,0.2)"}`,background:"transparent",color:T.t3,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",marginTop:8,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
+          <button onClick={()=>showToast("Feature: select from Companies or Seafarers page","info")} style={{width:"100%",padding:"10px",borderRadius:10,border:`1px dashed ${isDark?"rgba(255,255,255,0.1)":"rgba(100,116,139,0.2)"}`,background:"transparent",color:T.t3,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",marginTop:8,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}>
             <Icon name="plus" size={14} color="currentColor" strokeWidth={2}/>Add Featured Listing
           </button>
         </Card>
@@ -1543,17 +1543,17 @@ function PlatformControlPage({isDark,showToast}){
 
       {/* Audit log */}
       <Card isDark={isDark} style={{padding:0,overflow:"hidden"}}>
-        <div style={{padding:"14px 22px",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <div style={{padding:"14px 22px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}`,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <h3 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Admin Audit Trail</h3>
-          <button style={{padding:"7px 14px",borderRadius:9,border:isDark—1px solid rgba(255,255,255,0.08)":"none",background:isDark—transparent":"rgba(100,116,139,0.07)",color:T.t2,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
+          <button style={{padding:"7px 14px",borderRadius:9,border:isDark?"1px solid rgba(255,255,255,0.08)":"none",background:isDark?"transparent":"rgba(100,116,139,0.07)",color:T.t2,fontSize:11,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif",display:"flex",alignItems:"center",gap:5}}>
             <Icon name="download" size={13} color="currentColor" strokeWidth={2}/>Export Log
           </button>
         </div>
         {auditLog.map((log,i)=>(
-          <div key={log.id} style={{display:"grid",gridTemplateColumns:"1.5fr 2fr 1fr 1fr",padding:"13px 22px",borderBottom:i<auditLog.length-1┈┈┈┈┈┈┈┈(isDark—1px solid rgba(255,255,255,0.04)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
-            onMouseEnter={e=>e.currentTarget.style.background=isDark—rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
+          <div key={log.id} style={{display:"grid",gridTemplateColumns:"1.5fr 2fr 1fr 1fr",padding:"13px 22px",borderBottom:i<auditLog.length-1?(isDark?"1px solid rgba(255,255,255,0.04)":"1px solid rgba(100,116,139,0.07)"):"none",alignItems:"center",transition:"background 0.15s"}}
+            onMouseEnter={e=>e.currentTarget.style.background=isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.03)"}
             onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
-            <Bdg label={log.action} color={isDark—#38BDF8":"#334155"} bg={isDark—rgba(56,189,248,0.08)":"rgba(100,116,139,0.08)"}/>
+            <Bdg label={log.action} color={isDark?"#38BDF8":"#334155"} bg={isDark?"rgba(56,189,248,0.08)":"rgba(100,116,139,0.08)"}/>
             <span style={{fontSize:12,color:T.t2}}>{log.target}</span>
             <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{log.time}</span>
             <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{log.ip}</span>
@@ -1601,7 +1601,7 @@ export default function AdminPanel(){
 
   const isDark=theme==="dark";
   const T=useT(isDark);
-  const showToast=(msg,type="inf✓)=>setToast({msg,type});
+  const showToast=(msg,type="info")=>setToast({msg,type});
 
   const renderPage=()=>{
     const p={isDark,showToast,seafarers,setSeafarers,companies,setCompanies};
@@ -1627,7 +1627,7 @@ export default function AdminPanel(){
   return(
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains→Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         body,html{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -1636,35 +1636,35 @@ export default function AdminPanel(){
         .page-anim{animation:fadeIn .3s ease both;}
         ::-webkit-scrollbar{width:5px;}
         ::-webkit-scrollbar-track{background:transparent;}
-        ::-webkit-scrollbar-thumb{background:${isDark—rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"};border-radius:3px;}
+        ::-webkit-scrollbar-thumb{background:${isDark?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"};border-radius:3px;}
         input::placeholder,textarea::placeholder{color:${T.t3};}
         input,select,textarea,button{font-family:'Inter',-apple-system,sans-serif;}
-        select option{background:${isDark—#10121A":"#fff"};color:${T.t1};}
+        select option{background:${isDark?"#10121A":"#fff"};color:${T.t1};}
       `}</style>
 
       {toast&&<Toast msg={toast.msg} type={toast.type} onClose={()=>setToast(null)}/>}
 
-      <div style={{display:"flex",minHeight:"100vh",background:isDark┈┈┈┈┈┈┈┈D.page:L.page}}>
+      <div style={{display:"flex",minHeight:"100vh",background:isDark?D.page:L.page}}>
         {/* SIDEBAR */}
-        <aside style={{width:sidebar┈┈┈┈┈┈┈┈256:68,minHeight:"100vh",background:T.sidebar,
-          boxShadow:isDark—1px 0 0 rgba(255,255,255,0.05)":"2px 0 24px rgba(150,170,200,0.1)",
+        <aside style={{width:sidebar?256:68,minHeight:"100vh",background:T.sidebar,
+          boxShadow:isDark?"1px 0 0 rgba(255,255,255,0.05)":"2px 0 24px rgba(150,170,200,0.1)",
           display:"flex",flexDirection:"column",position:"fixed",top:0,left:0,bottom:0,
           zIndex:1000,transition:"width .28s ease",overflow:"hidden"}}>
-          <div style={{padding:sidebar—20px 18px":"18px 14px",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:12,whiteSpace:"nowrap"}}>
-            <div style={{width:38,height:38,borderRadius:11,background:isDark—linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:isDark—0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
+          <div style={{padding:sidebar?"20px 18px":"18px 14px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:12,whiteSpace:"nowrap"}}>
+            <div style={{width:38,height:38,borderRadius:11,background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,boxShadow:isDark?"0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
               <Icon name="anchor" size={18} color="#fff" strokeWidth={2}/>
             </div>
             {sidebar&&(
               <div>
                 <div style={{fontWeight:700,fontSize:17,color:T.t1,fontFamily:"'Sora',sans-serif",lineHeight:1.1}}>OceanCrew</div>
-                <div style={{fontSize:8,color:isDark—#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Admin Center</div>
+                <div style={{fontSize:8,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Admin Center</div>
               </div>
             )}
           </div>
           {sidebar&&(
-            <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
+            <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
               <div style={{position:"relative",flexShrink:0}}>
-                <div style={{width:32,height:32,borderRadius:"50%",background:isDark—rgba(248,113,113,0.12)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,fontWeight:700,fontSize:11,fontFamily:"'Sora',sans-serif"}}>SA</div>
+                <div style={{width:32,height:32,borderRadius:"50%",background:isDark?"rgba(248,113,113,0.12)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,fontWeight:700,fontSize:11,fontFamily:"'Sora',sans-serif"}}>SA</div>
                 <div style={{position:"absolute",bottom:0,right:0,width:8,height:8,borderRadius:"50%",background:"#22C55E",border:`2px solid ${T.sidebar}`}}/>
               </div>
               <div>
@@ -1673,23 +1673,23 @@ export default function AdminPanel(){
               </div>
             </div>
           )}
-          <nav style={{flex:1,padding:"10px 8px",overflowY:"aut✓,display:"flex",flexDirection:"column",gap:0}}>
+          <nav style={{flex:1,padding:"10px 8px",overflowY:"auto",display:"flex",flexDirection:"column",gap:0}}>
             {NAV_FULL.map(section=>(
               <div key={section.section}>
                 {sidebar&&<div style={{fontSize:9,fontWeight:700,color:T.t3,textTransform:"uppercase",letterSpacing:"0.12em",padding:"10px 12px 4px",marginTop:6}}>{section.section}</div>}
                 {section.items.map(item=>{
                   const active=page===item.id;
-                  const ac=isDark—#38BDF8":"#1a2332";
+                  const ac=isDark?"#38BDF8":"#1a2332";
                   return(
-                    <button key={item.id} onClick={()=>setPage(item.id)} title={!sidebar┈┈┈┈┈┈┈┈item.label:""}
-                      style={{width:"100%",display:"flex",alignItems:"center",gap:9,padding:sidebar—8px 12px":"10px",borderRadius:10,border:"none",cursor:"pointer",
-                        background:active┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.1)":"rgba(26,35,50,0.07)"):"transparent",
-                        color:active┈┈┈┈┈┈┈┈ac:T.t3,fontSize:13,fontWeight:active┈┈┈┈┈┈┈┈600:400,
-                        justifyContent:sidebar—flex-start":"center",transition:"all .12s",fontFamily:"'Inter',sans-serif",
-                        borderLeft:`2px solid ${active┈┈┈┈┈┈┈┈ac:"transparent"}`}}
-                      onMouseEnter={e=>{if(!active){e.currentTarget.style.background=isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)";e.currentTarget.style.color=T.t1;}}}
+                    <button key={item.id} onClick={()=>setPage(item.id)} title={!sidebar?item.label:""}
+                      style={{width:"100%",display:"flex",alignItems:"center",gap:9,padding:sidebar?"8px 12px":"10px",borderRadius:10,border:"none",cursor:"pointer",
+                        background:active?(isDark?"rgba(56,189,248,0.1)":"rgba(26,35,50,0.07)"):"transparent",
+                        color:active?ac:T.t3,fontSize:13,fontWeight:active?600:400,
+                        justifyContent:sidebar?"flex-start":"center",transition:"all .12s",fontFamily:"'Inter',sans-serif",
+                        borderLeft:`2px solid ${active?ac:"transparent"}`}}
+                      onMouseEnter={e=>{if(!active){e.currentTarget.style.background=isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.06)";e.currentTarget.style.color=T.t1;}}}
                       onMouseLeave={e=>{if(!active){e.currentTarget.style.background="transparent";e.currentTarget.style.color=T.t3;}}}>
-                      <Icon name={item.icon} size={15} color="currentColor" strokeWidth={active┈┈┈┈┈┈┈┈2.2:1.8}/>
+                      <Icon name={item.icon} size={15} color="currentColor" strokeWidth={active?2.2:1.8}/>
                       {sidebar&&<span style={{flex:1,whiteSpace:"nowrap"}}>{item.label}</span>}
                       {sidebar&&item.badge&&(
                         <span style={{background:item.badgeColor||"#EF4444",color:"#fff",borderRadius:999,minWidth:17,height:17,display:"inline-flex",alignItems:"center",justifyContent:"center",fontSize:9,fontWeight:800,padding:"0 4px"}}>{item.badge}</span>
@@ -1700,25 +1700,25 @@ export default function AdminPanel(){
               </div>
             ))}
           </nav>
-          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`}}>
-            <button onClick={()=>setSidebar(s=>!s)} style={{width:"100%",padding:"8px",borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,background:"transparent",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6,fontSize:11,fontWeight:500,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
-              onMouseEnter={e=>{e.currentTarget.style.background=isDark—rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)";e.currentTarget.style.color=T.t1;}}
+          <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`}}>
+            <button onClick={()=>setSidebar(s=>!s)} style={{width:"100%",padding:"8px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,background:"transparent",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6,fontSize:11,fontWeight:500,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
+              onMouseEnter={e=>{e.currentTarget.style.background=isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)";e.currentTarget.style.color=T.t1;}}
               onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=T.t3;}}>
-              <Icon name={sidebar—chevronLeft":"chevronRight"} size={13} strokeWidth={2.2}/>
+              <Icon name={sidebar?"chevronLeft":"chevronRight"} size={13} strokeWidth={2.2}/>
               {sidebar&&"Collapse"}
             </button>
           </div>
         </aside>
 
         {/* MAIN */}
-        <div style={{flex:1,marginLeft:sidebar┈┈┈┈┈┈┈┈256:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
-          <header style={{background:isDark┈┈┈┈┈┈┈┈D.header:L.header,backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",
-            borderBottom:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(150,170,200,0.15)"}`,
+        <div style={{flex:1,marginLeft:sidebar?256:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
+          <header style={{background:isDark?D.header:L.header,backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",
+            borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.15)"}`,
             padding:"0 28px",height:60,display:"flex",alignItems:"center",justifyContent:"space-between",
             position:"sticky",top:0,zIndex:100,gap:14}}>
             <div style={{display:"flex",alignItems:"center",gap:12}}>
               <h2 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>
-                {NAV_FULL.flatMap(s=>s.items).find(n=>n.id===page)┈┈┈┈┈┈┈┈.label||"Dashboard"}
+                {NAV_FULL.flatMap(s=>s.items).find(n=>n.id===page)?.label||"Dashboard"}
               </h2>
               <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>
                 {new Date().toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
@@ -1727,31 +1727,31 @@ export default function AdminPanel(){
             <div style={{display:"flex",alignItems:"center",gap:8}}>
               <div style={{position:"relative"}}>
                 <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={13} color={T.t3} strokeWidth={2}/></span>
-                <input placeholder="Search..." style={{width:160,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark—rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
+                <input placeholder="Search..." style={{width:160,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
               </div>
-              <button onClick={()=>setTheme(t=>t==="dark"—light":"dark")} style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark—rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,transition:"all .12s"}}>
-                <Icon name={isDark—sun":"moon"} size={14} strokeWidth={2}/>
+              <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2,transition:"all .12s"}}>
+                <Icon name={isDark?"sun":"moon"} size={14} strokeWidth={2}/>
               </button>
-              <button style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark—rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2}}>
+              <button style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2}}>
                 <Icon name="bell" size={14} strokeWidth={2}/>
               </button>
-              <div style={{display:"flex",alignItems:"center",gap:7,padding:"5px 12px 5px 5px",background:isDark—rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark—rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}>
+              <div style={{display:"flex",alignItems:"center",gap:7,padding:"5px 12px 5px 5px",background:isDark?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}>
                 <div style={{width:26,height:26,borderRadius:"50%",background:"#1a2332",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:"#fff",position:"relative",flexShrink:0}}>
                   SA
-                  <div style={{position:"absolute",bottom:0,right:0,width:6,height:6,borderRadius:"50%",background:"#22C55E",border:`2px solid ${isDark—#08090C":"#fff"}`}}/>
+                  <div style={{position:"absolute",bottom:0,right:0,width:6,height:6,borderRadius:"50%",background:"#22C55E",border:`2px solid ${isDark?"#08090C":"#fff"}`}}/>
                 </div>
                 <span style={{fontSize:12,fontWeight:600,color:T.t1}}>Admin</span>
               </div>
             </div>
           </header>
 
-          <main style={{flex:1,padding:24,overflowY:"aut✓}}>
+          <main style={{flex:1,padding:24,overflowY:"auto"}}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 
-          <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark—rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark┈┈┈┈┈┈┈┈D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
+          <footer style={{padding:"11px 28px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.1)"}`,background:isDark?D.header:L.header,backdropFilter:"blur(16px)",textAlign:"center"}}>
             <p style={{fontSize:11,color:T.t3}}>
-              2025 <strong style={{color:isDark—#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Admin
+              2025 <strong style={{color:isDark?"#38BDF8":T.t1,fontWeight:600}}>OceanCrew</strong> Admin
             </p>
           </footer>
         </div>

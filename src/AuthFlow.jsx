@@ -38,26 +38,26 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
   const isPassword = type === "password";
 
   const borderColor = error
-    ┈┈┈┈┈┈┈┈ (isDark ┈┈┈┈┈┈┈┈ "#F87171" : "#DC2626")
+    ? (isDark ? "#F87171" : "#DC2626")
     : focused
-      ┈┈┈┈┈┈┈┈ (isDark ┈┈┈┈┈┈┈┈ "#38BDF8" : "#1a2332")
-      : (isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)");
+      ? (isDark ? "#38BDF8" : "#1a2332")
+      : (isDark ? "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)");
 
   return (
     <div>
       {label && (
-        <div style={{fontSize:10,fontWeight:700,color:isDark—#475569":"#94A3B8",letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:7,fontFamily:"'Inter',sans-serif"}}>
+        <div style={{fontSize:10,fontWeight:700,color:isDark?"#475569":"#94A3B8",letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:7,fontFamily:"'Inter',sans-serif"}}>
           {label}
         </div>
       )}
       <div style={{position:"relative"}}>
         {icon && (
-          <span style={{position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",pointerEvents:"none",opacity:focused┈┈┈┈┈┈┈┈1:0.5}}>
-            <Icon name={icon} size={15} color={focused┈┈┈┈┈┈┈┈(isDark—#38BDF8":"#1a2332"):(isDark—#475569":"#94A3B8")} strokeWidth={2}/>
+          <span style={{position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",pointerEvents:"none",opacity:focused?1:0.5}}>
+            <Icon name={icon} size={15} color={focused?(isDark?"#38BDF8":"#1a2332"):(isDark?"#475569":"#94A3B8")} strokeWidth={2}/>
           </span>
         )}
         <input
-          type={isPassword && showPw ┈┈┈┈┈┈┈┈ "text" : type}
+          type={isPassword && showPw ? "text" : type}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
@@ -65,28 +65,28 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
           onBlur={() => setFocused(false)}
           style={{
             width:"100%",
-            padding:`13px ${isPassword—44px":"16px"} 13px ${icon—42px":"16px"}`,
+            padding:`13px ${isPassword?"44px":"16px"} 13px ${icon?"42px":"16px"}`,
             borderRadius:12,
             border:`1.5px solid ${borderColor}`,
-            background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)",
-            color:isDark—#F1F5F9":"#1a2332",
+            background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)",
+            color:isDark?"#F1F5F9":"#1a2332",
             fontSize:14,outline:"none",
             fontFamily:"'Inter',sans-serif",
             boxSizing:"border-box",
             transition:"border-color 0.2s",
-            boxShadow:focused┈┈┈┈┈┈┈┈(isDark—0 0 0 3px rgba(56,189,248,0.1)":"0 0 0 3px rgba(26,35,50,0.06)"):"none",
+            boxShadow:focused?(isDark?"0 0 0 3px rgba(56,189,248,0.1)":"0 0 0 3px rgba(26,35,50,0.06)"):"none",
           }}
         />
         {isPassword && (
           <button type="button" onClick={() => setShowPw(s=>!s)}
-            style={{position:"absolute",right:14,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:isDark—#475569":"#94A3B8",padding:0,display:"flex",alignItems:"center"}}>
-            <Icon name={showPw—eyeOff":"eye"} size={15} color="currentColor" strokeWidth={2}/>
+            style={{position:"absolute",right:14,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:isDark?"#475569":"#94A3B8",padding:0,display:"flex",alignItems:"center"}}>
+            <Icon name={showPw?"eyeOff":"eye"} size={15} color="currentColor" strokeWidth={2}/>
           </button>
         )}
       </div>
       {error && (
-        <div style={{fontSize:11,color:isDark—#F87171":"#DC2626",marginTop:5,display:"flex",alignItems:"center",gap:5,fontFamily:"'Inter',sans-serif"}}>
-          <Icon name="alertCircle" size={11} color={isDark—#F87171":"#DC2626"} strokeWidth={2}/>{error}
+        <div style={{fontSize:11,color:isDark?"#F87171":"#DC2626",marginTop:5,display:"flex",alignItems:"center",gap:5,fontFamily:"'Inter',sans-serif"}}>
+          <Icon name="alertCircle" size={11} color={isDark?"#F87171":"#DC2626"} strokeWidth={2}/>{error}
         </div>
       )}
     </div>
@@ -100,14 +100,14 @@ function AuthLayout({ children, isDark, rightContent }) {
       {/* Logo — pinned to absolute top-left of the whole page */}
       <div style={{position:"fixed",top:20,left:24,zIndex:1000,display:"flex",alignItems:"center",gap:10}}>
         <div style={{width:40,height:40,borderRadius:11,
-          background:isDark—linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
+          background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
           display:"flex",alignItems:"center",justifyContent:"center",
-          boxShadow:isDark—0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
+          boxShadow:isDark?"0 4px 16px rgba(2,132,199,0.35)":"0 4px 12px rgba(26,35,50,0.22)"}}>
           <Icon name="anchor" size={18} color="#fff" strokeWidth={2.5}/>
         </div>
         <div>
-          <div style={{fontWeight:800,fontSize:20,color:isDark—#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
-          <div style={{fontSize:9,color:isDark—#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Maritime Platform</div>
+          <div style={{fontWeight:800,fontSize:20,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
+          <div style={{fontSize:9,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Maritime Platform</div>
         </div>
       </div>
 
@@ -115,20 +115,20 @@ function AuthLayout({ children, isDark, rightContent }) {
       <div style={{
         display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
         padding:"48px 40px",minHeight:"100vh",
-        background:isDark—#08090C":"linear-gradient(145deg,#dce8f5,#e8eef7,#edf2f9)",
+        background:isDark?"#08090C":"linear-gradient(145deg,#dce8f5,#e8eef7,#edf2f9)",
       }}>
         <div style={{width:"100%",maxWidth:420}}>{children}</div>
       </div>
 
       {/* Right */}
       <div style={{
-        background:isDark—linear-gradient(160deg,#0C1A2E,#0A2440,#072040)":"linear-gradient(160deg,#F8FAFC,#EFF6FF,#E0F2FE)",
+        background:isDark?"linear-gradient(160deg,#0C1A2E,#0A2440,#072040)":"linear-gradient(160deg,#F8FAFC,#EFF6FF,#E0F2FE)",
         display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
         padding:"60px 48px",position:"relative",overflow:"hidden",
       }}>
-        <div style={{position:"absolute",top:"-10%",right:"-10%",width:400,height:400,borderRadius:"50%",background:isDark—rgba(56,189,248,0.05)":"rgba(56,189,248,0.15)",filter:"blur(60px)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",bottom:"-10%",left:"-5%",width:300,height:300,borderRadius:"50%",background:isDark—rgba(167,139,250,0.06)":"rgba(167,139,250,0.15)",filter:"blur(50px)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",inset:0,backgroundImage:isDark—radial-gradient(circle,rgba(56,189,248,0.08) 1px,transparent 1px)":"radial-gradient(circle,rgba(56,189,248,0.2) 1px,transparent 1px)",backgroundSize:"40px 40px",pointerEvents:"none",opacity:0.5}}/>
+        <div style={{position:"absolute",top:"-10%",right:"-10%",width:400,height:400,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.05)":"rgba(56,189,248,0.15)",filter:"blur(60px)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",bottom:"-10%",left:"-5%",width:300,height:300,borderRadius:"50%",background:isDark?"rgba(167,139,250,0.06)":"rgba(167,139,250,0.15)",filter:"blur(50px)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",inset:0,backgroundImage:isDark?"radial-gradient(circle,rgba(56,189,248,0.08) 1px,transparent 1px)":"radial-gradient(circle,rgba(56,189,248,0.2) 1px,transparent 1px)",backgroundSize:"40px 40px",pointerEvents:"none",opacity:0.5}}/>
         <div style={{position:"relative",zIndex:1,textAlign:"center",width:"100%"}}>
           {rightContent}
         </div>
@@ -144,16 +144,16 @@ function LoginPage({ isDark, onNavigate }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const ac = isDark ┈┈┈┈┈┈┈┈ "#38BDF8" : "#1a2332";
-  const t1 = isDark ┈┈┈┈┈┈┈┈ "#F1F5F9" : "#1a2332";
-  const t2 = isDark ┈┈┈┈┈┈┈┈ "#94A3B8" : "#4a5568";
-  const t3 = isDark ┈┈┈┈┈┈┈┈ "#475569" : "#94A3B8";
-  const border = isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
+  const ac = isDark ? "#38BDF8" : "#1a2332";
+  const t1 = isDark ? "#F1F5F9" : "#1a2332";
+  const t2 = isDark ? "#94A3B8" : "#4a5568";
+  const t3 = isDark ? "#475569" : "#94A3B8";
+  const border = isDark ? "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
 
   const validate = () => {
     const e = {};
     if (!form.email) e.email = "Email is required";
-    else if (!/\S→@\S→\.\S→/.test(form.email)) e.email = "Enter a valid email";
+    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Enter a valid email";
     if (!form.password) e.password = "Password is required";
     else if (form.password.length < 6) e.password = "Min 6 characters";
     return e;
@@ -176,12 +176,12 @@ function LoginPage({ isDark, onNavigate }) {
         setSuccess(true);
         // Save token or user info if needed
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userRole", data.user┈┈┈┈┈┈┈┈.role || "seafarer");
-        localStorage.setItem("userName", data.user┈┈┈┈┈┈┈┈.name || "");
+        localStorage.setItem("userRole", data.user?.role || "seafarer");
+        localStorage.setItem("userName", data.user?.name || "");
         
         setTimeout(() => {
-          if (data.user┈┈┈┈┈┈┈┈.role === "company") onNavigate("company-dashboard");
-          else if (data.user┈┈┈┈┈┈┈┈.role === "admin") onNavigate("admin-dashboard");
+          if (data.user?.role === "company") onNavigate("company-dashboard");
+          else if (data.user?.role === "admin") onNavigate("admin-dashboard");
           else onNavigate("dashboard");
         }, 1200);
       } else {
@@ -197,17 +197,17 @@ function LoginPage({ isDark, onNavigate }) {
   const rightContent = (
     <div>
       <div style={{marginBottom:24}}><Icon name="anchor" size={56} color="#38BDF8" strokeWidth={1.5} /></div>
-      <h2 style={{fontSize:30,fontWeight:700,color:isDark—#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
+      <h2 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
         Welcome back to<br/><span style={{color:"#38BDF8"}}>OceanCrew</span>
       </h2>
-      <p style={{fontSize:13,color:isDark—rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,marginBottom:36,maxWidth:300,margin:"0 auto 36px"}}>
+      <p style={{fontSize:13,color:isDark?"rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,marginBottom:36,maxWidth:300,margin:"0 auto 36px"}}>
         The world's most trusted maritime recruitment platform.
       </p>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14,maxWidth:340,margin:"0 aut✓}}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14,maxWidth:340,margin:"0 auto"}}>
         {[{val:"12,847",label:"Seafarers"},{val:"863",label:"Companies"},{val:"98%",label:"Success"}].map((s,i)=>(
-          <div key={i} style={{padding:"16px 10px",borderRadius:14,background:isDark—rgba(255,255,255,0.06)":"#fff",border:isDark—1px solid rgba(255,255,255,0.08)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark—none":"0 4px 12px rgba(56,189,248,0.1)"}}>
+          <div key={i} style={{padding:"16px 10px",borderRadius:14,background:isDark?"rgba(255,255,255,0.06)":"#fff",border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark?"none":"0 4px 12px rgba(56,189,248,0.1)"}}>
             <div style={{fontSize:20,fontWeight:700,color:"#38BDF8",fontFamily:"'Sora',sans-serif",marginBottom:4}}>{s.val}</div>
-            <div style={{fontSize:10,color:isDark—rgba(255,255,255,0.5)":"#64748b",letterSpacing:1,textTransform:"uppercase"}}>{s.label}</div>
+            <div style={{fontSize:10,color:isDark?"rgba(255,255,255,0.5)":"#64748b",letterSpacing:1,textTransform:"uppercase"}}>{s.label}</div>
           </div>
         ))}
       </div>
@@ -219,7 +219,7 @@ function LoginPage({ isDark, onNavigate }) {
       <div>
         <h1 style={{fontSize:30,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:6}}>Sign in</h1>
         <p style={{fontSize:14,color:t2,marginBottom:32}}>
-          New to OceanCrew┈┈┈┈┈┈┈┈{" "}
+          New to OceanCrew?{" "}
           <button onClick={()=>onNavigate("register")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:14,fontFamily:"'Inter',sans-serif",padding:0}}>
             Create an account →
           </button>
@@ -233,34 +233,34 @@ function LoginPage({ isDark, onNavigate }) {
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:24}}>
           <label style={{display:"flex",alignItems:"center",gap:8,cursor:"pointer"}}>
             <div onClick={()=>setForm(p=>({...p,remember:!p.remember}))}
-              style={{width:18,height:18,borderRadius:5,border:`1.5px solid ${form.remember┈┈┈┈┈┈┈┈ac:border}`,background:form.remember┈┈┈┈┈┈┈┈ac:"transparent",display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.2s",cursor:"pointer"}}>
+              style={{width:18,height:18,borderRadius:5,border:`1.5px solid ${form.remember?ac:border}`,background:form.remember?ac:"transparent",display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.2s",cursor:"pointer"}}>
               {form.remember && <Icon name="check" size={11} color="#fff" strokeWidth={2.5}/>}
             </div>
             <span style={{fontSize:13,color:t2,fontFamily:"'Inter',sans-serif"}}>Remember me</span>
           </label>
           <button onClick={()=>onNavigate("forgot")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontSize:13,fontFamily:"'Inter',sans-serif",fontWeight:500,padding:0}}>
-            Forgot password┈┈┈┈┈┈┈┈
+            Forgot password?
           </button>
         </div>
 
         <button onClick={handleLogin} disabled={loading||success}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
-            background:success—linear-gradient(135deg,#34D399,#10B981)":(isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332"),
-            color:"#fff",fontSize:14,fontWeight:700,cursor:loading||success—not-allowed":"pointer",
+            background:success?"linear-gradient(135deg,#34D399,#10B981)":(isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332"),
+            color:"#fff",fontSize:14,fontWeight:700,cursor:loading||success?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",transition:"all 0.25s",
-            boxShadow:isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",
-            display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading┈┈┈┈┈┈┈┈0.8:1,marginBottom:20}}>
-          {loading ┈┈┈┈┈┈┈┈ (
+            boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",
+            display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
+          {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Signing in...</>
-          ) : success ┈┈┈┈┈┈┈┈ (
+          ) : success ? (
             <><Icon name="check" size={18} color="#fff" strokeWidth={2.5}/> Signed in!</>
           ) : "Sign In →"}
         </button>
 
         <div style={{display:"flex",alignItems:"center",gap:12,margin:"4px 0 20px"}}>
-          <div style={{flex:1,height:1,background:isDark—rgba(255,255,255,0.07)":"rgba(100,116,139,0.15)"}}/>
+          <div style={{flex:1,height:1,background:isDark?"rgba(255,255,255,0.07)":"rgba(100,116,139,0.15)"}}/>
           <span style={{fontSize:12,color:t3,fontFamily:"'Inter',sans-serif"}}>or continue as</span>
-          <div style={{flex:1,height:1,background:isDark—rgba(255,255,255,0.07)":"rgba(100,116,139,0.15)"}}/>
+          <div style={{flex:1,height:1,background:isDark?"rgba(255,255,255,0.07)":"rgba(100,116,139,0.15)"}}/>
         </div>
 
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
@@ -286,20 +286,20 @@ function RegisterPage({ isDark, onNavigate }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const ac = isDark ┈┈┈┈┈┈┈┈ "#38BDF8" : "#1a2332";
-  const t1 = isDark ┈┈┈┈┈┈┈┈ "#F1F5F9" : "#1a2332";
-  const t2 = isDark ┈┈┈┈┈┈┈┈ "#94A3B8" : "#4a5568";
-  const t3 = isDark ┈┈┈┈┈┈┈┈ "#475569" : "#94A3B8";
-  const border = isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
+  const ac = isDark ? "#38BDF8" : "#1a2332";
+  const t1 = isDark ? "#F1F5F9" : "#1a2332";
+  const t2 = isDark ? "#94A3B8" : "#4a5568";
+  const t3 = isDark ? "#475569" : "#94A3B8";
+  const border = isDark ? "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
   const ranks = ["Master","Chief Officer","2nd Officer","3rd Officer","Chief Engineer","2nd Engineer","3rd Engineer","ETO","Bosun","AB Seaman","Cook"];
 
   const pwStrength = (pw) => {
     if (!pw) return { score:0, label:"", color:"" };
     let s = 0;
-    if (pw.length >= 8) s→→;
-    if (/[A-Z]/.test(pw)) s→→;
-    if (/[0-9]/.test(pw)) s→→;
-    if (/[^A-Za-z0-9]/.test(pw)) s→→;
+    if (pw.length >= 8) s++;
+    if (/[A-Z]/.test(pw)) s++;
+    if (/[0-9]/.test(pw)) s++;
+    if (/[^A-Za-z0-9]/.test(pw)) s++;
     const map = [{label:"Weak",color:"#F87171"},{label:"Fair",color:"#FBBF24"},{label:"Good",color:"#38BDF8"},{label:"Strong",color:"#34D399"}];
     return { score:s, ...map[s-1]||{} };
   };
@@ -308,7 +308,7 @@ function RegisterPage({ isDark, onNavigate }) {
   const validate = () => {
     const e = {};
     if (!form.name) e.name = "Name is required";
-    if (!form.email || !/\S→@\S→\.\S→/.test(form.email)) e.email = "Valid email required";
+    if (!form.email || !/\S+@\S+\.\S+/.test(form.email)) e.email = "Valid email required";
     if (!form.password || form.password.length < 8) e.password = "Min 8 characters";
     if (form.password !== form.confirm) e.confirm = "Passwords do not match";
     if (!form.phone) e.phone = "Phone required";
@@ -341,8 +341,8 @@ function RegisterPage({ isDark, onNavigate }) {
       setLoading(false);
       if (res.ok) {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("userRole", data.user┈┈┈┈┈┈┈┈.role || type);
-        localStorage.setItem("userName", data.user┈┈┈┈┈┈┈┈.name || form.name);
+        localStorage.setItem("userRole", data.user?.role || type);
+        localStorage.setItem("userName", data.user?.name || form.name);
         setStep(3);
       } else {
         setErrors({ email: data.message || "Registration failed. Please try again." });
@@ -355,25 +355,25 @@ function RegisterPage({ isDark, onNavigate }) {
   };
 
   const features = type === "company"
-    ┈┈┈┈┈┈┈┈ ["Access 12,000→ verified seafarers","Post jobs in minutes","Smart rank-based matching","Full hiring pipeline tools"]
+    ? ["Access 12,000+ verified seafarers","Post jobs in minutes","Smart rank-based matching","Full hiring pipeline tools"]
     : ["Browse all jobs for free","Apply with one click (Pro)","Secure document vault","Professional CV generation"];
 
   const rightContent = (
     <div>
-      <div style={{marginBottom:18}}><Icon name={type==="company"—building":"anchor"} size={46} color="#38BDF8" strokeWidth={1.5} /></div>
-      <h2 style={{fontSize:26,fontWeight:700,color:isDark—#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
-        {type==="company"—Find the Right Crew":"Your Career Starts Here"}
+      <div style={{marginBottom:18}}><Icon name={type==="company"?"building":"anchor"} size={46} color="#38BDF8" strokeWidth={1.5} /></div>
+      <h2 style={{fontSize:26,fontWeight:700,color:isDark?"#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
+        {type==="company"?"Find the Right Crew":"Your Career Starts Here"}
       </h2>
-      <p style={{fontSize:13,color:isDark—rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
-        {type==="company"—Access verified seafarers and hire confidently.":"Join thousands of seafarers finding better contracts."}
+      <p style={{fontSize:13,color:isDark?"rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
+        {type==="company"?"Access verified seafarers and hire confidently.":"Join thousands of seafarers finding better contracts."}
       </p>
-      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:280,margin:"0 aut✓}}>
+      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:280,margin:"0 auto"}}>
         {features.map((f,i)=>(
-          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",borderRadius:10,background:isDark—rgba(255,255,255,0.05)":"#fff",border:isDark—1px solid rgba(255,255,255,0.07)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark—none":"0 2px 8px rgba(56,189,248,0.08)"}}>
+          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.05)":"#fff",border:isDark?"1px solid rgba(255,255,255,0.07)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark?"none":"0 2px 8px rgba(56,189,248,0.08)"}}>
             <div style={{width:20,height:20,borderRadius:"50%",background:"rgba(52,211,153,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
               <Icon name="check" size={11} color="#34D399" strokeWidth={2.5}/>
             </div>
-            <span style={{fontSize:12,color:isDark—rgba(255,255,255,0.7)":"#334155",textAlign:"left"}}>{f}</span>
+            <span style={{fontSize:12,color:isDark?"rgba(255,255,255,0.7)":"#334155",textAlign:"left"}}>{f}</span>
           </div>
         ))}
       </div>
@@ -393,21 +393,21 @@ function RegisterPage({ isDark, onNavigate }) {
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14,marginBottom:28}}>
           {[
             {id:"seafarer",icon:"anchor",title:"I'm a Seafarer",desc:"Looking for maritime jobs worldwide.",badge:"Free Forever",bc:"#34D399"},
-            {id:"company",icon:"building",title:"I'm a Company",desc:"Looking for crew and maritime professionals.",badge:"From $49/m✓,bc:"#38BDF8"},
+            {id:"company",icon:"building",title:"I'm a Company",desc:"Looking for crew and maritime professionals.",badge:"From $49/mo",bc:"#38BDF8"},
           ].map(opt=>(
             <div key={opt.id} onClick={()=>setType(opt.id)}
               style={{padding:"22px 18px",borderRadius:14,cursor:"pointer",position:"relative",
-                border:`2px solid ${type===opt.id┈┈┈┈┈┈┈┈ac:border}`,
-                background:type===opt.id┈┈┈┈┈┈┈┈(isDark—rgba(56,189,248,0.06)":"rgba(26,35,50,0.04)"):"transparent",
+                border:`2px solid ${type===opt.id?ac:border}`,
+                background:type===opt.id?(isDark?"rgba(56,189,248,0.06)":"rgba(26,35,50,0.04)"):"transparent",
                 transition:"all 0.2s"}}
-              onMouseEnter={e=>{if(type!==opt.id)e.currentTarget.style.borderColor=isDark—rgba(56,189,248,0.4)":"rgba(26,35,50,0.3)";}}
+              onMouseEnter={e=>{if(type!==opt.id)e.currentTarget.style.borderColor=isDark?"rgba(56,189,248,0.4)":"rgba(26,35,50,0.3)";}}
               onMouseLeave={e=>{if(type!==opt.id)e.currentTarget.style.borderColor=border;}}>
               {type===opt.id&&(
                 <div style={{position:"absolute",top:10,right:10,width:20,height:20,borderRadius:"50%",background:ac,display:"flex",alignItems:"center",justifyContent:"center"}}>
                   <Icon name="check" size={11} color="#fff" strokeWidth={2.5}/>
                 </div>
               )}
-              <Icon name={opt.icon} size={26} color={type===opt.id┈┈┈┈┈┈┈┈ac:t3} strokeWidth={1.6}/>
+              <Icon name={opt.icon} size={26} color={type===opt.id?ac:t3} strokeWidth={1.6}/>
               <div style={{fontSize:15,fontWeight:600,color:t1,fontFamily:"'Sora',sans-serif",margin:"10px 0 5px"}}>{opt.title}</div>
               <div style={{fontSize:12,color:t3,marginBottom:12,lineHeight:1.5}}>{opt.desc}</div>
               <span style={{fontSize:10,fontWeight:700,color:opt.bc,background:`${opt.bc}18`,padding:"3px 9px",borderRadius:999}}>{opt.badge}</span>
@@ -417,14 +417,14 @@ function RegisterPage({ isDark, onNavigate }) {
 
         <button onClick={handleNext} disabled={!type}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
-            background:!type—rgba(100,116,139,0.2)":(isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332"),
-            color:!type┈┈┈┈┈┈┈┈t3:"#fff",fontSize:14,fontWeight:700,cursor:!type—not-allowed":"pointer",
+            background:!type?"rgba(100,116,139,0.2)":(isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332"),
+            color:!type?t3:"#fff",fontSize:14,fontWeight:700,cursor:!type?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",marginBottom:16,
-            boxShadow:type┈┈┈┈┈┈┈┈(isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"):"none"}}>
+            boxShadow:type?(isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"):"none"}}>
           Continue →
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
-          Already have an account┈┈┈┈┈┈┈┈{" "}
+          Already have an account?{" "}
           <button onClick={()=>onNavigate("login")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:13,fontFamily:"'Inter',sans-serif",padding:0}}>Sign in</button>
         </p>
       </div>
@@ -439,24 +439,24 @@ function RegisterPage({ isDark, onNavigate }) {
           <Icon name="arrowLeft" size={14} color="currentColor" strokeWidth={2}/>Back
         </button>
         <h1 style={{fontSize:24,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:4}}>
-          {type==="seafarer"—Seafarer Registration":"Company Registration"}
+          {type==="seafarer"?"Seafarer Registration":"Company Registration"}
         </h1>
         <p style={{fontSize:13,color:t2,marginBottom:22}}>Fill your details to get started</p>
 
         <div style={{display:"flex",flexDirection:"column",gap:13,marginBottom:16}}>
-          <Field label="Full Name" placeholder={type==="seafarer"—e.g. Capt. Rajesh Fernand✓:"e.g. John Smith"} icon="user" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} isDark={isDark} error={errors.name}/>
+          <Field label="Full Name" placeholder={type==="seafarer"?"e.g. Capt. Rajesh Fernando":"e.g. John Smith"} icon="user" value={form.name} onChange={e=>setForm(p=>({...p,name:e.target.value}))} isDark={isDark} error={errors.name}/>
           <Field label="Email" placeholder="you@example.com" type="email" icon="mail" value={form.email} onChange={e=>setForm(p=>({...p,email:e.target.value}))} isDark={isDark} error={errors.email}/>
-          <Field label="Phone / WhatsApp" placeholder="→94 77 000 0000" icon="phone" value={form.phone} onChange={e=>setForm(p=>({...p,phone:e.target.value}))} isDark={isDark} error={errors.phone}/>
+          <Field label="Phone / WhatsApp" placeholder="+94 77 000 0000" icon="phone" value={form.phone} onChange={e=>setForm(p=>({...p,phone:e.target.value}))} isDark={isDark} error={errors.phone}/>
 
           {type==="seafarer" && (
             <div>
               <div style={{fontSize:10,fontWeight:700,color:t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:7,fontFamily:"'Inter',sans-serif"}}>Current Rank</div>
               <select value={form.rank} onChange={e=>setForm(p=>({...p,rank:e.target.value}))}
-                style={{width:"100%",padding:"13px 16px",borderRadius:12,border:`1.5px solid ${errors.rank┈┈┈┈┈┈┈┈(isDark—#F87171":"#DC2626"):border}`,background:isDark—#0f1e36":"#fff",color:form.rank┈┈┈┈┈┈┈┈t1:t3,fontSize:14,outline:"none",fontFamily:"'Inter',sans-serif"}}>
+                style={{width:"100%",padding:"13px 16px",borderRadius:12,border:`1.5px solid ${errors.rank?(isDark?"#F87171":"#DC2626"):border}`,background:isDark?"#0f1e36":"#fff",color:form.rank?t1:t3,fontSize:14,outline:"none",fontFamily:"'Inter',sans-serif"}}>
                 <option value="">Select your rank</option>
                 {ranks.map(r=><option key={r}>{r}</option>)}
               </select>
-              {errors.rank&&<div style={{fontSize:11,color:isDark—#F87171":"#DC2626",marginTop:5,fontFamily:"'Inter',sans-serif"}}>{errors.rank}</div>}
+              {errors.rank&&<div style={{fontSize:11,color:isDark?"#F87171":"#DC2626",marginTop:5,fontFamily:"'Inter',sans-serif"}}>{errors.rank}</div>}
             </div>
           )}
 
@@ -471,7 +471,7 @@ function RegisterPage({ isDark, onNavigate }) {
                 <div style={{marginTop:7}}>
                   <div style={{display:"flex",gap:3,marginBottom:3}}>
                     {[1,2,3,4].map(i=>(
-                      <div key={i} style={{flex:1,height:3,borderRadius:2,background:i<=pws.score┈┈┈┈┈┈┈┈(pws.color||"#38BDF8"):(isDark—rgba(255,255,255,0.08)":"rgba(100,116,139,0.15)"),transition:"background 0.3s"}}/>
+                      <div key={i} style={{flex:1,height:3,borderRadius:2,background:i<=pws.score?(pws.color||"#38BDF8"):(isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.15)"),transition:"background 0.3s"}}/>
                     ))}
                   </div>
                   {pws.label&&<div style={{fontSize:10,color:pws.color,fontFamily:"'Inter',sans-serif",fontWeight:600}}>{pws.label}</div>}
@@ -482,21 +482,21 @@ function RegisterPage({ isDark, onNavigate }) {
           </div>
         </div>
 
-        <div style={{padding:"11px 14px",borderRadius:10,background:isDark—rgba(56,189,248,0.05)":"rgba(26,35,50,0.03)",border:`1px solid ${isDark—rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)"}`,marginBottom:16,display:"flex",gap:9,alignItems:"flex-start"}}>
-          <Icon name="shield" size={14} color={isDark—#38BDF8":"#1a2332"} strokeWidth={2}/>
+        <div style={{padding:"11px 14px",borderRadius:10,background:isDark?"rgba(56,189,248,0.05)":"rgba(26,35,50,0.03)",border:`1px solid ${isDark?"rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)"}`,marginBottom:16,display:"flex",gap:9,alignItems:"flex-start"}}>
+          <Icon name="shield" size={14} color={isDark?"#38BDF8":"#1a2332"} strokeWidth={2}/>
           <p style={{fontSize:11,color:t3,lineHeight:1.6,margin:0,fontFamily:"'Inter',sans-serif"}}>
-            {type==="company"—Your company will be verified by our admin team within 24 hours.":"Free to create. Upgrade to Pro ($4/mo) to apply to jobs."}
+            {type==="company"?"Your company will be verified by our admin team within 24 hours.":"Free to create. Upgrade to Pro ($4/mo) to apply to jobs."}
           </p>
         </div>
 
         <button onClick={handleNext} disabled={loading}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
-            background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
-            color:"#fff",fontSize:14,fontWeight:700,cursor:loading—not-allowed":"pointer",
+            background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
+            color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",
-            boxShadow:isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",
-            display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading┈┈┈┈┈┈┈┈0.8:1}}>
-          {loading ┈┈┈┈┈┈┈┈ (
+            boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",
+            display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1}}>
+          {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Creating account...</>
           ) : "Create Account →"}
         </button>
@@ -510,27 +510,27 @@ function RegisterPage({ isDark, onNavigate }) {
       <div>
         <div style={{marginBottom:20}}><Icon name="check" size={56} color="#34D399" strokeWidth={1.5} /></div>
         <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",marginBottom:12}}>You're all set!</h2>
-        <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 aut✓}}>
-          {type==="company"—Our team will verify your company within 24 hours.":"Start browsing jobs right away."}
+        <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto"}}>
+          {type==="company"?"Our team will verify your company within 24 hours.":"Start browsing jobs right away."}
         </p>
       </div>
     }>
       <div style={{textAlign:"center",padding:"20px 0"}}>
-        <div style={{width:80,height:80,borderRadius:"50%",background:isDark—rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",border:`2px solid ${isDark—rgba(52,211,153,0.4)":"rgba(22,163,74,0.3)"}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px"}}>
-          <Icon name="check" size={36} color={isDark—#34D399":"#16A34A"} strokeWidth={2}/>
+        <div style={{width:80,height:80,borderRadius:"50%",background:isDark?"rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",border:`2px solid ${isDark?"rgba(52,211,153,0.4)":"rgba(22,163,74,0.3)"}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px"}}>
+          <Icon name="check" size={36} color={isDark?"#34D399":"#16A34A"} strokeWidth={2}/>
         </div>
         <h2 style={{fontSize:26,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>Account Created!</h2>
         <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:8}}>Welcome to OceanCrew, <strong style={{color:t1}}>{form.name||"friend"}</strong>!</p>
         <p style={{fontSize:13,color:t3,lineHeight:1.7,marginBottom:32}}>
           {type==="company"
-            —We'll verify your company and notify you at "→form.email→" within 24 hours."
+            ?"We'll verify your company and notify you at "+form.email+" within 24 hours."
             :"Your account is live. Browse all jobs free — upgrade to Pro ($4/mo) to apply."}
         </p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
-            background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
+            background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
             color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",
-            boxShadow:isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
+            boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
           Go to Dashboard →
         </button>
       </div>
@@ -550,14 +550,14 @@ function ForgotPage({ isDark, onNavigate }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const ac = isDark ┈┈┈┈┈┈┈┈ "#38BDF8" : "#1a2332";
-  const t1 = isDark ┈┈┈┈┈┈┈┈ "#F1F5F9" : "#1a2332";
-  const t2 = isDark ┈┈┈┈┈┈┈┈ "#94A3B8" : "#4a5568";
-  const t3 = isDark ┈┈┈┈┈┈┈┈ "#475569" : "#94A3B8";
-  const border = isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
+  const ac = isDark ? "#38BDF8" : "#1a2332";
+  const t1 = isDark ? "#F1F5F9" : "#1a2332";
+  const t2 = isDark ? "#94A3B8" : "#4a5568";
+  const t3 = isDark ? "#475569" : "#94A3B8";
+  const border = isDark ? "rgba(255,255,255,0.1)" : "rgba(100,116,139,0.2)";
 
   const handleSendOtp = async () => {
-    if (!email || !/\S→@\S→\.\S→/.test(email)) { setError("Enter a valid email address"); return; }
+    if (!email || !/\S+@\S+\.\S+/.test(email)) { setError("Enter a valid email address"); return; }
     setError(""); setLoading(true);
     try {
       const res = await fetch(`${API}/api/auth/forgot-password`, {
@@ -599,15 +599,15 @@ function ForgotPage({ isDark, onNavigate }) {
   const rightContent = (
     <div>
       <div style={{marginBottom:20}}><Icon name="lock" size={52} color="#38BDF8" strokeWidth={1.5} /></div>
-      <h2 style={{fontSize:26,fontWeight:700,color:isDark—#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12}}>Secure Recovery</h2>
-      <p style={{fontSize:13,color:isDark—rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
-        {step === 1 ┈┈┈┈┈┈┈┈ "We'll send a one-time code to your registered email." : "Enter the 6-digit code we sent to your email."}
+      <h2 style={{fontSize:26,fontWeight:700,color:isDark?"#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12}}>Secure Recovery</h2>
+      <p style={{fontSize:13,color:isDark?"rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
+        {step === 1 ? "We'll send a one-time code to your registered email." : "Enter the 6-digit code we sent to your email."}
       </p>
-      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 aut✓}}>
+      <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 auto"}}>
         {["OTP sent to your email","Expires in 15 minutes","One-time secure code","Contact support if needed"].map((f,i)=>(
-          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderRadius:10,background:isDark—rgba(255,255,255,0.05)":"#fff",border:isDark—1px solid rgba(255,255,255,0.07)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark—none":"0 2px 8px rgba(56,189,248,0.08)"}}>
+          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.05)":"#fff",border:isDark?"1px solid rgba(255,255,255,0.07)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark?"none":"0 2px 8px rgba(56,189,248,0.08)"}}>
             <Icon name="shield" size={13} color="#38BDF8" strokeWidth={2}/>
-            <span style={{fontSize:12,color:isDark—rgba(255,255,255,0.65)":"#334155",textAlign:"left"}}>{f}</span>
+            <span style={{fontSize:12,color:isDark?"rgba(255,255,255,0.65)":"#334155",textAlign:"left"}}>{f}</span>
           </div>
         ))}
       </div>
@@ -618,20 +618,20 @@ function ForgotPage({ isDark, onNavigate }) {
   if (step === 3) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div style={{textAlign:"center",padding:"20px 0"}}>
-        <div style={{width:80,height:80,borderRadius:"50%",background:isDark—rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",border:`2px solid ${isDark—rgba(52,211,153,0.4)":"rgba(22,163,74,0.3)"}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px"}}>
-          <Icon name="check" size={36} color={isDark—#34D399":"#16A34A"} strokeWidth={2}/>
+        <div style={{width:80,height:80,borderRadius:"50%",background:isDark?"rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",border:`2px solid ${isDark?"rgba(52,211,153,0.4)":"rgba(22,163,74,0.3)"}`,display:"flex",alignItems:"center",justifyContent:"center",margin:"0 auto 24px"}}>
+          <Icon name="check" size={36} color={isDark?"#34D399":"#16A34A"} strokeWidth={2}/>
         </div>
         <h2 style={{fontSize:26,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>Password Reset!</h2>
         <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:32}}>Your password has been updated. You can now sign in with your new password.</p>
         <button onClick={()=>onNavigate("login")}
-          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
+          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
           Sign In Now →
         </button>
       </div>
     </AuthLayout>
   );
 
-  /* Step 2 — OTP → new password */
+  /* Step 2 — OTP + new password */
   if (step === 2) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
@@ -642,26 +642,26 @@ function ForgotPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,marginBottom:8}}>We sent a 6-digit code to</p>
         <p style={{fontSize:14,fontWeight:600,color:ac,marginBottom:24}}>{email}</p>
         {error && (
-          <div style={{padding:"10px 14px",borderRadius:10,background:isDark—rgba(248,113,113,0.1)":"rgba(220,38,38,0.06)",border:`1px solid ${isDark—#F87171":"#DC2626"}30`,marginBottom:16,display:"flex",gap:8,alignItems:"center"}}>
-            <Icon name="alertCircle" size={14} color={isDark—#F87171":"#DC2626"} strokeWidth={2}/>
-            <span style={{fontSize:13,color:isDark—#F87171":"#DC2626",fontFamily:"'Inter',sans-serif"}}>{error}</span>
+          <div style={{padding:"10px 14px",borderRadius:10,background:isDark?"rgba(248,113,113,0.1)":"rgba(220,38,38,0.06)",border:`1px solid ${isDark?"#F87171":"#DC2626"}30`,marginBottom:16,display:"flex",gap:8,alignItems:"center"}}>
+            <Icon name="alertCircle" size={14} color={isDark?"#F87171":"#DC2626"} strokeWidth={2}/>
+            <span style={{fontSize:13,color:isDark?"#F87171":"#DC2626",fontFamily:"'Inter',sans-serif"}}>{error}</span>
           </div>
         )}
         <div style={{display:"flex",flexDirection:"column",gap:14,marginBottom:20}}>
           <div>
             <div style={{fontSize:10,fontWeight:700,color:t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:7,fontFamily:"'Inter',sans-serif"}}>6-DIGIT OTP CODE</div>
             <input value={otp} onChange={e=>setOtp(e.target.value.replace(/\D/g,"").slice(0,6))} placeholder="000000" maxLength={6}
-              style={{width:"100%",padding:"13px 16px",borderRadius:12,border:`1.5px solid ${border}`,background:isDark—rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)",color:t1,fontSize:24,outline:"none",fontFamily:"'JetBrains Mono',monospace",boxSizing:"border-box",letterSpacing:"0.3em",textAlign:"center"}}/>
+              style={{width:"100%",padding:"13px 16px",borderRadius:12,border:`1.5px solid ${border}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(100,116,139,0.05)",color:t1,fontSize:24,outline:"none",fontFamily:"'JetBrains Mono',monospace",boxSizing:"border-box",letterSpacing:"0.3em",textAlign:"center"}}/>
           </div>
           <Field label="New Password" placeholder="Min 6 characters" type="password" icon="lock" value={newPassword} onChange={e=>setNewPassword(e.target.value)} isDark={isDark}/>
           <Field label="Confirm Password" placeholder="Repeat new password" type="password" icon="lock" value={confirmPw} onChange={e=>setConfirmPw(e.target.value)} isDark={isDark}/>
         </div>
         <button onClick={handleResetPassword} disabled={loading}
-          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading—not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading┈┈┈┈┈┈┈┈0.8:1,marginBottom:14}}>
-          {loading ┈┈┈┈┈┈┈┈ (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password →"}
+          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:14}}>
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password →"}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
-          Didn't receive code┈┈┈┈┈┈┈┈{" "}
+          Didn't receive code?{" "}
           <button onClick={handleSendOtp} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:13,fontFamily:"'Inter',sans-serif",padding:0}}>Resend OTP</button>
         </p>
       </div>
@@ -675,23 +675,23 @@ function ForgotPage({ isDark, onNavigate }) {
         <button onClick={()=>onNavigate("login")} style={{display:"flex",alignItems:"center",gap:6,color:t3,background:"none",border:"none",cursor:"pointer",fontSize:13,fontFamily:"'Inter',sans-serif",marginBottom:32,padding:0}}>
           <Icon name="arrowLeft" size={14} color="currentColor" strokeWidth={2}/>Back to login
         </button>
-        <h1 style={{fontSize:28,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:6}}>Forgot password┈┈┈┈┈┈┈┈</h1>
+        <h1 style={{fontSize:28,fontWeight:700,color:t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:6}}>Forgot password?</h1>
         <p style={{fontSize:14,color:t2,marginBottom:28,lineHeight:1.6}}>Enter your email and we'll send you a one-time code.</p>
         {error && (
-          <div style={{padding:"10px 14px",borderRadius:10,background:isDark—rgba(248,113,113,0.1)":"rgba(220,38,38,0.06)",border:`1px solid ${isDark—#F87171":"#DC2626"}30`,marginBottom:16,display:"flex",gap:8,alignItems:"center"}}>
-            <Icon name="alertCircle" size={14} color={isDark—#F87171":"#DC2626"} strokeWidth={2}/>
-            <span style={{fontSize:13,color:isDark—#F87171":"#DC2626",fontFamily:"'Inter',sans-serif"}}>{error}</span>
+          <div style={{padding:"10px 14px",borderRadius:10,background:isDark?"rgba(248,113,113,0.1)":"rgba(220,38,38,0.06)",border:`1px solid ${isDark?"#F87171":"#DC2626"}30`,marginBottom:16,display:"flex",gap:8,alignItems:"center"}}>
+            <Icon name="alertCircle" size={14} color={isDark?"#F87171":"#DC2626"} strokeWidth={2}/>
+            <span style={{fontSize:13,color:isDark?"#F87171":"#DC2626",fontFamily:"'Inter',sans-serif"}}>{error}</span>
           </div>
         )}
         <div style={{marginBottom:24}}>
           <Field label="Email Address" placeholder="you@example.com" type="email" icon="mail" value={email} onChange={e=>setEmail(e.target.value)} isDark={isDark}/>
         </div>
         <button onClick={handleSendOtp} disabled={loading}
-          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark—linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading—not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark—0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading┈┈┈┈┈┈┈┈0.8:1,marginBottom:20}}>
-          {loading ┈┈┈┈┈┈┈┈ (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP →"}
+          style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP →"}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
-          Remember it┈┈┈┈┈┈┈┈{" "}
+          Remember it?{" "}
           <button onClick={()=>onNavigate("login")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:13,fontFamily:"'Inter',sans-serif",padding:0}}>Sign in</button>
         </p>
       </div>
@@ -717,7 +717,7 @@ export default function AuthFlow() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         body,html{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -729,13 +729,13 @@ export default function AuthFlow() {
       `}</style>
 
       {/* Theme toggle */}
-      <button onClick={()=>setTheme(t=>t==="dark"—light":"dark")}
+      <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")}
         style={{position:"fixed",top:20,right:20,zIndex:9999,width:38,height:38,borderRadius:10,
-          border:`1px solid ${isDark—rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`,
-          background:isDark—rgba(255,255,255,0.06)":"rgba(255,255,255,0.9)",
+          border:`1px solid ${isDark?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)"}`,
+          background:isDark?"rgba(255,255,255,0.06)":"rgba(255,255,255,0.9)",
           cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",
-          color:isDark—#94A3B8":"#4a5568",boxShadow:"0 2px 8px rgba(0,0,0,0.15)"}}>
-        <Icon name={isDark—sun":"moon"} size={15} color="currentColor" strokeWidth={2}/>
+          color:isDark?"#94A3B8":"#4a5568",boxShadow:"0 2px 8px rgba(0,0,0,0.15)"}}>
+        <Icon name={isDark?"sun":"moon"} size={15} color="currentColor" strokeWidth={2}/>
       </button>
 
       <div style={{animation:"fadeIn 0.3s ease both"}} key={page}>

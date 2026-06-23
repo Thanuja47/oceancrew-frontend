@@ -55,12 +55,12 @@ const Icon = ({ name, size = 18, color = "currentColor", strokeWidth = 1.8 }) =>
   );
 };
 
-const SEAFARER = { name:"Capt. Rajesh Fernand✓, rank:"Master Mariner", nationality:"Sri Lankan", experience:"18 Years", avatar:"RF", profileComplete:78, verified:true };
+const SEAFARER = { name:"Capt. Rajesh Fernando", rank:"Master Mariner", nationality:"Sri Lankan", experience:"18 Years", avatar:"RF", profileComplete:78, verified:true };
 
 const STATS = [
-  { label:"Applications", value:12, icon:"send",     color:"#38BDF8", bg:"rgba(56,189,248,0.1)",  change:"→3 this week", trend:"up",    sparkline:[3,5,4,7,6,9,8,10,9,12] },
+  { label:"Applications", value:12, icon:"send",     color:"#38BDF8", bg:"rgba(56,189,248,0.1)",  change:"+3 this week", trend:"up",    sparkline:[3,5,4,7,6,9,8,10,9,12] },
   { label:"Under Review", value:4,  icon:"eye",      color:"#FBBF24", bg:"rgba(251,191,36,0.1)",  change:"2 updated",    trend:"stable",sparkline:[2,3,2,4,3,5,4,5,4,4]  },
-  { label:"Shortlisted",  value:3,  icon:"star",     color:"#A78BFA", bg:"rgba(167,139,250,0.1)", change:"→1 new",       trend:"up",    sparkline:[1,1,2,1,2,2,3,2,3,3]  },
+  { label:"Shortlisted",  value:3,  icon:"star",     color:"#A78BFA", bg:"rgba(167,139,250,0.1)", change:"+1 new",       trend:"up",    sparkline:[1,1,2,1,2,2,3,2,3,3]  },
   { label:"Jobs Saved",   value:7,  icon:"bookmark", color:"#34D399", bg:"rgba(52,211,153,0.1)",  change:"2 expiring",   trend:"stable",sparkline:[2,3,4,4,5,5,6,6,7,7]  },
 ];
 
@@ -73,12 +73,12 @@ const APPLICATIONS = [
 ];
 
 const JOBS = [
-  { id:1, title:"Master",         company:"Maersk Line",      vessel:"Container",   salary:"$7,500", location:"Singapore", contract:"12 m✓, urgent:true,  match:97, logo:"ML", color:"#38BDF8" },
-  { id:2, title:"Chief Engineer", company:"Pacific Star",     vessel:"Bulk Carrier", salary:"$5,800", location:"Hong Kong",  contract:"9 m✓,  urgent:false, match:91, logo:"PS", color:"#A78BFA" },
-  { id:3, title:"Master",         company:"MSC Global",       vessel:"Container",   salary:"$6,800", location:"Rotterdam",  contract:"8 m✓,  urgent:true,  match:94, logo:"MS", color:"#34D399" },
-  { id:4, title:"Staff Captain",  company:"Carnival Corp",    vessel:"Cruise Ship", salary:"$7,200", location:"Miami",      contract:"6 m✓,  urgent:false, match:88, logo:"CC", color:"#FBBF24" },
-  { id:5, title:"Chief Officer",  company:"Yang Ming Marine", vessel:"Container",   salary:"$4,800", location:"Taiwan",     contract:"10 m✓, urgent:false, match:85, logo:"YM", color:"#F97316" },
-  { id:6, title:"2nd Officer",    company:"COSCO Shipping",   vessel:"Bulk Carrier", salary:"$3,400", location:"Shanghai",   contract:"6 m✓,  urgent:false, match:82, logo:"CO", color:"#0EA5E9" },
+  { id:1, title:"Master",         company:"Maersk Line",      vessel:"Container",   salary:"$7,500", location:"Singapore", contract:"12 mo", urgent:true,  match:97, logo:"ML", color:"#38BDF8" },
+  { id:2, title:"Chief Engineer", company:"Pacific Star",     vessel:"Bulk Carrier", salary:"$5,800", location:"Hong Kong",  contract:"9 mo",  urgent:false, match:91, logo:"PS", color:"#A78BFA" },
+  { id:3, title:"Master",         company:"MSC Global",       vessel:"Container",   salary:"$6,800", location:"Rotterdam",  contract:"8 mo",  urgent:true,  match:94, logo:"MS", color:"#34D399" },
+  { id:4, title:"Staff Captain",  company:"Carnival Corp",    vessel:"Cruise Ship", salary:"$7,200", location:"Miami",      contract:"6 mo",  urgent:false, match:88, logo:"CC", color:"#FBBF24" },
+  { id:5, title:"Chief Officer",  company:"Yang Ming Marine", vessel:"Container",   salary:"$4,800", location:"Taiwan",     contract:"10 mo", urgent:false, match:85, logo:"YM", color:"#F97316" },
+  { id:6, title:"2nd Officer",    company:"COSCO Shipping",   vessel:"Bulk Carrier", salary:"$3,400", location:"Shanghai",   contract:"6 mo",  urgent:false, match:82, logo:"CO", color:"#0EA5E9" },
 ];
 
 const DOCUMENTS = [
@@ -91,11 +91,11 @@ const DOCUMENTS = [
 ];
 
 const NOTIFICATIONS = [
-  { id:1, icon:"star",        title:"You've been shortlisted!", msg:"Pacific Star Shipping shortlisted you for Chief Officer.", time:"2h ag✓,  read:false, color:"#A78BFA" },
-  { id:2, icon:"mic",         title:"Interview Scheduled",      msg:"MSC Global Lines invited you for an interview on May 25.",  time:"5h ag✓,  read:false, color:"#38BDF8" },
-  { id:3, icon:"eye",         title:"Profile Viewed",           msg:"Emirates Maritime Co. viewed your profile.",                time:"1d ag✓,  read:true,  color:"#0EA5E9" },
-  { id:4, icon:"sparkles",    title:"3 New Job Matches",        msg:"New jobs matching your profile — Master on Container.",     time:"2d ag✓,  read:true,  color:"#34D399" },
-  { id:5, icon:"alertCircle", title:"Document Expiring",        msg:"Your Medical Certificate expires in 45 days.",              time:"3d ag✓,  read:true,  color:"#FBBF24" },
+  { id:1, icon:"star",        title:"You've been shortlisted!", msg:"Pacific Star Shipping shortlisted you for Chief Officer.", time:"2h ago",  read:false, color:"#A78BFA" },
+  { id:2, icon:"mic",         title:"Interview Scheduled",      msg:"MSC Global Lines invited you for an interview on May 25.",  time:"5h ago",  read:false, color:"#38BDF8" },
+  { id:3, icon:"eye",         title:"Profile Viewed",           msg:"Emirates Maritime Co. viewed your profile.",                time:"1d ago",  read:true,  color:"#0EA5E9" },
+  { id:4, icon:"sparkles",    title:"3 New Job Matches",        msg:"New jobs matching your profile — Master on Container.",     time:"2d ago",  read:true,  color:"#34D399" },
+  { id:5, icon:"alertCircle", title:"Document Expiring",        msg:"Your Medical Certificate expires in 45 days.",              time:"3d ago",  read:true,  color:"#FBBF24" },
 ];
 
 const STATUS_MAP = {
@@ -152,7 +152,7 @@ function StatCard({ stat, delay=0 }) {
   useEffect(() => { const t = setTimeout(() => setShow(true), delay); return () => clearTimeout(t); }, [delay]);
   const max = Math.max(...stat.sparkline);
   return (
-    <div style={{ background:"var(--bg-card)", border:"1px solid var(--border)", borderRadius:16, padding:20, overflow:"hidden", position:"relative", opacity:show┈┈┈┈┈┈┈┈1:0, transform:show—none":"translateY(16px)", transition:"opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, box-shadow 0.2s" }}
+    <div style={{ background:"var(--bg-card)", border:"1px solid var(--border)", borderRadius:16, padding:20, overflow:"hidden", position:"relative", opacity:show?1:0, transform:show?"none":"translateY(16px)", transition:"opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, box-shadow 0.2s" }}
       onMouseEnter={e=>{ e.currentTarget.style.borderColor=`${stat.color}40`; e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.boxShadow=`0 10px 30px rgba(0,0,0,0.2)`; }}
       onMouseLeave={e=>{ e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.style.transform="none"; e.currentTarget.style.boxShadow="none"; }}
     >
@@ -161,15 +161,15 @@ function StatCard({ stat, delay=0 }) {
         <div style={{ width:40, height:40, borderRadius:11, background:stat.bg, display:"flex", alignItems:"center", justifyContent:"center" }}>
           <Icon name={stat.icon} size={19} color={stat.color} strokeWidth={1.8} />
         </div>
-        <Chip color={stat.trend==="up"—#34D399":"#FBBF24"}>
-          <Icon name={stat.trend==="up"—trendUp":"activity"} size={10} strokeWidth={2.3} />{stat.change}
+        <Chip color={stat.trend==="up"?"#34D399":"#FBBF24"}>
+          <Icon name={stat.trend==="up"?"trendUp":"activity"} size={10} strokeWidth={2.3} />{stat.change}
         </Chip>
       </div>
       <div style={{ fontSize:34, fontWeight:700, color:stat.color, letterSpacing:"-0.04em", lineHeight:1, fontFamily:"'Sora',sans-serif" }}>{stat.value}</div>
       <div style={{ fontSize:12, color:"var(--text-2)", marginTop:5, fontWeight:500 }}>{stat.label}</div>
       <div style={{ display:"flex", alignItems:"flex-end", gap:3, marginTop:14, height:26 }}>
         {stat.sparkline.map((v,i) => (
-          <div key={i} style={{ flex:1, borderRadius:3, background:stat.color, height:`${(v/max)*100}%`, minHeight:3, opacity:0.2→(i/stat.sparkline.length)*0.8 }} />
+          <div key={i} style={{ flex:1, borderRadius:3, background:stat.color, height:`${(v/max)*100}%`, minHeight:3, opacity:0.2+(i/stat.sparkline.length)*0.8 }} />
         ))}
       </div>
     </div>
@@ -210,13 +210,13 @@ function JobCard({ job }) {
   const [saved, setSaved] = useState(false);
   const [hov, setHov] = useState(false);
   return (
-    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ background:hov—var(--bg-tertiary)":"var(--bg-card)", borderRadius:14, padding:18, border:hov┈┈┈┈┈┈┈┈`1.5px solid ${job.color}40`:"1px solid var(--border)", transition:"all 0.22s", cursor:"pointer", transform:hov—translateY(-2px)":"none", boxShadow:hov—0 8px 24px rgba(0,0,0,0.18)":"none" }}>
+    <div onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)} style={{ background:hov?"var(--bg-tertiary)":"var(--bg-card)", borderRadius:14, padding:18, border:hov?`1.5px solid ${job.color}40`:"1px solid var(--border)", transition:"all 0.22s", cursor:"pointer", transform:hov?"translateY(-2px)":"none", boxShadow:hov?"0 8px 24px rgba(0,0,0,0.18)":"none" }}>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:12 }}>
         <div style={{ width:40, height:40, borderRadius:11, background:`linear-gradient(135deg,${job.color},${job.color}88)`, display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:12, fontFamily:"'Sora',sans-serif" }}>{job.logo}</div>
         <div style={{ display:"flex", alignItems:"center", gap:6 }}>
           {job.urgent && <Chip color="#F87171"><Icon name="zap" size={10} color="#F87171" strokeWidth={2.5} />Urgent</Chip>}
           <button onClick={e=>{e.stopPropagation();setSaved(s=>!s);}} style={{ background:"none", border:"none", cursor:"pointer", padding:2 }}>
-            <Icon name="bookmark" size={16} color={saved—#FBBF24":"var(--text-3)"} strokeWidth={saved┈┈┈┈┈┈┈┈2.5:1.8} />
+            <Icon name="bookmark" size={16} color={saved?"#FBBF24":"var(--text-3)"} strokeWidth={saved?2.5:1.8} />
           </button>
         </div>
       </div>
@@ -245,7 +245,7 @@ function JobCard({ job }) {
 // ────────────────────────────────────────────
 function DashboardHome({ setPage }) {
   const hour = new Date().getHours();
-  const greeting = hour<12—Good morning":hour<17—Good afternoon":"Good evening";
+  const greeting = hour<12?"Good morning":hour<17?"Good afternoon":"Good evening";
   return (
     <div>
       {/* Welcome Banner */}
@@ -287,15 +287,15 @@ function DashboardHome({ setPage }) {
         <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))", gap:10 }}>
           {[
             {label:"Basic Information",done:true},{label:"Sea Experience",done:true},
-            {label:"Certificates",done:true},{label:"Profile Phot✓,done:false},
+            {label:"Certificates",done:true},{label:"Profile Photo",done:false},
             {label:"CV Uploaded",done:true},{label:"All Documents",done:false},
           ].map((item,i)=>(
             <div key={i} style={{ display:"flex", alignItems:"center", gap:10 }}>
-              <div style={{ width:20, height:20, borderRadius:"50%", background:item.done—#38BDF8":"var(--bg-tertiary)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, border:`1px solid ${item.done—#38BDF8":"var(--border)"}` }}>
+              <div style={{ width:20, height:20, borderRadius:"50%", background:item.done?"#38BDF8":"var(--bg-tertiary)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, border:`1px solid ${item.done?"#38BDF8":"var(--border)"}` }}>
                 {item.done && <Icon name="check" size={10} color="#fff" strokeWidth={2.8} />}
               </div>
-              <span style={{ fontSize:12, color:item.done—var(--text-1)":"var(--text-3)", fontWeight:item.done┈┈┈┈┈┈┈┈500:400 }}>{item.label}</span>
-              {!item.done && <span style={{ marginLeft:"aut✓, fontSize:10, color:"#38BDF8", fontWeight:700, cursor:"pointer", fontFamily:"'Inter',sans-serif" }}>Add →</span>}
+              <span style={{ fontSize:12, color:item.done?"var(--text-1)":"var(--text-3)", fontWeight:item.done?500:400 }}>{item.label}</span>
+              {!item.done && <span style={{ marginLeft:"auto", fontSize:10, color:"#38BDF8", fontWeight:700, cursor:"pointer", fontFamily:"'Inter',sans-serif" }}>Add →</span>}
             </div>
           ))}
         </div>
@@ -371,7 +371,7 @@ function BrowseJobs() {
           </div>
         </div>
       </GCard>
-      {filtered.length===0┈┈┈┈┈┈┈┈(
+      {filtered.length===0?(
         <GCard style={{ textAlign:"center", padding:"50px 20px" }}>
           <Icon name="search" size={42} color="var(--text-3)" strokeWidth={1.5} />
           <p style={{ fontSize:15, fontWeight:600, color:"var(--text-2)", marginTop:14, fontFamily:"'Sora',sans-serif" }}>No jobs match your filters</p>
@@ -395,11 +395,11 @@ function Applications() {
         <h2 style={{ fontSize:"clamp(20px,3vw,26px)", fontWeight:700, color:"var(--text-1)", fontFamily:"'Sora',sans-serif", marginBottom:4 }}>My Applications</h2>
         <p style={{ fontSize:13, color:"var(--text-3)" }}>{APPLICATIONS.length} total applications</p>
       </div>
-      <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom: selected┈┈┈┈┈┈┈┈18:0 }}>
+      <div style={{ display:"flex", flexDirection:"column", gap:12, marginBottom: selected?18:0 }}>
         {APPLICATIONS.map(app=>{
-          const active=selected┈┈┈┈┈┈┈┈.id===app.id;
+          const active=selected?.id===app.id;
           return (
-            <div key={app.id} onClick={()=>setSelected(active┈┈┈┈┈┈┈┈null:app)} style={{ background:"var(--bg-card)", borderRadius:16, padding:18, cursor:"pointer", border:active┈┈┈┈┈┈┈┈`1.5px solid ${app.color}50`:"1px solid var(--border)", boxShadow:active—0 6px 24px rgba(0,0,0,0.18)":"none", transition:"all 0.22s" }}>
+            <div key={app.id} onClick={()=>setSelected(active?null:app)} style={{ background:"var(--bg-card)", borderRadius:16, padding:18, cursor:"pointer", border:active?`1.5px solid ${app.color}50`:"1px solid var(--border)", boxShadow:active?"0 6px 24px rgba(0,0,0,0.18)":"none", transition:"all 0.22s" }}>
               <div style={{ display:"flex", alignItems:"center", gap:12 }}>
                 <div style={{ width:44, height:44, borderRadius:12, background:`linear-gradient(135deg,${app.color},${app.color}88)`, display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:13, flexShrink:0, fontFamily:"'Sora',sans-serif" }}>{app.logo}</div>
                 <div style={{ flex:1, minWidth:0 }}>
@@ -436,20 +436,20 @@ function Applications() {
           {/* Timeline */}
           {STEPS.map((step,i)=>{
             const s=STATUS_MAP[step];
-            const appStep=STATUS_MAP[selected.status]┈┈┈┈┈┈┈┈.step||0;
+            const appStep=STATUS_MAP[selected.status]?.step||0;
             const isRejected=selected.status==="Rejected";
             const isDone=!isRejected&&appStep>=s.step;
             const isCurrent=!isRejected&&appStep===s.step;
             return (
               <div key={step} style={{ display:"flex", alignItems:"flex-start", gap:14 }}>
                 <div style={{ display:"flex", flexDirection:"column", alignItems:"center" }}>
-                  <div style={{ width:28, height:28, borderRadius:"50%", flexShrink:0, background:isDone┈┈┈┈┈┈┈┈s.color:"var(--bg-tertiary)", border:`1.5px solid ${isDone┈┈┈┈┈┈┈┈s.color:"var(--border)"}`, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:isCurrent┈┈┈┈┈┈┈┈`0 0 0 4px ${s.color}25`:"none", transition:"all 0.3s", zIndex:1 }}>
-                    {isDone┈┈┈┈┈┈┈┈<Icon name="check" size={12} color="#fff" strokeWidth={2.8} />:<span style={{ fontSize:10, color:"var(--text-3)", fontWeight:600 }}>{i→1}</span>}
+                  <div style={{ width:28, height:28, borderRadius:"50%", flexShrink:0, background:isDone?s.color:"var(--bg-tertiary)", border:`1.5px solid ${isDone?s.color:"var(--border)"}`, display:"flex", alignItems:"center", justifyContent:"center", boxShadow:isCurrent?`0 0 0 4px ${s.color}25`:"none", transition:"all 0.3s", zIndex:1 }}>
+                    {isDone?<Icon name="check" size={12} color="#fff" strokeWidth={2.8} />:<span style={{ fontSize:10, color:"var(--text-3)", fontWeight:600 }}>{i+1}</span>}
                   </div>
-                  {i<STEPS.length-1&&<div style={{ width:2, height:22, background:isDone&&appStep>s.step┈┈┈┈┈┈┈┈s.color:"var(--bg-tertiary)", transition:"background 0.3s" }} />}
+                  {i<STEPS.length-1&&<div style={{ width:2, height:22, background:isDone&&appStep>s.step?s.color:"var(--bg-tertiary)", transition:"background 0.3s" }} />}
                 </div>
                 <div style={{ paddingBottom:14, paddingTop:3 }}>
-                  <div style={{ fontSize:13, fontWeight:isCurrent┈┈┈┈┈┈┈┈700:500, color:isDone—var(--text-1)":"var(--text-3)" }}>{step}</div>
+                  <div style={{ fontSize:13, fontWeight:isCurrent?700:500, color:isDone?"var(--text-1)":"var(--text-3)" }}>{step}</div>
                   {isCurrent&&<Chip color={s.color}>Current Status</Chip>}
                 </div>
               </div>
@@ -489,14 +489,14 @@ function DocumentVault() {
                 <Icon name={doc.icon} size={21} color={doc.color} strokeWidth={1.8} />
               </div>
               <Chip color={doc.color}>
-                <Icon name={doc.status==="Verified"—checkCircle":doc.status==="Expiring"—alertCircle":doc.status==="Missing"—xCircle":"fileText"} size={10} strokeWidth={2.2} />
+                <Icon name={doc.status==="Verified"?"checkCircle":doc.status==="Expiring"?"alertCircle":doc.status==="Missing"?"xCircle":"fileText"} size={10} strokeWidth={2.2} />
                 {doc.status}
               </Chip>
             </div>
             <div style={{ fontSize:13, fontWeight:700, color:"var(--text-1)", marginBottom:5, lineHeight:1.4 }}>{doc.name}</div>
             <div style={{ fontSize:11, color:"var(--text-3)", marginBottom:14, fontFamily:"'JetBrains Mono',monospace" }}>Expires: {doc.expires}</div>
             <div style={{ display:"flex", gap:8 }}>
-              {doc.status!=="Missing"┈┈┈┈┈┈┈┈(
+              {doc.status!=="Missing"?(
                 <>
                   <button style={{ flex:1, padding:"8px", borderRadius:9, border:"1px solid var(--border)", background:"transparent", color:"#38BDF8", fontSize:11, fontWeight:700, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:5, fontFamily:"'Inter',sans-serif" }}>
                     <Icon name="eye" size={12} color="#38BDF8" strokeWidth={2} /> View
@@ -541,8 +541,8 @@ function Notifications() {
       </div>
       <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
         {notifs.map(n=>(
-          <div key={n.id} onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id┈┈┈┈┈┈┈┈{...x,read:true}:x))}
-            style={{ background:"var(--bg-card)", borderRadius:14, padding:18, cursor:"pointer", border:n.read—1px solid var(--border)":`1.5px solid ${n.color}35`, display:"flex", gap:14, transition:"all 0.2s" }}
+          <div key={n.id} onClick={()=>setNotifs(ns=>ns.map(x=>x.id===n.id?{...x,read:true}:x))}
+            style={{ background:"var(--bg-card)", borderRadius:14, padding:18, cursor:"pointer", border:n.read?"1px solid var(--border)":`1.5px solid ${n.color}35`, display:"flex", gap:14, transition:"all 0.2s" }}
             onMouseEnter={e=>e.currentTarget.style.background="var(--bg-tertiary)"}
             onMouseLeave={e=>e.currentTarget.style.background="var(--bg-card)"}
           >
@@ -567,13 +567,13 @@ function Notifications() {
 function Profile() {
   const sections=[
     { title:"Personal Information", data:[
-      {label:"Full Name",val:"Capt. Rajesh Fernand✓},{label:"Nationality",val:"Sri Lankan"},
-      {label:"Date of Birth",val:"15 March 1986"},{label:"Phone",val:"→94 77 123 4567"},
-      {label:"Email",val:"rajesh@email.com"},{label:"WhatsApp",val:"→94 77 123 4567"},
+      {label:"Full Name",val:"Capt. Rajesh Fernando"},{label:"Nationality",val:"Sri Lankan"},
+      {label:"Date of Birth",val:"15 March 1986"},{label:"Phone",val:"+94 77 123 4567"},
+      {label:"Email",val:"rajesh@email.com"},{label:"WhatsApp",val:"+94 77 123 4567"},
     ]},
     { title:"Sea Experience", data:[
       {label:"Current Rank",val:"Master Mariner"},{label:"Total Sea Service",val:"18 Years"},
-      {label:"Vessel Types",val:"Container, Bulk Carrier"},{label:"Expected Salary",val:"USD 6,500–7,500/m✓},
+      {label:"Vessel Types",val:"Container, Bulk Carrier"},{label:"Expected Salary",val:"USD 6,500–7,500/mo"},
       {label:"Available From",val:"June 1, 2025"},{label:"Preferred Location",val:"Singapore, UAE"},
     ]},
   ];
@@ -673,16 +673,16 @@ export default function SeafarerDashboard() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains→Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         :root{
-          --bg-primary:  ${isDark—#08090C":"#F7F8FA"};
-          --bg-card:     ${isDark—#10121A":"#FFFFFF"};
-          --bg-tertiary: ${isDark—#181B26":"#F0F2F5"};
-          --border:      ${isDark—rgba(255,255,255,0.07)":"rgba(0,0,0,0.07)"};
-          --text-1:      ${isDark—#F1F5F9":"#0F172A"};
-          --text-2:      ${isDark—#94A3B8":"#475569"};
-          --text-3:      ${isDark—#475569":"#94A3B8"};
+          --bg-primary:  ${isDark?"#08090C":"#F7F8FA"};
+          --bg-card:     ${isDark?"#10121A":"#FFFFFF"};
+          --bg-tertiary: ${isDark?"#181B26":"#F0F2F5"};
+          --border:      ${isDark?"rgba(255,255,255,0.07)":"rgba(0,0,0,0.07)"};
+          --text-1:      ${isDark?"#F1F5F9":"#0F172A"};
+          --text-2:      ${isDark?"#94A3B8":"#475569"};
+          --text-3:      ${isDark?"#475569":"#94A3B8"};
         }
         body,html{ font-family:'Inter',-apple-system,sans-serif; -webkit-font-smoothing:antialiased; background:var(--bg-primary); color:var(--text-1); }
         @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -707,8 +707,8 @@ export default function SeafarerDashboard() {
       <div style={{ display:"flex", minHeight:"100vh", background:"var(--bg-primary)" }}>
 
         {/* ── DESKTOP SIDEBAR ── */}
-        <aside className="desktop-sidebar" style={{ width:sidebar┈┈┈┈┈┈┈┈252:72, minHeight:"100vh", background:isDark—#09090C":"#fff", borderRight:"1px solid var(--border)", display:"flex", flexDirection:"column", position:"fixed", top:0, left:0, bottom:0, zIndex:1000, transition:"width .3s cubic-bezier(.4,0,.2,1)", overflow:"hidden" }}>
-          <div style={{ padding:sidebar—20px 18px":"18px 14px", borderBottom:"1px solid var(--border)", display:"flex", alignItems:"center", gap:11, whiteSpace:"nowrap" }}>
+        <aside className="desktop-sidebar" style={{ width:sidebar?252:72, minHeight:"100vh", background:isDark?"#09090C":"#fff", borderRight:"1px solid var(--border)", display:"flex", flexDirection:"column", position:"fixed", top:0, left:0, bottom:0, zIndex:1000, transition:"width .3s cubic-bezier(.4,0,.2,1)", overflow:"hidden" }}>
+          <div style={{ padding:sidebar?"20px 18px":"18px 14px", borderBottom:"1px solid var(--border)", display:"flex", alignItems:"center", gap:11, whiteSpace:"nowrap" }}>
             <div style={{ width:38, height:38, borderRadius:10, background:"linear-gradient(135deg,#0284C7,#38BDF8)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 5px 16px rgba(2,132,199,0.4)" }}>
               <Icon name="ship" size={19} color="#fff" strokeWidth={2} />
             </div>
@@ -725,31 +725,31 @@ export default function SeafarerDashboard() {
               </div>
             </div>
           )}
-          <nav style={{ flex:1, padding:"12px 10px", overflowY:"aut✓ }}>
+          <nav style={{ flex:1, padding:"12px 10px", overflowY:"auto" }}>
             {NAV_ITEMS.map(item=>{
               const active=page===item.id;
               return (
-                <button key={item.id} onClick={()=>goPage(item.id)} title={!sidebar┈┈┈┈┈┈┈┈item.label:""} style={{ width:"100%", display:"flex", alignItems:"center", gap:11, padding:sidebar—10px 14px":"11px", borderRadius:10, border:"none", cursor:"pointer", marginBottom:3, background:active—rgba(56,189,248,0.1)":"transparent", color:active—#38BDF8":"var(--text-3)", fontSize:13, fontWeight:active┈┈┈┈┈┈┈┈700:500, justifyContent:sidebar—flex-start":"center", transition:"all .15s", borderLeft:active—2px solid #38BDF8":"2px solid transparent", fontFamily:"'Inter',sans-serif" }}
+                <button key={item.id} onClick={()=>goPage(item.id)} title={!sidebar?item.label:""} style={{ width:"100%", display:"flex", alignItems:"center", gap:11, padding:sidebar?"10px 14px":"11px", borderRadius:10, border:"none", cursor:"pointer", marginBottom:3, background:active?"rgba(56,189,248,0.1)":"transparent", color:active?"#38BDF8":"var(--text-3)", fontSize:13, fontWeight:active?700:500, justifyContent:sidebar?"flex-start":"center", transition:"all .15s", borderLeft:active?"2px solid #38BDF8":"2px solid transparent", fontFamily:"'Inter',sans-serif" }}
                   onMouseEnter={e=>{ if(!active){e.currentTarget.style.background="var(--bg-tertiary)";e.currentTarget.style.color="var(--text-1)";}}}
                   onMouseLeave={e=>{ if(!active){e.currentTarget.style.background="transparent";e.currentTarget.style.color="var(--text-3)";}}}
                 >
-                  <Icon name={item.icon} size={16} color={active—#38BDF8":"currentColor"} strokeWidth={active┈┈┈┈┈┈┈┈2.2:1.8} />
+                  <Icon name={item.icon} size={16} color={active?"#38BDF8":"currentColor"} strokeWidth={active?2.2:1.8} />
                   {sidebar&&<span style={{ whiteSpace:"nowrap" }}>{item.label}</span>}
-                  {sidebar&&item.badge&&<span style={{ marginLeft:"aut✓, background:item.badgeColor||"#EF4444", color:"#fff", borderRadius:999, minWidth:18, height:17, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:9, fontWeight:700, padding:"0 5px" }}>{item.badge}</span>}
+                  {sidebar&&item.badge&&<span style={{ marginLeft:"auto", background:item.badgeColor||"#EF4444", color:"#fff", borderRadius:999, minWidth:18, height:17, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:9, fontWeight:700, padding:"0 5px" }}>{item.badge}</span>}
                 </button>
               );
             })}
           </nav>
           <div style={{ padding:"10px 10px 14px", borderTop:"1px solid var(--border)", display:"flex", flexDirection:"column", gap:7 }}>
             <button onClick={()=>setSidebar(s=>!s)} style={{ width:"100%", padding:"9px", borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-tertiary)", color:"var(--text-3)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", gap:7, fontSize:12, fontWeight:500, fontFamily:"'Inter',sans-serif" }}>
-              <Icon name={sidebar—chevronLeft":"chevronRight"} size={14} strokeWidth={2.2} />{sidebar&&"Collapse"}
+              <Icon name={sidebar?"chevronLeft":"chevronRight"} size={14} strokeWidth={2.2} />{sidebar&&"Collapse"}
             </button>
           </div>
         </aside>
 
         {/* ── MOBILE SIDEBAR OVERLAY ── */}
         {mobileNav && <div className="mob-overlay" onClick={()=>setMobileNav(false)} />}
-        <aside className="mob-sidebar" style={{ transform:mobileNav—translateX(0)":"translateX(-100%)", background:isDark—#09090C":"#fff", borderRight:"1px solid var(--border)", display:"flex", flexDirection:"column" }}>
+        <aside className="mob-sidebar" style={{ transform:mobileNav?"translateX(0)":"translateX(-100%)", background:isDark?"#09090C":"#fff", borderRight:"1px solid var(--border)", display:"flex", flexDirection:"column" }}>
           <div style={{ padding:"18px 18px", borderBottom:"1px solid var(--border)", display:"flex", alignItems:"center", justifyContent:"space-between" }}>
             <div style={{ display:"flex", alignItems:"center", gap:10 }}>
               <div style={{ width:36, height:36, borderRadius:10, background:"linear-gradient(135deg,#0284C7,#38BDF8)", display:"flex", alignItems:"center", justifyContent:"center" }}>
@@ -768,14 +768,14 @@ export default function SeafarerDashboard() {
               <div style={{ fontSize:10, color:"#38BDF8", fontWeight:600 }}>{SEAFARER.rank}</div>
             </div>
           </div>
-          <nav style={{ flex:1, padding:"12px 10px", overflowY:"aut✓ }}>
+          <nav style={{ flex:1, padding:"12px 10px", overflowY:"auto" }}>
             {NAV_ITEMS.map(item=>{
               const active=page===item.id;
               return (
-                <button key={item.id} onClick={()=>goPage(item.id)} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:"12px 14px", borderRadius:10, border:"none", cursor:"pointer", marginBottom:3, background:active—rgba(56,189,248,0.1)":"transparent", color:active—#38BDF8":"var(--text-2)", fontSize:14, fontWeight:active┈┈┈┈┈┈┈┈700:500, transition:"all .15s", borderLeft:active—2px solid #38BDF8":"2px solid transparent", fontFamily:"'Inter',sans-serif" }}>
-                  <Icon name={item.icon} size={17} color={active—#38BDF8":"currentColor"} strokeWidth={active┈┈┈┈┈┈┈┈2.2:1.8} />
+                <button key={item.id} onClick={()=>goPage(item.id)} style={{ width:"100%", display:"flex", alignItems:"center", gap:12, padding:"12px 14px", borderRadius:10, border:"none", cursor:"pointer", marginBottom:3, background:active?"rgba(56,189,248,0.1)":"transparent", color:active?"#38BDF8":"var(--text-2)", fontSize:14, fontWeight:active?700:500, transition:"all .15s", borderLeft:active?"2px solid #38BDF8":"2px solid transparent", fontFamily:"'Inter',sans-serif" }}>
+                  <Icon name={item.icon} size={17} color={active?"#38BDF8":"currentColor"} strokeWidth={active?2.2:1.8} />
                   <span>{item.label}</span>
-                  {item.badge&&<span style={{ marginLeft:"aut✓, background:item.badgeColor||"#EF4444", color:"#fff", borderRadius:999, minWidth:18, height:17, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:9, fontWeight:700, padding:"0 5px" }}>{item.badge}</span>}
+                  {item.badge&&<span style={{ marginLeft:"auto", background:item.badgeColor||"#EF4444", color:"#fff", borderRadius:999, minWidth:18, height:17, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:9, fontWeight:700, padding:"0 5px" }}>{item.badge}</span>}
                 </button>
               );
             })}
@@ -783,10 +783,10 @@ export default function SeafarerDashboard() {
         </aside>
 
         {/* ── MAIN ── */}
-        <div className="main-content" style={{ flex:1, marginLeft:sidebar┈┈┈┈┈┈┈┈252:72, display:"flex", flexDirection:"column", minWidth:0, transition:"margin-left .3s ease" }}>
+        <div className="main-content" style={{ flex:1, marginLeft:sidebar?252:72, display:"flex", flexDirection:"column", minWidth:0, transition:"margin-left .3s ease" }}>
 
           {/* Header */}
-          <header style={{ background:isDark—rgba(16,18,26,0.75)":"rgba(255,255,255,0.75)", backdropFilter:"blur(20px)", borderBottom:"1px solid var(--border)", padding:"0 clamp(16px,3vw,28px)", height:64, display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:100, gap:12 }}>
+          <header style={{ background:isDark?"rgba(16,18,26,0.75)":"rgba(255,255,255,0.75)", backdropFilter:"blur(20px)", borderBottom:"1px solid var(--border)", padding:"0 clamp(16px,3vw,28px)", height:64, display:"flex", alignItems:"center", justifyContent:"space-between", position:"sticky", top:0, zIndex:100, gap:12 }}>
             <div style={{ display:"flex", alignItems:"center", gap:12 }}>
               {/* Mobile menu button */}
               <button onClick={()=>setMobileNav(true)} style={{ display:"none", width:36, height:36, borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-card)", alignItems:"center", justifyContent:"center", cursor:"pointer", color:"var(--text-2)", flexShrink:0 }}
@@ -794,7 +794,7 @@ export default function SeafarerDashboard() {
                 <Icon name="menu" size={17} strokeWidth={2} />
               </button>
               <h2 style={{ fontSize:"clamp(14px,2.5vw,17px)", fontWeight:700, color:"var(--text-1)", fontFamily:"'Sora',sans-serif", whiteSpace:"nowrap" }}>
-                {page==="dashboard"—Welcome back 👋":NAV_ITEMS.find(n=>n.id===page)┈┈┈┈┈┈┈┈.label}
+                {page==="dashboard"?"Welcome back 👋":NAV_ITEMS.find(n=>n.id===page)?.label}
               </h2>
             </div>
             <div style={{ display:"flex", alignItems:"center", gap:8 }}>
@@ -802,8 +802,8 @@ export default function SeafarerDashboard() {
                 <Icon name="bell" size={16} strokeWidth={2} />
                 {unread>0&&<span style={{ position:"absolute", top:7, right:7, width:7, height:7, borderRadius:"50%", background:"#EF4444", border:"2px solid var(--bg-card)", animation:"pulseDot 2s infinite" }} />}
               </button>
-              <button onClick={()=>setTheme(t=>t==="dark"—light":"dark")} style={{ width:36, height:36, borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-card)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-2)" }}>
-                <Icon name={isDark—sun":"moon"} size={15} strokeWidth={2} />
+              <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:36, height:36, borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-card)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-2)" }}>
+                <Icon name={isDark?"sun":"moon"} size={15} strokeWidth={2} />
               </button>
               <div style={{ display:"flex", alignItems:"center", gap:8, padding:"5px 10px 5px 5px", background:"var(--bg-card)", border:"1px solid var(--border)", borderRadius:10, cursor:"pointer" }}>
                 <Av initials={SEAFARER.avatar} size={26} gradient="linear-gradient(135deg,#0284C7,#38BDF8)" />
@@ -820,7 +820,7 @@ export default function SeafarerDashboard() {
           `}</style>
 
           {/* Content */}
-          <main style={{ flex:1, padding:"clamp(16px,3vw,28px)", overflowY:"aut✓ }}>
+          <main style={{ flex:1, padding:"clamp(16px,3vw,28px)", overflowY:"auto" }}>
             <div className="page-in">{renderPage()}</div>
           </main>
 
