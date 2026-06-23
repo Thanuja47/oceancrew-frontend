@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { useState, useEffect } from "react";
 
 const API = "https://oceancrew-backend-production.up.railway.app";
@@ -27,7 +26,6 @@ const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
     eye:<><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></>,
     fileText:<><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></>,
     download:<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></>,
-    logOut:<><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></>,
     anchor:<><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></>,
     moon:<><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></>,
     sun:<><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></>,
@@ -81,17 +79,54 @@ const L = {
   sidebar:"#FFFFFF",header:"rgba(255,255,255,0.85)",
 };
 
-const initSeafarers = [];
+const initSeafarers = [
+  {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        country:"Sri Lanka",status:"Active",  apps:12,verified:true, sub:"Pro", avatar:"RF",matchScore:96,contractEnd:"Jul 2025",blacklisted:false},
+  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",country:"India",    status:"Active",  apps:8, verified:true, sub:"Pro", avatar:"PN",matchScore:91,contractEnd:"Jun 2025",blacklisted:false},
+  {id:3,name:"Shanaka Perera",       rank:"Chief Officer", country:"Sri Lanka",status:"Active",  apps:5, verified:true, sub:"Free",avatar:"SP",matchScore:88,contractEnd:"Aug 2025",blacklisted:false},
+  {id:4,name:"Mohammed Al Farsi",    rank:"2nd Officer",   country:"Oman",     status:"Inactive",apps:2, verified:false,sub:"Free",avatar:"MA",matchScore:74,contractEnd:"May 2025",blacklisted:false},
+  {id:5,name:"Dilshan Wickrama",     rank:"ETO",           country:"Sri Lanka",status:"Active",  apps:7, verified:true, sub:"Pro", avatar:"DW",matchScore:82,contractEnd:"Sep 2025",blacklisted:false},
+  {id:6,name:"Chen Wei Long",        rank:"Chief Officer", country:"China",    status:"Active",  apps:1, verified:false,sub:"Free",avatar:"CW",matchScore:79,contractEnd:"Oct 2025",blacklisted:false},
+];
 
-const initCompanies = [];
+const initCompanies = [
+  {id:1,name:"Pacific Star Shipping",country:"Singapore", plan:"Professional",status:"Active",   jobs:8, hired:47, verified:true, logo:"PS",revenue:149,renewal:"Jun 15",blacklisted:false},
+  {id:2,name:"Emirates Maritime Co.",country:"UAE",        plan:"Enterprise",  status:"Active",   jobs:12,hired:89, verified:true, logo:"EM",revenue:399,renewal:"Jun 5", blacklisted:false},
+  {id:3,name:"MSC Global Lines",     country:"Switzerland",plan:"Enterprise",  status:"Active",   jobs:24,hired:132,verified:true, logo:"MS",revenue:399,renewal:"Jun 1", blacklisted:false},
+  {id:4,name:"Royal Caribbean Crew", country:"USA",        plan:"Professional",status:"Active",   jobs:6, hired:28, verified:false,logo:"RC",revenue:149,renewal:"Jun 20",blacklisted:false},
+  {id:5,name:"Evergreen Marine Corp",country:"Taiwan",     plan:"Starter",     status:"Suspended",jobs:0, hired:5,  verified:false,logo:"EV",revenue:49, renewal:"â€”",    blacklisted:false},
+];
 
-const PENDING = [];
+const PENDING = [
+  {id:1,name:"Neptune Shipping Ltd.", country:"Greece",      type:"Shipping Co.",  submitted:"May 20",contact:"Andreas P.",docs:3,logo:"NS"},
+  {id:2,name:"Golden Ocean Manning",  country:"Philippines", type:"Manning Agency",submitted:"May 19",contact:"Maria S.",  docs:4,logo:"GO"},
+  {id:3,name:"Horizon Maritime Group",country:"UAE",         type:"Shipping Co.",  submitted:"May 18",contact:"Ahmed A.",  docs:3,logo:"HM"},
+];
 
-const PIPELINE_INIT = [];
+const PIPELINE_INIT = [
+  {id:1,name:"Capt. Rajesh Fernando",rank:"Master",        job:"Master â€” Pacific Star",     stage:"Shortlisted",score:96,avatar:"RF"},
+  {id:2,name:"Eng. Priya Nair",      rank:"Chief Engineer",job:"Chief Eng â€” Emirates",      stage:"Interview",  score:91,avatar:"PN"},
+  {id:3,name:"Shanaka Perera",       rank:"Chief Officer", job:"Chief Officer â€” MSC",       stage:"Shortlisted",score:88,avatar:"SP"},
+  {id:4,name:"Dilshan Wickrama",     rank:"ETO",           job:"ETO â€” Pacific Star",        stage:"Offer",      score:82,avatar:"DW"},
+  {id:5,name:"Mohammed Al Farsi",    rank:"2nd Officer",   job:"2nd Officer â€” Royal Carib.",stage:"Review",     score:74,avatar:"MA"},
+];
 
-const INIT_INVOICES = [];
+const INIT_INVOICES = [
+  {id:"INV-001",to:"Pacific Star Shipping",type:"Company", plan:"Professional",amount:149,status:"Paid",   date:"May 1", due:"May 15",email:"billing@pacificstar.com"},
+  {id:"INV-002",to:"Emirates Maritime Co.",type:"Company", plan:"Enterprise",  amount:399,status:"Paid",   date:"May 1", due:"May 15",email:"accounts@emirates.ae"},
+  {id:"INV-003",to:"Capt. Rajesh Fernando",type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Paid",   date:"May 1", due:"May 5", email:"rajesh.f@gmail.com"},
+  {id:"INV-004",to:"Royal Caribbean Crew", type:"Company", plan:"Professional",amount:149,status:"Pending",date:"May 15",due:"Jun 1", email:"billing@royalcaribbean.com"},
+  {id:"INV-005",to:"Evergreen Marine Corp",type:"Company", plan:"Starter",     amount:49, status:"Overdue",date:"Apr 1", due:"Apr 15",email:"accounts@evergreen.tw"},
+  {id:"INV-006",to:"Eng. Priya Nair",      type:"Seafarer",plan:"Pro Access",  amount:4,  status:"Pending",date:"May 15",due:"May 20",email:"priya.nair@gmail.com"},
+];
 
-const ACTIVITY = [];
+const ACTIVITY = [
+  {id:1,icon:"checkCircle",msg:"Pacific Star Shipping verified by Admin",           time:"5m ago", ok:true},
+  {id:2,icon:"star",       msg:"Capt. Rajesh Fernando â€” Verification badge granted",time:"12m ago",ok:true},
+  {id:3,icon:"send",       msg:"Interview notification sent to Eng. Priya Nair",    time:"1h ago", ok:true},
+  {id:4,icon:"dollarSign", msg:"Invoice INV-003 marked as Paid â€” $4",               time:"2h ago", ok:true},
+  {id:5,icon:"ban",        msg:"Evergreen Marine Corp â€” marked Overdue",             time:"3h ago", ok:false},
+  {id:6,icon:"alertCircle",msg:"Contract expiry alert: Mohammed Al Farsi (May 25)", time:"4h ago", ok:false},
+];
 
 const NAV = [
   {section:"Overview",items:[
@@ -183,7 +218,7 @@ function Toast({msg,type,onClose}){
       backdropFilter:"blur(20px)",boxShadow:"0 8px 32px rgba(0,0,0,0.5)",
       display:"flex",alignItems:"center",gap:8,fontFamily:"'Inter',sans-serif",
       animation:"slideIn 0.3s ease"}}>
-      {type==="success"?"✓":type==="error"?"✕":"ℹ"} {msg}
+      {type==="success"?"âœ“":type==="error"?"âœ•":"â„¹"} {msg}
     </div>
   );
 }
@@ -226,7 +261,7 @@ function Dashboard({setPage,isDark,seafarers,companies}){
                 background:isDark?"rgba(52,211,153,0.12)":"rgba(22,163,74,0.1)",
                 borderRadius:999,padding:"5px 13px",marginBottom:14}}>
                 <span style={{width:6,height:6,borderRadius:"50%",background:T.green,display:"inline-block",animation:"pulseDot 2s infinite"}}/>
-                <span style={{fontSize:11,color:T.green,fontWeight:600,letterSpacing:"0.04em",textTransform:"uppercase"}}>Live — All Systems Operational</span>
+                <span style={{fontSize:11,color:T.green,fontWeight:600,letterSpacing:"0.04em",textTransform:"uppercase"}}>Live â€” All Systems Operational</span>
               </div>
               <h1 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":T.t1,fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:8}}>OceanCrew Admin Center</h1>
               <p style={{fontSize:14,color:isDark?"rgba(255,255,255,0.55)":T.t2}}>{new Date().toLocaleDateString("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric"})}</p>
@@ -280,7 +315,7 @@ function Dashboard({setPage,isDark,seafarers,companies}){
             </div>
           ))}
           <button onClick={()=>setPage("notifications")} style={{width:"100%",marginTop:12,padding:"9px",borderRadius:10,border:"none",background:T.yellowBg,color:T.yellow,fontSize:12,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>
-            Send Expiry Alerts →
+            Send Expiry Alerts â†’
           </button>
         </Card>
 
@@ -363,7 +398,7 @@ function VerifyPage({isDark,seafarers,setSeafarers,companies,setCompanies,showTo
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:5}}>
                   <span style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{item.name}</span>
-                  {item.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 8px",borderRadius:999}}>✓ VERIFIED</span>}
+                  {item.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 8px",borderRadius:999}}>âœ“ VERIFIED</span>}
                 </div>
                 <div style={{display:"flex",gap:7}}>
                   <Bdg label={item.rank||item.plan} color={T.t2} bg={isDark?"rgba(255,255,255,0.06)":"rgba(100,116,139,0.08)"}/>
@@ -432,7 +467,7 @@ function BlacklistPage({isDark,seafarers,setSeafarers,companies,setCompanies,sho
                   <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{item.name}</span>
                   {item.blacklisted&&<Bdg label="BLACKLISTED" color={T.red} bg={T.redBg}/>}
                 </div>
-                <div style={{fontSize:11,color:T.t3}}>{item.rank||item.plan} · {item.country}</div>
+                <div style={{fontSize:11,color:T.t3}}>{item.rank||item.plan} Â· {item.country}</div>
               </div>
               {!item.blacklisted&&(
                 <input value={reason[item.id]||""} onChange={e=>setReason(p=>({...p,[item.id]:e.target.value}))}
@@ -453,12 +488,7 @@ function BlacklistPage({isDark,seafarers,setSeafarers,companies,setCompanies,sho
 
 function ApprovalsPage({isDark,showToast}){
   const T=useT(isDark);
-  const [pending,setPending]=useState([]);
-  useEffect(()=>{
-    fetch(`${API}/api/admin/users`, {headers:authHeader()}).then(r=>r.json()).then(d=>{
-      if(Array.isArray(d)) setPending(d.filter(u=>!u.approved).map(u=>({id:u._id, name:u.companyName||u.name, type:u.role==="company"?"Company":"Seafarer", country:"Global", submitted:new Date(u.createdAt).toLocaleDateString(), contact:u.email, docs:1, logo:(u.companyName||u.name).slice(0,2).toUpperCase()})));
-    });
-  }, []);
+  const [pending,setPending]=useState(PENDING);
   const act=(id,action)=>{
     const item=pending.find(p=>p.id===id);
     setPending(p=>p.filter(x=>x.id!==id));
@@ -520,7 +550,7 @@ function PipelinePage({isDark,showToast}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Hiring Pipeline</h2>
-        <p style={{fontSize:14,color:T.t3}}>Manage seafarer applications — shortlist, interview, send offers</p>
+        <p style={{fontSize:14,color:T.t3}}>Manage seafarer applications â€” shortlist, interview, send offers</p>
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:12,marginBottom:20}}>
         {stages.map(stage=>{
@@ -555,7 +585,7 @@ function PipelinePage({isDark,showToast}){
                         <Icon name="send" size={10} color="currentColor" strokeWidth={2}/>Notify
                       </button>
                       {stages.indexOf(item.stage)<stages.length-1&&(
-                        <button onClick={()=>move(item.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>→</button>
+                        <button onClick={()=>move(item.id,1)} style={{flex:1,padding:"5px 0",borderRadius:7,border:"none",background:`${col}18`,color:col,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>â†’</button>
                       )}
                     </div>
                   </Card>
@@ -575,7 +605,7 @@ function PipelinePage({isDark,showToast}){
               <div key={item.id} style={{display:"flex",alignItems:"center",gap:14,padding:"12px 16px",background:isDark?"rgba(255,255,255,0.02)":"rgba(100,116,139,0.04)",borderRadius:12}}>
                 <Av initials={item.avatar} size={36} isDark={isDark}/>
                 <div style={{flex:1}}>
-                  <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{item.name} <span style={{color:T.t3,fontWeight:400}}>· {item.rank}</span></div>
+                  <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{item.name} <span style={{color:T.t3,fontWeight:400}}>Â· {item.rank}</span></div>
                   <div style={{fontSize:11,color:T.t3}}>{item.job}</div>
                 </div>
                 <div style={{width:80}}>
@@ -638,7 +668,7 @@ function CompaniesPage({isDark,companies}){
             <span style={{fontSize:14,fontWeight:700,color:T.green,fontFamily:"'JetBrains Mono',monospace"}}>${co.revenue}</span>
             <Bdg label={co.status} color={co.status==="Active"?T.green:T.red} bg={co.status==="Active"?T.greenBg:T.redBg}/>
             {co.verified
-              ?<Bdg label="✓ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
+              ?<Bdg label="âœ“ Verified" color="#38BDF8" bg="rgba(56,189,248,0.1)"/>
               :<Bdg label="Unverified" color={T.t3} bg={isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}/>}
           </div>
         ))}
@@ -656,7 +686,7 @@ function SeafarersPage({isDark,seafarers}){
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>All Seafarers</h2>
-        <p style={{fontSize:14,color:T.t3}}>{seafarers.length} registered · {seafarers.filter(s=>s.sub==="Pro").length} Pro · {seafarers.filter(s=>s.verified).length} Verified</p>
+        <p style={{fontSize:14,color:T.t3}}>{seafarers.length} registered Â· {seafarers.filter(s=>s.sub==="Pro").length} Pro Â· {seafarers.filter(s=>s.verified).length} Verified</p>
       </div>
       <div style={{display:"flex",gap:10,marginBottom:16,flexWrap:"wrap"}}>
         <Card isDark={isDark} style={{flex:1,padding:12}}>
@@ -678,9 +708,9 @@ function SeafarersPage({isDark,seafarers}){
               <div style={{flex:1}}>
                 <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}>
                   <span style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>{s.name}</span>
-                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>✓</span>}
+                  {s.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:8,fontWeight:800,padding:"2px 6px",borderRadius:999}}>âœ“</span>}
                 </div>
-                <div style={{fontSize:11,color:T.t3}}>{s.rank} · {s.country}</div>
+                <div style={{fontSize:11,color:T.t3}}>{s.rank} Â· {s.country}</div>
               </div>
               <div style={{display:"flex",flexDirection:"column",gap:4,alignItems:"flex-end"}}>
                 <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)"}/>
@@ -832,30 +862,14 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
     contract_expiry:"Your contract is expiring soon. Log in to OceanCrew to browse new opportunities.",
     new_jobs:"New job postings matching your profile are now live. Browse and apply today!",
     verify_prompt:"Complete your profile verification to get the Verified Badge and boost visibility by 3x.",
-    upgrade_prompt:"Upgrade to OceanCrew Pro for just $4/month — apply to unlimited jobs.",
+    upgrade_prompt:"Upgrade to OceanCrew Pro for just $4/month â€” apply to unlimited jobs.",
     payment_reminder:"Your OceanCrew subscription invoice is due. Please complete payment to maintain access.",
     custom:custom,
   };
-  const send = async () => {
+  const send=()=>{
     if(msgType==="custom"&&!custom.trim()){showToast("Write a message first","error");return;}
-    const msg = msgType==="custom" ? custom : templates[msgType];
-    
-    try {
-      const res = await fetch(`${API}/api/notifications/blast`, {
-        method: "POST",
-        headers: authHeader(),
-        body: JSON.stringify({ target, msg, type: msgType })
-      });
-      if(res.ok) {
-        setSent(p=>[{id:p.length+1,target:tLabels[target],type:msgType,time:"Just now"},...p]);
-        showToast(`Notification sent to ${tLabels[target]}`,"success");
-      } else {
-        const d = await res.json();
-        showToast(d.message || "Failed to send notification","error");
-      }
-    } catch(err) {
-      showToast("Network error","error");
-    }
+    setSent(p=>[{id:p.length+1,target:tLabels[target],type:msgType,time:"Just now"},...p]);
+    showToast(`Notification sent to ${tLabels[target]}`,"success");
   };
   return(
     <div>
@@ -904,7 +918,7 @@ function NotificationsPage({isDark,seafarers,companies,showToast}){
           ):sent.map(s=>(
             <div key={s.id} style={{padding:"11px 0",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`}}>
               <div style={{fontSize:13,fontWeight:600,color:T.t1,marginBottom:3}}>{s.target}</div>
-              <div style={{fontSize:11,color:T.t3}}>{s.type.replace(/_/g," ")} · {s.time}</div>
+              <div style={{fontSize:11,color:T.t3}}>{s.type.replace(/_/g," ")} Â· {s.time}</div>
             </div>
           ))}
           <div style={{marginTop:20}}>
@@ -998,7 +1012,7 @@ function SettingsPage({isDark}){
         {[
           {title:"Platform",icon:"settings",items:[
             {label:"Platform Name",val:"OceanCrew",type:"text"},
-            {label:"Support Email",val:"support@oceancrew.i",type:"text"},
+            {label:"Support Email",val:"support@oceancrew.io",type:"text"},
             {label:"Seafarer Pro Price",val:"$4/month",type:"text"},
             {label:"Maintenance Mode",val:false,type:"toggle"},
           ]},
@@ -1156,7 +1170,7 @@ function CVManagerPage({isDark,showToast}){
                 <Av initials={req.avatar} size={42} isDark={isDark}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:3}}>{req.name}</div>
-                  <div style={{fontSize:11,color:T.t3,marginBottom:6}}>{req.rank} · {req.date}{req.fileName?` · ${req.fileName}`:""}</div>
+                  <div style={{fontSize:11,color:T.t3,marginBottom:6}}>{req.rank} Â· {req.date}{req.fileName?` Â· ${req.fileName}`:""}</div>
                   <div style={{display:"flex",gap:6}}>
                     <Bdg label={`$${req.amount} Paid`} color={T.green} bg={T.greenBg}/>
                     <Bdg label={req.status} color={statusColor[req.status]} bg={statusBg[req.status]}/>
@@ -1235,9 +1249,9 @@ function CVManagerPage({isDark,showToast}){
                           <div key={i} style={{display:"flex",justifyContent:"space-between",marginBottom:10,padding:"10px 14px",background:"#f8f9fa",borderRadius:8,borderLeft:"3px solid #C9A96E"}}>
                             <div>
                               <div style={{fontSize:13,fontWeight:600,color:"#1a2332",fontFamily:"'Inter',sans-serif"}}>{v.name}</div>
-                              <div style={{fontSize:11,color:"#64748b",fontFamily:"'Inter',sans-serif"}}>{v.type} · Flag: {v.flag}</div>
+                              <div style={{fontSize:11,color:"#64748b",fontFamily:"'Inter',sans-serif"}}>{v.type} Â· Flag: {v.flag}</div>
                             </div>
-                            <div style={{fontSize:11,color:"#64748b",fontFamily:"'JetBrains Mono',monospace",textAlign:"right"}}>{v.from} ”“ {v.to||"Present"}</div>
+                            <div style={{fontSize:11,color:"#64748b",fontFamily:"'JetBrains Mono',monospace",textAlign:"right"}}>{v.from} â€“ {v.to||"Present"}</div>
                           </div>
                         ))}
                       </div>
@@ -1245,7 +1259,7 @@ function CVManagerPage({isDark,showToast}){
                         <div style={{fontSize:10,fontWeight:700,color:"#0A1628",letterSpacing:2,textTransform:"uppercase",marginBottom:10,fontFamily:"'Inter',sans-serif",borderBottom:"2px solid #C9A96E",paddingBottom:4}}>Certificates</div>
                         <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
                           {editData.certs.map((c,i)=>(
-                            <span key={i} style={{padding:"4px 12px",borderRadius:999,background:"rgba(10,22,40,0.07)",color:"#1a2332",fontSize:11,fontWeight:600,fontFamily:"'Inter',sans-serif"}}>✓ {c}</span>
+                            <span key={i} style={{padding:"4px 12px",borderRadius:999,background:"rgba(10,22,40,0.07)",color:"#1a2332",fontSize:11,fontWeight:600,fontFamily:"'Inter',sans-serif"}}>âœ“ {c}</span>
                           ))}
                         </div>
                       </div>
@@ -1341,7 +1355,7 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
     <div>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>User Management</h2>
-        <p style={{fontSize:14,color:T.t3}}>Full control — edit profiles, reset passwords, change plans, force logout</p>
+        <p style={{fontSize:14,color:T.t3}}>Full control â€” edit profiles, reset passwords, change plans, force logout</p>
       </div>
       <div style={{display:"flex",gap:8,marginBottom:20}}>
         <Pill active={tab==="seafarers"} isDark={isDark} onClick={()=>{setTab("seafarers");setSelected(null);}}>Seafarers ({seafarers.length})</Pill>
@@ -1409,7 +1423,7 @@ function UserManagementPage({isDark,seafarers,setSeafarers,companies,setCompanie
 
               <div>
                 <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:5}}>
-                  {tab==="seafarers"?"Subscription":"Plan"} — Force Change
+                  {tab==="seafarers"?"Subscription":"Plan"} â€” Force Change
                 </div>
                 <div style={{display:"flex",gap:6}}>
                   {(tab==="seafarers"?["Free","Pro"]:["Starter","Professional","Enterprise"]).map(plan=>(
@@ -1446,7 +1460,7 @@ function PlatformControlPage({isDark,showToast}){
   const T=useT(isDark);
   const [announcement,setAnnouncement]=useState("");
   const [announcements,setAnnouncements]=useState([
-    {id:1,msg:"Platform maintenance scheduled for June 1st, 2:00”“4:00 AM UTC.",date:"May 20",active:true},
+    {id:1,msg:"Platform maintenance scheduled for June 1st, 2:00â€“4:00 AM UTC.",date:"May 20",active:true},
     {id:2,msg:"New feature launched: Hiring Pipeline now available for all companies.",date:"May 15",active:false},
   ]);
   const [featured,setFeatured]=useState([
@@ -1454,12 +1468,12 @@ function PlatformControlPage({isDark,showToast}){
     {id:2,name:"Capt. Rajesh Fernando",type:"Seafarer",until:"Jun 15",logo:"RF"},
   ]);
   const [auditLog]=useState([
-    {id:1,admin:"Super Admin",action:"Granted verified badge",target:"Pacific Star Shipping",time:"May 22 · 10:42",ip:"192.168.1.1"},
-    {id:2,admin:"Super Admin",action:"Generated invoice INV-004",target:"Royal Caribbean Crew",time:"May 21 · 15:30",ip:"192.168.1.1"},
-    {id:3,admin:"Super Admin",action:"Blacklisted user",target:"Chen Wei Long",time:"May 20 · 09:15",ip:"192.168.1.1"},
-    {id:4,admin:"Super Admin",action:"Force plan change to Pro",target:"Shanaka Perera",time:"May 19 · 14:22",ip:"192.168.1.1"},
-    {id:5,admin:"Super Admin",action:"Sent notification blast",target:"All Seafarers (12847)",time:"May 18 · 11:05",ip:"192.168.1.1"},
-    {id:6,admin:"Super Admin",action:"Approved company",target:"Neptune Shipping Ltd.",time:"May 17 · 16:48",ip:"192.168.1.1"},
+    {id:1,admin:"Super Admin",action:"Granted verified badge",target:"Pacific Star Shipping",time:"May 22 Â· 10:42",ip:"192.168.1.1"},
+    {id:2,admin:"Super Admin",action:"Generated invoice INV-004",target:"Royal Caribbean Crew",time:"May 21 Â· 15:30",ip:"192.168.1.1"},
+    {id:3,admin:"Super Admin",action:"Blacklisted user",target:"Chen Wei Long",time:"May 20 Â· 09:15",ip:"192.168.1.1"},
+    {id:4,admin:"Super Admin",action:"Force plan change to Pro",target:"Shanaka Perera",time:"May 19 Â· 14:22",ip:"192.168.1.1"},
+    {id:5,admin:"Super Admin",action:"Sent notification blast",target:"All Seafarers (12847)",time:"May 18 Â· 11:05",ip:"192.168.1.1"},
+    {id:6,admin:"Super Admin",action:"Approved company",target:"Neptune Shipping Ltd.",time:"May 17 Â· 16:48",ip:"192.168.1.1"},
   ]);
 
   const postAnnouncement=()=>{
@@ -1500,7 +1514,7 @@ function PlatformControlPage({isDark,showToast}){
               </div>
               <div style={{fontSize:10,color:T.t3,marginTop:6,display:"flex",alignItems:"center",gap:6}}>
                 <span style={{width:6,height:6,borderRadius:"50%",background:a.active?T.green:T.t3,display:"inline-block"}}/>
-                {a.active?"Active":"Inactive"} · {a.date}
+                {a.active?"Active":"Inactive"} Â· {a.date}
               </div>
             </div>
           ))}
@@ -1515,7 +1529,7 @@ function PlatformControlPage({isDark,showToast}){
               <Av initials={f.logo} size={36} isDark={isDark}/>
               <div style={{flex:1}}>
                 <div style={{fontSize:13,fontWeight:600,color:T.t1}}>{f.name}</div>
-                <div style={{fontSize:11,color:T.t3}}>{f.type} · Featured until {f.until}</div>
+                <div style={{fontSize:11,color:T.t3}}>{f.type} Â· Featured until {f.until}</div>
               </div>
               <Bdg label="Featured" color={T.yellow} bg={T.yellowBg}/>
               <button onClick={()=>{setFeatured(p=>p.filter(x=>x.id!==f.id));showToast("Removed from featured","info");}} style={{padding:"5px 10px",borderRadius:7,border:"none",background:T.redBg,color:T.red,fontSize:10,fontWeight:600,cursor:"pointer",fontFamily:"'Inter',sans-serif"}}>Remove</button>
@@ -1687,15 +1701,7 @@ export default function AdminPanel(){
             ))}
           </nav>
           <div style={{padding:"10px 8px",borderTop:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`}}>
-            <button onClick={()=>{localStorage.clear();window.location.href="/auth";}} title={!sidebar?"Log Out":""}
-              style={{width:"100%",padding:"8px 12px",borderRadius:9,border:"none",background:isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)",color:"#EF4444",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar?"flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s",marginBottom:6}}
-              onMouseEnter={e=>{e.currentTarget.style.background="rgba(239,68,68,0.18)";}}
-              onMouseLeave={e=>{e.currentTarget.style.background=isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.07)";}}>
-              <Icon name="logOut" size={14} color="#EF4444" strokeWidth={2.2}/>
-              {sidebar&&"Log Out"}
-            </button>
-            <button onClick={()=>setSidebar(s=>!s)} title={!sidebar?"Collapse":""}
-              style={{width:"100%",padding:"8px 12px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,background:"transparent",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:sidebar?"flex-start":"center",gap:8,fontSize:12,fontWeight:600,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
+            <button onClick={()=>setSidebar(s=>!s)} style={{width:"100%",padding:"8px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(0,0,0,0.06)"}`,background:"transparent",color:T.t3,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:6,fontSize:11,fontWeight:500,fontFamily:"'Inter',sans-serif",transition:"all .12s"}}
               onMouseEnter={e=>{e.currentTarget.style.background=isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)";e.currentTarget.style.color=T.t1;}}
               onMouseLeave={e=>{e.currentTarget.style.background="transparent";e.currentTarget.style.color=T.t3;}}>
               <Icon name={sidebar?"chevronLeft":"chevronRight"} size={13} strokeWidth={2.2}/>

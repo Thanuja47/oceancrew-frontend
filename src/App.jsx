@@ -3,7 +3,6 @@ import AuthFlow from "./AuthFlow";
 import AdminPanel from "./AdminPanel";
 import CompanyDashboard from "./CompanyDashboard";
 import SeafarerDashboard from "./SeafarerDashboard";
-import LandingPage from "./LandingPage";
 
 // Make sure to import your CSS
 import "./mobile.css";
@@ -13,8 +12,8 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Landing Page */}
-        <Route path="/" element={<LandingPage />} />
+        {/* Redirect root to login */}
+        <Route path="/" element={<Navigate to="/auth" replace />} />
         
         {/* Authentication Routes (Login, Register, Forgot Password) */}
         <Route path="/auth" element={<AuthFlow />} />

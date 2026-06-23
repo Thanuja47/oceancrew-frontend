@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logger from "./utils/logger";
 
 const Icon = ({ name, size=18, color="currentColor", strokeWidth=1.8 }) => {
   const icons = {
@@ -96,7 +97,7 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
 function AuthLayout({ children, isDark, rightContent }) {
   return (
     <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr",position:"relative"}}>
-      {/* Logo — pinned to absolute top-left of the whole page */}
+      {/* Logo â€” pinned to absolute top-left of the whole page */}
       <div style={{position:"fixed",top:20,left:24,zIndex:1000,display:"flex",alignItems:"center",gap:10}}>
         <div style={{width:40,height:40,borderRadius:11,
           background:isDark?"linear-gradient(135deg,#0284C7,#38BDF8)":"#1a2332",
@@ -106,7 +107,7 @@ function AuthLayout({ children, isDark, rightContent }) {
         </div>
         <div>
           <div style={{fontWeight:800,fontSize:20,color:isDark?"#F1F5F9":"#1a2332",fontFamily:"'Sora',sans-serif",lineHeight:1}}>OceanCrew</div>
-          
+          <div style={{fontSize:9,color:isDark?"#38BDF8":"#94A3B8",letterSpacing:"0.12em",textTransform:"uppercase",fontWeight:600,marginTop:2}}>Maritime Platform</div>
         </div>
       </div>
 
@@ -121,13 +122,13 @@ function AuthLayout({ children, isDark, rightContent }) {
 
       {/* Right */}
       <div style={{
-        background:"linear-gradient(160deg,#0C1A2E,#0A2440,#072040)",
+        background:isDark?"linear-gradient(160deg,#0C1A2E,#0A2440,#072040)":"linear-gradient(160deg,#F8FAFC,#EFF6FF,#E0F2FE)",
         display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
         padding:"60px 48px",position:"relative",overflow:"hidden",
       }}>
-        <div style={{position:"absolute",top:"-10%",right:"-10%",width:400,height:400,borderRadius:"50%",background:"rgba(56,189,248,0.05)",filter:"blur(60px)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",bottom:"-10%",left:"-5%",width:300,height:300,borderRadius:"50%",background:"rgba(167,139,250,0.06)",filter:"blur(50px)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(circle,rgba(56,189,248,0.08) 1px,transparent 1px)",backgroundSize:"40px 40px",pointerEvents:"none",opacity:0.5}}/>
+        <div style={{position:"absolute",top:"-10%",right:"-10%",width:400,height:400,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.05)":"rgba(56,189,248,0.15)",filter:"blur(60px)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",bottom:"-10%",left:"-5%",width:300,height:300,borderRadius:"50%",background:isDark?"rgba(167,139,250,0.06)":"rgba(167,139,250,0.15)",filter:"blur(50px)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",inset:0,backgroundImage:isDark?"radial-gradient(circle,rgba(56,189,248,0.08) 1px,transparent 1px)":"radial-gradient(circle,rgba(56,189,248,0.2) 1px,transparent 1px)",backgroundSize:"40px 40px",pointerEvents:"none",opacity:0.5}}/>
         <div style={{position:"relative",zIndex:1,textAlign:"center",width:"100%"}}>
           {rightContent}
         </div>
@@ -188,6 +189,7 @@ function LoginPage({ isDark, onNavigate }) {
       }
     } catch (err) {
       setLoading(false);
+      logger.error("Login attempt failed", err);
       setErrors({ email: "Server is restarting. Please wait 30 seconds and try again." });
     }
   };
@@ -195,17 +197,17 @@ function LoginPage({ isDark, onNavigate }) {
   const rightContent = (
     <div>
       <div style={{marginBottom:24}}><Icon name="anchor" size={56} color="#38BDF8" strokeWidth={1.5} /></div>
-      <h2 style={{fontSize:30,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
+      <h2 style={{fontSize:30,fontWeight:700,color:isDark?"#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:14,lineHeight:1.2}}>
         Welcome back to<br/><span style={{color:"#38BDF8"}}>OceanCrew</span>
       </h2>
-      <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,marginBottom:36,maxWidth:300,margin:"0 auto 36px"}}>
+      <p style={{fontSize:13,color:isDark?"rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,marginBottom:36,maxWidth:300,margin:"0 auto 36px"}}>
         The world's most trusted maritime recruitment platform.
       </p>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:14,maxWidth:340,margin:"0 auto"}}>
         {[{val:"12,847",label:"Seafarers"},{val:"863",label:"Companies"},{val:"98%",label:"Success"}].map((s,i)=>(
-          <div key={i} style={{padding:"16px 10px",borderRadius:14,background:"rgba(255,255,255,0.06)",border:"1px solid rgba(255,255,255,0.08)"}}>
+          <div key={i} style={{padding:"16px 10px",borderRadius:14,background:isDark?"rgba(255,255,255,0.06)":"#fff",border:isDark?"1px solid rgba(255,255,255,0.08)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark?"none":"0 4px 12px rgba(56,189,248,0.1)"}}>
             <div style={{fontSize:20,fontWeight:700,color:"#38BDF8",fontFamily:"'Sora',sans-serif",marginBottom:4}}>{s.val}</div>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",letterSpacing:1,textTransform:"uppercase"}}>{s.label}</div>
+            <div style={{fontSize:10,color:isDark?"rgba(255,255,255,0.5)":"#64748b",letterSpacing:1,textTransform:"uppercase"}}>{s.label}</div>
           </div>
         ))}
       </div>
@@ -219,7 +221,7 @@ function LoginPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,marginBottom:32}}>
           New to OceanCrew?{" "}
           <button onClick={()=>onNavigate("register")} style={{color:ac,background:"none",border:"none",cursor:"pointer",fontWeight:600,fontSize:14,fontFamily:"'Inter',sans-serif",padding:0}}>
-            Create an account 
+            Create an account â†’
           </button>
         </p>
 
@@ -252,7 +254,7 @@ function LoginPage({ isDark, onNavigate }) {
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Signing in...</>
           ) : success ? (
             <><Icon name="check" size={18} color="#fff" strokeWidth={2.5}/> Signed in!</>
-          ) : "Sign In "}
+          ) : "Sign In â†’"}
         </button>
 
         <div style={{display:"flex",alignItems:"center",gap:12,margin:"4px 0 20px"}}>
@@ -347,6 +349,7 @@ function RegisterPage({ isDark, onNavigate }) {
       }
     } catch (err) {
       setLoading(false);
+      logger.error("Registration failed", err);
       setErrors({ email: "Server is restarting. Please wait 30 seconds and try again." });
     }
   };
@@ -358,19 +361,19 @@ function RegisterPage({ isDark, onNavigate }) {
   const rightContent = (
     <div>
       <div style={{marginBottom:18}}><Icon name={type==="company"?"building":"anchor"} size={46} color="#38BDF8" strokeWidth={1.5} /></div>
-      <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
+      <h2 style={{fontSize:26,fontWeight:700,color:isDark?"#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12,lineHeight:1.2}}>
         {type==="company"?"Find the Right Crew":"Your Career Starts Here"}
       </h2>
-      <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
+      <p style={{fontSize:13,color:isDark?"rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
         {type==="company"?"Access verified seafarers and hire confidently.":"Join thousands of seafarers finding better contracts."}
       </p>
       <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:280,margin:"0 auto"}}>
         {features.map((f,i)=>(
-          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",borderRadius:10,background:"rgba(255,255,255,0.05)",border:"1px solid rgba(255,255,255,0.07)"}}>
+          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.05)":"#fff",border:isDark?"1px solid rgba(255,255,255,0.07)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark?"none":"0 2px 8px rgba(56,189,248,0.08)"}}>
             <div style={{width:20,height:20,borderRadius:"50%",background:"rgba(52,211,153,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
               <Icon name="check" size={11} color="#34D399" strokeWidth={2.5}/>
             </div>
-            <span style={{fontSize:12,color:"rgba(255,255,255,0.7)",textAlign:"left"}}>{f}</span>
+            <span style={{fontSize:12,color:isDark?"rgba(255,255,255,0.7)":"#334155",textAlign:"left"}}>{f}</span>
           </div>
         ))}
       </div>
@@ -418,7 +421,7 @@ function RegisterPage({ isDark, onNavigate }) {
             color:!type?t3:"#fff",fontSize:14,fontWeight:700,cursor:!type?"not-allowed":"pointer",
             fontFamily:"'Inter',sans-serif",marginBottom:16,
             boxShadow:type?(isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"):"none"}}>
-          Continue 
+          Continue â†’
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Already have an account?{" "}
@@ -495,13 +498,13 @@ function RegisterPage({ isDark, onNavigate }) {
             display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1}}>
           {loading ? (
             <><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Creating account...</>
-          ) : "Create Account "}
+          ) : "Create Account â†’"}
         </button>
       </div>
     </AuthLayout>
   );
 
-  /* Step 3 — success */
+  /* Step 3 â€” success */
   return (
     <AuthLayout isDark={isDark} rightContent={
       <div>
@@ -521,14 +524,14 @@ function RegisterPage({ isDark, onNavigate }) {
         <p style={{fontSize:13,color:t3,lineHeight:1.7,marginBottom:32}}>
           {type==="company"
             ?"We'll verify your company and notify you at "+form.email+" within 24 hours."
-            :"Your account is live. Browse all jobs free — upgrade to Pro ($4/mo) to apply."}
+            :"Your account is live. Browse all jobs free â€” upgrade to Pro ($4/mo) to apply."}
         </p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",
             background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",
             color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",
             boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Go to Dashboard 
+          Go to Dashboard â†’
         </button>
       </div>
     </AuthLayout>
@@ -565,7 +568,8 @@ function ForgotPage({ isDark, onNavigate }) {
       const data = await res.json();
       if (res.ok) { setStep(2); }
       else { setError(data.message || "Failed to send OTP"); }
-    } catch {
+    } catch (err) {
+      logger.error("Forgot password OTP send error", err);
       setError("Network error. Please try again.");
     }
     setLoading(false);
@@ -585,7 +589,8 @@ function ForgotPage({ isDark, onNavigate }) {
       const data = await res.json();
       if (res.ok) { setStep(3); }
       else { setError(data.message || "Invalid or expired OTP"); }
-    } catch {
+    } catch (err) {
+      logger.error("Reset password error", err);
       setError("Network error. Please try again.");
     }
     setLoading(false);
@@ -594,22 +599,22 @@ function ForgotPage({ isDark, onNavigate }) {
   const rightContent = (
     <div>
       <div style={{marginBottom:20}}><Icon name="lock" size={52} color="#38BDF8" strokeWidth={1.5} /></div>
-      <h2 style={{fontSize:26,fontWeight:700,color:"#fff",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12}}>Secure Recovery</h2>
-      <p style={{fontSize:13,color:"rgba(255,255,255,0.5)",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
+      <h2 style={{fontSize:26,fontWeight:700,color:isDark?"#fff":"#0f172a",fontFamily:"'Sora',sans-serif",letterSpacing:"-0.03em",marginBottom:12}}>Secure Recovery</h2>
+      <p style={{fontSize:13,color:isDark?"rgba(255,255,255,0.5)":"#64748b",lineHeight:1.75,maxWidth:280,margin:"0 auto 28px"}}>
         {step === 1 ? "We'll send a one-time code to your registered email." : "Enter the 6-digit code we sent to your email."}
       </p>
       <div style={{display:"flex",flexDirection:"column",gap:10,maxWidth:260,margin:"0 auto"}}>
         {["OTP sent to your email","Expires in 15 minutes","One-time secure code","Contact support if needed"].map((f,i)=>(
-          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderRadius:10,background:"rgba(255,255,255,0.05)"}}>
+          <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"9px 14px",borderRadius:10,background:isDark?"rgba(255,255,255,0.05)":"#fff",border:isDark?"1px solid rgba(255,255,255,0.07)":"1px solid rgba(56,189,248,0.2)",boxShadow:isDark?"none":"0 2px 8px rgba(56,189,248,0.08)"}}>
             <Icon name="shield" size={13} color="#38BDF8" strokeWidth={2}/>
-            <span style={{fontSize:12,color:"rgba(255,255,255,0.65)",textAlign:"left"}}>{f}</span>
+            <span style={{fontSize:12,color:isDark?"rgba(255,255,255,0.65)":"#334155",textAlign:"left"}}>{f}</span>
           </div>
         ))}
       </div>
     </div>
   );
 
-  /* Step 3 — success */
+  /* Step 3 â€” success */
   if (step === 3) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div style={{textAlign:"center",padding:"20px 0"}}>
@@ -620,13 +625,13 @@ function ForgotPage({ isDark, onNavigate }) {
         <p style={{fontSize:14,color:t2,lineHeight:1.7,marginBottom:32}}>Your password has been updated. You can now sign in with your new password.</p>
         <button onClick={()=>onNavigate("login")}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)"}}>
-          Sign In Now 
+          Sign In Now â†’
         </button>
       </div>
     </AuthLayout>
   );
 
-  /* Step 2 — OTP + new password */
+  /* Step 2 â€” OTP + new password */
   if (step === 2) return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
@@ -653,7 +658,7 @@ function ForgotPage({ isDark, onNavigate }) {
         </div>
         <button onClick={handleResetPassword} disabled={loading}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:14}}>
-          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password "}
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Verifying...</>) : "Reset Password â†’"}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Didn't receive code?{" "}
@@ -663,7 +668,7 @@ function ForgotPage({ isDark, onNavigate }) {
     </AuthLayout>
   );
 
-  /* Step 1 — email */
+  /* Step 1 â€” email */
   return (
     <AuthLayout isDark={isDark} rightContent={rightContent}>
       <div>
@@ -683,7 +688,7 @@ function ForgotPage({ isDark, onNavigate }) {
         </div>
         <button onClick={handleSendOtp} disabled={loading}
           style={{width:"100%",padding:"14px",borderRadius:12,border:"none",background:isDark?"linear-gradient(135deg,#38BDF8,#0EA5E9)":"#1a2332",color:"#fff",fontSize:14,fontWeight:700,cursor:loading?"not-allowed":"pointer",fontFamily:"'Inter',sans-serif",boxShadow:isDark?"0 4px 20px rgba(56,189,248,0.3)":"0 4px 20px rgba(26,35,50,0.25)",display:"flex",alignItems:"center",justifyContent:"center",gap:10,opacity:loading?0.8:1,marginBottom:20}}>
-          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP "}
+          {loading ? (<><div style={{width:18,height:18,borderRadius:"50%",border:"2px solid rgba(255,255,255,0.3)",borderTop:"2px solid #fff",animation:"spin 0.7s linear infinite"}}/> Sending OTP...</>) : "Send OTP â†’"}
         </button>
         <p style={{textAlign:"center",fontSize:13,color:t3,fontFamily:"'Inter',sans-serif"}}>
           Remember it?{" "}
