@@ -68,7 +68,7 @@ function Counter({ target, suffix="" }) {
 
 const FEATURES = [
   { icon:"anchor",    color:"#0284C7", title:"Verified Profiles",       desc:"Complete digital profiles with CDC, STCW, sea service records — all verified by our team." },
-  { icon:"briefcase", color:"#0EA5E9", title:"Global Job Marketplace",  desc:"Thousands of verified vacancies from top shipping companies across 40+ countries." },
+  { icon:"briefcase", color:"#0EA5E9", title:"Global Job Marketplace",  desc:"Thousands of verified vacancies from top shipping companies across 40→ countries." },
   { icon:"sparkles",  color:"#7C3AED", title:"AI Job Matching",         desc:"Intelligent engine matches seafarers to roles based on rank, vessel type and certificates." },
   { icon:"shield",    color:"#0284C7", title:"Verified Companies",      desc:"Every company manually verified by our admin team. Zero fraud, zero fake listings." },
   { icon:"zap",       color:"#0EA5E9", title:"Instant Applications",    desc:"Apply to multiple positions in seconds with your digital profile." },
@@ -91,15 +91,15 @@ const STEPS = {
 };
 
 const TESTIMONIALS = [
-  { name:"Capt. Rajesh Fernando",  role:"Master Mariner · 18 Years",    avatar:"RF", color:"#0284C7", text:"OceanCrew changed how I find contracts. Within two weeks I had three verified offers. The document vault alone saves hours of paperwork." },
+  { name:"Capt. Rajesh Fernand✓,  role:"Master Mariner · 18 Years",    avatar:"RF", color:"#0284C7", text:"OceanCrew changed how I find contracts. Within two weeks I had three verified offers. The document vault alone saves hours of paperwork." },
   { name:"Shanaka Perera",          role:"Chief Engineer · Sri Lanka",   avatar:"SP", color:"#0EA5E9", text:"Finally a platform built for seafarers. The AI job matching found me roles I never would have discovered on my own." },
   { name:"David Chen",              role:"HR Director · Pacific Star",   avatar:"DC", color:"#7C3AED", text:"We reduced hiring time by 60%. The candidate filters are incredible — right seafarers for each vessel in minutes." },
 ];
 
 const PRICING = [
-  { name:"Starter",      price:"$49",  period:"/mo", popular:false, color:"#0EA5E9", features:["5 Job Posts","100 Candidate Views","Basic Filters","Email Support","Company Profile"] },
-  { name:"Professional", price:"$149", period:"/mo", popular:true,  color:"#0284C7", features:["25 Job Posts","Unlimited Views","AI Filters","Priority Support","Analytics","Featured Badges","Messaging"] },
-  { name:"Enterprise",   price:"$399", period:"/mo", popular:false, color:"#1E3A5F", features:["Unlimited Posts","Unlimited Everything","Account Manager","API Access","Custom Integrations","Analytics"] },
+  { name:"Starter",      price:"$49",  period:"/m✓, popular:false, color:"#0EA5E9", features:["5 Job Posts","100 Candidate Views","Basic Filters","Email Support","Company Profile"] },
+  { name:"Professional", price:"$149", period:"/m✓, popular:true,  color:"#0284C7", features:["25 Job Posts","Unlimited Views","AI Filters","Priority Support","Analytics","Featured Badges","Messaging"] },
+  { name:"Enterprise",   price:"$399", period:"/m✓, popular:false, color:"#1E3A5F", features:["Unlimited Posts","Unlimited Everything","Account Manager","API Access","Custom Integrations","Analytics"] },
 ];
 
 const FLOW = [
@@ -111,11 +111,11 @@ const FLOW = [
 ];
 
 const FAQS = [
-  { q:"Is OceanCrew free for seafarers?",      a:"Yes — 100% free for seafarers. Browse jobs, create profile, upload documents and apply to unlimited positions at no cost, forever." },
-  { q:"How are companies verified?",           a:"Every company submits registration documents and business licenses. Our admin team manually reviews and approves each one before they can post jobs." },
-  { q:"What documents can I upload?",          a:"CDC, STCW certificates, passport, medical certificates, CV and any maritime documents. We support PDF, JPG and PNG up to 10MB." },
-  { q:"How does AI job matching work?",        a:"Our engine analyzes your rank, vessel experience, certificates and salary expectations to surface the most relevant jobs automatically." },
-  { q:"How long does company verification take?", a:"Typically 24 hours on business days. You'll receive an email notification once approved and ready to post jobs." },
+  { q:"Is OceanCrew free for seafarers—,      a:"Yes — 100% free for seafarers. Browse jobs, create profile, upload documents and apply to unlimited positions at no cost, forever." },
+  { q:"How are companies verified—,           a:"Every company submits registration documents and business licenses. Our admin team manually reviews and approves each one before they can post jobs." },
+  { q:"What documents can I upload—,          a:"CDC, STCW certificates, passport, medical certificates, CV and any maritime documents. We support PDF, JPG and PNG up to 10MB." },
+  { q:"How does AI job matching work—,        a:"Our engine analyzes your rank, vessel experience, certificates and salary expectations to surface the most relevant jobs automatically." },
+  { q:"How long does company verification take—, a:"Typically 24 hours on business days. You'll receive an email notification once approved and ready to post jobs." },
 ];
 
 export default function LandingPage() {
@@ -141,7 +141,7 @@ export default function LandingPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; font-size: 16px; }
         body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; background: #fff; color: #0F172A; overflow-x: hidden; }
@@ -212,14 +212,14 @@ export default function LandingPage() {
       ══════════════════════════════════════ */}
       <nav style={{
         position:"fixed", top:0, left:0, right:0, zIndex:1000,
-        background: scrolled || mobileOpen ? "rgba(255,255,255,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled || mobileOpen ? "1px solid rgba(2,132,199,0.1)" : "none",
-        boxShadow: scrolled ? "0 2px 20px rgba(2,132,199,0.08)" : "none",
+        background: scrolled || mobileOpen ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.97)" : "transparent",
+        backdropFilter: scrolled ┈┈┈┈┈┈┈┈ "blur(20px)" : "none",
+        borderBottom: scrolled || mobileOpen ┈┈┈┈┈┈┈┈ "1px solid rgba(2,132,199,0.1)" : "none",
+        boxShadow: scrolled ┈┈┈┈┈┈┈┈ "0 2px 20px rgba(2,132,199,0.08)" : "none",
         transition: "all 0.3s ease",
       }}>
         {/* Top bar */}
-        <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 clamp(20px,5vw,40px)", height:68, display:"flex", alignItems:"center", justifyContent:"space-between", gap:16 }}>
+        <div style={{ maxWidth:1200, margin:"0 aut✓, padding:"0 clamp(20px,5vw,40px)", height:68, display:"flex", alignItems:"center", justifyContent:"space-between", gap:16 }}>
           {/* Logo */}
           <div style={{ display:"flex", alignItems:"center", gap:10, flexShrink:0 }}>
             <div style={{ width:40, height:40, borderRadius:11, background:"linear-gradient(135deg,#0284C7,#38BDF8)", display:"flex", alignItems:"center", justifyContent:"center", boxShadow:"0 4px 14px rgba(2,132,199,0.35)", flexShrink:0 }}>
@@ -241,7 +241,7 @@ export default function LandingPage() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CT· */}
           <div className="hide-mobile" style={{ display:"flex", gap:10, alignItems:"center", flexShrink:0 }}>
             <button style={{ padding:"9px 18px", borderRadius:9, border:"1.5px solid #0284C7", background:"transparent", color:"#0284C7", fontWeight:600, fontSize:13, cursor:"pointer", transition:"all 0.18s", whiteSpace:"nowrap" }}
               onMouseEnter={e=>{e.currentTarget.style.background="#0284C7";e.currentTarget.style.color="#fff";}}
@@ -255,7 +255,7 @@ export default function LandingPage() {
           {/* Mobile hamburger */}
           <button className="show-mobile" onClick={()=>setMobileOpen(o=>!o)}
             style={{ width:42, height:42, borderRadius:10, border:"1.5px solid rgba(2,132,199,0.25)", background:"rgba(2,132,199,0.06)", alignItems:"center", justifyContent:"center", cursor:"pointer", color:"#0284C7", flexShrink:0 }}>
-            <Icon name={mobileOpen?"x":"menu"} size={20} strokeWidth={2} />
+            <Icon name={mobileOpen—x":"menu"} size={20} strokeWidth={2} />
           </button>
         </div>
 
@@ -265,7 +265,7 @@ export default function LandingPage() {
             {NAV_LINKS.map((l,i)=>(
               <a key={l} href={`#${l.toLowerCase().replace(/ /g,"-")}`}
                 onClick={()=>setMobileOpen(false)}
-                style={{ display:"block", padding:"14px 0", color:"#0F172A", fontSize:16, fontWeight:500, borderBottom: i<NAV_LINKS.length-1?"1px solid rgba(2,132,199,0.08)":"none", transition:"color 0.15s" }}
+                style={{ display:"block", padding:"14px 0", color:"#0F172A", fontSize:16, fontWeight:500, borderBottom: i<NAV_LINKS.length-1—1px solid rgba(2,132,199,0.08)":"none", transition:"color 0.15s" }}
                 onMouseEnter={e=>e.currentTarget.style.color="#0284C7"}
                 onMouseLeave={e=>e.currentTarget.style.color="#0F172A"}
               >{l}</a>
@@ -344,7 +344,7 @@ export default function LandingPage() {
                   <div style={{ width:44, height:44, borderRadius:12, background:"linear-gradient(135deg,#0284C7,#38BDF8)", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:13, fontFamily:"'Sora',sans-serif" }}>PS</div>
                 </div>
                 <div style={{ display:"flex", flexWrap:"wrap", gap:6, marginBottom:16 }}>
-                  {["Container","12 Months","$4,200/mo","STCW"].map(t=>(
+                  {["Container","12 Months","$4,200/m✓,"STCW"].map(t=>(
                     <span key={t} style={{ padding:"4px 10px", borderRadius:999, background:"rgba(2,132,199,0.1)", border:"1px solid rgba(2,132,199,0.2)", color:"#0284C7", fontSize:11, fontWeight:500 }}>{t}</span>
                   ))}
                 </div>
@@ -352,12 +352,12 @@ export default function LandingPage() {
                   <Icon name="sparkles" size={15} color="#7C3AED" strokeWidth={2} />
                   <span style={{ fontSize:12, color:"#7C3AED", fontWeight:600 }}>94% AI Match Score — Strong fit</span>
                 </div>
-                <button onClick={()=>setAppliedDemo(a=>!a)} style={{ width:"100%", padding:"12px", borderRadius:10, border:"none", background:appliedDemo?"linear-gradient(135deg,#10B981,#34D399)":"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:600, fontSize:14, cursor:"pointer", boxShadow:"0 4px 14px rgba(2,132,199,0.35)", display:"flex", alignItems:"center", justifyContent:"center", gap:8, transition:"all 0.25s" }}>
-                  {appliedDemo ? <><Icon name="checkCircle" size={16} color="#fff" strokeWidth={2.2} />Applied!</> : <><Icon name="arrowRight" size={16} color="#fff" strokeWidth={2.2} />Apply Now — Free</>}
+                <button onClick={()=>setAppliedDemo(a=>!a)} style={{ width:"100%", padding:"12px", borderRadius:10, border:"none", background:appliedDemo—linear-gradient(135deg,#10B981,#34D399)":"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:600, fontSize:14, cursor:"pointer", boxShadow:"0 4px 14px rgba(2,132,199,0.35)", display:"flex", alignItems:"center", justifyContent:"center", gap:8, transition:"all 0.25s" }}>
+                  {appliedDemo ┈┈┈┈┈┈┈┈ <><Icon name="checkCircle" size={16} color="#fff" strokeWidth={2.2} />Applied!</> : <><Icon name="arrowRight" size={16} color="#fff" strokeWidth={2.2} />Apply Now — Free</>}
                 </button>
               </div>
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
-                {[{val:"12,000+",label:"Verified Seafarers",color:"#0284C7"},{val:"850+",label:"Shipping Companies",color:"#0EA5E9"}].map(s=>(
+                {[{val:"12,000→",label:"Verified Seafarers",color:"#0284C7"},{val:"850→",label:"Shipping Companies",color:"#0EA5E9"}].map(s=>(
                   <div key={s.label} style={{ background:"rgba(255,255,255,0.88)", backdropFilter:"blur(20px)", borderRadius:14, padding:"18px 20px", boxShadow:"0 6px 24px rgba(2,132,199,0.1)", border:"1px solid rgba(2,132,199,0.1)" }}>
                     <div style={{ fontSize:24, fontWeight:700, color:s.color, fontFamily:"'Sora',sans-serif", letterSpacing:"-0.04em" }}>{s.val}</div>
                     <div style={{ fontSize:12, color:"#64748B", marginTop:4, fontWeight:500 }}>{s.label}</div>
@@ -380,9 +380,9 @@ export default function LandingPage() {
           </div>
           <div className="grid-4">
             {[
-              {value:12000,suffix:"+",label:"Verified Seafarers",   icon:"anchor",    color:"#0284C7"},
-              {value:850,  suffix:"+",label:"Shipping Companies",   icon:"briefcase", color:"#0EA5E9"},
-              {value:3400, suffix:"+",label:"Jobs Posted",          icon:"briefcase", color:"#0284C7"},
+              {value:12000,suffix:"→",label:"Verified Seafarers",   icon:"anchor",    color:"#0284C7"},
+              {value:850,  suffix:"→",label:"Shipping Companies",   icon:"briefcase", color:"#0EA5E9"},
+              {value:3400, suffix:"→",label:"Jobs Posted",          icon:"briefcase", color:"#0284C7"},
               {value:98,   suffix:"%",label:"Placement Success",    icon:"award",     color:"#0EA5E9"},
             ].map((s,i)=>(
               <div key={i} className="card-hover" style={{ textAlign:"center", padding:"clamp(24px,3vw,36px) clamp(16px,2vw,24px)", background:"linear-gradient(145deg,#F0F9FF,#E0F2FE)", borderRadius:18, border:"1px solid #BAE6FD" }}>
@@ -406,7 +406,7 @@ export default function LandingPage() {
         <div className="container">
           <div style={{ textAlign:"center", marginBottom:"clamp(36px,5vw,56px)" }}>
             <h2 className="h2" style={{ color:"#0F172A", marginBottom:14 }}>Built for the Maritime Industry</h2>
-            <p className="body" style={{ maxWidth:520, margin:"0 auto" }}>Every feature designed for how seafarers and shipping companies actually work.</p>
+            <p className="body" style={{ maxWidth:520, margin:"0 aut✓ }}>Every feature designed for how seafarers and shipping companies actually work.</p>
           </div>
           <div className="grid-3">
             {FEATURES.map((f,i)=>(
@@ -435,7 +435,7 @@ export default function LandingPage() {
           <div style={{ display:"flex", justifyContent:"center", marginBottom:"clamp(28px,4vw,44px)" }}>
             <div style={{ background:"#F0F9FF", borderRadius:12, padding:5, display:"flex", gap:4 }}>
               {[{id:"seafarer",label:"⚓ For Seafarers"},{id:"company",label:"🏢 For Companies"}].map(t=>(
-                <button key={t.id} onClick={()=>setActiveTab(t.id)} style={{ padding:"clamp(8px,1.5vw,10px) clamp(14px,2.5vw,26px)", borderRadius:9, border:"none", cursor:"pointer", fontWeight:600, fontSize:"clamp(12px,1.5vw,14px)", background:activeTab===t.id?"linear-gradient(135deg,#0284C7,#0EA5E9)":"transparent", color:activeTab===t.id?"#fff":"#64748B", transition:"all 0.25s", boxShadow:activeTab===t.id?"0 4px 16px rgba(2,132,199,0.35)":"none", whiteSpace:"nowrap" }}>
+                <button key={t.id} onClick={()=>setActiveTab(t.id)} style={{ padding:"clamp(8px,1.5vw,10px) clamp(14px,2.5vw,26px)", borderRadius:9, border:"none", cursor:"pointer", fontWeight:600, fontSize:"clamp(12px,1.5vw,14px)", background:activeTab===t.id—linear-gradient(135deg,#0284C7,#0EA5E9)":"transparent", color:activeTab===t.id—#fff":"#64748B", transition:"all 0.25s", boxShadow:activeTab===t.id—0 4px 16px rgba(2,132,199,0.35)":"none", whiteSpace:"nowrap" }}>
                   {t.label}
                 </button>
               ))}
@@ -476,7 +476,7 @@ export default function LandingPage() {
                   <div style={{ color:s.color, fontWeight:600, fontSize:"clamp(10px,1.2vw,12px)" }}>{s.label}</div>
                 </div>
                 {i < FLOW.length-1 && (
-                  <div className="flow-arrow" style={{ width:"clamp(16px,3vw,28px)", height:2, background:`linear-gradient(90deg,${s.color}60,${FLOW[i+1].color}60)` }} />
+                  <div className="flow-arrow" style={{ width:"clamp(16px,3vw,28px)", height:2, background:`linear-gradient(90deg,${s.color}60,${FLOW[i→1].color}60)` }} />
                 )}
               </div>
             ))}
@@ -528,28 +528,28 @@ export default function LandingPage() {
             {PRICING.map((plan,i)=>(
               <div key={i} style={{
                 borderRadius:22, padding:"clamp(24px,3.5vw,32px)",
-                background:plan.popular?"linear-gradient(145deg,#0284C7,#0EA5E9)":plan.name==="Enterprise"?"linear-gradient(145deg,#0C1627,#0F2444)":"#F8FAFC",
-                border:plan.popular||plan.name==="Enterprise"?"none":"1.5px solid #E0F2FE",
-                boxShadow:plan.popular?"0 20px 50px rgba(2,132,199,0.35)":"0 4px 20px rgba(0,0,0,0.06)",
+                background:plan.popular—linear-gradient(145deg,#0284C7,#0EA5E9)":plan.name==="Enterprise"—linear-gradient(145deg,#0C1627,#0F2444)":"#F8FAFC",
+                border:plan.popular||plan.name==="Enterprise"—none":"1.5px solid #E0F2FE",
+                boxShadow:plan.popular—0 20px 50px rgba(2,132,199,0.35)":"0 4px 20px rgba(0,0,0,0.06)",
                 position:"relative", transition:"transform 0.25s",
               }} className="pricing-popular"
                 onMouseEnter={e=>!plan.popular&&(e.currentTarget.style.transform="translateY(-4px)")}
                 onMouseLeave={e=>!plan.popular&&(e.currentTarget.style.transform="none")}
               >
                 {plan.popular&&<div style={{ position:"absolute", top:-13, left:"50%", transform:"translateX(-50%)", background:"linear-gradient(135deg,#F97316,#FBBF24)", color:"#fff", borderRadius:999, padding:"5px 16px", fontSize:11, fontWeight:700, letterSpacing:"0.04em", textTransform:"uppercase", whiteSpace:"nowrap" }}>⭐ Most Popular</div>}
-                <div style={{ fontSize:12, fontWeight:600, color:plan.popular||plan.name==="Enterprise"?"rgba(255,255,255,0.6)":"#64748B", marginBottom:8, textTransform:"uppercase", letterSpacing:"0.06em" }}>{plan.name}</div>
-                <div style={{ fontSize:"clamp(36px,5vw,46px)", fontWeight:800, color:plan.popular||plan.name==="Enterprise"?"#fff":"#0F172A", letterSpacing:"-0.04em", lineHeight:1, fontFamily:"'Sora',sans-serif" }}>
-                  {plan.price}<span style={{ fontSize:16, fontWeight:400, color:plan.popular||plan.name==="Enterprise"?"rgba(255,255,255,0.5)":"#94A3B8" }}>{plan.period}</span>
+                <div style={{ fontSize:12, fontWeight:600, color:plan.popular||plan.name==="Enterprise"—rgba(255,255,255,0.6)":"#64748B", marginBottom:8, textTransform:"uppercase", letterSpacing:"0.06em" }}>{plan.name}</div>
+                <div style={{ fontSize:"clamp(36px,5vw,46px)", fontWeight:800, color:plan.popular||plan.name==="Enterprise"—#fff":"#0F172A", letterSpacing:"-0.04em", lineHeight:1, fontFamily:"'Sora',sans-serif" }}>
+                  {plan.price}<span style={{ fontSize:16, fontWeight:400, color:plan.popular||plan.name==="Enterprise"—rgba(255,255,255,0.5)":"#94A3B8" }}>{plan.period}</span>
                 </div>
                 <div style={{ margin:"clamp(16px,2.5vw,22px) 0", display:"flex", flexDirection:"column", gap:10 }}>
                   {plan.features.map(f=>(
                     <div key={f} style={{ display:"flex", alignItems:"center", gap:10 }}>
-                      <Icon name="check" size={14} color={plan.popular?"#6EE7B7":plan.name==="Enterprise"?"#38BDF8":"#0284C7"} strokeWidth={2.5} />
-                      <span style={{ fontSize:"clamp(12px,1.5vw,13px)", color:plan.popular||plan.name==="Enterprise"?"rgba(255,255,255,0.82)":"#475569" }}>{f}</span>
+                      <Icon name="check" size={14} color={plan.popular—#6EE7B7":plan.name==="Enterprise"—#38BDF8":"#0284C7"} strokeWidth={2.5} />
+                      <span style={{ fontSize:"clamp(12px,1.5vw,13px)", color:plan.popular||plan.name==="Enterprise"—rgba(255,255,255,0.82)":"#475569" }}>{f}</span>
                     </div>
                   ))}
                 </div>
-                <button style={{ width:"100%", padding:"clamp(11px,1.8vw,13px)", borderRadius:11, border:plan.popular||plan.name==="Enterprise"?"1px solid rgba(255,255,255,0.25)":"none", background:plan.popular||plan.name==="Enterprise"?"rgba(255,255,255,0.15)":"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:700, fontSize:"clamp(13px,1.6vw,14px)", cursor:"pointer", boxShadow:!plan.popular&&plan.name!=="Enterprise"?"0 4px 14px rgba(2,132,199,0.35)":"none" }}>
+                <button style={{ width:"100%", padding:"clamp(11px,1.8vw,13px)", borderRadius:11, border:plan.popular||plan.name==="Enterprise"—1px solid rgba(255,255,255,0.25)":"none", background:plan.popular||plan.name==="Enterprise"—rgba(255,255,255,0.15)":"linear-gradient(135deg,#0284C7,#0EA5E9)", color:"#fff", fontWeight:700, fontSize:"clamp(13px,1.6vw,14px)", cursor:"pointer", boxShadow:!plan.popular&&plan.name!=="Enterprise"—0 4px 14px rgba(2,132,199,0.35)":"none" }}>
                   Get Started →
                 </button>
               </div>
@@ -563,16 +563,16 @@ export default function LandingPage() {
       ══════════════════════════════════════ */}
       <section className="section" style={{ background:"#F8FAFC" }}>
         <div className="container">
-          <div style={{ maxWidth:720, margin:"0 auto" }}>
+          <div style={{ maxWidth:720, margin:"0 aut✓ }}>
             <div style={{ textAlign:"center", marginBottom:"clamp(30px,4vw,48px)" }}>
               <h2 className="h2" style={{ color:"#0F172A" }}>Frequently Asked Questions</h2>
             </div>
             <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
               {FAQS.map((faq,i)=>(
-                <div key={i} style={{ background:"#fff", borderRadius:14, border:activeFaq===i?"1.5px solid rgba(2,132,199,0.3)":"1px solid #E0F2FE", overflow:"hidden", transition:"all 0.22s", boxShadow:activeFaq===i?"0 6px 24px rgba(2,132,199,0.1)":"none" }}>
-                  <button onClick={()=>setActiveFaq(activeFaq===i?null:i)} style={{ width:"100%", padding:"clamp(14px,2vw,18px) clamp(16px,3vw,22px)", background:"none", border:"none", cursor:"pointer", display:"flex", justifyContent:"space-between", alignItems:"center", gap:16, textAlign:"left" }}>
+                <div key={i} style={{ background:"#fff", borderRadius:14, border:activeFaq===i—1.5px solid rgba(2,132,199,0.3)":"1px solid #E0F2FE", overflow:"hidden", transition:"all 0.22s", boxShadow:activeFaq===i—0 6px 24px rgba(2,132,199,0.1)":"none" }}>
+                  <button onClick={()=>setActiveFaq(activeFaq===i┈┈┈┈┈┈┈┈null:i)} style={{ width:"100%", padding:"clamp(14px,2vw,18px) clamp(16px,3vw,22px)", background:"none", border:"none", cursor:"pointer", display:"flex", justifyContent:"space-between", alignItems:"center", gap:16, textAlign:"left" }}>
                     <span style={{ fontSize:"clamp(13px,1.7vw,15px)", fontWeight:600, color:"#0F172A", lineHeight:1.4 }}>{faq.q}</span>
-                    <div style={{ flexShrink:0, transition:"transform 0.25s", transform:activeFaq===i?"rotate(180deg)":"none" }}>
+                    <div style={{ flexShrink:0, transition:"transform 0.25s", transform:activeFaq===i—rotate(180deg)":"none" }}>
                       <Icon name="chevronDown" size={18} color="#64748B" strokeWidth={2} />
                     </div>
                   </button>

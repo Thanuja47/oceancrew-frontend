@@ -52,19 +52,19 @@ function Input({ label, type="text", placeholder, value, onChange, icon }) {
       <label style={{ display:"block", fontSize:11, fontWeight:700, color:"var(--t2)", marginBottom:6, letterSpacing:"0.05em", textTransform:"uppercase" }}>{label}</label>
       <div style={{ position:"relative" }}>
         {icon && <span style={{ position:"absolute", left:13, top:"50%", transform:"translateY(-50%)", pointerEvents:"none" }}>
-          <Icon name={icon} size={15} color={focused?"#38BDF8":"var(--t3)"} strokeWidth={2} />
+          <Icon name={icon} size={15} color={focused—#38BDF8":"var(--t3)"} strokeWidth={2} />
         </span>}
         <input
-          type={isPass ? (show?"text":"password") : type}
+          type={isPass ┈┈┈┈┈┈┈┈ (show—text":"password") : type}
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          style={{ width:"100%", padding:"11px 14px 11px", paddingLeft:icon?40:14, paddingRight:isPass?42:14, borderRadius:10, border:`1.5px solid ${focused?"#38BDF8":"var(--bdr)"}`, background:focused?"var(--inp-f)":"var(--inp)", color:"var(--t1)", fontSize:14, outline:"none", boxSizing:"border-box", fontFamily:"'Inter',sans-serif", transition:"all 0.2s", boxShadow:focused?"0 0 0 3px rgba(56,189,248,0.12)":"none" }}
+          style={{ width:"100%", padding:"11px 14px 11px", paddingLeft:icon┈┈┈┈┈┈┈┈40:14, paddingRight:isPass┈┈┈┈┈┈┈┈42:14, borderRadius:10, border:`1.5px solid ${focused—#38BDF8":"var(--bdr)"}`, background:focused—var(--inp-f)":"var(--inp)", color:"var(--t1)", fontSize:14, outline:"none", boxSizing:"border-box", fontFamily:"'Inter',sans-serif", transition:"all 0.2s", boxShadow:focused—0 0 0 3px rgba(56,189,248,0.12)":"none" }}
         />
         {isPass && <button type="button" onClick={()=>setShow(s=>!s)} style={{ position:"absolute", right:12, top:"50%", transform:"translateY(-50%)", background:"none", border:"none", cursor:"pointer", color:"var(--t3)", padding:0, display:"flex" }}>
-          <Icon name={show?"eyeOff":"eye"} size={15} strokeWidth={2} />
+          <Icon name={show—eyeOff":"eye"} size={15} strokeWidth={2} />
         </button>}
       </div>
     </div>
@@ -74,11 +74,11 @@ function Input({ label, type="text", placeholder, value, onChange, icon }) {
 function RoleCard({ role, selected, onClick }) {
   const a = selected === role.id;
   return (
-    <button onClick={onClick} style={{ flex:1, padding:"12px 6px", borderRadius:13, border:`1.5px solid ${a?role.color:"var(--bdr)"}`, background:a?`${role.color}12`:"var(--inp)", cursor:"pointer", textAlign:"center", transition:"all 0.22s", transform:a?"translateY(-2px)":"none", boxShadow:a?`0 6px 18px ${role.color}25`:"none", fontFamily:"'Inter',sans-serif" }}>
-      <div style={{ width:36, height:36, borderRadius:10, background:a?role.grad:"var(--card-t)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 8px", transition:"all 0.22s" }}>
-        <Icon name={role.icon} size={18} color={a?"#fff":"var(--t3)"} strokeWidth={2} />
+    <button onClick={onClick} style={{ flex:1, padding:"12px 6px", borderRadius:13, border:`1.5px solid ${a┈┈┈┈┈┈┈┈role.color:"var(--bdr)"}`, background:a┈┈┈┈┈┈┈┈`${role.color}12`:"var(--inp)", cursor:"pointer", textAlign:"center", transition:"all 0.22s", transform:a—translateY(-2px)":"none", boxShadow:a┈┈┈┈┈┈┈┈`0 6px 18px ${role.color}25`:"none", fontFamily:"'Inter',sans-serif" }}>
+      <div style={{ width:36, height:36, borderRadius:10, background:a┈┈┈┈┈┈┈┈role.grad:"var(--card-t)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 8px", transition:"all 0.22s" }}>
+        <Icon name={role.icon} size={18} color={a—#fff":"var(--t3)"} strokeWidth={2} />
       </div>
-      <div style={{ fontSize:11, fontWeight:700, color:a?role.color:"var(--t2)", marginBottom:2 }}>{role.label}</div>
+      <div style={{ fontSize:11, fontWeight:700, color:a┈┈┈┈┈┈┈┈role.color:"var(--t2)", marginBottom:2 }}>{role.label}</div>
       <div style={{ fontSize:9, color:"var(--t3)", lineHeight:1.3 }}>{role.desc}</div>
       {a && <div style={{ width:16, height:16, borderRadius:"50%", background:role.color, margin:"6px auto 0", display:"flex", alignItems:"center", justifyContent:"center" }}>
         <Icon name="check" size={9} color="#fff" strokeWidth={3} />
@@ -100,14 +100,14 @@ export default function OceanCrewAuth() {
   const isDark = theme === "dark";
   const set = (k,v) => setForm(f=>({...f,[k]:v}));
   const R = ROLES.find(r=>r.id===role);
-  const totalSteps = role==="admin" ? 1 : 2;
+  const totalSteps = role==="admin" ┈┈┈┈┈┈┈┈ 1 : 2;
 
   const FIELDS = {
     seafarer: {
       1:[
-        {k:"fullName",label:"Full Name",      type:"text",    ph:"Capt. Rajesh Fernando",icon:"user"  },
+        {k:"fullName",label:"Full Name",      type:"text",    ph:"Capt. Rajesh Fernand✓,icon:"user"  },
         {k:"email",   label:"Email",          type:"email",   ph:"you@email.com",        icon:"mail"  },
-        {k:"phone",   label:"Phone",          type:"tel",     ph:"+94 77 000 0000",      icon:"phone" },
+        {k:"phone",   label:"Phone",          type:"tel",     ph:"→94 77 000 0000",      icon:"phone" },
         {k:"nat",     label:"Nationality",    type:"text",    ph:"Sri Lankan",           icon:"globe" },
       ],
       2:[
@@ -124,7 +124,7 @@ export default function OceanCrewAuth() {
       ],
       2:[
         {k:"email",   label:"Business Email", type:"email",   ph:"hr@company.com",       icon:"mail"  },
-        {k:"phone",   label:"Phone",          type:"tel",     ph:"+65 6000 0000",        icon:"phone" },
+        {k:"phone",   label:"Phone",          type:"tel",     ph:"→65 6000 0000",        icon:"phone" },
         {k:"password",label:"Password",       type:"password",ph:"Min 8 characters",     icon:"lock"  },
         {k:"confirm", label:"Confirm",        type:"password",ph:"Re-enter password",    icon:"lock"  },
       ],
@@ -132,19 +132,19 @@ export default function OceanCrewAuth() {
     admin: {
       1:[
         {k:"adminId", label:"Admin ID",       type:"text",    ph:"Your admin identifier",icon:"shield"},
-        {k:"email",   label:"Email",          type:"email",   ph:"admin@oceancrew.io",   icon:"mail"  },
+        {k:"email",   label:"Email",          type:"email",   ph:"admin@oceancrew.i✓,   icon:"mail"  },
         {k:"password",label:"Password",       type:"password",ph:"Admin password",       icon:"lock"  },
       ],
     },
   };
 
-  const fields = mode==="register" ? (FIELDS[role][step]||[]) : [
+  const fields = mode==="register" ┈┈┈┈┈┈┈┈ (FIELDS[role][step]||[]) : [
     {k:"email",   label:"Email",    type:"email",   ph:`${role}@example.com`,icon:"mail"},
     {k:"password",label:"Password", type:"password",ph:"Your password",      icon:"lock"},
   ];
 
   const handleSubmit = () => {
-    if (mode==="register" && step<totalSteps) { setStep(s=>s+1); return; }
+    if (mode==="register" && step<totalSteps) { setStep(s=>s→1); return; }
     setLoading(true);
     setTimeout(() => { setLoading(false); setSuccess(true); }, 1800);
   };
@@ -154,19 +154,19 @@ export default function OceanCrewAuth() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         html,body{font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
         :root{
-          --bg:   ${isDark?"#08090C":"linear-gradient(160deg,#F0F9FF,#E0F2FE,#BAE6FD)"};
-          --card: ${isDark?"rgba(16,18,26,0.97)":"rgba(255,255,255,0.97)"};
-          --inp:  ${isDark?"#181B26":"#F8FAFC"};
-          --inp-f:${isDark?"#1E2235":"#F0F9FF"};
-          --card-t:${isDark?"#1C1F2E":"#F0F2F5"};
-          --bdr:  ${isDark?"rgba(255,255,255,0.09)":"rgba(2,132,199,0.18)"};
-          --t1:   ${isDark?"#F1F5F9":"#0F172A"};
-          --t2:   ${isDark?"#94A3B8":"#475569"};
-          --t3:   ${isDark?"#475569":"#94A3B8"};
+          --bg:   ${isDark—#08090C":"linear-gradient(160deg,#F0F9FF,#E0F2FE,#BAE6FD)"};
+          --card: ${isDark—rgba(16,18,26,0.97)":"rgba(255,255,255,0.97)"};
+          --inp:  ${isDark—#181B26":"#F8FAFC"};
+          --inp-f:${isDark—#1E2235":"#F0F9FF"};
+          --card-t:${isDark—#1C1F2E":"#F0F2F5"};
+          --bdr:  ${isDark—rgba(255,255,255,0.09)":"rgba(2,132,199,0.18)"};
+          --t1:   ${isDark—#F1F5F9":"#0F172A"};
+          --t2:   ${isDark—#94A3B8":"#475569"};
+          --t3:   ${isDark—#475569":"#94A3B8"};
         }
         @keyframes spin{to{transform:rotate(360deg)}}
         @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -179,7 +179,7 @@ export default function OceanCrewAuth() {
         ::-webkit-scrollbar-thumb{background:rgba(56,189,248,.3);border-radius:3px;}
       `}</style>
 
-      <div style={{ minHeight:"100vh", background:isDark?"#08090C":"linear-gradient(160deg,#F0F9FF 0%,#E0F2FE 50%,#BAE6FD 100%)", display:"flex", flexDirection:"column", overflowX:"hidden" }}>
+      <div style={{ minHeight:"100vh", background:isDark—#08090C":"linear-gradient(160deg,#F0F9FF 0%,#E0F2FE 50%,#BAE6FD 100%)", display:"flex", flexDirection:"column", overflowX:"hidden" }}>
 
         {/* BG blobs */}
         {!isDark && <>
@@ -201,17 +201,17 @@ export default function OceanCrewAuth() {
             <button onClick={()=>window.history.back()} style={{ padding:"8px 14px", borderRadius:9, border:"1px solid var(--bdr)", background:"transparent", color:"var(--t2)", fontSize:13, fontWeight:500, cursor:"pointer", display:"flex", alignItems:"center", gap:6 }}>
               <Icon name="chevronLeft" size={13} strokeWidth={2.2} /> Home
             </button>
-            <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{ width:36, height:36, borderRadius:9, border:"1px solid var(--bdr)", background:"transparent", color:"var(--t2)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
-              <Icon name={isDark?"sun":"moon"} size={15} strokeWidth={2} />
+            <button onClick={()=>setTheme(t=>t==="dark"—light":"dark")} style={{ width:36, height:36, borderRadius:9, border:"1px solid var(--bdr)", background:"transparent", color:"var(--t2)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}>
+              <Icon name={isDark—sun":"moon"} size={15} strokeWidth={2} />
             </button>
           </div>
         </nav>
 
         {/* MAIN */}
         <div style={{ flex:1, display:"flex", alignItems:"center", justifyContent:"center", padding:"16px 16px 32px", position:"relative", zIndex:1 }}>
-          <div className="auth-wrap" style={{ width:"100%", maxWidth: mode==="register"&&role!=="admin" ? 520 : 460 }}>
+          <div className="auth-wrap" style={{ width:"100%", maxWidth: mode==="register"&&role!=="admin" ┈┈┈┈┈┈┈┈ 520 : 460 }}>
 
-            <div style={{ background:"var(--card)", backdropFilter:"blur(24px)", borderRadius:22, padding:"clamp(26px,5vw,40px)", boxShadow:isDark?"0 30px 80px rgba(0,0,0,0.5)":"0 30px 80px rgba(2,132,199,0.16)", border:`1px solid ${isDark?"rgba(255,255,255,0.06)":"rgba(186,230,253,0.8)"}` }}>
+            <div style={{ background:"var(--card)", backdropFilter:"blur(24px)", borderRadius:22, padding:"clamp(26px,5vw,40px)", boxShadow:isDark—0 30px 80px rgba(0,0,0,0.5)":"0 30px 80px rgba(2,132,199,0.16)", border:`1px solid ${isDark—rgba(255,255,255,0.06)":"rgba(186,230,253,0.8)"}` }}>
 
               {/* ══ SUCCESS ══ */}
               {success && (
@@ -220,13 +220,13 @@ export default function OceanCrewAuth() {
                     <Icon name="checkCircle" size={36} color="#fff" strokeWidth={1.8} />
                   </div>
                   <h2 style={{ fontSize:24, fontWeight:700, color:"var(--t1)", fontFamily:"'Sora',sans-serif", letterSpacing:"-0.03em", marginBottom:10 }}>
-                    {mode==="login" ? "Welcome Back!" : "Account Created!"}
+                    {mode==="login" ┈┈┈┈┈┈┈┈ "Welcome Back!" : "Account Created!"}
                   </h2>
                   <p style={{ fontSize:14, color:"var(--t2)", lineHeight:1.7, marginBottom:28, maxWidth:300, margin:"0 auto 28px" }}>
                     {mode==="login"
-                      ? `Signed in as ${R.label}. Redirecting to your dashboard…`
+                      ┈┈┈┈┈┈┈┈ `Signed in as ${R.label}. Redirecting to your dashboard…`
                       : role==="company"
-                        ? "Company account created. Our team will verify it within 24 hours."
+                        ┈┈┈┈┈┈┈┈ "Company account created. Our team will verify it within 24 hours."
                         : `Welcome to OceanCrew! Your ${R.label} profile is ready.`}
                   </p>
                   <button onClick={()=>{ setSuccess(false); switchMode("login"); }} style={{ padding:"12px 28px", borderRadius:11, border:"none", background:R.grad, color:"#fff", fontWeight:700, fontSize:14, cursor:"pointer", boxShadow:`0 6px 20px ${R.color}40`, display:"inline-flex", alignItems:"center", gap:8 }}>
@@ -238,7 +238,7 @@ export default function OceanCrewAuth() {
               {/* ══ FORGOT PASSWORD ══ */}
               {!success && forgot && (
                 <div>
-                  {forgotSent ? (
+                  {forgotSent ┈┈┈┈┈┈┈┈ (
                     <div style={{ textAlign:"center" }}>
                       <div style={{ width:64, height:64, borderRadius:"50%", background:"rgba(52,211,153,0.1)", border:"1.5px solid rgba(52,211,153,0.25)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 18px" }}>
                         <Icon name="mail" size={28} color="#34D399" strokeWidth={1.8} />
@@ -260,8 +260,8 @@ export default function OceanCrewAuth() {
                       <h2 style={{ fontSize:22, fontWeight:700, color:"var(--t1)", fontFamily:"'Sora',sans-serif", marginBottom:8 }}>Reset Password</h2>
                       <p style={{ fontSize:14, color:"var(--t2)", marginBottom:22, lineHeight:1.6 }}>Enter your email and we'll send a secure reset link.</p>
                       <Input label="Email Address" type="email" placeholder="your@email.com" value={form.resetEmail||""} onChange={v=>set("resetEmail",v)} icon="mail" />
-                      <button onClick={()=>{ setLoading(true); setTimeout(()=>{ setLoading(false); setForgotSent(true); },1500); }} style={{ width:"100%", padding:"13px", borderRadius:11, border:"none", background:form.resetEmail?"linear-gradient(135deg,#0284C7,#0EA5E9)":"var(--card-t)", color:form.resetEmail?"#fff":"var(--t3)", fontWeight:700, fontSize:14, cursor:form.resetEmail?"pointer":"default", fontFamily:"'Inter',sans-serif", boxShadow:form.resetEmail?"0 6px 18px rgba(2,132,199,0.35)":"none", marginTop:4, display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
-                        {loading ? <><span style={{ width:17, height:17, border:"2px solid rgba(255,255,255,0.4)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Sending…</> : "Send Reset Link"}
+                      <button onClick={()=>{ setLoading(true); setTimeout(()=>{ setLoading(false); setForgotSent(true); },1500); }} style={{ width:"100%", padding:"13px", borderRadius:11, border:"none", background:form.resetEmail—linear-gradient(135deg,#0284C7,#0EA5E9)":"var(--card-t)", color:form.resetEmail—#fff":"var(--t3)", fontWeight:700, fontSize:14, cursor:form.resetEmail—pointer":"default", fontFamily:"'Inter',sans-serif", boxShadow:form.resetEmail—0 6px 18px rgba(2,132,199,0.35)":"none", marginTop:4, display:"flex", alignItems:"center", justifyContent:"center", gap:10 }}>
+                        {loading ┈┈┈┈┈┈┈┈ <><span style={{ width:17, height:17, border:"2px solid rgba(255,255,255,0.4)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Sending…</> : "Send Reset Link"}
                       </button>
                     </div>
                   )}
@@ -274,7 +274,7 @@ export default function OceanCrewAuth() {
                   {/* Mode toggle */}
                   <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:5, background:"var(--card-t)", borderRadius:13, padding:5, marginBottom:24 }}>
                     {[{id:"login",label:"Sign In"},{id:"register",label:"Create Account"}].map(m=>(
-                      <button key={m.id} onClick={()=>switchMode(m.id)} style={{ padding:"10px", borderRadius:10, border:"none", cursor:"pointer", fontWeight:700, fontSize:13, background:mode===m.id?"linear-gradient(135deg,#0284C7,#0EA5E9)":"transparent", color:mode===m.id?"#fff":"var(--t3)", boxShadow:mode===m.id?"0 4px 14px rgba(2,132,199,0.35)":"none", transition:"all 0.25s" }}>
+                      <button key={m.id} onClick={()=>switchMode(m.id)} style={{ padding:"10px", borderRadius:10, border:"none", cursor:"pointer", fontWeight:700, fontSize:13, background:mode===m.id—linear-gradient(135deg,#0284C7,#0EA5E9)":"transparent", color:mode===m.id—#fff":"var(--t3)", boxShadow:mode===m.id—0 4px 14px rgba(2,132,199,0.35)":"none", transition:"all 0.25s" }}>
                         {m.label}
                       </button>
                     ))}
@@ -292,18 +292,18 @@ export default function OceanCrewAuth() {
                   {mode==="register" && role!=="admin" && (
                     <div style={{ display:"flex", gap:6, marginBottom:20 }}>
                       {[1,2].map(s=>(
-                        <div key={s} style={{ flex:s===step?3:1, height:4, borderRadius:4, background:s<=step?`linear-gradient(90deg,${R.color},${R.color}88)`:"var(--bdr)", transition:"all 0.4s ease" }} />
+                        <div key={s} style={{ flex:s===step┈┈┈┈┈┈┈┈3:1, height:4, borderRadius:4, background:s<=step┈┈┈┈┈┈┈┈`linear-gradient(90deg,${R.color},${R.color}88)`:"var(--bdr)", transition:"all 0.4s ease" }} />
                       ))}
                     </div>
                   )}
 
                   {/* Heading */}
                   <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:18 }}>
-                    <h2 style={{ fontSize:mode==="register"?18:22, fontWeight:700, color:"var(--t1)", fontFamily:"'Sora',sans-serif", letterSpacing:"-0.025em" }}>
+                    <h2 style={{ fontSize:mode==="register"┈┈┈┈┈┈┈┈18:22, fontWeight:700, color:"var(--t1)", fontFamily:"'Sora',sans-serif", letterSpacing:"-0.025em" }}>
                       {mode==="login"
-                        ? "Welcome Back"
-                        : role==="admin" ? "Admin Access"
-                        : step===1 ? "Your Details" : "Set Password"}
+                        ┈┈┈┈┈┈┈┈ "Welcome Back"
+                        : role==="admin" ┈┈┈┈┈┈┈┈ "Admin Access"
+                        : step===1 ┈┈┈┈┈┈┈┈ "Your Details" : "Set Password"}
                     </h2>
                     {mode==="register" && role!=="admin" && (
                       <span style={{ fontSize:11, color:"var(--t3)", fontFamily:"'JetBrains Mono',monospace" }}>Step {step}/{totalSteps}</span>
@@ -311,7 +311,7 @@ export default function OceanCrewAuth() {
                   </div>
 
                   {/* Form fields */}
-                  <div style={{ display:"grid", gridTemplateColumns: fields.length>2&&mode==="register" ? "1fr 1fr" : "1fr", gap:"0 14px" }}>
+                  <div style={{ display:"grid", gridTemplateColumns: fields.length>2&&mode==="register" ┈┈┈┈┈┈┈┈ "1fr 1fr" : "1fr", gap:"0 14px" }}>
                     {fields.map(f=>(
                       <Input key={f.k} label={f.label} type={f.type} placeholder={f.ph} value={form[f.k]||""} onChange={v=>set(f.k,v)} icon={f.icon} />
                     ))}
@@ -321,7 +321,7 @@ export default function OceanCrewAuth() {
                   {mode==="login" && (
                     <div style={{ textAlign:"right", marginBottom:20, marginTop:-6 }}>
                       <button onClick={()=>setForgot(true)} style={{ background:"none", border:"none", cursor:"pointer", color:"#38BDF8", fontSize:13, fontWeight:600 }}>
-                        Forgot password?
+                        Forgot password┈┈┈┈┈┈┈┈
                       </button>
                     </div>
                   )}
@@ -330,7 +330,7 @@ export default function OceanCrewAuth() {
                   {mode==="register" && role==="company" && step===1 && (
                     <div style={{ background:"rgba(251,191,36,0.08)", border:"1px solid rgba(251,191,36,0.25)", borderRadius:11, padding:"11px 14px", marginBottom:16, display:"flex", gap:10, alignItems:"flex-start" }}>
                       <Icon name="alertCircle" size={15} color="#FBBF24" strokeWidth={2} style={{ flexShrink:0, marginTop:2 }} />
-                      <p style={{ fontSize:12, color:isDark?"#D97706":"#92400E", lineHeight:1.55 }}>
+                      <p style={{ fontSize:12, color:isDark—#D97706":"#92400E", lineHeight:1.55 }}>
                         Company accounts require <strong>admin verification</strong>. Our team reviews within 24 hours.
                       </p>
                     </div>
@@ -355,20 +355,20 @@ export default function OceanCrewAuth() {
                         ← Back
                       </button>
                     )}
-                    <button onClick={handleSubmit} disabled={loading} style={{ flex:2, padding:"13px", borderRadius:11, border:"none", background:loading?"var(--card-t)":`linear-gradient(135deg,${R.color},${R.color}cc)`, color:loading?"var(--t3)":"#fff", fontWeight:700, fontSize:15, cursor:loading?"not-allowed":"pointer", boxShadow:loading?"none":`0 6px 20px ${R.color}40`, display:"flex", alignItems:"center", justifyContent:"center", gap:10, transition:"all 0.2s" }}>
+                    <button onClick={handleSubmit} disabled={loading} style={{ flex:2, padding:"13px", borderRadius:11, border:"none", background:loading—var(--card-t)":`linear-gradient(135deg,${R.color},${R.color}cc)`, color:loading—var(--t3)":"#fff", fontWeight:700, fontSize:15, cursor:loading—not-allowed":"pointer", boxShadow:loading—none":`0 6px 20px ${R.color}40`, display:"flex", alignItems:"center", justifyContent:"center", gap:10, transition:"all 0.2s" }}>
                       {loading
-                        ? <><span style={{ width:18, height:18, border:"2px solid rgba(255,255,255,0.3)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Please wait…</>
+                        ┈┈┈┈┈┈┈┈ <><span style={{ width:18, height:18, border:"2px solid rgba(255,255,255,0.3)", borderTopColor:"#fff", borderRadius:"50%", display:"inline-block", animation:"spin 0.8s linear infinite" }} />Please wait…</>
                         : mode==="login"
-                          ? `Sign In as ${R.label}`
-                          : step<totalSteps ? "Continue" : `Create ${R.label} Account`}
+                          ┈┈┈┈┈┈┈┈ `Sign In as ${R.label}`
+                          : step<totalSteps ┈┈┈┈┈┈┈┈ "Continue" : `Create ${R.label} Account`}
                     </button>
                   </div>
 
                   {/* Switch mode */}
                   <p style={{ textAlign:"center", fontSize:13, color:"var(--t2)", marginTop:18 }}>
-                    {mode==="login" ? "No account? " : "Have an account? "}
-                    <button onClick={()=>switchMode(mode==="login"?"register":"login")} style={{ background:"none", border:"none", cursor:"pointer", color:"#38BDF8", fontWeight:700, fontSize:13 }}>
-                      {mode==="login" ? "Register Free" : "Sign In"}
+                    {mode==="login" ┈┈┈┈┈┈┈┈ "No account┈┈┈┈┈┈┈┈ " : "Have an account┈┈┈┈┈┈┈┈ "}
+                    <button onClick={()=>switchMode(mode==="login"—register":"login")} style={{ background:"none", border:"none", cursor:"pointer", color:"#38BDF8", fontWeight:700, fontSize:13 }}>
+                      {mode==="login" ┈┈┈┈┈┈┈┈ "Register Free" : "Sign In"}
                     </button>
                   </p>
                 </>
@@ -376,7 +376,7 @@ export default function OceanCrewAuth() {
             </div>
 
             {/* Bottom */}
-            <p style={{ textAlign:"center", fontSize:11, color:isDark?"rgba(255,255,255,0.25)":"#94A3B8", marginTop:18 }}>
+            <p style={{ textAlign:"center", fontSize:11, color:isDark—rgba(255,255,255,0.25)":"#94A3B8", marginTop:18 }}>
               🔒 256-bit SSL · Powered by <strong style={{ color:"#38BDF8" }}>SKYbird Systems</strong>
             </p>
           </div>

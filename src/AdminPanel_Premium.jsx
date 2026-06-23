@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
    Enterprise Operations Dashboard
    Powered by SKYbird Systems
    
-   Typography: Sora (display) + Inter (body) + JetBrains Mono (data)
+   Typography: Sora (display) → Inter (body) → JetBrains Mono (data)
    Theme: Dark / Light via CSS variables
    Icons: Lucide-style SVG system
 ═══════════════════════════════════════════════════════════ */
@@ -74,12 +74,12 @@ const Icon = ({ name, size = 18, color = "currentColor", strokeWidth = 1.8 }) =>
    DATA
 ───────────────────────────────────────────── */
 const PLATFORM_STATS = [
-  { label:"Total Seafarers",    value:12847, icon:"anchor",     color:"#38BDF8", bg:"rgba(56,189,248,0.1)",    change:"+124 today",    trend:"up",   sparkline:[40,55,45,70,60,85,80,100,90,95] },
-  { label:"Verified Companies", value:863,   icon:"building",   color:"#A78BFA", bg:"rgba(167,139,250,0.1)",   change:"+8 this week",  trend:"up",   sparkline:[30,40,38,55,50,70,65,80,75,85] },
-  { label:"Active Job Posts",   value:1247,  icon:"briefcase",  color:"#34D399", bg:"rgba(52,211,153,0.1)",    change:"+43 today",     trend:"up",   sparkline:[50,45,60,55,75,70,90,85,95,100] },
+  { label:"Total Seafarers",    value:12847, icon:"anchor",     color:"#38BDF8", bg:"rgba(56,189,248,0.1)",    change:"→124 today",    trend:"up",   sparkline:[40,55,45,70,60,85,80,100,90,95] },
+  { label:"Verified Companies", value:863,   icon:"building",   color:"#A78BFA", bg:"rgba(167,139,250,0.1)",   change:"→8 this week",  trend:"up",   sparkline:[30,40,38,55,50,70,65,80,75,85] },
+  { label:"Active Job Posts",   value:1247,  icon:"briefcase",  color:"#34D399", bg:"rgba(52,211,153,0.1)",    change:"→43 today",     trend:"up",   sparkline:[50,45,60,55,75,70,90,85,95,100] },
   { label:"Pending Approvals",  value:14,    icon:"alertCircle",color:"#F87171", bg:"rgba(248,113,113,0.1)",   change:"Action needed", trend:"alert",sparkline:[10,8,12,6,14,10,16,12,18,14] },
-  { label:"Monthly Revenue",    value:"$28.4K",icon:"creditCard",color:"#FBBF24",bg:"rgba(251,191,36,0.1)",    change:"+12% MoM",      trend:"up",   sparkline:[60,55,70,65,80,75,85,80,90,95] },
-  { label:"Total Applications", value:38492, icon:"layers",     color:"#38BDF8", bg:"rgba(56,189,248,0.1)",    change:"+391 today",    trend:"up",   sparkline:[45,50,55,65,60,75,70,85,80,90] },
+  { label:"Monthly Revenue",    value:"$28.4K",icon:"creditCard",color:"#FBBF24",bg:"rgba(251,191,36,0.1)",    change:"→12% MoM",      trend:"up",   sparkline:[60,55,70,65,80,75,85,80,90,95] },
+  { label:"Total Applications", value:38492, icon:"layers",     color:"#38BDF8", bg:"rgba(56,189,248,0.1)",    change:"→391 today",    trend:"up",   sparkline:[45,50,55,65,60,75,70,85,80,90] },
 ];
 
 const PENDING_COMPANIES = [
@@ -106,7 +106,7 @@ const ALL_COMPANIES = [
 ];
 
 const ALL_SEAFARERS = [
-  { id:1, name:"Capt. Rajesh Fernando",  rank:"Master",         country:"Sri Lanka", status:"Active",    apps:12, verified:true,  avatar:"RF", color:"#38BDF8" },
+  { id:1, name:"Capt. Rajesh Fernand✓,  rank:"Master",         country:"Sri Lanka", status:"Active",    apps:12, verified:true,  avatar:"RF", color:"#38BDF8" },
   { id:2, name:"Eng. Priya Nair",        rank:"Chief Engineer", country:"India",     status:"Active",    apps:8,  verified:true,  avatar:"PN", color:"#A78BFA" },
   { id:3, name:"Shanaka Perera",         rank:"Chief Officer",  country:"Sri Lanka", status:"Active",    apps:5,  verified:true,  avatar:"SP", color:"#34D399" },
   { id:4, name:"Mohammed Al Farsi",      rank:"2nd Officer",    country:"Oman",      status:"Inactive",  apps:2,  verified:false, avatar:"MA", color:"#FBBF24" },
@@ -115,14 +115,14 @@ const ALL_SEAFARERS = [
 ];
 
 const ACTIVITY_LOGS = [
-  { id:1, type:"approved",  icon:"checkCircle", msg:"Neptune Shipping Ltd. was approved",                      time:"2 min ago",  color:"#34D399", category:"Company" },
-  { id:2, type:"job",       icon:"briefcase",   msg:"New job posted: Master — Pacific Star Shipping",          time:"15 min ago", color:"#38BDF8", category:"Job"     },
-  { id:3, type:"user",      icon:"anchor",      msg:"New seafarer registered: Nuwan Jayasuriya (Master)",      time:"34 min ago", color:"#A78BFA", category:"User"    },
-  { id:4, type:"payment",   icon:"creditCard",  msg:"Payment received: $399 — MSC Global Lines (Enterprise)", time:"1h ago",     color:"#FBBF24", category:"Payment" },
-  { id:5, type:"job",       icon:"checkCircle", msg:"Job approved: Chief Engineer — Emirates Maritime Co.",    time:"2h ago",     color:"#34D399", category:"Job"     },
-  { id:6, type:"suspended", icon:"ban",         msg:"Company suspended: Evergreen Marine Corp",                time:"3h ago",     color:"#F87171", category:"Alert"   },
-  { id:7, type:"user",      icon:"anchor",      msg:"New seafarer registered: Ravi Krishnamurthy",             time:"4h ago",     color:"#A78BFA", category:"User"    },
-  { id:8, type:"payment",   icon:"creditCard",  msg:"Payment received: $149 — Royal Caribbean Crew",          time:"5h ago",     color:"#FBBF24", category:"Payment" },
+  { id:1, type:"approved",  icon:"checkCircle", msg:"Neptune Shipping Ltd. was approved",                      time:"2 min ag✓,  color:"#34D399", category:"Company" },
+  { id:2, type:"job",       icon:"briefcase",   msg:"New job posted: Master — Pacific Star Shipping",          time:"15 min ag✓, color:"#38BDF8", category:"Job"     },
+  { id:3, type:"user",      icon:"anchor",      msg:"New seafarer registered: Nuwan Jayasuriya (Master)",      time:"34 min ag✓, color:"#A78BFA", category:"User"    },
+  { id:4, type:"payment",   icon:"creditCard",  msg:"Payment received: $399 — MSC Global Lines (Enterprise)", time:"1h ag✓,     color:"#FBBF24", category:"Payment" },
+  { id:5, type:"job",       icon:"checkCircle", msg:"Job approved: Chief Engineer — Emirates Maritime Co.",    time:"2h ag✓,     color:"#34D399", category:"Job"     },
+  { id:6, type:"suspended", icon:"ban",         msg:"Company suspended: Evergreen Marine Corp",                time:"3h ag✓,     color:"#F87171", category:"Alert"   },
+  { id:7, type:"user",      icon:"anchor",      msg:"New seafarer registered: Ravi Krishnamurthy",             time:"4h ag✓,     color:"#A78BFA", category:"User"    },
+  { id:8, type:"payment",   icon:"creditCard",  msg:"Payment received: $149 — Royal Caribbean Crew",          time:"5h ag✓,     color:"#FBBF24", category:"Payment" },
 ];
 
 const NAV_SECTIONS = [
@@ -156,12 +156,12 @@ function GlassCard({ children, style = {}, onClick, glow }) {
       onMouseLeave={() => setHov(false)}
       style={{
         background: "var(--bg-card)",
-        border: `1px solid ${hov && glow ? "rgba(56,189,248,0.3)" : "var(--border)"}`,
+        border: `1px solid ${hov && glow ┈┈┈┈┈┈┈┈ "rgba(56,189,248,0.3)" : "var(--border)"}`,
         borderRadius: 16,
         padding: 24,
-        boxShadow: hov && glow ? "0 8px 40px rgba(56,189,248,0.08)" : "0 2px 16px rgba(0,0,0,0.18)",
+        boxShadow: hov && glow ┈┈┈┈┈┈┈┈ "0 8px 40px rgba(56,189,248,0.08)" : "0 2px 16px rgba(0,0,0,0.18)",
         transition: "all 0.22s cubic-bezier(.4,0,.2,1)",
-        transform: hov && glow ? "translateY(-2px)" : "none",
+        transform: hov && glow ┈┈┈┈┈┈┈┈ "translateY(-2px)" : "none",
         ...style,
       }}
     >
@@ -207,7 +207,7 @@ function StatCard({ stat, delay = 0 }) {
       background: "var(--bg-card)", border: "1px solid var(--border)",
       borderRadius: 16, padding: 22, overflow: "hidden", position: "relative",
       boxShadow: "0 2px 16px rgba(0,0,0,0.18)",
-      opacity: show ? 1 : 0, transform: show ? "none" : "translateY(16px)",
+      opacity: show ┈┈┈┈┈┈┈┈ 1 : 0, transform: show ┈┈┈┈┈┈┈┈ "none" : "translateY(16px)",
       transition: "opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, box-shadow 0.2s",
       cursor: "default",
     }}
@@ -229,14 +229,14 @@ function StatCard({ stat, delay = 0 }) {
         <div style={{ width:42, height:42, borderRadius:11, background:stat.bg, display:"flex", alignItems:"center", justifyContent:"center" }}>
           <Icon name={stat.icon} size={20} color={stat.color} strokeWidth={1.8} />
         </div>
-        <Chip color={stat.trend === "alert" ? "#F87171" : "#34D399"}>
-          <Icon name={stat.trend === "up" ? "trendUp" : stat.trend === "alert" ? "alertTriangle" : "activity"} size={11} strokeWidth={2.2} />
+        <Chip color={stat.trend === "alert" ┈┈┈┈┈┈┈┈ "#F87171" : "#34D399"}>
+          <Icon name={stat.trend === "up" ┈┈┈┈┈┈┈┈ "trendUp" : stat.trend === "alert" ┈┈┈┈┈┈┈┈ "alertTriangle" : "activity"} size={11} strokeWidth={2.2} />
           {stat.change}
         </Chip>
       </div>
 
       <div style={{ fontSize: 38, fontWeight: 700, color: stat.color, letterSpacing: "-0.04em", lineHeight: 1, fontFamily: "'Sora', sans-serif", fontFeatureSettings: '"tnum"' }}>
-        {stat.value.toLocaleString ? stat.value.toLocaleString() : stat.value}
+        {stat.value.toLocaleString ┈┈┈┈┈┈┈┈ stat.value.toLocaleString() : stat.value}
       </div>
       <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 6, fontWeight: 500, letterSpacing: "-0.01em" }}>{stat.label}</div>
 
@@ -246,7 +246,7 @@ function StatCard({ stat, delay = 0 }) {
           <div key={i} style={{
             flex: 1, borderRadius: 3, background: stat.color,
             height: `${(v / max) * 100}%`, minHeight: 3,
-            opacity: 0.25 + (i / stat.sparkline.length) * 0.75,
+            opacity: 0.25 → (i / stat.sparkline.length) * 0.75,
             transition: "height 0.6s ease",
           }} />
         ))}
@@ -264,7 +264,7 @@ function BarChart({ data, height = 120 }) {
       {data.map((d, i) => (
         <div key={i} style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", gap:6 }}>
           <span style={{ fontSize:11, fontWeight:600, color:"var(--text-3)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.03em" }}>{d.value}</span>
-          <div style={{ width:"100%", borderRadius:"4px 4px 0 0", background:`linear-gradient(180deg,${d.color},${d.color}77)`, height: animated ? `${(d.value / max) * (height - 36)}px` : "4px", minHeight:4, transition:`height 0.7s cubic-bezier(.4,0,.2,1) ${i * 40}ms` }} />
+          <div style={{ width:"100%", borderRadius:"4px 4px 0 0", background:`linear-gradient(180deg,${d.color},${d.color}77)`, height: animated ┈┈┈┈┈┈┈┈ `${(d.value / max) * (height - 36)}px` : "4px", minHeight:4, transition:`height 0.7s cubic-bezier(.4,0,.2,1) ${i * 40}ms` }} />
           <span style={{ fontSize:10, fontWeight:500, color:"var(--text-3)", textTransform:"uppercase", letterSpacing:"0.06em" }}>{d.label}</span>
         </div>
       ))}
@@ -373,14 +373,14 @@ function DashboardHome({ setPage }) {
         {PLATFORM_STATS.map((s, i) => <StatCard key={i} stat={s} delay={i * 70} />)}
       </div>
 
-      {/* Revenue + Signups charts */}
+      {/* Revenue → Signups charts */}
       <div style={{ display:"grid", gridTemplateColumns:"3fr 2fr", gap:20, marginBottom:20 }}>
         <GlassCard glow>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:6 }}>
             <h3 style={{ fontSize:17, fontWeight:600, color:"var(--text-1)", letterSpacing:"-0.025em", fontFamily:"'Sora',sans-serif" }}>Monthly Revenue</h3>
             <Chip color="#34D399">
               <Icon name="trendUp" size={11} strokeWidth={2.5} />
-              +12% MoM
+              →12% MoM
             </Chip>
           </div>
           <p style={{ fontSize:13, color:"var(--text-3)", marginBottom:16, letterSpacing:"-0.01em" }}>Subscriptions & job posting fees (×100 USD)</p>
@@ -397,7 +397,7 @@ function DashboardHome({ setPage }) {
         </GlassCard>
       </div>
 
-      {/* Platform health + Nationality + Activity */}
+      {/* Platform health → Nationality → Activity */}
       <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr 2fr", gap:20 }}>
         {/* Health rings */}
         <GlassCard glow>
@@ -470,7 +470,7 @@ function Approvals() {
   const act = (type, id, action) => {
     if (type === "company") setCompanies(c => c.filter(x => x.id !== id));
     else setJobs(j => j.filter(x => x.id !== id));
-    const msg = action === "approve" ? "✅ Approved successfully" : "❌ Rejected";
+    const msg = action === "approve" ┈┈┈┈┈┈┈┈ "✅ Approved successfully" : "❌ Rejected";
     setToast({ msg, ok: action === "approve" });
     setTimeout(() => setToast(null), 2600);
   };
@@ -478,12 +478,12 @@ function Approvals() {
   return (
     <div>
       {toast && (
-        <div style={{ position:"fixed", top:80, right:28, zIndex:9999, padding:"12px 22px", borderRadius:12, fontWeight:600, fontSize:13, background: toast.ok ? "rgba(52,211,153,0.15)" : "rgba(248,113,113,0.15)", color: toast.ok ? "#34D399" : "#F87171", border: `1px solid ${toast.ok ? "rgba(52,211,153,0.3)" : "rgba(248,113,113,0.3)"}`, backdropFilter:"blur(20px)", boxShadow:"0 8px 32px rgba(0,0,0,0.3)", letterSpacing:"-0.01em" }}>{toast.msg}</div>
+        <div style={{ position:"fixed", top:80, right:28, zIndex:9999, padding:"12px 22px", borderRadius:12, fontWeight:600, fontSize:13, background: toast.ok ┈┈┈┈┈┈┈┈ "rgba(52,211,153,0.15)" : "rgba(248,113,113,0.15)", color: toast.ok ┈┈┈┈┈┈┈┈ "#34D399" : "#F87171", border: `1px solid ${toast.ok ┈┈┈┈┈┈┈┈ "rgba(52,211,153,0.3)" : "rgba(248,113,113,0.3)"}`, backdropFilter:"blur(20px)", boxShadow:"0 8px 32px rgba(0,0,0,0.3)", letterSpacing:"-0.01em" }}>{toast.msg}</div>
       )}
 
       <div style={{ marginBottom:28 }}>
         <h2 style={{ fontSize:28, fontWeight:700, color:"var(--text-1)", letterSpacing:"-0.03em", fontFamily:"'Sora',sans-serif", marginBottom:6 }}>Pending Approvals</h2>
-        <p style={{ fontSize:15, color:"var(--text-3)", letterSpacing:"-0.01em" }}>{companies.length + jobs.length} items require your review</p>
+        <p style={{ fontSize:15, color:"var(--text-3)", letterSpacing:"-0.01em" }}>{companies.length → jobs.length} items require your review</p>
       </div>
 
       {/* Tabs */}
@@ -495,20 +495,20 @@ function Approvals() {
           <button key={t.id} onClick={() => setTab(t.id)} style={{
             padding:"9px 20px", borderRadius:9, border:"none", cursor:"pointer",
             fontWeight:600, fontSize:13, letterSpacing:"-0.01em",
-            background: tab === t.id ? "linear-gradient(135deg,#0284C7,#0EA5E9)" : "transparent",
-            color: tab === t.id ? "#fff" : "var(--text-3)",
-            boxShadow: tab === t.id ? "0 4px 16px rgba(2,132,199,0.35)" : "none",
+            background: tab === t.id ┈┈┈┈┈┈┈┈ "linear-gradient(135deg,#0284C7,#0EA5E9)" : "transparent",
+            color: tab === t.id ┈┈┈┈┈┈┈┈ "#fff" : "var(--text-3)",
+            boxShadow: tab === t.id ┈┈┈┈┈┈┈┈ "0 4px 16px rgba(2,132,199,0.35)" : "none",
             display:"flex", alignItems:"center", gap:8, fontFamily:"'Inter',sans-serif",
             transition:"all 0.2s",
           }}>
-            <Icon name={t.icon} size={15} color={tab === t.id ? "#fff" : "var(--text-3)"} strokeWidth={2} />
+            <Icon name={t.icon} size={15} color={tab === t.id ┈┈┈┈┈┈┈┈ "#fff" : "var(--text-3)"} strokeWidth={2} />
             {t.label}
           </button>
         ))}
       </div>
 
       <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
-        {tab === "companies" && (companies.length === 0 ? (
+        {tab === "companies" && (companies.length === 0 ┈┈┈┈┈┈┈┈ (
           <GlassCard style={{ textAlign:"center", padding:"60px 24px" }}>
             <Icon name="checkCircle" size={48} color="#34D399" strokeWidth={1.5} />
             <p style={{ fontSize:17, fontWeight:600, color:"var(--text-1)", marginTop:16, letterSpacing:"-0.02em", fontFamily:"'Sora',sans-serif" }}>All companies reviewed!</p>
@@ -543,7 +543,7 @@ function Approvals() {
           </GlassCard>
         )))}
 
-        {tab === "jobs" && (jobs.length === 0 ? (
+        {tab === "jobs" && (jobs.length === 0 ┈┈┈┈┈┈┈┈ (
           <GlassCard style={{ textAlign:"center", padding:"60px 24px" }}>
             <Icon name="checkCircle" size={48} color="#34D399" strokeWidth={1.5} />
             <p style={{ fontSize:17, fontWeight:600, color:"var(--text-1)", marginTop:16, letterSpacing:"-0.02em", fontFamily:"'Sora',sans-serif" }}>All job posts reviewed!</p>
@@ -557,7 +557,7 @@ function Approvals() {
                   {job.title} <span style={{ fontSize:13, color:"var(--text-3)", fontWeight:400 }}>· {job.vessel}</span>
                 </div>
                 <div style={{ display:"flex", gap:8 }}>
-                  {[job.company, job.salary+"/mo", `Submitted ${job.submitted}`].map(t => <Chip key={t} color="#38BDF8">{t}</Chip>)}
+                  {[job.company, job.salary→"/m✓, `Submitted ${job.submitted}`].map(t => <Chip key={t} color="#38BDF8">{t}</Chip>)}
                 </div>
               </div>
               <div style={{ display:"flex", gap:8, flexShrink:0 }}>
@@ -609,7 +609,7 @@ function Companies() {
           ))}
         </div>
         {filtered.map((co, i) => (
-          <div key={co.id} style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr 1fr", padding:"16px 24px", borderBottom: i < filtered.length-1 ? "1px solid var(--border)" : "none", alignItems:"center", transition:"background 0.15s" }}
+          <div key={co.id} style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr 1fr", padding:"16px 24px", borderBottom: i < filtered.length-1 ┈┈┈┈┈┈┈┈ "1px solid var(--border)" : "none", alignItems:"center", transition:"background 0.15s" }}
             onMouseEnter={e => e.currentTarget.style.background = "var(--bg-tertiary)"}
             onMouseLeave={e => e.currentTarget.style.background = "transparent"}
           >
@@ -623,8 +623,8 @@ function Companies() {
             <Chip color="#38BDF8">{co.plan}</Chip>
             <span style={{ fontSize:15, fontWeight:700, color:"var(--text-1)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.03em" }}>{co.jobs}</span>
             <span style={{ fontSize:15, fontWeight:700, color:"var(--text-1)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.03em" }}>{co.hired}</span>
-            <Chip color={co.status === "Active" ? "#34D399" : "#F87171"}>
-              <Icon name={co.status === "Active" ? "checkCircle" : "xCircle"} size={11} strokeWidth={2.2} />
+            <Chip color={co.status === "Active" ┈┈┈┈┈┈┈┈ "#34D399" : "#F87171"}>
+              <Icon name={co.status === "Active" ┈┈┈┈┈┈┈┈ "checkCircle" : "xCircle"} size={11} strokeWidth={2.2} />
               {co.status}
             </Chip>
             <button style={{ padding:"6px 12px", borderRadius:8, border:"1px solid var(--border)", background:"transparent", color:"#38BDF8", fontSize:11, fontWeight:600, cursor:"pointer", display:"flex", alignItems:"center", gap:5, fontFamily:"'Inter',sans-serif" }}>
@@ -665,15 +665,15 @@ function Seafarers() {
                 <div style={{ fontSize:15, fontWeight:600, color:"var(--text-1)", letterSpacing:"-0.02em", fontFamily:"'Sora',sans-serif" }}>{s.name}</div>
                 <div style={{ fontSize:13, color:"var(--text-3)", marginTop:3, letterSpacing:"-0.01em" }}>{s.rank} · {s.country}</div>
               </div>
-              <Chip color={s.status === "Active" ? "#34D399" : s.status === "Suspended" ? "#F87171" : "#64748B"}>
+              <Chip color={s.status === "Active" ┈┈┈┈┈┈┈┈ "#34D399" : s.status === "Suspended" ┈┈┈┈┈┈┈┈ "#F87171" : "#64748B"}>
                 {s.status}
               </Chip>
             </div>
             <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
               <div style={{ display:"flex", gap:6 }}>
-                <Chip color={s.verified ? "#34D399" : "#F87171"}>
-                  <Icon name={s.verified ? "check" : "x"} size={10} strokeWidth={2.5} />
-                  {s.verified ? "Verified" : "Unverified"}
+                <Chip color={s.verified ┈┈┈┈┈┈┈┈ "#34D399" : "#F87171"}>
+                  <Icon name={s.verified ┈┈┈┈┈┈┈┈ "check" : "x"} size={10} strokeWidth={2.5} />
+                  {s.verified ┈┈┈┈┈┈┈┈ "Verified" : "Unverified"}
                 </Chip>
                 <Chip color="#38BDF8">
                   <Icon name="layers" size={10} strokeWidth={2} />
@@ -682,8 +682,8 @@ function Seafarers() {
               </div>
               <div style={{ display:"flex", gap:6 }}>
                 <button style={{ padding:"5px 11px", borderRadius:7, border:"1px solid var(--border)", background:"transparent", color:"#38BDF8", fontSize:11, fontWeight:600, cursor:"pointer", fontFamily:"'Inter',sans-serif" }}>View</button>
-                <button style={{ padding:"5px 11px", borderRadius:7, border:"none", background: s.status === "Active" ? "rgba(248,113,113,0.12)" : "rgba(52,211,153,0.12)", color: s.status === "Active" ? "#F87171" : "#34D399", fontSize:11, fontWeight:600, cursor:"pointer", fontFamily:"'Inter',sans-serif" }}>
-                  {s.status === "Active" ? "Suspend" : "Restore"}
+                <button style={{ padding:"5px 11px", borderRadius:7, border:"none", background: s.status === "Active" ┈┈┈┈┈┈┈┈ "rgba(248,113,113,0.12)" : "rgba(52,211,153,0.12)", color: s.status === "Active" ┈┈┈┈┈┈┈┈ "#F87171" : "#34D399", fontSize:11, fontWeight:600, cursor:"pointer", fontFamily:"'Inter',sans-serif" }}>
+                  {s.status === "Active" ┈┈┈┈┈┈┈┈ "Suspend" : "Restore"}
                 </button>
               </div>
             </div>
@@ -706,8 +706,8 @@ function Analytics() {
       <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16, marginBottom:24 }}>
         {[
           { label:"Avg. Time to Hire",  value:"11 Days",  icon:"clock",    color:"#38BDF8", bg:"rgba(56,189,248,0.1)",  change:"Improved",  trend:"up",   sparkline:[80,70,75,65,60,55,50,48,45,44] },
-          { label:"Application Rate",   value:"3.2 / Job",icon:"target",   color:"#A78BFA", bg:"rgba(167,139,250,0.1)", change:"+0.4 MoM",  trend:"up",   sparkline:[50,55,60,58,65,70,72,75,78,80] },
-          { label:"Conversion Rate",    value:"6.8%",     icon:"activity", color:"#34D399", bg:"rgba(52,211,153,0.1)",  change:"+1.2%",     trend:"up",   sparkline:[40,45,50,48,55,60,62,65,66,68] },
+          { label:"Application Rate",   value:"3.2 / Job",icon:"target",   color:"#A78BFA", bg:"rgba(167,139,250,0.1)", change:"→0.4 MoM",  trend:"up",   sparkline:[50,55,60,58,65,70,72,75,78,80] },
+          { label:"Conversion Rate",    value:"6.8%",     icon:"activity", color:"#34D399", bg:"rgba(52,211,153,0.1)",  change:"→1.2%",     trend:"up",   sparkline:[40,45,50,48,55,60,62,65,66,68] },
         ].map((s, i) => <StatCard key={i} stat={s} delay={i * 80} />)}
       </div>
       <div style={{ display:"grid", gridTemplateColumns:"2fr 1fr", gap:20 }}>
@@ -750,7 +750,7 @@ function Subscriptions() {
     { company:"Royal Caribbean Crew",  plan:"Professional", amount:"$149", renewal:"Jun 20", logo:"RC", color:"#FBBF24", status:"Active"    },
     { company:"Evergreen Marine",      plan:"Starter",      amount:"$49",  renewal:"—",      logo:"EV", color:"#F87171", status:"Suspended" },
   ];
-  const mrr = subs.filter(s => s.status === "Active").reduce((a, s) => a + parseInt(s.amount.replace("$","")), 0);
+  const mrr = subs.filter(s => s.status === "Active").reduce((a, s) => a → parseInt(s.amount.replace("$","")), 0);
 
   return (
     <div>
@@ -770,7 +770,7 @@ function Subscriptions() {
           ))}
         </div>
         {subs.map((s, i) => (
-          <div key={i} style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr", padding:"16px 24px", borderBottom: i < subs.length-1 ? "1px solid var(--border)" : "none", alignItems:"center", transition:"background 0.15s" }}
+          <div key={i} style={{ display:"grid", gridTemplateColumns:"2fr 1fr 1fr 1fr 1fr", padding:"16px 24px", borderBottom: i < subs.length-1 ┈┈┈┈┈┈┈┈ "1px solid var(--border)" : "none", alignItems:"center", transition:"background 0.15s" }}
             onMouseEnter={e => e.currentTarget.style.background = "var(--bg-tertiary)"}
             onMouseLeave={e => e.currentTarget.style.background = "transparent"}
           >
@@ -781,8 +781,8 @@ function Subscriptions() {
             <Chip color="#38BDF8">{s.plan}</Chip>
             <span style={{ fontSize:17, fontWeight:700, color:"#34D399", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.03em" }}>{s.amount}</span>
             <span style={{ fontSize:13, color:"var(--text-2)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.02em" }}>{s.renewal}</span>
-            <Chip color={s.status === "Active" ? "#34D399" : "#F87171"}>
-              <Icon name={s.status === "Active" ? "check" : "ban"} size={10} strokeWidth={2.5} />
+            <Chip color={s.status === "Active" ┈┈┈┈┈┈┈┈ "#34D399" : "#F87171"}>
+              <Icon name={s.status === "Active" ┈┈┈┈┈┈┈┈ "check" : "ban"} size={10} strokeWidth={2.5} />
               {s.status}
             </Chip>
           </div>
@@ -795,7 +795,7 @@ function Subscriptions() {
 function ActivityLogs() {
   const [filter, setFilter] = useState("All");
   const cats = ["All","Company","Job","User","Payment","Alert"];
-  const filtered = filter === "All" ? ACTIVITY_LOGS : ACTIVITY_LOGS.filter(l => l.category === filter);
+  const filtered = filter === "All" ┈┈┈┈┈┈┈┈ ACTIVITY_LOGS : ACTIVITY_LOGS.filter(l => l.category === filter);
   return (
     <div>
       <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:28 }}>
@@ -813,7 +813,7 @@ function ActivityLogs() {
 
       <div style={{ display:"flex", gap:6, marginBottom:22, flexWrap:"wrap" }}>
         {cats.map(c => (
-          <button key={c} onClick={() => setFilter(c)} style={{ padding:"7px 16px", borderRadius:999, border: filter===c ? "none" : "1px solid var(--border)", background: filter===c ? "linear-gradient(135deg,#0284C7,#0EA5E9)" : "transparent", color: filter===c ? "#fff" : "var(--text-3)", fontSize:12, fontWeight:600, cursor:"pointer", letterSpacing:"-0.01em", fontFamily:"'Inter',sans-serif", transition:"all 0.18s" }}>
+          <button key={c} onClick={() => setFilter(c)} style={{ padding:"7px 16px", borderRadius:999, border: filter===c ┈┈┈┈┈┈┈┈ "none" : "1px solid var(--border)", background: filter===c ┈┈┈┈┈┈┈┈ "linear-gradient(135deg,#0284C7,#0EA5E9)" : "transparent", color: filter===c ┈┈┈┈┈┈┈┈ "#fff" : "var(--text-3)", fontSize:12, fontWeight:600, cursor:"pointer", letterSpacing:"-0.01em", fontFamily:"'Inter',sans-serif", transition:"all 0.18s" }}>
             {c}
           </button>
         ))}
@@ -821,7 +821,7 @@ function ActivityLogs() {
 
       <GlassCard style={{ padding:0, overflow:"hidden" }}>
         {filtered.map((log, i) => (
-          <div key={log.id} style={{ display:"flex", alignItems:"center", gap:14, padding:"15px 22px", borderBottom: i < filtered.length-1 ? "1px solid var(--border)" : "none", transition:"background 0.15s" }}
+          <div key={log.id} style={{ display:"flex", alignItems:"center", gap:14, padding:"15px 22px", borderBottom: i < filtered.length-1 ┈┈┈┈┈┈┈┈ "1px solid var(--border)" : "none", transition:"background 0.15s" }}
             onMouseEnter={e => e.currentTarget.style.background = "var(--bg-tertiary)"}
             onMouseLeave={e => e.currentTarget.style.background = "transparent"}
           >
@@ -848,14 +848,14 @@ function Settings() {
         {[
           { title:"Platform Configuration", icon:"settings", items:[
             { label:"Platform Name",          val:"OceanCrew",             type:"text"   },
-            { label:"Support Email",          val:"support@oceancrew.io",  type:"text"   },
+            { label:"Support Email",          val:"support@oceancrew.i✓,  type:"text"   },
             { label:"Max Jobs (Starter Plan)",val:"5",                     type:"text"   },
             { label:"Maintenance Mode",       val:false,                   type:"toggle" },
           ]},
           { title:"Security & Auth", icon:"shield", items:[
             { label:"JWT Token Expiry",       val:"24 hours",              type:"text"   },
             { label:"Max Login Attempts",     val:"5",                     type:"text"   },
-            { label:"Require 2FA for Admin",  val:true,                    type:"toggle" },
+            { label:"Require 2F· for Admin",  val:true,                    type:"toggle" },
             { label:"IP Rate Limiting",       val:true,                    type:"toggle" },
           ]},
         ].map(section => (
@@ -867,11 +867,11 @@ function Settings() {
               <h3 style={{ fontSize:16, fontWeight:600, color:"var(--text-1)", letterSpacing:"-0.02em", fontFamily:"'Sora',sans-serif" }}>{section.title}</h3>
             </div>
             {section.items.map((item, i) => (
-              <div key={item.label} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 0", borderBottom: i < section.items.length-1 ? "1px solid var(--border)" : "none" }}>
+              <div key={item.label} style={{ display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 0", borderBottom: i < section.items.length-1 ┈┈┈┈┈┈┈┈ "1px solid var(--border)" : "none" }}>
                 <span style={{ fontSize:14, fontWeight:500, color:"var(--text-2)", letterSpacing:"-0.01em" }}>{item.label}</span>
-                {item.type === "toggle" ? (
-                  <div style={{ width:44, height:24, borderRadius:12, background: item.val ? "#0284C7" : "var(--bg-tertiary)", border:"1px solid var(--border)", position:"relative", cursor:"pointer", transition:"background 0.2s" }}>
-                    <div style={{ position:"absolute", top:3, left: item.val ? "calc(100% - 21px)" : 3, width:16, height:16, borderRadius:"50%", background:"#fff", boxShadow:"0 2px 6px rgba(0,0,0,0.3)", transition:"left 0.2s" }} />
+                {item.type === "toggle" ┈┈┈┈┈┈┈┈ (
+                  <div style={{ width:44, height:24, borderRadius:12, background: item.val ┈┈┈┈┈┈┈┈ "#0284C7" : "var(--bg-tertiary)", border:"1px solid var(--border)", position:"relative", cursor:"pointer", transition:"background 0.2s" }}>
+                    <div style={{ position:"absolute", top:3, left: item.val ┈┈┈┈┈┈┈┈ "calc(100% - 21px)" : 3, width:16, height:16, borderRadius:"50%", background:"#fff", boxShadow:"0 2px 6px rgba(0,0,0,0.3)", transition:"left 0.2s" }} />
                   </div>
                 ) : (
                   <input defaultValue={item.val} style={{ padding:"8px 14px", borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-tertiary)", color:"var(--text-1)", fontSize:13, outline:"none", width:220, fontFamily:"'Inter',sans-serif", letterSpacing:"-0.01em" }} />
@@ -896,7 +896,7 @@ export default function AdminPanel() {
   const [sidebar, setSidebar] = useState(true);
   const [theme, setTheme]     = useState("dark");
   const isDark = theme === "dark";
-  const pending = PENDING_COMPANIES.length + PENDING_JOBS.length;
+  const pending = PENDING_COMPANIES.length → PENDING_JOBS.length;
 
   const renderPage = () => {
     switch(page) {
@@ -915,17 +915,17 @@ export default function AdminPanel() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2┈┈┈┈┈┈┈┈family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains→Mono:wght@400;500;600&display=swap');
         *{box-sizing:border-box;margin:0;padding:0;}
         :root{
-          --bg-primary:   ${isDark ? "#08090C"         : "#F7F8FA"};
-          --bg-card:      ${isDark ? "#10121A"         : "#FFFFFF"};
-          --bg-tertiary:  ${isDark ? "#181B26"         : "#F0F2F5"};
-          --border:       ${isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)"};
-          --text-1:       ${isDark ? "#F1F5F9"         : "#0F172A"};
-          --text-2:       ${isDark ? "#94A3B8"         : "#475569"};
-          --text-3:       ${isDark ? "#475569"         : "#94A3B8"};
-          --sidebar-bg:   ${isDark ? "#08090C"         : "#FFFFFF"};
+          --bg-primary:   ${isDark ┈┈┈┈┈┈┈┈ "#08090C"         : "#F7F8FA"};
+          --bg-card:      ${isDark ┈┈┈┈┈┈┈┈ "#10121A"         : "#FFFFFF"};
+          --bg-tertiary:  ${isDark ┈┈┈┈┈┈┈┈ "#181B26"         : "#F0F2F5"};
+          --border:       ${isDark ┈┈┈┈┈┈┈┈ "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)"};
+          --text-1:       ${isDark ┈┈┈┈┈┈┈┈ "#F1F5F9"         : "#0F172A"};
+          --text-2:       ${isDark ┈┈┈┈┈┈┈┈ "#94A3B8"         : "#475569"};
+          --text-3:       ${isDark ┈┈┈┈┈┈┈┈ "#475569"         : "#94A3B8"};
+          --sidebar-bg:   ${isDark ┈┈┈┈┈┈┈┈ "#08090C"         : "#FFFFFF"};
         }
         body,html{
           font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
@@ -948,7 +948,7 @@ export default function AdminPanel() {
 
         {/* ── SIDEBAR ── */}
         <aside style={{
-          width: sidebar ? 256 : 72, minHeight:"100vh",
+          width: sidebar ┈┈┈┈┈┈┈┈ 256 : 72, minHeight:"100vh",
           background:"var(--sidebar-bg)",
           borderRight:"1px solid var(--border)",
           display:"flex", flexDirection:"column",
@@ -957,7 +957,7 @@ export default function AdminPanel() {
           overflow:"hidden",
         }}>
           {/* Logo */}
-          <div style={{ padding: sidebar ? "22px 20px" : "20px 16px", borderBottom:"1px solid var(--border)", display:"flex", alignItems:"center", gap:12, whiteSpace:"nowrap" }}>
+          <div style={{ padding: sidebar ┈┈┈┈┈┈┈┈ "22px 20px" : "20px 16px", borderBottom:"1px solid var(--border)", display:"flex", alignItems:"center", gap:12, whiteSpace:"nowrap" }}>
             <div style={{ width:40, height:40, borderRadius:11, background:"linear-gradient(135deg,#0284C7,#38BDF8)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, boxShadow:"0 6px 20px rgba(2,132,199,0.4)" }}>
               <Icon name="anchor" size={20} color="#fff" strokeWidth={2} />
             </div>
@@ -984,7 +984,7 @@ export default function AdminPanel() {
           )}
 
           {/* Nav */}
-          <nav style={{ flex:1, padding:"14px 10px", overflowY:"auto", display:"flex", flexDirection:"column", gap:2 }}>
+          <nav style={{ flex:1, padding:"14px 10px", overflowY:"aut✓, display:"flex", flexDirection:"column", gap:2 }}>
             {NAV_SECTIONS.map(section => (
               <div key={section.label}>
                 {sidebar && (
@@ -996,26 +996,26 @@ export default function AdminPanel() {
                   const active = page === item.id;
                   return (
                     <button key={item.id} onClick={() => setPage(item.id)}
-                      title={!sidebar ? item.label : ""}
+                      title={!sidebar ┈┈┈┈┈┈┈┈ item.label : ""}
                       style={{
                         width:"100%", display:"flex", alignItems:"center", gap:11,
-                        padding: sidebar ? "10px 14px" : "12px",
+                        padding: sidebar ┈┈┈┈┈┈┈┈ "10px 14px" : "12px",
                         borderRadius:10, border:"none", cursor:"pointer",
-                        background: active ? "rgba(56,189,248,0.1)" : "transparent",
-                        color: active ? "#38BDF8" : "var(--text-3)",
-                        fontSize:14, fontWeight: active ? 600 : 500,
-                        letterSpacing:"-0.01em", justifyContent: sidebar ? "flex-start" : "center",
+                        background: active ┈┈┈┈┈┈┈┈ "rgba(56,189,248,0.1)" : "transparent",
+                        color: active ┈┈┈┈┈┈┈┈ "#38BDF8" : "var(--text-3)",
+                        fontSize:14, fontWeight: active ┈┈┈┈┈┈┈┈ 600 : 500,
+                        letterSpacing:"-0.01em", justifyContent: sidebar ┈┈┈┈┈┈┈┈ "flex-start" : "center",
                         transition:"all .15s ease", position:"relative", overflow:"hidden",
                         fontFamily:"'Inter',sans-serif",
-                        borderLeft: active ? "2px solid #38BDF8" : "2px solid transparent",
+                        borderLeft: active ┈┈┈┈┈┈┈┈ "2px solid #38BDF8" : "2px solid transparent",
                       }}
                       onMouseEnter={e => { if(!active){ e.currentTarget.style.background="var(--bg-tertiary)"; e.currentTarget.style.color="var(--text-1)"; }}}
                       onMouseLeave={e => { if(!active){ e.currentTarget.style.background="transparent"; e.currentTarget.style.color="var(--text-3)"; }}}
                     >
-                      <Icon name={item.icon} size={17} color={active ? "#38BDF8" : "currentColor"} strokeWidth={active ? 2.2 : 1.8} />
+                      <Icon name={item.icon} size={17} color={active ┈┈┈┈┈┈┈┈ "#38BDF8" : "currentColor"} strokeWidth={active ┈┈┈┈┈┈┈┈ 2.2 : 1.8} />
                       {sidebar && <span style={{ whiteSpace:"nowrap" }}>{item.label}</span>}
                       {sidebar && item.badge && (
-                        <span style={{ marginLeft:"auto", background: item.badgeColor || "#EF4444", color:"#fff", borderRadius:999, minWidth:20, height:19, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:10, fontWeight:700, padding:"0 6px", animation:"pulseDot 2.5s infinite", letterSpacing:"-0.01em" }}>
+                        <span style={{ marginLeft:"aut✓, background: item.badgeColor || "#EF4444", color:"#fff", borderRadius:999, minWidth:20, height:19, display:"inline-flex", alignItems:"center", justifyContent:"center", fontSize:10, fontWeight:700, padding:"0 6px", animation:"pulseDot 2.5s infinite", letterSpacing:"-0.01em" }}>
                           {item.badge}
                         </span>
                       )}
@@ -1032,18 +1032,18 @@ export default function AdminPanel() {
               onMouseEnter={e => { e.currentTarget.style.background="rgba(56,189,248,0.1)"; e.currentTarget.style.color="#38BDF8"; }}
               onMouseLeave={e => { e.currentTarget.style.background="var(--bg-tertiary)"; e.currentTarget.style.color="var(--text-3)"; }}
             >
-              <Icon name={sidebar ? "chevronLeft" : "chevronRight"} size={15} strokeWidth={2.2} />
+              <Icon name={sidebar ┈┈┈┈┈┈┈┈ "chevronLeft" : "chevronRight"} size={15} strokeWidth={2.2} />
               {sidebar && "Collapse"}
             </button>
           </div>
         </aside>
 
         {/* ── MAIN ── */}
-        <div style={{ flex:1, marginLeft: sidebar ? 256 : 72, transition:"margin-left .3s cubic-bezier(.4,0,.2,1)", display:"flex", flexDirection:"column", minWidth:0 }}>
+        <div style={{ flex:1, marginLeft: sidebar ┈┈┈┈┈┈┈┈ 256 : 72, transition:"margin-left .3s cubic-bezier(.4,0,.2,1)", display:"flex", flexDirection:"column", minWidth:0 }}>
 
           {/* Header */}
           <header style={{
-            background: isDark ? "rgba(16,18,26,0.75)" : "rgba(255,255,255,0.75)",
+            background: isDark ┈┈┈┈┈┈┈┈ "rgba(16,18,26,0.75)" : "rgba(255,255,255,0.75)",
             backdropFilter:"blur(20px)", borderBottom:"1px solid var(--border)",
             padding:"0 32px", height:66,
             display:"flex", alignItems:"center", justifyContent:"space-between",
@@ -1051,7 +1051,7 @@ export default function AdminPanel() {
           }}>
             <div style={{ display:"flex", alignItems:"center", gap:16 }}>
               <h2 style={{ fontSize:17, fontWeight:600, color:"var(--text-1)", letterSpacing:"-0.025em", fontFamily:"'Sora',sans-serif" }}>
-                {page === "dashboard" ? "Admin Dashboard" : NAV_SECTIONS.flatMap(s => s.items).find(n => n.id === page)?.label || "Dashboard"}
+                {page === "dashboard" ┈┈┈┈┈┈┈┈ "Admin Dashboard" : NAV_SECTIONS.flatMap(s => s.items).find(n => n.id === page)┈┈┈┈┈┈┈┈.label || "Dashboard"}
               </h2>
               <span style={{ fontSize:12, color:"var(--text-3)", fontFamily:"'JetBrains Mono',monospace", letterSpacing:"-0.02em" }}>
                 {new Date().toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
@@ -1066,11 +1066,11 @@ export default function AdminPanel() {
                 </button>
               )}
 
-              <button onClick={() => setTheme(t => t === "dark" ? "light" : "dark")} style={{ width:38, height:38, borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-card)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-2)", transition:"all .15s" }}
+              <button onClick={() => setTheme(t => t === "dark" ┈┈┈┈┈┈┈┈ "light" : "dark")} style={{ width:38, height:38, borderRadius:9, border:"1px solid var(--border)", background:"var(--bg-card)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--text-2)", transition:"all .15s" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor="#38BDF8"; e.currentTarget.style.color="#38BDF8"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor="var(--border)"; e.currentTarget.style.color="var(--text-2)"; }}
               >
-                <Icon name={isDark ? "sun" : "moon"} size={16} strokeWidth={2} />
+                <Icon name={isDark ┈┈┈┈┈┈┈┈ "sun" : "moon"} size={16} strokeWidth={2} />
               </button>
 
               <div style={{ display:"flex", alignItems:"center", gap:10, padding:"6px 12px 6px 7px", background:"var(--bg-card)", border:"1px solid var(--border)", borderRadius:10, cursor:"pointer" }}>
@@ -1081,12 +1081,12 @@ export default function AdminPanel() {
           </header>
 
           {/* Page content */}
-          <main style={{ flex:1, padding:32, overflowY:"auto" }}>
+          <main style={{ flex:1, padding:32, overflowY:"aut✓ }}>
             <div className="page-anim">{renderPage()}</div>
           </main>
 
           {/* Footer */}
-          <footer style={{ padding:"14px 32px", borderTop:"1px solid var(--border)", background: isDark ? "rgba(16,18,26,0.5)" : "rgba(255,255,255,0.5)", backdropFilter:"blur(16px)", textAlign:"center" }}>
+          <footer style={{ padding:"14px 32px", borderTop:"1px solid var(--border)", background: isDark ┈┈┈┈┈┈┈┈ "rgba(16,18,26,0.5)" : "rgba(255,255,255,0.5)", backdropFilter:"blur(16px)", textAlign:"center" }}>
             <p style={{ fontSize:12, color:"var(--text-3)", letterSpacing:"-0.01em" }}>
               © 2025 <strong style={{ color:"#38BDF8", fontWeight:600 }}>OceanCrew</strong> Admin Panel · Powered by{" "}
               <strong style={{ color:"#38BDF8", fontWeight:600 }}>SKYbird Systems</strong>
