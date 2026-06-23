@@ -774,7 +774,7 @@ function SearchPage({isDark,showToast}){
     <div style={{animation:"fadeIn 0.4s ease"}}>
       <div style={{marginBottom:24}}>
         <h2 style={{fontSize:26,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>Search Seafarers</h2>
-        <p style={{fontSize:14,color:T.t3}>Browse verified maritime professionals. Your Professional plan includes unlimited views.</p>
+        <p style={{fontSize:14,color:T.t3}}>Browse verified maritime professionals. Your Professional plan includes unlimited views.</p>
       </div>
 
       <Card isDark={isDark} style={{marginBottom:16,padding:16,display:"flex",gap:12,flexWrap:"wrap",alignItems:"center"}}>
