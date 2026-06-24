@@ -96,7 +96,7 @@ function Field({ label, placeholder, type="text", value, onChange, icon, isDark,
 /* â”€â”€ LAYOUT â”€â”€ */
 function AuthLayout({ children, isDark, rightContent }) {
   return (
-    <div style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr",position:"relative"}}>
+    <div className="auth-layout" style={{minHeight:"100vh",display:"grid",gridTemplateColumns:"1fr 1fr",position:"relative"}}>
       {/* Logo — pinned to absolute top-left of the whole page */}
       <div style={{position:"fixed",top:20,left:24,zIndex:1000,display:"flex",alignItems:"center",gap:10}}>
         <div style={{width:40,height:40,borderRadius:11,
@@ -112,7 +112,7 @@ function AuthLayout({ children, isDark, rightContent }) {
       </div>
 
       {/* Left */}
-      <div style={{
+      <div className="auth-left" style={{
         display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
         padding:"48px 40px",minHeight:"100vh",
         background:isDark?"#08090C":"linear-gradient(145deg,#dce8f5,#e8eef7,#edf2f9)",
@@ -121,7 +121,7 @@ function AuthLayout({ children, isDark, rightContent }) {
       </div>
 
       {/* Right */}
-      <div style={{
+      <div className="auth-right" style={{
         background:isDark?"linear-gradient(160deg,#0C1A2E,#0A2440,#072040)":"linear-gradient(160deg,#F8FAFC,#EFF6FF,#E0F2FE)",
         display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",
         padding:"60px 48px",position:"relative",overflow:"hidden",

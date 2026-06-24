@@ -1711,7 +1711,7 @@ export default function AdminPanel(){
         </aside>
 
         {/* MAIN */}
-        <div style={{flex:1,marginLeft:sidebar?256:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
+        <div className="dashboard-main-wrapper" style={{flex:1,marginLeft:sidebar?256:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
           <header style={{background:isDark?D.header:L.header,backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",
             borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(150,170,200,0.15)"}`,
             padding:"0 28px",height:60,display:"flex",alignItems:"center",justifyContent:"space-between",

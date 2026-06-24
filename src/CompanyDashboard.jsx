@@ -1436,7 +1436,7 @@ export default function CompanyDashboard(){
         </aside>
 
         {/* MAIN */}
-        <div style={{flex:1,marginLeft:sidebar?252:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
+        <div className="dashboard-main-wrapper" style={{flex:1,marginLeft:sidebar?252:68,transition:"margin-left .28s ease",display:"flex",flexDirection:"column",minWidth:0}}>
 
           {/* Header */}
           <header style={{background:isDark?D.header:L.header,
