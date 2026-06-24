@@ -597,7 +597,10 @@ function ProfilePage({isDark,showToast,userName}){
 
           {/* Sea service */}
           <Card isDark={isDark}>
-            <h3 style={{fontSize:14,fontWeight:600,color:T.t1,marginBottom:14,fontFamily:"'Sora',sans-serif"}}>Sea Service</h3>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
+              <h3 style={{fontSize:14,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Sea Service</h3>
+              <button onClick={()=>showToast("Sea service edit opened","info")} style={{background:"none",border:"none",color:"#38BDF8",fontSize:12,cursor:"pointer",display:"flex",alignItems:"center",gap:4}}><Icon name="edit2" size={12}/> Edit</button>
+            </div>
             {SEA_SERVICE.map((s,i)=>(
               <div key={i} style={{padding:"10px 0",borderBottom:i<SEA_SERVICE.length-1?`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.08)"}`:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,marginBottom:2}}>{s.vessel}</div>
@@ -728,6 +731,9 @@ function DocumentsPage({isDark,showToast}){
             </div>
           </Card>
         ))}
+        <button onClick={()=>setCerts(p=>[...p,{id:"doc_"+Date.now(),label:"Custom Document",uploaded:false,required:false}])} style={{width:"100%",padding:14,borderRadius:10,border:`1px dashed ${isDark?"rgba(255,255,255,0.2)":"rgba(0,0,0,0.1)"}`,background:"transparent",color:T.t2,fontSize:13,fontWeight:600,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:8,marginTop:10}}>
+          <Icon name="plus" size={16}/> Add Custom Document
+        </button>
       </div>
     </div>
   );
