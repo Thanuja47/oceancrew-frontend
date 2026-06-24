@@ -1591,17 +1591,66 @@ const NAV_FULL = [
   ]},
 ];
 
+
+// Mobile bottom navigation for Admin
+function AdminMobileNav({page,setPage,isDark}){
+  const items=[
+    {id:"dashboard",icon:"dashboard",label:"Home"},
+    {id:"seafarers",icon:"anchor",label:"Seafarers"},
+    {id:"companies",icon:"building",label:"Companies"},
+    {id:"invoices",icon:"fileText",label:"Finance"},
+    {id:"settings",icon:"settings",label:"Settings"},
+  ];
+  return(
+    <div className="admin-mobile-nav" style={{display:"none"}}>
+      {items.map(item=>{
+        const active=page===item.id;
+        return(
+          <button key={item.id} onClick={()=>setPage(item.id)}
+            style={{display:"flex",flexDirection:"column",alignItems:"center",gap:3,
+              background:"none",border:"none",
+              color:active?"#38BDF8":"rgba(255,255,255,0.45)",
+              fontSize:9,fontWeight:600,cursor:"pointer",padding:"8px 4px",minWidth:48}}>
+            <Icon name={item.icon} size={20} color="currentColor" strokeWidth={active?2.2:1.8}/>
+            {item.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function AdminPanel(){
   const [page,setPage]=useState("dashboard");
   const [sidebar,setSidebar]=useState(true);
   const [theme,setTheme]=useState("dark");
   const [toast,setToast]=useState(null);
-  const [seafarers,setSeafarers]=useState(initSeafarers);
-  const [companies,setCompanies]=useState(initCompanies);
+  const [seafarers,setSeafarers]=useState([]);
+  const [companies,setCompanies]=useState([]);
 
   const isDark=theme==="dark";
   const T=useT(isDark);
   const showToast=(msg,type="info")=>setToast({msg,type});
+
+  // Load real data from backend API
+  useEffect(()=>{
+    fetch(`${API}/api/admin/users`,{headers:authHeader()})
+      .then(r=>r.ok?r.json():[]).then(users=>{
+        if(!Array.isArray(users))return;
+        setSeafarers(users.filter(u=>u.role==="seafarer").map(u=>({
+          id:u._id,name:u.name,rank:u.rank||"Seafarer",country:u.country||"",
+          status:u.status||"Active",apps:0,verified:u.verified||false,
+          sub:u.plan||"Free",avatar:(u.name||"??").slice(0,2).toUpperCase(),
+          matchScore:80,contractEnd:"-",blacklisted:u.blacklisted||false,email:u.email
+        })));
+        setCompanies(users.filter(u=>u.role==="company").map(u=>({
+          id:u._id,name:u.name,country:u.country||"",plan:u.plan||"Free",
+          status:u.status||"Active",jobs:0,hired:0,verified:u.verified||false,
+          logo:(u.name||"??").slice(0,2).toUpperCase(),revenue:0,renewal:"-",
+          blacklisted:u.blacklisted||false,email:u.email
+        })));
+      }).catch(()=>showToast("Failed to load users","error"));
+  },[]);
 
   const renderPage=()=>{
     const p={isDark,showToast,seafarers,setSeafarers,companies,setCompanies};
@@ -1756,6 +1805,7 @@ export default function AdminPanel(){
           </footer>
         </div>
       </div>
+      <AdminMobileNav page={page} setPage={setPage} isDark={isDark}/>
     </>
   );
 }

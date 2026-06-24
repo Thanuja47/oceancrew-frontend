@@ -1,273 +1,90 @@
-/* ══ OCEANCREW MOBILE RESPONSIVE ══ */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-/* Animations */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes spin { to { transform: rotate(360deg); } }
-@keyframes pulseDot { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-@keyframes slideUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-
-/* ── TABLET (max 1024px) ── */
-@media (max-width: 1024px) {
-  /* Reduce padding on main content */
-  main, [class*="main-content"] {
-    padding: 16px !important;
-  }
-  
-  /* Make grids responsive */
-  div[style*="gridTemplateColumns: repeat(4"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  div[style*="gridTemplateColumns:repeat(4"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  div[style*="gridTemplateColumns: repeat(3"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  div[style*="gridTemplateColumns:repeat(3"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-/* ── MOBILE (max 768px) ── */
+/* OceanCrew Mobile Responsive */
 @media (max-width: 768px) {
-  /* Hide desktop sidebar completely */
-  aside {
-    display: none !important;
-  }
-  
-  /* Main content takes full width */
+  /* Hide desktop sidebar on mobile */
+  aside { display: none !important; }
+
+  /* Main content: remove sidebar margin, full width */
   .dashboard-main-wrapper {
     margin-left: 0 !important;
-    width: 100% !important;
-    min-height: calc(100vh - 70px) !important;
+    width: 100vw !important;
   }
-  
   .dashboard-main-wrapper > main {
-    padding: 14px !important;
+    padding: 12px !important;
     padding-bottom: 80px !important;
+    overflow-x: hidden !important;
   }
-  
-  /* Fix header for mobile */
+
+  /* Header: compact on mobile */
   header {
-    padding: 10px 14px !important;
-    gap: 8px !important;
+    padding: 0 12px !important;
+    gap: 6px !important;
   }
-  
-  /* Hide search bar on very small screens */
-  header input[placeholder*="Search"] {
+  header input[placeholder="Search..."] { display: none !important; }
+
+  /* Auth layout */
+  .auth-layout { grid-template-columns: 1fr !important; }
+  .auth-right { display: none !important; }
+  .auth-left { padding: 30px 18px !important; min-height: 100vh !important; }
+
+  /* Grid columns to single column */
+  div[style*="gridTemplateColumns:repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+  div[style*="gridTemplateColumns:repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+  div[style*="gridTemplateColumns:repeat(5"] { grid-template-columns: 1fr !important; }
+  div[style*="gridTemplateColumns:repeat(2"] { grid-template-columns: 1fr !important; }
+  div[style*="gridTemplateColumns: repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+  div[style*="gridTemplateColumns: repeat(3"] { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Table columns compact */
+  div[style*="gridTemplateColumns:2fr 1fr 1fr 1fr 1fr"] {
+    grid-template-columns: 2fr 1fr !important;
+  }
+  div[style*="gridTemplateColumns:2fr 1fr 1fr 1fr 1fr"] > span:nth-child(n+3),
+  div[style*="gridTemplateColumns:2fr 1fr 1fr 1fr 1fr"] > div:nth-child(n+3) {
     display: none !important;
   }
-  
-  /* Stack grids to single column */
-  div[style*="gridTemplateColumns: repeat(2"] {
-    grid-template-columns: 1fr !important;
-  }
-  div[style*="gridTemplateColumns:repeat(2"] {
-    grid-template-columns: 1fr !important;
-  }
-  div[style*="gridTemplateColumns: repeat(3"] {
-    grid-template-columns: 1fr !important;
-  }
-  div[style*="gridTemplateColumns:repeat(3"] {
-    grid-template-columns: 1fr !important;
-  }
-  div[style*="gridTemplateColumns: repeat(4"] {
-    grid-template-columns: 1fr !important;
-  }
-  div[style*="gridTemplateColumns:repeat(4"] {
-    grid-template-columns: 1fr !important;
-  }
-  
-  /* Stat cards - single column */
-  div[style*="display:grid"] {
-    gap: 10px !important;
-  }
-  
-  /* Headers smaller on mobile */
+
+  /* Font sizes */
   h1 { font-size: 22px !important; }
-  h2 { font-size: 20px !important; }
-  h3 { font-size: 16px !important; }
-  
-  /* Fix flex wrapping */
-  div[style*="display:flex"][style*="gap"] {
-    flex-wrap: wrap !important;
-  }
-  
-  /* Cards padding */
-  div[style*="padding: 24px"],
-  div[style*="padding:24px"] {
-    padding: 14px !important;
-  }
-  
-  /* Buttons - full width on mobile */
-  button[style*="padding:13px"],
-  button[style*="padding: 13px"] {
-    width: 100% !important;
-    font-size: 14px !important;
-  }
-  
-  /* Modal adjustments */
-  div[style*="position:fixed"][style*="inset:0"] > div {
-    margin: 10px !important;
-    max-width: calc(100vw - 20px) !important;
-    max-height: calc(100vh - 20px) !important;
-    overflow-y: auto !important;
-    padding: 20px !important;
-  }
-  
-  /* Auth flow */
-  .auth-layout {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .auth-left {
-    padding: 30px 20px !important;
-    min-height: auto !important;
-  }
-  
-  .auth-right {
-    display: none !important;
-  }
-  
-  /* Job cards and applicant cards */
-  div[style*="display:flex"][style*="justifyContent:space-between"] {
-    flex-direction: column !important;
-    gap: 8px !important;
-    align-items: flex-start !important;
-  }
-  
-  /* Inline filter buttons scroll */
-  div[style*="display:flex"][style*="gap:6"] {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
-  }
-  div[style*="display:flex"][style*="gap:6"]::-webkit-scrollbar {
-    display: none !important;
-  }
-}
+  h2 { font-size: 18px !important; }
 
-/* ── SMALL MOBILE (max 480px) ── */
-@media (max-width: 480px) {
-  main, [class*="main-content"] {
-    padding: 10px !important;
-    padding-bottom: 80px !important;
-  }
-  
-  h1 { font-size: 18px !important; }
-  h2 { font-size: 17px !important; }
-  
-  /* Stat numbers */
-  div[style*="fontSize:32"],
-  div[style*="fontSize: 32"] {
-    font-size: 24px !important;
-  }
-  
-  /* Invoice / plan cards */
-  div[style*="padding:32px"],
-  div[style*="padding: 32px"] {
-    padding: 16px !important;
-  }
-}
-
-/* ── LANDING PAGE MOBILE ── */
-@media (max-width: 768px) {
-  /* Hero section */
-  section[style*="minHeight:100vh"],
-  section[style*="min-height:100vh"] {
-    padding: 20px !important;
-  }
-  
-  /* Navigation bar */
-  nav {
-    padding: 12px 16px !important;
-  }
-  
-  /* Hero text */
-  div[style*="fontSize:56"],
-  div[style*="font-size:56px"] {
-    font-size: 28px !important;
-  }
-  div[style*="fontSize:48"],
-  div[style*="font-size:48px"] {
-    font-size: 26px !important;
-  }
-  div[style*="fontSize:42"],
-  div[style*="font-size:42px"] {
-    font-size: 24px !important;
-  }
-  
-  /* Feature grid */
-  div[style*="gridTemplateColumns: repeat(3"] {
-    grid-template-columns: 1fr !important;
-  }
-  
-  /* Pricing cards */
-  div[style*="gridTemplateColumns: repeat(2"] {
-    grid-template-columns: 1fr !important;
-  }
-  
-  /* CTA buttons */
-  a[style*="padding:14px 36px"],
-  button[style*="padding:14px 36px"] {
-    padding: 12px 24px !important;
-    font-size: 14px !important;
-  }
-}
-
-/* ── MOBILE BOTTOM NAV ── */
-.mobile-bottom-nav {
-  display: none;
-}
-
-@media (max-width: 768px) {
+  /* Seafarer/Company mobile bottom nav */
   .mobile-bottom-nav {
     display: flex !important;
     position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
     height: 64px !important;
-    background: rgba(16, 18, 26, 0.95) !important;
+    background: rgba(16, 18, 26, 0.97) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 1px solid rgba(255,255,255,0.08) !important;
     z-index: 9999 !important;
     justify-content: space-around !important;
     align-items: center !important;
     padding: 0 8px !important;
   }
-  
-  .mobile-bottom-nav button {
+
+  /* Admin mobile bottom nav */
+  .admin-mobile-nav {
     display: flex !important;
-    flex-direction: column !important;
+    position: fixed !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
+    height: 64px !important;
+    background: rgba(8,9,12,0.97) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-top: 1px solid rgba(255,255,255,0.07) !important;
+    z-index: 9999 !important;
+    justify-content: space-around !important;
     align-items: center !important;
-    gap: 3px !important;
-    background: none !important;
-    border: none !important;
-    color: rgba(255, 255, 255, 0.5) !important;
-    font-size: 9px !important;
-    font-weight: 600 !important;
-    cursor: pointer !important;
-    padding: 8px 4px !important;
-    min-width: 48px !important;
-    transition: color 0.2s !important;
+    padding: 0 8px !important;
   }
-  
-  .mobile-bottom-nav button.active {
-    color: #38BDF8 !important;
-  }
-  
-  .mobile-bottom-nav button svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
+
+  /* Footer hide on mobile (bottom nav replaces it) */
+  footer { display: none !important; }
 }
 
-/* ── PRINT STYLES ── */
-@media print {
-  aside, header, .mobile-bottom-nav, nav { display: none !important; }
-  main { margin: 0 !important; padding: 0 !important; }
+/* Desktop: hide mobile nav */
+@media (min-width: 769px) {
+  .mobile-bottom-nav { display: none !important; }
+  .admin-mobile-nav { display: none !important; }
 }
