@@ -178,6 +178,7 @@ function LoginPage({ isDark, onNavigate }) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userRole", data.user?.role || "seafarer");
         localStorage.setItem("userName", data.user?.name || "");
+        localStorage.setItem("userEmail", data.user?.email || "");
         
         setTimeout(() => {
           if (data.user?.role === "company") onNavigate("company-dashboard");
@@ -343,6 +344,7 @@ function RegisterPage({ isDark, onNavigate }) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("userRole", data.user?.role || type);
         localStorage.setItem("userName", data.user?.name || form.name);
+        localStorage.setItem("userEmail", data.user?.email || form.email);
         setStep(3);
       } else {
         setErrors({ email: data.message || "Registration failed. Please try again." });

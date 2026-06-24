@@ -86,12 +86,16 @@ function useT(isDark){return isDark?D:L;}
 const API = "https://oceancrew-backend-production.up.railway.app";
 const authHeader = () => ({ "Authorization": `Bearer ${localStorage.getItem("token")}`, "Content-Type": "application/json" });
 
-/* â”€â”€ DATA â”€â”€ */
+/* --- DATA --- */
 const COMPANY = {
-  name:localStorage.getItem("userName") || "Pacific Star Shipping Co.",
-  logo:(localStorage.getItem("userName")||"PS").slice(0,2).toUpperCase(),plan:"Professional",country:"Singapore",
-  verified:true,joined:"Jan 2024",email:"hiring@pacificstar.com",
-  totalHired:47,activeJobs:8,totalApps:312,responseRate:94,
+  name:localStorage.getItem("userName") || "My Company",
+  logo:(localStorage.getItem("userName")||"MC").slice(0,2).toUpperCase(),
+  plan:localStorage.getItem("userPlan") || "Free",
+  country:localStorage.getItem("userCountry") || "",
+  verified:false,
+  joined:new Date().toLocaleDateString("en-US",{month:"short",year:"numeric"}),
+  email:localStorage.getItem("userEmail") || "",
+  totalHired:0,activeJobs:0,totalApps:0,responseRate:0,
 };
 
 const JOBS = [];
@@ -102,13 +106,7 @@ const TALENT_POOL = [];
 
 const INVOICES = [];
 
-const NOTIFICATIONS = [
-  {id:1,type:"application",msg:"New application: Capt. Rajesh Fernando applied for Master",time:"2h ago",  read:false,icon:"anchor"},
-  {id:2,type:"match",      msg:"Smart Match: 3 new seafarers match your Chief Engineer posting",time:"5h ago",  read:false,icon:"target"},
-  {id:3,type:"invoice",    msg:"Invoice INV-003 due on Jun 15 — $149",                          time:"1d ago",  read:true, icon:"creditCard"},
-  {id:4,type:"expiry",     msg:"Contract expiry alert: Capt. Ahmed Al Sayed available Jul 2025",time:"2d ago",  read:true, icon:"clock"},
-  {id:5,type:"platform",   msg:"OceanCrew: New feature — Hiring Pipeline now available",        time:"3d ago",  read:true, icon:"zap"},
-];
+const NOTIFICATIONS = [];
 
 const ACTIVITY = [];
 
@@ -1250,7 +1248,7 @@ function SettingsPage({isDark,showToast}){
             {l:"Platform Updates",v:false,type:"toggle"},
           ]},
           {title:"Account",icon:"settings",items:[
-            {l:"Hiring Contact Email",v:"hiring@pacificstar.com",type:"text"},
+            {l:"Hiring Contact Email",v:localStorage.getItem("userEmail")||"",type:"text"},
             {l:"Password",v:"••••••••",type:"text"},
             {l:"Two-Factor Authentication",v:false,type:"toggle"},
           ]},

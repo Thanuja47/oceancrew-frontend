@@ -827,7 +827,7 @@ function CVPage({isDark,showToast,userName}){
                   <div style={{fontSize:20,fontWeight:700,color:"#fff",fontFamily:"Georgia,serif",marginBottom:4}}>{SEAFARER.name}</div>
                   <div style={{fontSize:12,color:"rgba(255,255,255,0.65)",fontFamily:"'Inter',sans-serif",marginBottom:10}}>{SEAFARER.rank}</div>
                   <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
-                    {["ðŸ“§ rajesh.f@gmail.com","ðŸ“± +94 77 123 4567","ðŸ“  Colombo","ðŸŒ  Sri Lankan"].map((i,idx)=>(
+                    {[`ðŸ“§ ${localStorage.getItem("userEmail")||"your email"}`,"ðŸ“± ","ðŸ“  Colombo","ðŸŒ  Sri Lankan"].map((i,idx)=>(
                       <span key={idx} style={{fontSize:9,color:"rgba(255,255,255,0.6)",fontFamily:"'Inter',sans-serif"}}>{i}</span>
                     ))}
                   </div>
@@ -861,7 +861,7 @@ function CVPage({isDark,showToast,userName}){
             <Icon name="checkCircle" size={36} color={T.green} strokeWidth={1.5}/>
           </div>
           <h3 style={{fontSize:24,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>CV Request Received!</h3>
-          <p style={{fontSize:14,color:T.t2,lineHeight:1.7,maxWidth:480,margin:"0 auto 28px"}}>Your payment of <strong style={{color:T.green}}>$4.99</strong> was successful. Our team is now generating your professional maritime CV. You'll receive it at <strong style={{color:isDark?"#38BDF8":T.t1}}>rajesh.f@gmail.com</strong> within 24 hours.</p>
+          <p style={{fontSize:14,color:T.t2,lineHeight:1.7,maxWidth:480,margin:"0 auto 28px"}}>Your payment of <strong style={{color:T.green}}>$4.99</strong> was successful. Our team is now generating your professional maritime CV. You'll receive it at <strong style={{color:isDark?"#38BDF8":T.t1}}>${localStorage.getItem("userEmail")||"your email"}</strong> within 24 hours.</p>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:T.yellowBg,borderRadius:999,padding:"8px 18px"}}>
             <span style={{width:7,height:7,borderRadius:"50%",background:T.yellow,display:"inline-block",animation:"pulseDot 2s infinite"}}/>
             <span style={{fontSize:12,color:T.yellow,fontWeight:600}}>Admin is preparing your CV — estimated 24 hours</span>
@@ -1059,8 +1059,8 @@ function SettingsPage({isDark,showToast}){
             {l:"Allow Direct Contact",v:false,type:"toggle"},
           ]},
           {title:"Account",icon:"settings",items:[
-            {l:"Email Address",v:"rajesh.f@gmail.com",type:"text"},
-            {l:"Phone / WhatsApp",v:"+94 77 123 4567",type:"text"},
+            {l:"Email Address",v:localStorage.getItem("userEmail")||"your email",type:"text"},
+            {l:"Phone / WhatsApp",v:"",type:"text"},
             {l:"Two-Factor Authentication",v:false,type:"toggle"},
           ]},
         ].map(sec=>(

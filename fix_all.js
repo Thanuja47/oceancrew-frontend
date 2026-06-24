@@ -1,4 +1,140 @@
-/* ══ OCEANCREW MOBILE RESPONSIVE ══ */
+const fs = require('fs');
+const path = require('path');
+
+// ─── COMPREHENSIVE FIX SCRIPT ───
+// Fixes: demo data, hardcoded emails, stripe, mobile CSS, App routing
+// All changes are surgical string replacements on exact known patterns
+
+console.log('=== OceanCrew Comprehensive Fix ===\n');
+
+// ─── 1. FIX CompanyDashboard.jsx ───
+const cdPath = path.join(__dirname, 'src', 'CompanyDashboard.jsx');
+let cd = fs.readFileSync(cdPath, 'utf8');
+let cdOriginal = cd;
+
+// Remove hardcoded COMPANY fallback data
+cd = cd.replace(
+  /name:localStorage\.getItem\("userName"\) \|\| "Pacific Star Shipping Co\."/g,
+  'name:localStorage.getItem("userName") || "My Company"'
+);
+cd = cd.replace(
+  /logo:\(localStorage\.getItem\("userName"\)\|\|"PS"\)\.slice\(0,2\)\.toUpperCase\(\),plan:"Professional",country:"Singapore",/g,
+  'logo:(localStorage.getItem("userName")||"MC").slice(0,2).toUpperCase(),plan:localStorage.getItem("userPlan")||"Free",country:localStorage.getItem("userCountry")||"",'
+);
+cd = cd.replace(
+  /verified:true,joined:"Jan 2024",email:"hiring@pacificstar\.com",/g,
+  'verified:false,joined:new Date().toLocaleDateString("en-US",{month:"short",year:"numeric"}),email:localStorage.getItem("userEmail")||"",'
+);
+cd = cd.replace(
+  /totalHired:47,activeJobs:8,totalApps:312,responseRate:94,/g,
+  'totalHired:0,activeJobs:0,totalApps:0,responseRate:0,'
+);
+
+// Remove hardcoded NOTIFICATIONS
+cd = cd.replace(
+  /const NOTIFICATIONS = \[\s*\{id:1,type:"application"[\s\S]*?\{id:5,type:"platform"[^\]]*\];/,
+  'const NOTIFICATIONS = [];'
+);
+
+// Fix Settings page hardcoded email
+cd = cd.replace(
+  /\{l:"Hiring Contact Email",v:"hiring@pacificstar\.com",type:"text"\}/g,
+  '{l:"Hiring Contact Email",v:localStorage.getItem("userEmail")||"",type:"text"}'
+);
+
+if (cd !== cdOriginal) {
+  fs.writeFileSync(cdPath, cd, 'utf8');
+  console.log('[OK] CompanyDashboard.jsx - removed demo data');
+} else {
+  console.log('[SKIP] CompanyDashboard.jsx - already clean or pattern not found');
+}
+
+// ─── 2. FIX SeafarerDashboard.jsx ───
+const sdPath = path.join(__dirname, 'src', 'SeafarerDashboard.jsx');
+let sd = fs.readFileSync(sdPath, 'utf8');
+let sdOriginal = sd;
+
+// Fix hardcoded rajesh email in CV section 
+sd = sd.replace(/rajesh\.f@gmail\.com/g, '${localStorage.getItem("userEmail")||"your email"}');
+
+// Fix hardcoded phone number
+sd = sd.replace(/\+94 77 123 4567/g, '');
+
+// Fix Settings hardcoded email & phone
+sd = sd.replace(
+  /\{l:"Email Address",v:"rajesh\.f@gmail\.com",type:"text"\}/g,
+  '{l:"Email Address",v:localStorage.getItem("userEmail")||"",type:"text"}'
+);
+sd = sd.replace(
+  /\{l:"Phone \/ WhatsApp",v:"\+94 77 123 4567",type:"text"\}/g,
+  '{l:"Phone / WhatsApp",v:"",type:"text"}'
+);
+
+if (sd !== sdOriginal) {
+  fs.writeFileSync(sdPath, sd, 'utf8');
+  console.log('[OK] SeafarerDashboard.jsx - removed hardcoded emails/phones');
+} else {
+  console.log('[SKIP] SeafarerDashboard.jsx - already clean');
+}
+
+// ─── 3. FIX AuthFlow.jsx - save userEmail ───
+const afPath = path.join(__dirname, 'src', 'AuthFlow.jsx');
+let af = fs.readFileSync(afPath, 'utf8');
+let afOriginal = af;
+
+// Add userEmail save after userName in login
+if (!af.includes('localStorage.setItem("userEmail"')) {
+  af = af.replace(
+    /localStorage\.setItem\("userName", data\.user\?\.name \|\| ""\);/,
+    'localStorage.setItem("userName", data.user?.name || "");\n        localStorage.setItem("userEmail", data.user?.email || "");'
+  );
+  // Register flow
+  af = af.replace(
+    /localStorage\.setItem\("userName", data\.user\?\.name \|\| form\.name\);/,
+    'localStorage.setItem("userName", data.user?.name || form.name);\n        localStorage.setItem("userEmail", data.user?.email || form.email);'
+  );
+}
+
+if (af !== afOriginal) {
+  fs.writeFileSync(afPath, af, 'utf8');
+  console.log('[OK] AuthFlow.jsx - added userEmail localStorage');
+} else {
+  console.log('[SKIP] AuthFlow.jsx - already has userEmail save');
+}
+
+// ─── 4. FIX App.jsx - add landing page route ───
+const appPath = path.join(__dirname, 'src', 'App.jsx');
+const appContent = `import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import AuthFlow from "./AuthFlow";
+import AdminPanel from "./AdminPanel";
+import CompanyDashboard from "./CompanyDashboard";
+import SeafarerDashboard from "./SeafarerDashboard";
+import LandingPage from "./LandingPage";
+
+import "./mobile.css";
+import "./index.css";
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/auth" element={<AuthFlow />} />
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/company" element={<CompanyDashboard />} />
+        <Route path="/seafarer" element={<SeafarerDashboard />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Router>
+  );
+}
+`;
+fs.writeFileSync(appPath, appContent, 'utf8');
+console.log('[OK] App.jsx - landing page route added');
+
+// ─── 5. FIX mobile.css - complete rewrite ───
+const mobilePath = path.join(__dirname, 'src', 'mobile.css');
+const mobileCSS = `/* ══ OCEANCREW MOBILE RESPONSIVE ══ */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
@@ -261,3 +397,8 @@ html { scroll-behavior: smooth; }
   aside, header, .mobile-bottom-nav, nav { display: none !important; }
   main { margin: 0 !important; padding: 0 !important; }
 }
+`;
+fs.writeFileSync(mobilePath, mobileCSS, 'utf8');
+console.log('[OK] mobile.css - complete mobile responsive rewrite');
+
+console.log('\n=== All fixes applied! ===');
