@@ -50,7 +50,9 @@
 
   /* ─── Grid layouts: ALL grids become 1 column ─── */
   div[style*="grid-template-columns"],
-  div[style*="gridTemplateColumns"] {
+  div[style*="gridTemplateColumns"],
+  div[style*="display: grid"],
+  div[style*="display:grid"] {
     grid-template-columns: 1fr !important;
   }
 
