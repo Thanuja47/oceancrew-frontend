@@ -377,7 +377,7 @@ function DashboardPage({setPage,isDark,showToast,jobs,setJobs,notifs}){
                 <Icon name={n.icon} size={14} color={n.read?T.t3:(isDark?"#38BDF8":T.accent)} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:12,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4}}>{n.msg}</p>
+                <p style={{fontSize:12,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4}}>{n.msg ? n.msg.replace(/[Ã-ÿ][Ã-ÿ][Ã-ÿ][Ã-ÿ]/g, "🎉").replace(/plan plan/gi, "plan") : ""}</p>
                 <span style={{fontSize:10,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
               </div>
               {!n.read&&<div style={{width:7,height:7,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:4}}/>}
@@ -1100,7 +1100,7 @@ function NotificationsPage({isDark,showToast,notifs,setNotifs}){
                 <Icon name={n.icon} size={16} color={col} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:13,color:n.read?T.t2:T.t1,fontWeight:n.read?400:500,lineHeight:1.5,marginBottom:4}}>{n.msg}</p>
+                <p style={{fontSize:13,color:n.read?T.t2:T.t1,fontWeight:n.read?400:500,lineHeight:1.5,marginBottom:4}}>{n.msg ? n.msg.replace(/[Ã-ÿ][Ã-ÿ][Ã-ÿ][Ã-ÿ]/g, "🎉").replace(/plan plan/gi, "plan") : ""}</p>
                 <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
               </div>
               {!n.read&&<div style={{width:8,height:8,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:6}}/>}

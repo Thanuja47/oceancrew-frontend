@@ -300,7 +300,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                 <Icon name={n.icon} size={13} color={n.read?T.t3:(isDark?"#38BDF8":T.accent)} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:11,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4,marginBottom:2}}>{n.msg ? n.msg.replace(/ðŸŽ‰/g, "🎉").replace(/plan plan/gi, "plan") : ""}</p>
+                <p style={{fontSize:11,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4,marginBottom:2}}>{n.msg ? n.msg.replace(/[Ã-ÿ][Ã-ÿ][Ã-ÿ][Ã-ÿ]/g, "🎉").replace(/plan plan/gi, "plan") : ""}</p>
                 <span style={{fontSize:9,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
               </div>
               {!n.read&&<div style={{width:6,height:6,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:4}}/>}
@@ -1051,7 +1051,7 @@ function NotificationsPage({isDark,showToast,notifications,setNotifications,hand
                 <Icon name={n.icon||"bell"} size={16} color={col} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:13,color:n.read?T.t2:T.t1,fontWeight:n.read?400:500,lineHeight:1.5,marginBottom:4}}>{n.msg}</p>
+                <p style={{fontSize:13,color:n.read?T.t2:T.t1,fontWeight:n.read?400:500,lineHeight:1.5,marginBottom:4}}>{n.msg ? n.msg.replace(/[Ã-ÿ][Ã-ÿ][Ã-ÿ][Ã-ÿ]/g, "🎉").replace(/plan plan/gi, "plan") : ""}</p>
                 <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time||new Date(n.createdAt).toLocaleDateString()}</span>
               </div>
               {!n.read&&<div style={{width:8,height:8,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:6}}/>}
