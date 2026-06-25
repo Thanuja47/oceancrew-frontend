@@ -110,6 +110,19 @@ const NOTIFICATIONS = [];
 
 const ACTIVITY = [];
 
+/* ── Sanitize backend notification messages ── */
+const fixMsg = (msg) => {
+  if (!msg) return '';
+  // Fix corrupted emoji bytes (UTF-8 bytes decoded as Windows-1252)
+  let s = msg
+    .replace(/\u00f0\u0178\u017d\u2030/g, '\uD83C\uDF89') // 🎉
+    .replace(/\u00f0\u0178\uFFFD\u2022/g, '\uD83D\uDCEC')  // 📬
+    .replace(/\u00f0\u0178\uFFFD\u2020/g, '\uD83D\uDCC4'); // 📄
+  // Fix "Plan plan" duplicate (backend template bug)
+  s = s.replace(/Plan plan/gi, 'Plan').replace(/ plan plan/gi, ' plan');
+  return s;
+};
+
 const NAV = [
   {section:"Main",items:[
     {id:"dashboard",  icon:"dashboard",   label:"Dashboard"},
@@ -719,6 +732,101 @@ function PipelinePage({isDark,showToast}){
 }
 
 /* ══ SEARCH SEAFARERS PAGE ══ */
+/* ══ SEAFARER PROFILE MODAL ══ */
+function SeafarerProfileModal({seafarer, isDark, onClose}){
+  const T=useT(isDark);
+  const [docs,setDocs]=useState([]);
+  const [sea,setSea]=useState([]);
+  const [loading,setLoading]=useState(true);
+
+  useEffect(()=>{
+    if(!seafarer) return;
+    setLoading(true);
+    // Fetch seafarer details including documents
+    Promise.all([
+      fetch(`${API}/api/seafarers/${seafarer.id}`,{headers:authHeader()}).then(r=>r.ok?r.json():{}).catch(()=>({})),
+      fetch(`${API}/api/documents/${seafarer.id}`,{headers:authHeader()}).then(r=>r.ok?r.json():[]).catch(()=>[])
+    ]).then(([profile,documents])=>{
+      if(Array.isArray(documents)) setDocs(documents);
+      else if(profile.documents) setDocs(profile.documents);
+      if(Array.isArray(profile.seaService)) setSea(profile.seaService);
+      else if(profile.seaServiceList) setSea(profile.seaServiceList);
+    }).finally(()=>setLoading(false));
+  },[seafarer]);
+
+  if(!seafarer) return null;
+  return(
+    <div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.7)",zIndex:9999,display:"flex",alignItems:"center",justifyContent:"center",padding:16}} onClick={onClose}>
+      <div style={{background:isDark?"#0F1724":"#fff",borderRadius:20,padding:24,maxWidth:560,width:"100%",maxHeight:"85vh",overflowY:"auto",boxShadow:"0 24px 80px rgba(0,0,0,0.5)"}} onClick={e=>e.stopPropagation()}>
+        {/* Header */}
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20}}>
+          <h3 style={{fontSize:18,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif"}}>Seafarer Profile</h3>
+          <button onClick={onClose} style={{background:"none",border:"none",cursor:"pointer",color:T.t3,padding:4}}>
+            <Icon name="x" size={20} color={T.t3} strokeWidth={2}/>
+          </button>
+        </div>
+
+        {/* Profile card */}
+        <div style={{display:"flex",gap:16,alignItems:"center",padding:"16px",borderRadius:14,background:isDark?"rgba(56,189,248,0.06)":"rgba(26,35,50,0.04)",border:isDark?"1px solid rgba(56,189,248,0.15)":"1px solid rgba(100,116,139,0.1)",marginBottom:20}}>
+          <div style={{width:64,height:64,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.15)":"rgba(26,35,50,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,fontWeight:700,color:isDark?"#38BDF8":"#1a2332",fontFamily:"'Sora',sans-serif",flexShrink:0}}>{seafarer.avatar}</div>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{fontSize:17,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:4}}>{seafarer.name}</div>
+            <div style={{fontSize:12,color:T.t3,marginBottom:8}}>{seafarer.rank}{seafarer.country?` · ${seafarer.country}`:""}{seafarer.exp?` · ${seafarer.exp}`:""}</div>
+            <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
+              {seafarer.verified&&<span style={{background:"linear-gradient(135deg,#38BDF8,#0EA5E9)",color:"#fff",fontSize:9,fontWeight:800,padding:"2px 8px",borderRadius:999}}>✓ VERIFIED</span>}
+              <span style={{background:isDark?"rgba(52,211,153,0.12)":"rgba(52,211,153,0.1)",color:"#34D399",fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:999}}>Available {seafarer.available||"Now"}</span>
+              <span style={{background:isDark?"rgba(251,191,36,0.12)":"rgba(251,191,36,0.1)",color:"#FBBF24",fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:999}}>{seafarer.score}% match</span>
+            </div>
+          </div>
+        </div>
+
+        {loading?(
+          <div style={{textAlign:"center",padding:"30px",color:T.t3,fontSize:13}}>Loading details...</div>
+        ):(
+          <>
+            {/* Sea Service */}
+            <div style={{marginBottom:20}}>
+              <div style={{fontSize:13,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>Sea Service</div>
+              {sea.length===0?(
+                <div style={{fontSize:12,color:T.t3,padding:"10px",textAlign:"center"}}>No sea service records added yet.</div>
+              ):sea.map((s,i)=>(
+                <div key={i} style={{padding:"10px 12px",borderRadius:10,background:isDark?"rgba(255,255,255,0.03)":"rgba(100,116,139,0.04)",marginBottom:8}}>
+                  <div style={{fontSize:13,fontWeight:600,color:T.t1,marginBottom:2}}>{s.vessel||s.vesselName}</div>
+                  <div style={{fontSize:11,color:T.t3}}>{s.type||s.vesselType} · {s.flag||s.flagState} · {s.rank}</div>
+                  <div style={{fontSize:10,color:T.t3,marginTop:3,fontFamily:"'JetBrains Mono',monospace"}}>{s.from} → {s.to}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Documents */}
+            <div>
+              <div style={{fontSize:13,fontWeight:700,color:T.t1,fontFamily:"'Sora',sans-serif",marginBottom:10}}>Documents</div>
+              {docs.length===0?(
+                <div style={{fontSize:12,color:T.t3,padding:"10px",textAlign:"center"}}>No documents uploaded yet.</div>
+              ):docs.map((d,i)=>(
+                <div key={i} style={{display:"flex",alignItems:"center",gap:10,padding:"10px 12px",borderRadius:10,background:isDark?"rgba(255,255,255,0.03)":"rgba(100,116,139,0.04)",marginBottom:8}}>
+                  <Icon name="fileText" size={16} color={isDark?"#38BDF8":"#1a2332"} strokeWidth={2}/>
+                  <div style={{flex:1,minWidth:0}}>
+                    <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{d.label||d.name||d.docType}</div>
+                    {d.expiry&&<div style={{fontSize:10,color:T.t3}}>Expires: {d.expiry}</div>}
+                  </div>
+                  {(d.url||d.fileUrl)&&(
+                    <a href={d.url||d.fileUrl} target="_blank" rel="noopener noreferrer"
+                      style={{padding:"4px 10px",borderRadius:7,background:isDark?"rgba(56,189,248,0.12)":"rgba(26,35,50,0.08)",color:isDark?"#38BDF8":"#1a2332",fontSize:10,fontWeight:600,textDecoration:"none"}}>
+                      View
+                    </a>
+                  )}
+                  <span style={{fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:999,background:d.uploaded?(isDark?"rgba(52,211,153,0.12)":"rgba(52,211,153,0.1)"):(isDark?"rgba(239,68,68,0.1)":"rgba(239,68,68,0.08)"),color:d.uploaded?"#34D399":"#EF4444"}}>{d.uploaded?"Uploaded":"Missing"}</span>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function SearchPage({isDark,showToast}){
   const T=useT(isDark);
   const [search,setSearch]=useState("");
@@ -726,6 +834,7 @@ function SearchPage({isDark,showToast}){
   const [pool,setPool]=useState(TALENT_POOL);
   const [allSeafarers,setAllSeafarers]=useState([]);
   const [loading,setLoading]=useState(true);
+  const [selectedSeafarer,setSelectedSeafarer]=useState(null);
 
   useEffect(()=>{
     fetch(`${API}/api/seafarers`,{headers:authHeader()})
@@ -822,7 +931,7 @@ function SearchPage({isDark,showToast}){
                   <Bdg label={s.sub==="Pro"?"Pro":"Free"} color={s.sub==="Pro"?T.yellow:T.t3} bg={s.sub==="Pro"?T.yellowBg:(isDark?"rgba(255,255,255,0.05)":"rgba(100,116,139,0.07)")}/>
                 </div>
                 <div style={{display:"flex",gap:6}}>
-                  <Btn onClick={()=>showToast("Viewing full profile...","info")} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
+                  <Btn onClick={()=>setSelectedSeafarer(s)} isDark={isDark} variant="ghost" size="sm" icon="eye">View</Btn>
                   <Btn onClick={()=>addToPool(s)} isDark={isDark} variant="primary" size="sm" icon="star">Save</Btn>
                 </div>
               </div>
@@ -830,6 +939,7 @@ function SearchPage({isDark,showToast}){
           ))}
         </div>
       )}
+      {selectedSeafarer&&<SeafarerProfileModal seafarer={selectedSeafarer} isDark={isDark} onClose={()=>setSelectedSeafarer(null)}/>}
     </div>
   );
 }
@@ -1297,7 +1407,7 @@ export default function CompanyDashboard(){
       const r=await fetch(`${API}/api/notifications`,{headers:authHeader()});
       const d=await r.json();
       if(Array.isArray(d)){
-        const mapped=d.map(n=>({id:n._id,type:n.type,msg:n.msg,icon:n.icon||"bell",time:new Date(n.createdAt).toLocaleDateString(),read:n.read}));
+        const mapped=d.map(n=>({id:n._id,type:n.type,msg:fixMsg(n.msg),icon:n.icon||"bell",time:new Date(n.createdAt).toLocaleDateString(),read:n.read}));
         setNotifs([...mapped,...NOTIFICATIONS]);
       }
     }catch{}

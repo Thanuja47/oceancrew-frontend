@@ -93,6 +93,17 @@ const CERTS=[
 
 const SEA_SERVICE=[];
 
+/* ── Sanitize backend notification messages ── */
+const fixMsg = (msg) => {
+  if (!msg) return '';
+  let s = msg
+    .replace(/\u00f0\u0178\u017d\u2030/g, '\uD83C\uDF89')
+    .replace(/\u00f0\u0178\uFFFD\u2022/g, '\uD83D\uDCEC')
+    .replace(/\u00f0\u0178\uFFFD\u2020/g, '\uD83D\uDCC4');
+  s = s.replace(/Plan plan/gi, 'Plan').replace(/ plan plan/gi, ' plan');
+  return s;
+};
+
 const NAV=[
   {section:"Main",items:[
     {id:"dashboard",   icon:"dashboard",  label:"Dashboard"},
@@ -1170,7 +1181,7 @@ export default function SeafarerDashboard(){
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
-      setNotifications(Array.isArray(data) ? data : []);
+      setNotifications(Array.isArray(data) ? data.map(n=>({...n,msg:fixMsg(n.msg)})) : []);
     } catch { setNotifications([]); }
   };
 
