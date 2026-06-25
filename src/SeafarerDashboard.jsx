@@ -513,6 +513,8 @@ function ApplicationsPage({isDark,showToast,applications}){
 
 function ProfilePage({isDark,showToast,userName}){
   const T=useT(isDark);
+  const [seaServiceList, setSeaServiceList] = useState(SEA_SERVICE);
+  const [editingSeaService, setEditingSeaService] = useState(false);
   const SEAFARER = {name:userName||"User", avatar:(userName||"User")[0], rank:"Seafarer", nationality:"Global", yearsExp:0, verified:false, sub:"Free", availability:"Now", profileStrength:50, homePort:"Unknown"};
   const [form,setForm]=useState({
     name:SEAFARER.name,rank:SEAFARER.rank,nationality:SEAFARER.nationality,
@@ -762,6 +764,7 @@ function CVPage({isDark,showToast,userName}){
   const [requested,setRequested]=useState(false);
   const [paid,setPaid]=useState(false);
   const [loading,setLoading]=useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const fileInputRef = useRef(null);
   const [file,setFile] = useState(null);
 
