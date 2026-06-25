@@ -1328,16 +1328,16 @@ export default function SeafarerDashboard(){
               <h2 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>
                 {NAV.flatMap(s=>s.items).find(n=>n.id===page)?.label||"Dashboard"}
               </h2>
-              <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>
+              <span className="header-date" style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>
                 {new Date().toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
               </span>
             </div>
             <div style={{display:"flex",alignItems:"center",gap:8}}>
-              <div style={{position:"relative"}}>
+              <div className="header-search" style={{position:"relative"}}>
                 <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={13} color={T.t3} strokeWidth={2}/></span>
                 <input placeholder="Search jobs..." value={searchQuery} onChange={handleSearch} style={{width:180,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
               </div>
-              <Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="primary" size="sm" icon="search">Find Jobs</Btn>
+              <span className="header-find-jobs"><Btn onClick={()=>setPage("jobs")} isDark={isDark} variant="primary" size="sm" icon="search">Find Jobs</Btn></span>
               <button onClick={()=>setTheme(t=>t==="dark"?"light":"dark")} style={{width:34,height:34,borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",color:T.t2}}>
                 <Icon name={isDark?"sun":"moon"} size={14} strokeWidth={2}/>
               </button>
@@ -1348,7 +1348,7 @@ export default function SeafarerDashboard(){
               <div style={{display:"flex",alignItems:"center",gap:7,padding:"5px 12px 5px 6px",background:isDark?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}
                 onClick={()=>setPage("profile")}>
                 <div style={{width:26,height:26,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.15)":"rgba(26,35,50,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>{userAvatar}</div>
-                <span style={{fontSize:12,fontWeight:600,color:T.t1}}>{userName.split(" ")[0]}</span>
+                <span className="header-username" style={{fontSize:12,fontWeight:600,color:T.t1}}>{userName.split(" ")[0]}</span>
               </div>
             </div>
           </header>

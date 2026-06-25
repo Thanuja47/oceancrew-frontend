@@ -1769,12 +1769,12 @@ export default function AdminPanel(){
               <h2 style={{fontSize:15,fontWeight:600,color:T.t1,fontFamily:"'Sora',sans-serif"}}>
                 {NAV_FULL.flatMap(s=>s.items).find(n=>n.id===page)?.label||"Dashboard"}
               </h2>
-              <span style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>
+              <span className="header-date" style={{fontSize:11,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>
                 {new Date().toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}
               </span>
             </div>
             <div style={{display:"flex",alignItems:"center",gap:8}}>
-              <div style={{position:"relative"}}>
+              <div className="header-search" style={{position:"relative"}}>
                 <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)"}}><Icon name="search" size={13} color={T.t3} strokeWidth={2}/></span>
                 <input placeholder="Search..." style={{width:160,padding:"7px 12px 7px 30px",borderRadius:9,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,background:isDark?"rgba(255,255,255,0.04)":"rgba(255,255,255,0.9)",color:T.t1,fontSize:12,outline:"none",fontFamily:"'Inter',sans-serif"}}/>
               </div>
@@ -1789,7 +1789,7 @@ export default function AdminPanel(){
                   SA
                   <div style={{position:"absolute",bottom:0,right:0,width:6,height:6,borderRadius:"50%",background:"#22C55E",border:`2px solid ${isDark?"#08090C":"#fff"}`}}/>
                 </div>
-                <span style={{fontSize:12,fontWeight:600,color:T.t1}}>Admin</span>
+                <span className="header-username" style={{fontSize:12,fontWeight:600,color:T.t1}}>Admin</span>
               </div>
             </div>
           </header>
