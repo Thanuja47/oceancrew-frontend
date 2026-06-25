@@ -91,11 +91,7 @@ const CERTS=[
   {id:"gmdss", label:"GMDSS",                uploaded:false,expiry:null,required:false},
 ];
 
-const SEA_SERVICE=[
-  {vessel:"MV Ocean Star",type:"Container",rank:"Master",flag:"Panama",from:"2020-01",to:"2023-06"},
-  {vessel:"MV Pacific Glory",type:"Bulk Carrier",rank:"Chief Officer",flag:"Singapore",from:"2017-03",to:"2019-12"},
-  {vessel:"MT Gulf Star",type:"Oil Tanker",rank:"Chief Officer",flag:"Marshall Islands",from:"2014-06",to:"2017-02"},
-];
+const SEA_SERVICE=[];
 
 const NAV=[
   {section:"Main",items:[
@@ -304,7 +300,7 @@ function DashboardPage({setPage,isDark,showToast,applications,jobs,notifications
                 <Icon name={n.icon} size={13} color={n.read?T.t3:(isDark?"#38BDF8":T.accent)} strokeWidth={2}/>
               </div>
               <div style={{flex:1}}>
-                <p style={{fontSize:11,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4,marginBottom:2}}>{n.msg}</p>
+                <p style={{fontSize:11,color:n.read?T.t3:T.t1,fontWeight:n.read?400:500,lineHeight:1.4,marginBottom:2}}>{n.msg ? n.msg.replace(/ðŸŽ‰/g, "🎉").replace(/plan plan/gi, "plan") : ""}</p>
                 <span style={{fontSize:9,color:T.t3,fontFamily:"'JetBrains Mono',monospace"}}>{n.time}</span>
               </div>
               {!n.read&&<div style={{width:6,height:6,borderRadius:"50%",background:isDark?"#38BDF8":T.accent,flexShrink:0,marginTop:4}}/>}
@@ -511,7 +507,7 @@ function ApplicationsPage({isDark,showToast,applications}){
   );
 }
 
-function ProfilePage({isDark,showToast,userName}){
+function ProfilePage({isDark,showToast,userName,profilePic,setProfilePic}){
   const T=useT(isDark);
   const [seaServiceList, setSeaServiceList] = useState(SEA_SERVICE);
   const [editingSeaService, setEditingSeaService] = useState(false);
@@ -639,12 +635,15 @@ function ProfilePage({isDark,showToast,userName}){
           <div style={{marginBottom:18}}>
             <div style={{fontSize:10,fontWeight:700,color:T.t3,letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:6}}>Profile Picture</div>
             <div style={{display:"flex",alignItems:"center",gap:12}}>
-              <div style={{width:50,height:50,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif"}}>
-                {SEAFARER.avatar}
+              <div style={{width:90,height:90,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:32,fontWeight:700,color:isDark?"#38BDF8":T.t1,fontFamily:"'Sora',sans-serif",border:`2px solid ${isDark?"#38BDF8":"#0EA5E9"}`, overflow:"hidden"}}>
+                {profilePic ? <img src={profilePic} alt="profile" style={{width:"100%",height:"100%",objectFit:"cover"}} /> : SEAFARER.avatar}
               </div>
               <input type="file" accept="image/*" onChange={(e)=>{
-                // Mocking file upload for now
-                if(e.target.files && e.target.files[0]) showToast("Photo selected (UI mock)","info");
+                if(e.target.files && e.target.files[0]){
+                  const reader = new FileReader();
+                  reader.onload = (e) => setProfilePic(e.target.result);
+                  reader.readAsDataURL(e.target.files[0]);
+                }
               }} style={{color:T.t2, fontSize:12}} />
             </div>
           </div>
@@ -1134,6 +1133,7 @@ export default function SeafarerDashboard(){
   const [applications,setApplications]=useState([]);
   const [notifications,setNotifications]=useState([]);
   const [searchQuery,setSearchQuery]=useState("");
+  const [profilePic,setProfilePic]=useState(localStorage.getItem("profilePic"));
   const [loadingJobs,setLoadingJobs]=useState(false);
 
   /* â”€â”€ Fetch jobs â”€â”€ */
@@ -1213,7 +1213,7 @@ export default function SeafarerDashboard(){
       case "dashboard":    return <DashboardPage setPage={setPage} userName={userName} {...p}/>;
       case "jobs":         return <FindJobsPage {...p} searchQuery={searchQuery}/>;
       case "applications": return <ApplicationsPage {...p}/>;
-      case "profile":      return <ProfilePage {...p}/>;
+      case "profile":      return <ProfilePage {...p} profilePic={profilePic} setProfilePic={setProfilePic}/>;
       case "documents":    return <DocumentsPage {...p}/>;
       case "cv":           return <CVPage {...p}/>;
       case "subscription": return <SubscriptionPage {...p}/>;
@@ -1264,7 +1264,9 @@ export default function SeafarerDashboard(){
 
           {sidebar&&(
             <div style={{padding:"12px 18px",borderBottom:`1px solid ${isDark?"rgba(255,255,255,0.05)":"rgba(0,0,0,0.05)"}`,display:"flex",alignItems:"center",gap:10}}>
-              <div style={{width:36,height:36,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:isDark?"#38BDF8":T.t1,fontWeight:700,fontSize:13,fontFamily:"'Sora',sans-serif",flexShrink:0,border:isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)"}}>{userAvatar}</div>
+              <div style={{width:36,height:36,borderRadius:"50%",background:isDark?"rgba(255,255,255,0.08)":"rgba(100,116,139,0.1)",display:"flex",alignItems:"center",justifyContent:"center",color:isDark?"#38BDF8":T.t1,fontWeight:700,fontSize:13,fontFamily:"'Sora',sans-serif",flexShrink:0,border:isDark?"1px solid rgba(56,189,248,0.2)":"1px solid rgba(26,35,50,0.1)",overflow:"hidden"}}>
+                {profilePic ? <img src={profilePic} alt="profile" style={{width:"100%",height:"100%",objectFit:"cover"}} /> : userAvatar}
+              </div>
               <div style={{flex:1,minWidth:0}}>
                 <div style={{fontSize:12,fontWeight:600,color:T.t1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{userName}</div>
                 <div style={{display:"flex",alignItems:"center",gap:5,marginTop:2}}>
@@ -1347,7 +1349,9 @@ export default function SeafarerDashboard(){
               </button>
               <div style={{display:"flex",alignItems:"center",gap:7,padding:"5px 12px 5px 6px",background:isDark?"rgba(255,255,255,0.05)":"rgba(255,255,255,0.95)",borderRadius:999,border:`1px solid ${isDark?"rgba(255,255,255,0.07)":"rgba(150,170,200,0.2)"}`,cursor:"pointer"}}
                 onClick={()=>setPage("profile")}>
-                <div style={{width:26,height:26,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.15)":"rgba(26,35,50,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,flexShrink:0,fontFamily:"'Sora',sans-serif"}}>{userAvatar}</div>
+                <div style={{width:26,height:26,borderRadius:"50%",background:isDark?"rgba(56,189,248,0.15)":"rgba(26,35,50,0.08)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:10,fontWeight:700,color:isDark?"#38BDF8":T.t1,flexShrink:0,fontFamily:"'Sora',sans-serif",overflow:"hidden"}}>
+                  {profilePic ? <img src={profilePic} alt="profile" style={{width:"100%",height:"100%",objectFit:"cover"}} /> : userAvatar}
+                </div>
                 <span className="header-username" style={{fontSize:12,fontWeight:600,color:T.t1}}>{userName.split(" ")[0]}</span>
               </div>
             </div>
