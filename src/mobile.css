@@ -48,54 +48,33 @@
   .auth-right  { display: none !important; }
   .auth-left   { padding: 30px 18px !important; min-height: 100vh !important; }
 
-  /* ─── Extreme Mobile-First: ALL grids become 1 column ─── */
-  div[style*="grid-template-columns"] {
-    grid-template-columns: 1fr !important;
-  }
-  /* For React styling fallback (camelCase might appear occasionally) */
+  /* ─── Grid layouts: ALL grids become 1 column ─── */
+  div[style*="grid-template-columns"],
   div[style*="gridTemplateColumns"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* Make flex containers stack vertically if they contain cards/widgets */
-  /* We target divs with flex that have a gap, usually used for side-by-side elements */
-  div[style*="display: flex"][style*="gap:"],
-  div[style*="display:flex"][style*="gap:"] {
+  /* ─── Targeted Stacking (Instead of breaking all flexboxes) ─── */
+  /* Stat cards flex container (if any) */
+  .stat-cards-container {
     flex-direction: column !important;
-    align-items: stretch !important;
   }
 
-  /* Specifically fix the profile strength bar header so it doesn't stack awkwardly */
-  .dashboard-main-wrapper header div[style*="display: flex"],
-  .dashboard-main-wrapper header div[style*="display:flex"] {
-    flex-direction: row !important;
-    align-items: center !important;
+  /* Job cards inner stacking on mobile */
+  .job-card-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
   }
-
-  /* Keep badge rows horizontal */
-  div[style*="display: flex"][style*="gap: 7px"],
-  div[style*="display:flex"][style*="gap:7px"],
-  div[style*="gap: 7px"],
-  div[style*="gap:7px"] {
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
+  .job-card-inner > div {
+    width: 100% !important;
+    text-align: left !important;
   }
-
-  /* Keep avatar and name horizontal */
-  div[style*="alignItems: center"][style*="gap: 18px"],
-  div[style*="align-items: center"][style*="gap: 18px"] {
-    flex-direction: row !important;
+  .job-card-inner .job-card-actions {
+    width: 100% !important;
+    justify-content: stretch !important;
   }
-  
-  /* Job cards inner layout stack */
-  div[style*="display: flex"][style*="gap: 16px"],
-  div[style*="display:flex"][style*="gap:16px"] {
-     flex-direction: column !important;
-     align-items: flex-start !important;
-  }
-  /* Keep specific small things like icons and buttons horizontal */
-  button, a {
-     flex-direction: row !important;
+  .job-card-inner .job-card-actions button {
+    flex: 1 !important;
   }
 
   /* ─── Typography ─── */
@@ -119,7 +98,8 @@
   }
 
   /* ─── Mobile bottom nav (Seafarer & Company) ─── */
-  .mobile-bottom-nav {
+  .mobile-bottom-nav,
+  .admin-mobile-nav {
     display: flex !important;
     flex-direction: row !important;
     position: fixed !important;
@@ -131,25 +111,6 @@
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-    z-index: 9999 !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    padding: 0 8px !important;
-  }
-
-  /* ─── Admin mobile nav ─── */
-  .admin-mobile-nav {
-    display: flex !important;
-    flex-direction: row !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    height: 64px !important;
-    background: rgba(8, 9, 12, 0.97) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.07) !important;
     z-index: 9999 !important;
     justify-content: space-around !important;
     align-items: center !important;
